@@ -1,0 +1,20 @@
+/*
+	A stylesheet’s @use rules must come before any rules other than @forward, 
+	including style rules. However, you can declare variables before @use rules 
+	to use when configuring modules.
+*/
+@use "lib/code";
+@use "lib/lists";
+@use "sass:math";
+
+/*
+		If you find yourself wanting to configure many variables at once, 
+		pass maps as configuration, or update the configuration after the 
+		module is loaded, consider writing a mixin to set your variables 
+		instead and another mixin to inject your styles.
+*/
+/*
+Built-in module variables (such as math.$pi) cannot be reassigned.other can
+*/
+//math.$pi: 8.3;	//Error: Cannot modify built-in variable.
+//@debug math.$pi;

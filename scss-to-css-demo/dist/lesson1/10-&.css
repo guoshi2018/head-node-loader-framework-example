@@ -1,0 +1,21 @@
+.foo.bar .baz.bang,
+.bip.qux {
+  content: ".foo.bar .baz.bang, .bip.qux";
+}
+
+p.clee- {
+  color: red;
+  content: "p.clee-";
+}
+
+.spring .autumn {
+  margin-left: 3px;
+}
+
+a {
+  color: yellow;
+}
+
+a {
+  color: yellow;
+} /*# sourceMappingURL=10-&.css.map */

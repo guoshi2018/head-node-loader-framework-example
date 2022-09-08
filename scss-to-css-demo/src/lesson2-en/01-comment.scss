@@ -1,0 +1,60 @@
+//By default, multi-line comments be stripped from the compiled CSS
+//in compressed mode. If a comment begins with /*!, though,
+//it will always be included in the CSS output.
+
+// This comment won't be included in the CSS.
+
+/* But this comment will, except in compressed mode. */
+
+/* It can also contain interpolation:
+ * 1 + 1 = #{1 + 1} */
+
+/*! This comment will be included even in compressed mode. */
+
+p /* Multi-line comments can be written anywhere
+   * whitespace is allowed. */ .sans {
+	font: Helvetica,
+		// So can single-line commments.
+		sans-serif;
+}
+
+//Documentation comments are silent comments, written with
+//three slashes (///) directly above the thing you’re documenting.
+//SassDoc parses text in the comments as Markdown, and supports
+//many useful annotations to describe it in detail.
+
+///Computes an exponent
+///
+/// @param {number} $base
+/// 	The number to multiply by itself
+/// @param {integer(unitless)}$exponent
+/// 	The number of `$base`s to multiply together
+/// @return {number}`$base` to the power of `$exponent`
+@function the-pow($base, $exponent) {
+	$result: 1;
+	@for $_ from 1 through $exponent {
+		$result: $result * $base;
+	}
+	@return $result;
+}
+
+.c1.sheekly {
+	color: rgb(75, 180, 27);
+	span {
+		display: block;
+		//width: pow(3, 4) px; //这样的到的数值与px之间有空格, 不生效
+		//width: #{the-pow(3, 4)}px; //ok,这个比较累赘
+		width: the-pow(3, 4) * 1px; //ok, 比较规范
+		border: 1px solid #551e1e;
+	}
+}
+
+p {
+	color: gray;
+	background-color: #551e1e;
+	a {
+		&:hover {
+			color: #492ad4;
+		}
+	}
+}

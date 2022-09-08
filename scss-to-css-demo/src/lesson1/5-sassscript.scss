@@ -1,0 +1,39 @@
+//全局变量
+$my-width: 15em;
+
+#content {
+	width: $my-width;
+}
+
+//局部变量
+.lesson {
+	.wife {
+		color: antiquewhite;
+		$your-width: 20em;
+		width: $your-width; //ok
+		.qiuqian {
+			font-size: $your-width; //ok
+		}
+	}
+	.husband {
+		//width: $your-width; //error
+		height: 13em;
+	}
+}
+
+//局部变量提升为全局:添加!global
+.neneko {
+	.one {
+		color: alpha($color: #000000);
+		.two {
+			color: black;
+			$her-width: 30em !global;
+		}
+	}
+	.three {
+		width: $her-width;
+	}
+}
+.slip .box {
+	width: $her-width;
+}

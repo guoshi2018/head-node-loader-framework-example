@@ -1,0 +1,20 @@
+$border-contrast: false !default; //标志引入方可配置. 试验证明, 对于load-css, 无需此标志也可配置
+code {
+	padding: 0.25em;
+	line-height: 0;
+	background-color: #6b717f;
+	color: #d2e1dd;
+	@if $border-contrast {
+		border-color: #dadbdf;
+	}
+}
+
+@mixin another-code {
+	padding: 0.25em;
+	line-height: 0;
+	background-color: #6b717f;
+	color: #d2e1dd;
+	// @if $border-contrast {
+	// 	border-color: #dadbdf;
+	// }
+}

@@ -1,0 +1,11 @@
+@use "d1";
+@forward "d1";
+//@forward "d1" as d2-tran-*;
+
+@debug "_d2.scss, get d1.$hey:" + d1.$hey;
+
+@mixin abc($a, $b, $c) {
+	prop1: $a;
+	prop2: $b;
+	prop3: $c;
+}

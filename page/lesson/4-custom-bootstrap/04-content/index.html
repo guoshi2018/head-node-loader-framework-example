@@ -1,0 +1,380 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>bootstrap content 测试,</title>
+  <script type="text/javascript" src="/lib/script/js/indoor-core/jscss-loader.js"
+    entry="/lib/script/js/page/lesson/4-custom-bootstrap/04-content.js"></script>
+</head>
+
+<body>
+  <section class="ndemo-typography">
+    <h2 class="header">
+      主要讨论 _type.scss 的 class
+    </h2>
+    <details class="ndemo-reboot">
+      <summary class="header">
+        reboot.scss 测试
+        <p>
+          其他一些说明文字
+        </p>
+      </summary>
+      <main>
+        参看 02-lib/exer
+      </main>
+    </details>
+    <details class="ndemo-headings-class">
+      <summary class="header">
+        使用 .h1 ... .h6, 而不是 &lt;h1,...,h6 /&gt; 在某些时候, 需要字号, 又不方便使用这些标签时,
+        定义文件: \\_type.scss
+      </summary>
+      <main class="child-need-bg">
+        <p class="h1">h1. Bootstrap heading</p>
+        <p class="h2">h2. Bootstrap heading</p>
+        <p class="h3">h3. Bootstrap heading</p>
+        <p class="h4">h4. Bootstrap heading</p>
+        <p class="h5">h5. Bootstrap heading</p>
+        <p class="h6">h6. Bootstrap heading</p>
+      </main>
+    </details>
+    <details class="ndemo-custom-headings">
+      <summary class="header">
+        使用 utility class ,重建 small 二级heading
+      </summary>
+      <h3>
+        Fancy display heading
+        <small class="text-muted">With faded secondary text</small>
+      </h3>
+    </details>
+    <details class="ndemo-display-headings">
+      <summary class="header">
+        Traditional heading elements are designed...
+        <p>
+          Traditional heading elements are designed to work best in the meat of your page content. When you need a
+          heading to
+          stand out, consider using a display heading—a larger, slightly more opinionated heading style.
+        </p>
+      </summary>
+      <main>
+        <h6 class="display-1">Display 1</h6>
+        <span class="display-2">Display 2</span>
+        <div class="display-3">Display 3</div>
+        <h1 class="display-4">Display 4</h1>
+        <guoshi class="display-5">Display 5</guoshi>
+        <h1 class="display-6">Display 6</h1>
+      </main>
+    </details>
+    <details class="ndemo-lead-paragraph">
+      <summary class="header">
+        添加 .lead, 早就突出的段落
+      </summary>
+      <p class="lead">
+        This is a lead paraagraph, it stands out from reguar paragraph.
+      </p>
+      <p>regular paragraph is here.</p>
+    </details>
+    <details class="ndemo-inline-text-element">
+      <summary class="header">
+        常见的行内元素也做了手脚, 文件: \\_reboot.scss
+      </summary>
+      <main>
+        <p>You can use the mark tag to <mark>highlight</mark> text.</p>
+        <p><del>This line of text is meant to be treated as deleted text.</del></p>
+        <p><s>This line of text is meant to be treated as no longer accurate.</s></p>
+        <p><ins>This line of text is meant to be treated as an addition to the document.</ins></p>
+        <p><u>This line of text will render as underlined.</u></p>
+        <p><small>This line of text is meant to be treated as fine print.</small></p>
+        <p><strong>This line rendered as bold text.</strong></p>
+        <p><em>This line rendered as italicized text.</em></p>
+        <p>
+          <addr title="attribute">attr</addr>
+        </p>
+        <p><abbr title="HyperText Markup Language" class="initialism">HTML</abbr></p>
+      </main>
+    </details>
+    <details class="ndemo-blockquotes">
+      <summary class="header">
+        For quoting blocks of content from another source within your document. Wrap &lt;blockquote
+        class="blockquote"&gt; around any
+        HTML as the quote.
+      </summary>
+      <main>
+        <blockquote class="blockquote">
+          <p>A well-known quote, contained in a blockquote element.</p>
+        </blockquote>
+      </main>
+    </details>
+    <details class="ndemo-naming-a-source">
+      <summary class="header">
+        using .blockquote/figure/.blockquote-footer/cite
+      </summary>
+      <figure>
+        <blockquote class="blockquote">
+          <p>A well-known quote, contained in a blockquote element.</p>
+        </blockquote>
+        <figcaption class="blockquote-footer">
+          Someone famous in <cite title="Source Title">Source Title</cite>
+        </figcaption>
+      </figure>
+    </details>
+    <details class="ndemo-alignment">
+      <summary class="header">
+        Use text utilities as needed to change the alignment of your blockquote.
+      </summary>
+      <figure class="text-center">
+        <blockquote class="blockquote">
+          <p>A well-known quote, contained in a blockquote element.</p>
+        </blockquote>
+        <figcaption class="blockquote-footer text-end">
+          Someone famous in <cite title="Source Title">Source Title</cite>
+        </figcaption>
+      </figure>
+    </details>
+    <details class="ndemo-lists">
+      <summary class="header">
+        .unstyled 移除默认的左边距和默认标号. 但是只对直接子级生效
+      </summary>
+      <ul class="list-unstyled">
+        <li>This is a list.</li>
+        <li>It appears completely unstyled.</li>
+        <li>Structurally, it's still a list.</li>
+        <li>However, this style only applies to immediate child elements.</li>
+        <li>Nested lists:
+          <ul>
+            <li>are unaffected by this style</li>
+            <li>will still show a bullet</li>
+            <li>and have appropriate left margin</li>
+          </ul>
+        </li>
+        <li>This may still come in handy in some situations.</li>
+      </ul>
+      <ul class="list-inline">
+        <li class="list-inline-item">one</li>
+        <li class="list-inline-item">two</li>
+
+        <details class="list-inline-item">
+          <summary>
+            three
+          </summary>
+          <ul class="list-unstyled">
+            <li>three-1</li>
+            <li>three-2</li>
+            <li>three-3</li>
+          </ul>
+        </details>
+
+        <li class="list-inline-item">four</li>
+      </ul>
+      <dl class="row">
+        <dt class="col-sm-3">Description lists</dt>
+        <dd class="col-sm-9">A description list is perfect for defining terms.</dd>
+
+        <dt class="col-sm-3">Term</dt>
+        <dd class="col-sm-9">
+          <p>Definition for the term.</p>
+          <p>And some more placeholder definition text.</p>
+        </dd>
+
+        <dt class="col-sm-3">Another term</dt>
+        <dd class="col-sm-9">This definition is short, so no extra paragraphs or anything.</dd>
+
+        <dt class="col-sm-3 text-truncate">Truncated term is truncated for its long long long content.</dt>
+        <dd class="col-sm-9">This can be useful when space is tight. Adds an ellipsis at the end.</dd>
+
+        <dt class="col-sm-3">Nesting</dt>
+        <dd class="col-sm-9">
+          <dl class="row">
+            <dt class="col-sm-4">Nested definition list</dt>
+            <dd class="col-sm-8">I heard you like definition lists. Let me put a definition list inside your definition
+              list.
+            </dd>
+          </dl>
+        </dd>
+      </dl>
+    </details>
+  </section>
+  <section class="ndemo-images">
+    <h3 class="header">
+      关联文件 _images.scss \\mixins\\_images.scss
+    </h3>
+    <details>
+      <summary class="header">
+        Responsive images
+      </summary>
+      <figure class="w-50 mx-auto">
+        <img src="/lib/image/png/clock-ndemo-400px.png" class="figure-img img-fluid" alt="..." />
+        <figcaption class="figure-caption">this is a clock</figcaption>
+      </figure>
+      <figure class="w-30 mx-auto">
+        <img src="/lib/image/png/clock-ndemo-400px.png" class="img-thumbnail" alt="..." />
+        <figcaption class="">注意与上图区别是多了圆角,padding,以及box-shadow(需要打开$enable-shadows, 注意_debug.scss背景的影响,可能会使shadow不明显)
+        </figcaption>
+      </figure>
+      <figure class="w-80 mx-auto  clearfix">
+        <figcaption class="figure-caption ">使用float utility对齐inline/inline-block image到左或右</figcaption>
+        <img src="/lib/image/png/clock-ndemo-400px.png" class="w-30 rounded float-start img-thumbnail" />
+        <img src="/lib/image/png/clock-ndemo-400px.png" class="w-20 rounded float-end img-thumbnail" />
+      </figure>
+      <figure class="w-80 mx-auto">
+        <figcaption class="figure-caption">使用texture utility对齐inline/inline-block image</figcaption>
+        <article class="text-start">
+          <img src="/lib/image/png/clock-ndemo-400px.png" class="w-30 rounded img-thumbnail" />
+        </article>
+        <article class="text-end">
+          <img src="/lib/image/png/clock-ndemo-400px.png" class="w-20 rounded img-thumbnail" />
+        </article>
+      </figure>
+      <figure class="w-80 mx-auto">
+        <figcaption class="figure-caption">使用 margin utility 对齐 block image</figcaption>
+        <img src="/lib/image/png/clock-ndemo-400px.png" class="w-30 rounded img-thumbnail d-block ms-auto" />
+      </figure>
+      <figure class="w-80 mx-auto">
+        <figcaption class="figure-capiton">picture元素的自身媒体查询实例</figcaption>
+        <picture>
+          <source srcset="/lib/image/png/clock-ndemo-400px.png" media="(min-width:600px) and (max-width:900px)">
+          <img src="/lib/image/jpg/10-adv-event/006.JPG" alt="...">
+        </picture>
+      </figure>
+    </details>
+
+  </section>
+  <section class="ndemo-tables">
+    <h3 class="header">
+      .table 及其相关 class 用法. 关联文件:\\_table.scss \\mixins\\_table-variants.scss
+      https://getbootstrap.com/docs/5.2/content/tables/
+    </h3>
+    <details>
+      <summary>
+        基本 .table , 变体 table-(primary,...)可应用于table/row/cell, .table-striped,
+      </summary>
+      <table class="table table-warning table-striped table-striped-columns">
+        <thead>
+          <tr class="table-secondary">
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td class="table-dark">Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td class="table-success">@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th class="table-info" scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table table-dark table-hover">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td class="table-success">Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td colspan="2">Larry the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="table ">
+        <thead class="table-group-divider">
+          <tr class="table-active">
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr">
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td class="table-group-divider">Jacob</td>
+              <td class="table-success">Thornton</td>
+              <td class="table-active">@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td class="table-active" colspan="2">Larry the Bird</td>
+              <td>@twitter</td>
+            </tr>
+        </tbody>
+      </table>
+
+    </details>
+  </section>
+
+  <!-- 
+      <details class="ndemo-">
+        <summary class="header">
+  
+        </summary>
+  
+      </details>
+      <details class="ndemo-">
+        <summary class="header">
+  
+        </summary>
+  
+      </details>
+  
+       -->
+
+</body>
+
+</html>

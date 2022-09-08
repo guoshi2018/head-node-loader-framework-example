@@ -1,0 +1,23 @@
+//插值语句 #{}
+p.k1 {
+	$name: foo;
+	$attr: border;
+	$fun-name: rgba;
+	$part1: "#03";
+	$part: 78;
+	$alpha: 0.8;
+	.#{$name} {
+		#{$attr}-color: #{$part1}69#{$part};
+
+		//无聊的例子,虽然可行
+		//#{$name}-color: $fun-name($part, $part * 2, $part - 3, $alpha);
+
+		//#{} 插值语句也可以在属性值中插入 SassScript，大多数情况下，
+		//这样可能还不如使用变量方便，但是使用 #{} 可以避免
+		//Sass 运行运算表达式，直接编译 CSS
+		$font-size: 12px;
+		$line-height: 30px;
+		font: $font-size/$line-height; //斜线被视作除法, 直接运行: 0.4px;
+		font: #{$font-size}/#{$line-height}; //保留斜线作为分隔符, 避免直接运行: 12px/30px
+	}
+}

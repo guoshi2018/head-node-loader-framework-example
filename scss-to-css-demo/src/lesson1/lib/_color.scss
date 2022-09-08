@@ -1,0 +1,22 @@
+.abc {
+	color: #ad32bf;
+}
+
+//_或-让variable,mixin,function成为私有,但class无影响
+.-thory {
+	text-align: center;
+}
+
+@mixin hey {
+	border: 3px solid #ad32bf;
+}
+
+//在use方, 看不到
+@mixin -plam {
+	clear: both;
+}
+
+//但是内部hory可以使用它
+.hory {
+	@include -plam();
+}

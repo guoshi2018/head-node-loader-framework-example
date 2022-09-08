@@ -1,0 +1,45 @@
+@forward "sundry" with($enable-negative-margins: true, $enable-cssgrid: true, $enable-xgrid: true);
+
+// @forward "variables" with (
+// 	$container-max-widths: (
+// 		xs: 540px,
+// 		sm: 720px,
+// 		md: 960px,
+// 		lg: 1140px,
+// 		xl: 1320px,
+// 		xxl: 95%,
+// 	)
+// );
+@forward "root";
+@forward "reboot";
+@forward "containers";
+@forward "utilities/api";
+@forward "grid";
+@forward "xgrid";
+@forward "helpers/color-bg";
+
+@use "../common/debug";
+
+.grid.test-align {
+	//display: grid;
+	gap: 400px;
+	grid-auto-flow: row;
+	grid-auto-rows: 100px;
+	grid-template-columns: repeat(4, 150px);
+	grid-template-rows: 180px;
+	height: 700px;
+	align-items: center;
+	justify-items: end;
+
+	align-content: space-around;
+	justify-content: space-between;
+	> * {
+		&:nth-child(3) {
+			justify-self: center;
+		}
+
+		&:nth-child(4) {
+			align-self: end;
+		}
+	}
+}

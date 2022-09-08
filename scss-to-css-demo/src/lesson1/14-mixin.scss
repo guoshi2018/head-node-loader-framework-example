@@ -1,0 +1,119 @@
+/*
+混合指令 (Mixin Directives)
+混合指令（Mixin）用于定义可重复使用的样式，避免了使用无语意的 class，比如 .float-left。
+混合指令可以包含所有的 CSS 规则，绝大部分 Sass 规则，甚至通过参数功能引入变量，输出多样化的样式。
+*/
+//混合指令的用法是在 @mixin 后添加名称与样式
+@mixin large-text {
+	font: {
+		family: Arial;
+		size: 20px;
+		weight: bold;
+	}
+	color: #ff0282;
+}
+//混合也需要包含选择器和属性，甚至可以用 & 引用父选择器：
+@mixin clearfix {
+	display: inline-block;
+	&:after {
+		content: ".";
+		display: block;
+		height: 0;
+		clear: both;
+		visibility: hidden;
+	}
+	* html & {
+		height: 1px;
+	}
+}
+//使用 @include 指令引用混合样式，格式是在其后添加混合名称，以及需要的参数（可选）：
+.page-title {
+	@include large-text; //标准写法 large-text() 无参可省略括号
+}
+.page-content {
+	@include clearfix();
+	color: #245a4d;
+}
+//嵌套@mixin,带参数的@mixin, 见 12-directive.scss @mixin, 搜索 ajust-loc部分
+
+/*
+使用数组解构赋值给@mixin参数列表
+*/
+@mixin opos($t, $r, $b, $l) {
+	p.atipy {
+		margin: $t $r $b $l;
+	}
+}
+$vs: (1em, 2px, 3rem, 4pt, 50%, 6rem); //多余的被忽略
+@include opos($vs...); //… 声明（写在参数的最后方）告诉 Sass 将这些参数视为值列表处理
+
+/*
+	关键词参数 (Keyword Arguments), 类似于C#的命名参数
+	关键词参数可以打乱顺序使用, 也可结合默认值
+*/
+@mixin sexy-border($color, $width: 2.2in) {
+	border: {
+		color: $color;
+		width: $width;
+		style: dashed;
+	}
+}
+.ks1 {
+	@include sexy-border($color: #12894e);
+}
+.ks2 {
+	@include sexy-border($width: 3.7em, $color: grey);
+}
+/*
+	可变数量的参数, 即参数数量不确定. 参数末尾添加..., 表示这是一个不定长度的列表类型
+*/
+@mixin box-shadow($shadows...) {
+	-moz-box-shadow: $shadows;
+	-webkit-box-shadow: $shadows;
+	box-shadow: $shadows;
+}
+$sd: 0px 4px 5px #666, 2px 6px 10px #999;
+.p.shadow {
+	//@include box-shadow($sd); //ok
+	//@include box-shadow($sd...); //ok
+	@include box-shadow(0px 4px 5px #666, 2px 6px 10px #999); //ok
+}
+
+/*
+	向混合样式中导入内容 (Passing Content Blocks to a Mixin)
+		在引用混合样式的时候，可以先将一段代码导入到混合指令中，然后再输出混合样式，
+		额外导入的部分将出现在 @content 标志的地方. 类似于插槽 slot
+*/
+@mixin apply-to-ie6-only1 {
+	* html {
+		@content;
+	}
+}
+@include apply-to-ie6-only1() {
+	#logo {
+		background-color: #12894e;
+	}
+}
+
+$color: white;
+@mixin colors($color: blue) {
+	background-color: $color;
+	@content;
+	border-color: $color;
+}
+.colors {
+	@include colors {
+		color: $color;
+	}
+}
+
+/*
+简写: = 代替@mixin ; + 代替@include. 注意: 可能已经被废弃且禁止的写法
+*/
+// =apply-to-ie6-only2
+// 	p.slap
+// 		@content;
+
+// + apply-to-ie6-only2()
+// 	#logo
+// 		background: #325589;

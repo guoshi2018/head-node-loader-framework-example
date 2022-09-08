@@ -1,0 +1,127 @@
+@use "variables" as * with($aspect-ratios: ("1x1": 100%,
+		"4x3": calc(3 / 4 * 100%),
+		"16x9": calc(9 / 16 * 100%),
+		"21x9": calc(9 / 21 * 100%),
+		"16x10": calc(10 / 16 * 100%),
+		"5x4": calc(4 / 5 * 100%),
+	));
+
+@use "../../common/tool" as *;
+
+/*
+	测试 helpers/目录下的scss文件
+*/
+@use "helpers/clearfix" as *;
+
+/*
+	将$theme-colors逐一作为背景色, 将其对比色作为文本颜色(前景色)
+*/
+@use "helpers/color-bg" as *;
+
+/*
+	将$theme-colors逐一作为link的原生颜色, 通过相关计算, 得到其 hover/focus状态下的颜色.
+	其实, hover=focus 与 本色相差不大
+*/
+@use "helpers/colored-links";
+
+/*
+	定义 fixed-top/fixed-bottom, 并生成断点响应式的sticky-top/sticky-bottom, sticky-sm-top/sticky-sm-bottom,等等
+*/
+@use "helpers/position";
+
+/*
+	描述屏幕纵横比得类ratio,相对定位, 子元素全部绝对定位 并生成四种规格的ratio:before的padding-top, 便于使用时的快捷配置
+	要点:
+	1. 由于子元素全部是绝对定位, 且left=top=0, 故实践中, 只能用一个子元素, 否则将发生遮挡.
+	2. 原理是通过display=block的:before伪元素将容器撑开合适的高度(该高度由ratio-xx确定), 然后要显示的元素通过width=100%,
+		height=100%, 而填满容器, 此时显示的元素高宽比将一定, 而实际尺寸将随其容器等比例缩放  
+*/
+@use "helpers/ratio";
+
+/*
+	为多个水平排列和垂直排列的项目提供容器
+*/
+@use "helpers/stacks";
+
+/*
+	定义一个像素宽,类似于 <hr/>, 最小高度为当前字体高度的竖线,1px宽, 颜色采用容器的前景色, 不透明度0.25
+*/
+@use "helpers/vr";
+
+/*
+	应用于链接, 使兄弟元素全部可链接至该链接的目标, 就像被感染了一样. 条件是共同的容器为relative
+	其中, 兄弟link元素原有的链接地址也失效, 变成与stretched-link的一致.
+	原理: :after默认width/height均为100%, 即填满容器. 由于absolute的缘故, 其实并不需要
+	特别标注z-index=1. 原版采用的是:after, 其实换成:before也是一样的效果
+*/
+@use "helpers/stretched-link";
+
+/*
+	1. text-truncate, 用于inline-block和block元素的单行文本截断后添加省略号
+	2(自定义). mult-line-text-truncate, 用于任何形式的元素(但内部已经配置display为-webkit-box)的多行文本截断后
+		添加省略号. 但只适用于webkit内核的浏览器 最大显示行数, 分几种:
+		1) .mult-line-truncate 默认为3行
+		2) .mult-line-truncate-x (其中 x = [1,10]), 分别表示最大1到10行
+*/
+@use "helpers/text-truncation";
+
+/*
+	主要用于屏幕阅读器: 
+	1) .visually-hidden: 视觉上隐藏, 但又要暴露给辅助技术(例如屏幕阅读器)
+	2) .visually-hidden-focusable: 视觉上隐藏, 但当元素聚焦或其下级元素聚焦将显示
+*/
+@use "helpers/visually-hidden" as *;
+
+
+
+.with-placeholder {
+	@include content-btween-placeholder(80%, 300px);
+}
+
+section.demo-helps {
+
+
+	/*
+		clearfix测试
+	*/
+	.test-clearfix {
+		$img-width: 40%;
+
+		.test {
+			width: 80%;
+			margin: 1em auto;
+			border: 1px solid red;
+			//	padding: 0.5em;
+		}
+
+		img {
+			width: $img-width;
+			//margin-bottom: 1em;
+
+			&.only-one,
+			&.left {
+				float: left;
+				margin-right: 1em;
+			}
+
+			&.right {
+				float: right;
+				margin-left: 1em;
+			}
+		}
+	}
+
+	.test-position {
+		main {
+			height: 200px;
+			overflow-y: scroll;
+		}
+	}
+
+	// .test-ratio {
+	// 	iframe {
+	// 		display: none;
+	// 	}
+	// }
+
+}

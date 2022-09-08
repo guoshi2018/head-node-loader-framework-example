@@ -1,0 +1,31 @@
+.maoni {
+  background-color: darksalmon;
+  border-radius: 50%;
+}
+
+#context a.guoshi {
+  color: blue;
+  font-weight: bold;
+  font-size: 2em;
+}
+
+#qingting .mimi {
+  color: red;
+}
+
+#qingting .mimi.wall, #qingting .mimi#abc {
+  border: 3px solid yello;
+}
+
+#qingting .mimi.wall custom-label, #qingting .mimi#abc custom-label {
+  margin-right: 11em;
+}
+
+.maoni {
+  color: red;
+}
+
+.guoshi {
+  prop1: hello;
+  prop2: world;
+} /*# sourceMappingURL=4-use-placeholder.css.map */

@@ -1,0 +1,154 @@
+@charset "UTF-8";
+.temp {
+  prop0: "temp";
+}
+
+/*
+	运算时, sass自动转换适配的单位,不适配的将引发错误
+*/
+/*
+	应用: 
+	类似于上面, 因单位不规范, 而不能用做属性值的变量, 与其他变量运算后,可能可用.
+	甚至,可以将不能做属性值的变量,用作@mixin的参数(略)
+*/
+.slider {
+  position: absolute;
+  left: 10px;
+  transition: left 2.2s;
+}
+
+.slider:hover {
+  left: 120px;
+}
+
+/*
+%在css中, 视作单位(unit), 所以百分数与小数必要时,需要正确的换算
+*/
+.clock {
+  width: 80%;
+  height: 50%;
+  line-height: 0.3;
+  font-size: 3.1415926536em;
+}
+
+/*
+引号字符串与无引号字符串的转换
+*/
+.plamete {
+  content: "this-is-a-string-without-quote";
+  content: this is a string with quote;
+}
+
+/*
+sass 的字符串序号起始为1, 最后一个为-1,倒数第二为-2...,
+*/
+.icon-40px {
+  font-size: 40px;
+  height: 40px;
+  width: 40px;
+}
+
+.icon-50px {
+  font-size: 50px;
+  height: 50px;
+  width: 50px;
+}
+
+.icon-80px {
+  font-size: 80px;
+  height: 80px;
+  width: 80px;
+}
+
+/*
+	When you declare a mixin or function that takes arbitrary arguments, 
+	the value you get is a special list known as an argument list.
+	It acts just like a list that contains all the arguments passed 
+	to the mixin or function, with one extra feature: if the user 
+	passed keyword arguments, they can be accessed as a map by passing 
+	the argument list to the meta.keywords() function.
+*/
+pre span.stx-string {
+  color: #080;
+}
+
+pre span.stx-comment {
+  color: #800;
+}
+
+pre span.stx-variable {
+  color: #60b;
+}
+
+/*map:
+	Unlike lists, maps must be written with parentheses 
+	around them. A map with no pairs is written ().
+	注意: () 同时被视为空列表和空map
+	Astute readers may note that an empty map, (), 
+	is written the same as an empty list. That’s because 
+	it counts as both a map and a list. In fact, all maps 
+	count as lists! Every map counts as a list that contains 
+	a two-element list for each key/value pair. For example, 
+	(1: 2, 3: 4) counts as (1 2, 3 4).
+*/
+.icon-eye:before {
+  display: inline-block;
+  font-family: "Icon Font";
+  content: "\f112";
+}
+
+.icon-start:before {
+  display: inline-block;
+  font-family: "Icon Font";
+  content: "\f12e";
+}
+
+.icon-stop:before {
+  display: inline-block;
+  font-family: "Icon Font";
+  content: "\f12f";
+}
+
+/*
+	Instead of setting values one-by-one, you can also merge two 
+	existing maps using map.merge($map1, $map2).
+*/
+/*
+	true and false:
+	Some languages consider more values falsey than just false and null. 
+	Sass isn’t one of those languages! Empty strings, empty lists, 
+	and the number 0 are all truthy in Sass.
+*/
+/*
+	null
+*/
+h3 {
+  font: 18px bold;
+}
+
+h4 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/*
+	calc()
+*/
+.sidebar {
+  width: calc(400px + 10%);
+  padding-left: calc((400px + 10%) / 4);
+}
+
+/*
+	Functions can be values too! You can’t directly write a function
+	as a value, but you can pass a function’s name to the 
+	meta.get-function() function to get it as a value. Once you 
+	have a function value, you can pass it to the meta.call() 
+	function to call it. This is useful for writing higher-order 
+	functions that call other functions.
+*/
+content {
+  font-family: Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: Tahoma, Geneva, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial;
+} /*# sourceMappingURL=09-values.css.map */

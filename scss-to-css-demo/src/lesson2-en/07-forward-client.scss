@@ -1,0 +1,12 @@
+@use "07-forward" as Fd;
+li {
+	text-align: center;
+	//@include Fd.list-reset; // list-reset 被隐藏
+	//@include Fd.list-horizontal; // 可见
+	@include Fd.horizontal;
+	background-color: red;
+	&:after {
+		//content: "the value is #{Fd.list-$hor-gap}";
+		content: "the value is #{Fd.$hor-gap}";
+	}
+}

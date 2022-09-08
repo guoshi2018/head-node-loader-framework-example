@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>bootstrap5 introduction</title>
+  <script src="/lib/script/js/indoor-core/jscss-loader.js"
+    entry="/lib/script/js/page/lesson/4-custom-bootstrap/01-intro.js"></script>
+</head>
+
+<body>
+  <h1>hello,bootstrap5.</h1>
+  <h2>将globalRes修改为null,可以看到bootstrap的影响</h2>
+  <p class="one">This paragraph is initial black.</p>
+  <p class="two">This paragraph is initial blue</p>
+  <ul>
+    <li>
+      <mark>
+        对应于官网文档 Getting started & Customize. 主要是弄清如何使用@use / @forward, 而不是@import
+        定制bootstrap, 目的是在任何客户端scss中, 只需要 @use "../common/global" as *; 即可获得所需.
+        而_global.scss作为全站切换主题使用, 目标是common/theme/下的各种主题.
+      </mark>
+    </li>
+    <li>
+      <mark>
+        @import改为@use的代价是: 添加_sundry.scss文件, 用于收纳原来_variables.scss中的一些变量定义, 以免
+        当其他scss库文件使用时可能会形成的循环引用.
+        每个库文件都不同程度的会@use其他库文件. 这会导致原装的bootstrap被改动.
+      </mark>
+    </li>
+    <li>
+      <mark>
+        便利: 客户端scss, 使用任何库文件, 均可独立@use进入, 且无需考虑顺序(@import则必须讲究顺序).
+      </mark>
+    </li>
+  </ul>
+
+
+
+</body>
+
+
+
+
+
+
+</html>

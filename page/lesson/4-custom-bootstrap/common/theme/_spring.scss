@@ -1,0 +1,25 @@
+// //--load-path=lib/external-core/custom-bootstrap-5.2.0/style/use-fashion/scss
+
+@use "sass:map";
+
+@use "variables" as * with( //标准的覆盖方式
+	$theme-colors: ("primary": rgba(22, 235, 58, 0.267),
+		"danger": rgb(187, 7, 91),
+		"horrible": rgb(0, 11, 107),
+		"one": #900,
+		"two": #800));
+
+@use "maps" as * with($gutters: map.remove($spacers, 2, 4));
+
+@use "utilities" as * with($utilities: ("one": "v-one",
+		"two": "v-tow",
+	));
+
+// 重定义式的覆盖
+$spacers: map.merge($spacers,
+		(10: $spacer * 10,
+			20: $spacer * 20,
+			30: $spacer * 30,
+		));
+// remove item from map,不存在的7/9被忽略
+$spacers: map.remove($spacers, 1, 3, 5, 7, 9);

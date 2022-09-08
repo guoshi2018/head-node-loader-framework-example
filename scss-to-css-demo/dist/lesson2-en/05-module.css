@@ -1,0 +1,72 @@
+@charset "UTF-8";
+.abc {
+  color: #ad32bf;
+}
+
+.-thory {
+  text-align: center;
+}
+
+.hory {
+  clear: both;
+}
+
+.please {
+  border: 3px solid #ad32bf;
+  border: 3px solid #ad32bf;
+  border: 3px solid #ad32bf;
+}
+
+/*
+ 内置的function, 如果已经自带前缀, 可以两种选择
+*/
+.solo {
+  prop1-1: "second";
+  prop1-11: "third";
+  prop1-2: true;
+  prop1-22: true;
+  prop1-3: "holly", "niudun", "galinour", lisly;
+  prop1-33: holly, niudun, galinour, lisly;
+  prop1-4: "first", "second", "third", "four";
+  prop1-5: first, second, guoshi, four, #f36, #f63, 13px;
+  prop1-6: "holly", "galinour", lisly;
+  prop2-1: 5;
+  prop2-11: 7;
+}
+
+/*
+		The most exciting example in this release is a sass:meta mixin called 
+		load-css(). This works similar to @use but it only returns generated 
+		CSS output, and it can be used dynamically anywhere in our code:
+*/
+[data-test=color] {
+  prop1: "hey";
+}
+
+[data-test=color] .abc {
+  color: #ad32bf;
+}
+
+[data-test=color] .-thory {
+  text-align: center;
+}
+
+[data-test=color] .hory {
+  clear: both;
+}
+
+/*
+	above meta.load-css funciton:
+	 		the first argument is a module URL 
+		(like @use) but it can be dynamically changed by variables, 
+		and even include interpolation, like 
+			the second (optional) argument accepts a map of configuration values:
+		$with:('xxx':v1,'yyy':v2,'zzz':v3), 这是一个map结构,各key代表被load的scss文件中定义的style,
+		被成功load的条件是:
+			1) 全局变量(不以-或_开头)
+			2) 标记成!default的值, 
+		条件清楚了, $with的作用不知道,以后再说, 见15-sass-meta.scss
+*/
+/*
+	meta:color 方法测试	
+*/ /*# sourceMappingURL=05-module.css.map */

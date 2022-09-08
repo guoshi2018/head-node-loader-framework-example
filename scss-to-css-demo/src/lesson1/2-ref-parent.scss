@@ -1,0 +1,45 @@
+//在嵌套 CSS 规则时，有时也需要直接使用嵌套外层的父选择器，
+//例如，当给某个元素设定 hover 样式时，或者当 body 元素有某个
+//classname 时，可以用 & 代表嵌套规则外层的父选择器。
+a {
+	font-weight: bold;
+	text-decoration: none;
+	&:hover {
+		text-decoration: underline;
+	}
+	body.firefox & {
+		//注意这里, body书写上, 居然入驻a标签
+		font-weight: normal;
+	}
+}
+
+//如果含有多层嵌套，最外层的父选择器会一层一层向下传递：
+#main {
+	color: black;
+	a {
+		font-weight: bold;
+		&:hover {
+			color: red;
+		}
+	}
+}
+
+//用&生成其他id,或类选择器
+#one {
+	color: black;
+	&-sidebar {
+		// 得到id选择器: #one-sidebar
+		border: 1px solid red;
+	}
+	p {
+		color: yelloe;
+		&.two {
+			//得到类选择器 #one p.two
+			color: blue;
+			&.three {
+				//得到类选择器 #one p.two.three
+				text-align: right;
+			}
+		}
+	}
+}

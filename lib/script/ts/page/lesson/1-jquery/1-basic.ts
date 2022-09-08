@@ -43,7 +43,6 @@ jQuery(function ($) {       //完整写法: jQuery(document).ready(function($){.
 * 调试完毕，可考虑将 __DEBUG__ 设为 false，以关闭加载的调试信息
 * *******************************************************************************************************/
 
-
 JscssLoader.getInstance().startEntry({
 
     //globalRes: 默认包含必要脚本的文件 '/lib/script/json/global.json',一般不用修改
@@ -61,7 +60,7 @@ JscssLoader.getInstance().startEntry({
         //css();
         //data();
         //inArray();
-        //extend();
+        extend();
         //proxy1();
         //proxy2();
         //determineType();
@@ -70,7 +69,7 @@ JscssLoader.getInstance().startEntry({
         //index();
         //Dom_jq();
         //toggle_state();
-        escape_css_notation();
+        //escape_css_notation();
         //disable_enable();
         /**
          *  Setters affect all elements in a selection, whereas getters return the requested value only

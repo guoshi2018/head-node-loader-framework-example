@@ -1,0 +1,236 @@
+@charset "UTF-8";
+/*
+	测试 mixins/_breakpoints.scss 
+*/
+/*
+		breakpoint-next 函数测试
+		返回下一个断点名称, 而不是断点数据.
+		给定不存在的断点名, 报错.
+		最高位的断点, 返回 null
+*/
+.demo-breakpoint-next {
+  xs-next: sm;
+  md-next: lg;
+  xl-next: xxl;
+  xxl-next: [null];
+}
+
+/*
+	breakpoint-min 函数测试
+	breakpoints map的各项, 作为最小值
+	不存在的断点和最小的断点, 返回null
+*/
+.demo-breakpoint-min {
+  nan-min: [null];
+  xs-min: [null];
+  md-min: 768px;
+  xxl-min: 1400px;
+}
+
+/*
+	breakpoint-max 函数测试
+	注意此时breakpoints map的各项, 作为最大值, 而不是返回它的下一项的最小值
+	不存在的断点和最小的断点, 返回null
+*/
+.deom-breakpoint-max {
+  nan-max: [null];
+  xs-max: [null];
+  md-max: 767.98px;
+  xxl-max: 1399.98px;
+}
+
+/*
+		breakpoint-infix 函数测试
+		为合法的断点名称, 返回添加横线前缀的字符串, 最小的断点和不存在的断点均返回空字符串.
+*/
+.demo-breakpoint-infix {
+  nan-infix: "";
+  xs-infix: "";
+  md-infix: "-md";
+  xxl-infix: "-xxl";
+}
+
+/*
+	media-breakpoint-up mixin测试
+	建立指定断点的最小宽度媒体查询, 无效断点或最小断点, 则直接展示, 不建立媒体查询	
+	其他断点均正常建立媒体查询, 且媒体查询自动提升至顶层定义(必须如此)
+*/
+.demo-media-breakpoint-up {
+  mq-nan-bp: "no media query created, for invalid breakpoint. ";
+  mq-xs: "media query is not necessary, for the first breakpoint. ";
+}
+@media (min-width: 768px) {
+  .demo-media-breakpoint-up {
+    mq-md: "media query for md breakpoint created.";
+  }
+}
+@media (min-width: 1400px) {
+  .demo-media-breakpoint-up {
+    mq-xxl: "media query for xxl breakpoint created.";
+  }
+}
+
+/*
+	media-breakpoint-down mixin测试
+	与上面的media-breakpoint-up 类似, 只不过,此时的断点值代表的是最大
+*/
+.demo-media-breakpoint-down {
+  mq-nan-bp: "no media query created, for invalid breakpoint. ";
+  mq-xs: "media query is not necessary, for the first breakpoint. ";
+}
+@media (max-width: 575.98px) {
+  .demo-media-breakpoint-down {
+    mq-sm: "media query for sm breakpoint created. note this is max-width";
+  }
+}
+@media (max-width: 767.98px) {
+  .demo-media-breakpoint-down {
+    mq-md: "media query for md breakpoint created. note this is max-width";
+  }
+}
+@media (max-width: 1399.98px) {
+  .demo-media-breakpoint-down {
+    mq-xxl: "media query for xxl breakpoint created. note this is max-width";
+  }
+}
+
+/*
+	media-breakpoint-between($lower,$upper) mixin测试
+	$lower代表低位断点名称, 决定$min; $upper代表高位断点名称, 决定$max
+	1) $min为null($lower不存在或是最小断点), 启用 media-breakpoint-down($upper)
+	2) $max为null($upper不存在或是最小断点), 启用 media-breakpoint-up($lower)
+	3) $max和$min均不为null, 代表处理的区间位于第一区间以上, 则正常生成包含min-width和max-width的媒体查询
+	注意, $min和$max均为null的情况, 代表两个断点均非法或无必要, 均不生成媒体查询, 其实已经包含在1)或/和2)中.
+*/
+.demo-media-breakpoint-between {
+  /*
+  	invalid lower begin
+  */
+  mq-invalid-lower-invalid-upper: "two breakpoint all invaid. no media query created.";
+  mq-invalid-lower-xs-upper: "invalid lower and first upper, media query is unnecessary.";
+  /*
+  	first lower begin
+  */
+  mq-xs-lower-invalid-upper: "first lower and invalid upper, media query is unnecessary.";
+  mq-xs-lower-xs-upper: "first lower and first upper, media query is unnecessary.";
+  /*
+  	md lower begin
+  */
+  /*
+  	xxl lower begin
+  */
+}
+@media (max-width: 767.98px) {
+  .demo-media-breakpoint-between {
+    mq-invalid-lower-md-upper: "invalid lower and md upper, media query is max-width style.";
+  }
+}
+@media (max-width: 1399.98px) {
+  .demo-media-breakpoint-between {
+    mq-invalid-lower-xxl-upper: "invalid lower and xxl upper, media query is max-width style.";
+  }
+}
+@media (max-width: 767.98px) {
+  .demo-media-breakpoint-between {
+    mq-xs-lower-md-upper: "first lower and md upper, media query is max-width style.";
+  }
+}
+@media (max-width: 1399.98px) {
+  .demo-media-breakpoint-between {
+    mq-xs-lower-xxl-upper: "first lower and xxl upper, media query is max-width style.";
+  }
+}
+@media (min-width: 768px) {
+  .demo-media-breakpoint-between {
+    mq-md-lower-invalid-upper: "md lower and invalid upper, media query is min-width style.";
+  }
+}
+@media (min-width: 768px) {
+  .demo-media-breakpoint-between {
+    mq-md-lower-xs-upper: "md lower and first upper, media query is min-width style";
+  }
+}
+@media (min-width: 768px) and (max-width: 767.98px) {
+  .demo-media-breakpoint-between {
+    /*
+    	but min = max, it's unreasonable and does't work
+    */
+    mq-md-lower-md-upper: "md lower and md upper, media query is min-width/max-width style.";
+  }
+}
+@media (min-width: 768px) and (max-width: 1399.98px) {
+  .demo-media-breakpoint-between {
+    mq-md-lower-xxl-upper: "md lower and xxl upper, media query is min-width/max-width style.";
+  }
+}
+@media (min-width: 1400px) {
+  .demo-media-breakpoint-between {
+    mq-xxl-lower-invalid-upper: "xxl lower and invalid upper, media query is min-width style.";
+  }
+}
+@media (min-width: 1400px) {
+  .demo-media-breakpoint-between {
+    mq-xxl-lower-xs-upper: "xxl lower and first upper, media query is min-width style";
+  }
+}
+@media (min-width: 1400px) and (max-width: 767.98px) {
+  .demo-media-breakpoint-between {
+    /*
+    	but min > max, it's unreasonable and does' t work
+    */
+    mq-xxl-lower-md-upper: "xxl lower and md upper, media query is min-width/max-width style.";
+  }
+}
+@media (min-width: 1400px) and (max-width: 1399.98px) {
+  .demo-media-breakpoint-between {
+    /*
+    	but min = max, it's unreasonable and does' t work
+    */
+    mq-xxl-lower-xxl-upper: "md lower and xxl upper, media query is min-width/max-width style.";
+  }
+}
+
+/*
+	media-breakpoint-only($name) mixin测试
+	从$name代表的断点名称, 向上选择一个区间. 在此区间上创建媒体查询.
+	1) 不存在的断点名称, 报错.
+	2) 第一个断点名称, 则采用max-width, 结合高一级的断点值, 生成媒体查询
+	3) 第二个断点名称及以后, 一直到最后一个断点前, 采用max-width/min-width, 结合高一级的断点值, 生成媒体查询
+	2) 最高的断点名称, 报错.
+*/
+@media (max-width: 575.98px) {
+  .demo-media-breakpoint-only {
+    /* xs breakpoint */
+    mq-xs-only: "note create style of media query";
+  }
+}
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .demo-media-breakpoint-only {
+    /* sm breakpoint */
+    mq-sm-only: "note create style of media query";
+  }
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .demo-media-breakpoint-only {
+    /* md breakpoint */
+    mq-md-only: "note create style of media query";
+  }
+}
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .demo-media-breakpoint-only {
+    /* lg breakpoint */
+    mq-lg-only: "note create style of media query";
+  }
+}
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+  .demo-media-breakpoint-only {
+    /* xl breakpoint */
+    mq-xl-only: "note create style of media query";
+  }
+}
+@media (min-width: 1400px) {
+  .demo-media-breakpoint-only {
+    /* xxl breakpoint */
+    mq-xxl-only: "note create style of media query";
+  }
+}

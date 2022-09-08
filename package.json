@@ -3,12 +3,24 @@
   "version": "1.0.0",
   "description": "html页面隐藏<script>标签,动态按需加载js css文件,typescript支持",
   "main": "index.js",
+  "type": "commonjs",
   "directories": {
     "lib": "lib",
     "test": "test"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "monitor": "npm-run-all --parallel mon-*",
+    "pay-attention": "其实开发过程中,npm-run-all或nodemon都不是很好用,速度也不够快,只能在最终成品时使用",
+    "watch-ts": "tsc --watch",
+    "watch-scss": "sass --watch --no-source-map --load-path=lib/external-core/custom-bootstrap-5.2.0/style/scss page scss-to-css-demo/src:scss-to-css-demo/dist",
+    "compile-bs-scss": "sass --no-source-map lib/external-core/custom-bootstrap-5.2.0/style/scss",
+    "compile-ts": "tsc",
+    "compile-custom-bs-scss": "sass --no-source-map lib/external-core/custom-bootstrap-5.2.0/style/scss:lib/external-core/custom-bootstrap-5.2.0/style/css",
+    "compile-page-scss": "sass --no-source-map page",
+    "mon-ts": "nodemon --watch lib/script/ts/ --ext ts --exec \"npm run compile-ts\"",
+    "mon-custom-bs-scss": "nodemon --watch lib/external-core/custom-bootstrap-5.2.0/style/scss/ --ext scss --exec \"npm run compile-custom-bs-scss\"",
+    "mon-page-scss": "nodemon --watch page/ --ext scss --exec \"npm run compile-page-scss\""
   },
   "keywords": [],
   "author": "",
@@ -24,6 +36,11 @@
     "history": "^5.3.0",
     "jquery": "^3.6.0",
     "jquery-ui": "^1.13.1",
-    "js-cookie": "^3.0.1"
+    "js-cookie": "^3.0.1",
+    "nodemon": "^2.0.19",
+    "npm-run-all": "^4.1.5",
+    "sass": "^1.53.0",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4"
   }
 }

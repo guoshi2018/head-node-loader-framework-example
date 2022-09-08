@@ -1,0 +1,4 @@
+//测试哪个变量可以被meta.load-css加载
+$base-color: black !default; //ok
+$_prt: true !default; // no. for private
+$cfg: false; //no. for not marked as a !default

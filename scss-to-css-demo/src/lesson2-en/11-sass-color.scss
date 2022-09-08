@@ -1,0 +1,156 @@
+@use "sass:color";
+/*
+	if($condition, $if-true, $if-false) 这是一个函数.
+	Returns $if-true if $condition is truthy, and $if-false otherwise.
+
+	This function is special in that it doesn’t even evaluate the 
+	argument that isn’t returned, so it’s safe to call even if the 
+	unused argument would throw an error.
+*/
+@debug if(true, 10px, 15px);
+@debug if(false, 10px, 15px);
+//@debug if(variable-defined($no-such), $no-such, "this is falsy"); //最新版, 引发错误
+@debug rgba(rgba(0, 51, 102, 0.5), 0.3);
+
+/*
+ sass:color
+*/
+/*
+		color.adjust($color,
+			$red: null, $green: null, $blue: null,
+			$hue: null, $saturation: null, $lightness: null,
+			$whiteness: null, $blackness: null,
+			$alpha: null)
+		adjust-color(...) //=> color 
+Increases or decreases one or more properties of $color by fixed amounts.
+returns the changed color
+*/
+//在原基础上, 指定增减幅度:
+@debug color.adjust(#6b717f, $red: 15); // #7a717f
+@debug color.adjust(#d2e1dd, $red: -10, $blue: 10); // #c8e1e7
+@debug color.adjust(#998099, $lightness: -30%, $alpha: -0.4); // rgba(71, 57, 71, 0.6)
+
+/*
+	获取通道值
+*/
+@debug color.alpha(#e1d7d2); // 1
+@debug color.opacity(rgb(210, 225, 221, 0.4)); // 0.4
+@debug alpha(opacity=20); // alpha(opacity=20)
+
+@debug color.blackness(#e1d7d2); // 11.7647058824%
+@debug color.blackness(white); // 0%
+@debug color.blackness(black); // 100%
+
+@debug color.blue(#e1d7d2); // 210
+@debug color.blue(white); // 255
+@debug color.blue(black); // 0
+
+/*
+		color.change($color,
+			$red: null, $green: null, $blue: null,
+			$hue: null, $saturation: null, $lightness: null,
+			$whiteness: null, $blackness: null,
+			$alpha: null)
+		change-color(...) //=> color 
+Sets one or more properties of a color to new values.returns the changed color
+*/
+@debug color.change(#6b717f, $red: 100); // #64717f
+@debug color.change(#d2e1dd, $red: 100, $blue: 50); // #64e132
+@debug color.change(#998099, $lightness: 30%, $alpha: 0.5); // rgba(85, 68, 85, 0.5)
+
+/*
+	color.complement($color)
+	complement($color) //=> color 
+Returns the RGB complement of $color.  "互补颜色" "补色", 但不是 255-各通道值
+This is identical to color.adjust($color, $hue: 180deg).	
+*/
+// Hue 222deg becomes 42deg.
+@debug color.complement(#6b717f); // #7f796b
+
+// Hue 164deg becomes 344deg.
+@debug color.complement(#d2e1dd); // #e1d2d6
+
+// Hue 210deg becomes 30deg.
+@debug color.complement(#036); // #663300
+
+/*
+	color.grayscale($color)
+	grayscale($color) //=> color 
+Returns a gray color with the same lightness as $color.
+This is identical to color.change($color, $saturation: 0%).	
+简言之, 将指定颜色的饱和度降为0, 
+*/
+@debug color.grayscale(#6b717f); // #757575
+@debug color.grayscale(#d2e1dd); // #dadada
+@debug color.grayscale(#036); // #333333
+
+/*
+color.hwb($hue $whiteness $blackness)
+color.hwb($hue $whiteness $blackness / $alpha) 不推荐使用含 / 的版本,应使用下面
+color.hwb($hue, $whiteness, $blackness, $alpha: 1) //=> color 
+Returns a color with the given hue, whiteness, and blackness and the given alpha channel.
+通过色相 白度 黑度 不透明度, 指定颜色
+*/
+@debug color.hwb(210, 0%, 60%); // #036
+@debug color.hwb(34, 89%, 5%); // #f2ece4
+@debug color.hwb(210 0% 60% / 0.5); // rgba(0, 51, 102, 0.5)
+@debug color.hwb(201deg, 0%, 60%, 0.5);
+
+/*
+	color.ie-hex-str($color)
+	ie-hex-str($color) //=> unquoted string 
+
+	Returns an unquoted string that represents $color in the #AARRGGBB 
+	format expected by Internet Explorer’s -ms-filter property.
+*/
+@debug color.ie-hex-str(#b37399); // #FFB37399
+@debug color.ie-hex-str(#808c99); // #FF808C99
+@debug color.ie-hex-str(rgba(242, 236, 228, 0.6)); // #99F2ECE4
+
+/*
+color.invert($color, $weight: 100%)
+invert($color, $weight: 100%) //=> color 
+Returns the inverse or negative of $color.
+
+求反色, $weight忽略时, 为 255 - 各通道. 
+
+The $weight must be a number between 0% and 100% (inclusive). 
+A higher weight means the result will be closer to the negative, 
+and a lower weight means it will be closer to $color. 
+Weight 50% will always produce #808080.
+*/
+@debug color.invert(#b37399); // #4c8c66
+@debug color.invert(black); // white
+@debug color.invert(#550e0c, 20%); // #663b3a
+@debug color.invert(#1234bf, 50%) == #808080; //true
+@debug color.invert(#9820be, 50%) == #808080; //true
+
+/*
+color.mix($color1, $color2, $weight: 50%)
+mix($color1, $color2, $weight: 50%) //=> color 
+混合颜色, 取决于权重和两个颜色的相对不透明度 
+
+Returns a color that’s a mixture of $color1 and $color2.
+Both the $weight and the relative opacity of each color determines 
+how much of each color is in the result. The $weight must be a 
+number between 0% and 100% (inclusive). A larger weight indicates 
+that more of $color1 should be used, and a smaller weight indicates 
+that more of $color2 should be used.
+*/
+@debug color.mix(#036, #d2e1dd); // #698aa2
+@debug color.mix(#036, #d2e1dd, 75%); // #355f84
+@debug color.mix(#036, #d2e1dd, 25%); // #9eb6bf
+@debug color.mix(rgba(242, 236, 228, 0.5), #6b717f); // rgba(141, 144, 152, 0.75)
+
+/*
+color.scale($color,
+  $red: null, $green: null, $blue: null,
+  $saturation: null, $lightness: null,
+  $whiteness: null, $blackness: null,
+  $alpha: null)
+scale-color(...) //=> color 
+调整颜色的分量, 到指定值
+*/
+@debug color.scale(#6b717f, $red: 15%); // #81717f
+@debug color.scale(#d2e1dd, $lightness: -10%, $saturation: 10%); // #b3d4cb
+@debug color.scale(#998099, $alpha: -40%); // rgba(153, 128, 153, 0.6)

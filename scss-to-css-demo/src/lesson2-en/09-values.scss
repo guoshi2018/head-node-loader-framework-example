@@ -1,0 +1,290 @@
+@use "sass:math";
+@use "sass:string";
+@use "sass:list";
+@use "sass:map";
+@use "sass:meta";
+
+//When two numbers are multiplied, their units are multiplied as well
+//Because CSS doesn’t support complex units like square pixels,
+//using a number with complex units as a property value will produce an error.
+$v1: 4px * 6px;
+$v2: math.div(5px, 2s);
+$v3: 5px * math.div(math.div(30deg, 2s), 24em);
+$v4: math.div(1, $v3);
+@debug $v1; //24px*px ,但没啥意思,用不上
+@debug $v2; //2.5px/s 速度, 也无法使用
+@debug $v3; //3.125px*deg/s*em
+@debug $v4; //0.32s*em/px*deg
+.temp {
+	prop0: "temp";
+	//prop1: $v1;
+	//prop1: "the value is #{$v1}";
+	//prop2: "the speed is #{$v2}";
+}
+
+/*
+	运算时, sass自动转换适配的单位,不适配的将引发错误
+*/
+@debug 1in + 6px; //102px or 1.0625in, 取决于sass的实现
+//@debug 1in + 1s;  //单位不适配, 错误
+@debug math.div(20px, 0); //Infinitypx ,而不是引发异常!
+
+/*
+	应用: 
+	类似于上面, 因单位不规范, 而不能用做属性值的变量, 与其他变量运算后,可能可用.
+	甚至,可以将不能做属性值的变量,用作@mixin的参数(略)
+*/
+$transition-speed: math.div(50px, 1s);
+@mixin move($left-start, $left-stop) {
+	position: absolute;
+	left: $left-start;
+	transition: left math.div(($left-stop - $left-start), $transition-speed);
+	&:hover {
+		left: $left-stop;
+	}
+}
+.slider {
+	@include move(10px, 120px);
+}
+
+/*
+%在css中, 视作单位(unit), 所以百分数与小数必要时,需要正确的换算
+*/
+.clock {
+	width: 0.8 * 100%; // ok 80%
+	height: math.percentage(0.5); //ok, 50%, 但更优雅
+	line-height: math.div(30%, 100%); //0.3
+	font-size: math.$pi * 1em; //sass支持的最高精度:小数点后10位
+}
+
+/*
+引号字符串与无引号字符串的转换
+*/
+$s1: this-is-a-string-without-quote; //无引号字串, 不能包含空格
+//$s2: this\u0020is; //使用unicode码点表示空格, 失败,以后再说
+$s3: "this is a string with quote";
+.plamete {
+	content: string.quote($s1);
+	//content: string.quote($s2);
+	content: string.unquote($s3);
+}
+/*
+sass 的字符串序号起始为1, 最后一个为-1,倒数第二为-2...,
+*/
+@debug string.index("helvel Neud", "helv"); //1
+@debug string.index("helovel neue", "neue"); //9
+@debug string.slice("Roboto mono", -4); // mono
+@debug string.index("heko", "K"); //null 说明大小写敏感
+
+//color
+@debug #f2ece4;
+@debug #b37399aa; //rgba
+@debug midnightblue; //#191970
+@debug rgb(204, 102, 153); //
+@debug rgba(107, 113, 127, 0.8); //
+@debug hsl(228, 7%, 86%); //
+@debug hsla(20, 20%, 85%, 0.7); //
+
+//列表(数组)
+@debug a, b, c; //
+@debug [a, b, c];
+@debug [ "a", "b", "c" ];
+@debug a b c;
+@debug () [];
+@debug [a\b\c];
+@debug a\b\c;
+@debug a/b/c;
+@debug a/b\c;
+
+//access an element
+@debug list.nth(10px 12px 16, 2); //12px
+@debug list.nth([line1, line2, line3], -1); // line3
+
+//do something for every element
+@each $size in [40px, 50px, 80px] {
+	//[] () 均可以
+	.icon-#{$size} {
+		font-size: $size;
+		height: $size;
+		width: $size;
+	}
+}
+
+//add to a list,注意list是不可改变的,list.append方法,返回一个新list,原list保持不变
+@debug list.append(10px 12px 16px, 1001);
+@debug list.append([col1-line1], col-you-win);
+
+//find an element in a list
+@debug list.index(1px solid red, 1px); //1
+@debug list.index(1px solid red, solid); //2
+@debug list.index(1px solid red, dashed); //null remember: null is falsey
+
+//list恒定不变, 但是指向list的变量, 可以改变指向:
+$prefixes-by-browser: (
+	"firefox": moz,
+	"safari": webkit,
+	"ie": ms,
+);
+
+@function prefixes-for-browsers($browsers) {
+	$prefixes: ();
+	@each $browser in $browsers {
+		$prefixes: list.append($prefixes, map.get($prefixes-by-browser, $browser));
+	}
+	@return $prefixes;
+}
+
+@debug prefixes-for-browsers("firefox" "ie"); // moz ms
+
+/*
+	When you declare a mixin or function that takes arbitrary arguments, 
+	the value you get is a special list known as an argument list.
+	It acts just like a list that contains all the arguments passed 
+	to the mixin or function, with one extra feature: if the user 
+	passed keyword arguments, they can be accessed as a map by passing 
+	the argument list to the meta.keywords() function.
+*/
+@mixin syntax-colors($args...) {
+	@debug meta.keywords($args);
+	@each $name, $color in meta.keywords($args) {
+		pre span.stx-#{$name} {
+			color: $color;
+		}
+	}
+}
+@include syntax-colors($string: #080, $comment: #800, $variable: #60b);
+
+//这样调用, meta.keywords()方法,就无法确定key
+@include syntax-colors(red, blue, green);
+
+/*map:
+	Unlike lists, maps must be written with parentheses 
+	around them. A map with no pairs is written ().
+	注意: () 同时被视为空列表和空map
+	Astute readers may note that an empty map, (), 
+	is written the same as an empty list. That’s because 
+	it counts as both a map and a list. In fact, all maps 
+	count as lists! Every map counts as a list that contains 
+	a two-element list for each key/value pair. For example, 
+	(1: 2, 3: 4) counts as (1 2, 3 4).
+*/
+//Do Something for Every Pair
+$icons: (
+	"eye": "\f112",
+	"start": "\f12e",
+	"stop": "\f12f",
+);
+
+@each $name, $glyph in $icons {
+	.icon-#{$name}:before {
+		display: inline-block;
+		font-family: "Icon Font";
+		content: $glyph;
+	}
+}
+//add to a map
+$font-weights: (
+	"regular": 400,
+	"medium": 500,
+	"bold": 700,
+);
+
+@debug map.set($font-weights, "extra-bold", 900);
+// ("regular": 400, "medium": 500, "bold": 700, "extra-bold": 900)
+@debug map.set($font-weights, "bold", 900);
+// ("regular": 400, "medium": 500, "bold": 900)
+
+/*
+	Instead of setting values one-by-one, you can also merge two 
+	existing maps using map.merge($map1, $map2).
+*/
+$light-weights: (
+	"lightest": 100,
+	"light": 300,
+);
+$heavy-weights: (
+	"medium": 500,
+	"bold": 700,
+);
+
+@debug map.merge($light-weights, $heavy-weights);
+//类似于list, map也是不可变的
+
+/*
+	true and false:
+	Some languages consider more values falsey than just false and null. 
+	Sass isn’t one of those languages! Empty strings, empty lists, 
+	and the number 0 are all truthy in Sass.
+*/
+@if 0 and "" {
+	@debug "0 and empty string are all true";
+}
+
+/*
+	null
+*/
+$fonts: (
+	"serif": "Helvetica Neue",
+	"monospace": "Consolas",
+);
+
+h3 {
+	font: 18px bold map-get($fonts, "sans"); //保留18px solid ,省略最后的null
+}
+h4 {
+	font: {
+		size: 18px;
+		weight: bold;
+		family: map-get($fonts, "sans"); //font-family属性整个被忽略
+	}
+}
+
+/*
+	calc()
+*/
+@debug calc(400px + 10%); //实际结果得在具体的html中才能获得
+@debug calc(400px / 2);
+@debug min(100px, calc(1rem + 10%));
+
+$width: calc(400px + 10%);
+.sidebar {
+	width: $width;
+	padding-left: calc($width / 4); // calc((400px + 10%) / 4)
+}
+
+$width: calc(100% + 10px);
+//@debug $width * 2; // Error!
+@debug calc($width * 2); // calc((100% + 10px) * 2);
+
+/*
+	Functions can be values too! You can’t directly write a function
+	as a value, but you can pass a function’s name to the 
+	meta.get-function() function to get it as a value. Once you 
+	have a function value, you can pass it to the meta.call() 
+	function to call it. This is useful for writing higher-order 
+	functions that call other functions.
+*/
+/// Return a copy of $list with all elements for which $condition returns `true`
+/// removed.
+@function remove-where($list, $condition, $filter) {
+	$new-list: ();
+	$sep: list.separator($list);
+	@each $ele in $list {
+		@if not meta.call($condition, $ele, $filter) {
+			//函数参数跟在后面
+			$new-list: list.append($new-list, $ele, $separator: $sep);
+		}
+	}
+	@return $new-list;
+}
+
+$fonts: Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif;
+content {
+	@function contains($source, $search) {
+		@return string.index($source, $search);
+	}
+	$fun: meta.get-function("contains");
+	font-family: remove-where($fonts, $fun, Gen);
+	font-family: remove-where($fonts, $fun, Ari);
+	font-family: remove-where($fonts, $fun, "s-ser");
+}

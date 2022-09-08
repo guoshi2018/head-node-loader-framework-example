@@ -1,0 +1,81 @@
+@charset "UTF-8";
+/*
+In Sass, every map counts as a list that contains a two-element list 
+for each key/value pair. For example, (1: 2, 3: 4) counts as 
+(1 2, 3 4). So all these functions work for maps as well!
+
+Individual values also count as lists. All these functions treat 1px 
+as a list that contains the value 1px.
+*/
+/*
+list.append($list, $val, $separator: auto)
+append($list, $val, $separator: auto) //=> list 
+Returns a copy of $list with $val added to the end.
+
+$separator的允许值: 逗号 空格 斜杆 , 将替换原有的分隔符
+$separator的默认值: $list带有分隔符, 则采用该分隔符; 不带,则采用空格
+*/
+/*
+list.index($list, $value)
+index($list, $value) //=> number | null 
+
+Returns the index of $value in $list.
+If $value doesn’t appear in $list, this returns null. 
+If $value appears multiple times in $list, this returns 
+the index of its first appearance.
+*/
+/*
+list.is-bracketed($list)
+is-bracketed($list) //=> boolean 
+Returns whether $list has square brackets.只看最外层
+*/
+/*
+list.join($list1, $list2, $separator: auto, $bracketed: auto)
+join($list1, $list2, $separator: auto, $bracketed: auto) //=> list 
+Returns a new list containing the elements of $list1 followed by the elements of $list2.
+*/
+/*
+list.length($list)
+length($list) //=> number 
+Returns the length of $list.
+This can also return the number of pairs in a map.
+*/
+/*
+list.separator($list)
+list-separator($list) //=> unquoted string 
+
+Returns the name of the separator used by $list, either space, comma, or slash.
+If $list doesn’t have a separator, returns space.
+*/
+/*
+list.nth($list, $n)
+nth($list, $n) 
+
+Returns the element of $list at index $n.
+If $n is negative, it counts from the end of $list. Throws an error if 
+there is no element at index $n.
+*/
+/*
+list.set-nth($list, $n, $value)
+set-nth($list, $n, $value) //=> list 
+
+Returns a copy of $list with the element at index $n replaced with $value.
+If $n is negative, it counts from the end of $list. Throws an error if 
+there is no existing element at index $n.
+*/
+/*
+list.slash($elements...) //=> list 
+Returns a slash-separated list that contains $elements.
+*/
+/*
+list.zip($lists...)
+zip($lists...) //=> list 
+Combines every list in $lists into a single list of sub-lists.
+
+Each element in the returned list contains all the elements at 
+that position in $lists. The returned list is as long as the 
+shortest list in $lists.
+
+The returned list is always comma-separated and the sub-lists 
+are always space-separated.
+*/ /*# sourceMappingURL=12-sass-list.css.map */

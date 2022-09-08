@@ -1,0 +1,15 @@
+$v1: 123;
+$v2: "hello,world";
+$v3: please sit down !default;
+
+@function f1($base, $exp) {
+	$result: 1;
+	@for $_ from 1 through $exp {
+		$result: $result * $base;
+	}
+	@return $result;
+}
+
+@function f2() {
+	@debug "something wrong happend.";
+}

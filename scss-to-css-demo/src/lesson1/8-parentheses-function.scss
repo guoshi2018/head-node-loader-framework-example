@@ -1,0 +1,15 @@
+//圆括号 (Parentheses): 可以用来影响运算的顺序：
+p.m1 {
+	height: 1em + 2em * 3; //7em
+	width: (1em + 2em) * 3; //9em
+}
+
+//函数:定义了多种函数
+p.m2 {
+	//通过普通的 CSS 语句调用
+	color: hsl(0, 100%, 50%);
+
+	//函数允许使用关键词参数 (keyword arguments),所以下两行效果一致
+	background-color: hsl($hue: 0, $saturation: 30%, $lightness: 80%);
+	background-color: hsl($saturation: 30%, $lightness: 80%, $hue: 0);
+}

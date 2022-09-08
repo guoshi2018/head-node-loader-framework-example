@@ -1,0 +1,470 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>官网文档 layout 部分 </title>
+  <script type="text/javascript" src="/lib/script/js/indoor-core/jscss-loader.js"
+    entry="/lib/script/js/page/lesson/4-custom-bootstrap/03-layout.js"></script>
+</head>
+
+<body>
+  <section class="demo-containers show-child-w m-0 w-100">
+    <h4 class="header">
+      <p>
+        测试各个container的频宽响应, 本来应将各个container作为body的直接子级, 方便测试.
+      </p>
+      <p>
+        考虑到
+        排版的原因, 使用section ,但应确保其width:100%, margin:0
+      </p>
+    </h4>
+    <main>
+      <div class="container-fluid my-1">container-fluid</div>
+      <div class="container  my-1">container</div>
+      <div class="container-sm my-1">container-sm</div>
+      <div class="container-md  my-1">container-md</div>
+      <div class="container-lg my-1">container-lg</div>
+      <div class="container-xl  my-1">container-xl</div>
+      <div class="container-xxl my-1">container-xxl</div>
+    </main>
+  </section>
+  <section class="demo-grid-system">
+    <h4 class="header">
+      <p>
+        由于container和row/vrow/rowr/vrowr均经过修改, container使用左右/上下padding平衡row等class
+        的左右/上下负margin, 所以:
+      </p>
+      <p>
+        如果一个container内包含多个row, row 之间的间隔调整可能会很复杂.
+        最佳体验是, 一个container包含一个row, 通过container之间的margin可轻松调整row在外观上的
+        间隙.
+      </p>
+      <p>
+        row-cols-(1,2,...)之类的row, 其子级 item 最好不要带上col, 否则.row > .col规则
+        高于.row.row-cols(1,2,...) > *, 导致该列宽度可能不是需要的.
+      </p>
+      <p>
+        但是显式指定 col-auto(按内容赋予空间),col-5(指定占5列)却是可以也是必须的
+      </p>
+    </h4>
+    <main class="text-center container">
+      <div class="row">
+        <div class="col-sm-8">col-sm-8</div>
+        <div class="col-sm-3 offset-2 offset-sm-1 col-auto">col-sm-4</div>
+      </div>
+    </main>
+    <main class="text-center container mt-1">
+      <div class="row gy-0 gx-0">
+        <div class="col-sm col-2 ">col-sm</div>
+        <div class="col-sm ">default:col-12</div>
+        <div class="col-sm col-3">col-sm</div>
+      </div>
+    </main>
+    <main class=" text-center container mt-1">
+      <div class="row row-cols-4">
+        <div class="col-1">col-1</div>
+        <div>implicit:1/4width, not 4/12</div>
+        <div class="col-6">col-6</div>
+        <div class="col-auto">col-auto...a.b.c.</div>
+      </div>
+    </main>
+
+    <h4 class="header">
+      <p>
+        利用背景色, 看清如何给 col 添加 margin 记住这些设置项:
+      </p>
+      <p>
+        1. container: 默认带 1.5rem 的 padding, 应通过 .g 修改;
+      </p>
+      <p>
+        2. row: 默认带 -1.5rem 的 margin, 应通过 .g 修改;
+      </p>
+      <p>
+        3. 注意上两个scope不同, 因而相互独立.
+      </p>
+      <p>
+        4. col: 默认带 1.5rem 的 padding, 应通过 父级 row 的 .g 修改;
+      </p>
+
+    </h4>
+    <main class=" text-center container mt-1">
+      <div class="row">
+        <div class="col-sm-3 m-2">
+          Level 1: .col-sm-3
+        </div>
+        <div class="col-sm-8 m-3">
+          <div class="row">
+            <div class="col-7 col-sm-5 m-2">
+              Level 2: .col-8 .col-sm-6
+            </div>
+            <div class="col-4 col-sm-6 m-2">
+              Level 2: .col-4 .col-sm-6
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <h4 class="header">
+      <p>
+        使用 w-100 换行. 注意, 定制版的 .row > * 多了竖向的padding=--bs-gutter-y/2.
+        所以, 要使用 w-100 换行而不留痕迹, 必须手工清除这个padding.
+      </p>
+      <p>
+        以下示范, 分别用 .py 和 比较繁琐的 style="--bs-gutter-y:0;"
+      </p>
+      <p>
+        Force next columns to break to new line
+      </p>
+    </h4>
+
+    <div class="text-center container">
+
+      <div class="row">
+        <div class="col-6 col-sm-3 ">one .col-6 .col-sm-3</div>
+        <div class="col-6 col-sm-3 ">two .col-6 .col-sm-3</div>
+        <div class="w-100  py-0"></div>
+        <div class="col-6 col-sm-3">three .col-6 .col-sm-3</div>
+        <div class="col-6 col-sm-3">four .col-6 .col-sm-3</div>
+        <div class="w-100" style="--bs-gutter-y:0;"></div>
+        <div class="col-6 col-sm-3 ">five .col-6 .col-sm-3</div>
+        <div class="col-6 col-sm-3 ">six .col-6 .col-sm-3</div>
+      </div>
+    </div>
+
+    <h4 class="header">
+      <p>
+        上例, 转行用的w-100, 结合媒体查询
+        Force next columns to break to new line
+      </p>
+
+    </h4>
+
+    <main class="text-center container">
+
+      <div class="row">
+        <div class="col-2">.col-2 </div>
+        <div class="col-2 ">.col-2 </div>
+
+        <div class="w-100 py-0 d-md-none "></div>
+
+        <div class="col-2">.col-2 </div>
+        <div class="col-2">.col-2 </div>
+      </div>
+    </main>
+
+    <h4 class="header">
+      <p>
+        margin / padding / gutter 在 .container, .row, .col 使用的工具大比拼
+      </p>
+      <p> margin: .m(null,x,y)-mq-(0,1,...,5), 建议显式用于 .container 和 .col , 默认 0</p>
+      <p> padding: .p(null,x,y)-mq-(0,1,...,5), 建议显式用于 .row, 默认 0</p>
+      <p>
+      <pre>
+        gutter: .g(null,x,y)-mq-(0,1,...,5), 建议显式用于 .container 和 .row : 
+          1) 用于 .container, 则 container 的 padding = gutter / 2.
+          2) 用于 .row, 则 .row 的 margin = -gutter / 2, 
+            同步子级(可以是任何元素,当然包括 .col 系列)的 padding = gutter / 2;          
+        </pre>
+      </p>
+      <p>
+        style="--bs-gutter-(x,y): {value}". 不建议使用, 非用不可, 也只能用于 .container 和 .row
+      </p>
+    </h4>
+
+    <h5 class="header">
+      <p>
+        1. 全部采用默认, 则 .container的padding与.row的负margin互相抵消, col的padding的存在, 使得
+        实际的col, 回到了 .container 期望的位置
+      </p>
+    </h5>
+    <main class="text-center container">
+      <fieldset class="row">
+        <div class="col-3">A</div>
+        <div class="col-3">B</div>
+        <div class="col-3">C</div>
+        <div class="col-3">D</div>
+        <div class="col-4">E</div>
+        <div class="col-4">F</div>
+        <div class="col-4">G</div>
+      </fieldset>
+    </main>
+    <h5 class="header">
+      <p>
+        1. .container 的 .g > .row 的 .g, 则漏出 .container的背景;反过来,则被盖住.
+      </p>
+      <p>
+        2. .col 加写 margin, 则 可看到 .col 之间及 .col 与 .row 內变的间隙.同时也破坏
+        了正常布局. 不用紧张各个 .col 的内容互相集拢喘不过气, 因为每个 .col 都有padding, 而
+        这个 padding 来自于 .row 的 gutter 的实时变化. 所以, 一般不要把 .row 的 gutter
+        配置为0.
+      </p>
+    </h5>
+    <main class="text-center container g-3">
+      <fieldset class="row g-1">
+        <div class="col-3 m-2">A</div>
+        <div class="col-3 m-2">B</div>
+        <div class="col-3 m-2">C</div>
+        <div class="col-3 m-2">D</div>
+        <div class="col-4 m-2">E</div>
+        <div class="col-4 m-2">F</div>
+        <div class="col-4 m-2">G</div>
+      </fieldset>
+    </main>
+    <h5 class="header">
+      <p>
+        1. 使用 style="--bs-gutter-(x,y):...", 完成上述漏出 .container 背景色的任务.
+      </p>
+    </h5>
+    <main class="text-center container" style="--bs-gutter-x:3rem;--bs-gutter-y:6rem;">
+      <fieldset class="row g-1" style="--bs-gutter-x:2rem;--bs-gutter-y:3rem;">
+        <div class="col-3 ">A</div>
+        <div class="col-3">B</div>
+        <div class="col-3 ">C</div>
+        <div class="col-3 ">D</div>
+        <div class="col-4">E</div>
+        <div class="col-4">F</div>
+        <div class="col-4">G</div>
+      </fieldset>
+    </main>
+
+  </section>
+  <section class="demo-css-grid-system">
+    <h4 class="header">
+      <p>
+        官方的, 处于实验性的 css 原生 grid 示范
+      </p>
+    </h4>
+    <main class="grid text-center ">
+      <div class="g-col-4">A.g-col-4"</div>
+      <div class="g-col-4">B.g-col-4"</div>
+      <div class="g-col-4">C.g-col-4"</div>
+      <div class="g-col-3">D.g-col-3"</div>
+      <div class="g-col-2 g-start-6">E.g-col-2 g-start-6</div>
+      <div class="g-col-2 g-start-9">F.g-col-2 g-start-9</div>
+      <div class="g-col-1 g-start-12">G.g-col-1 g-start-12</div>
+      <div class="g-col-5 g-start-3">H.g-col-5 g-start-3</div>
+      <div class="g-col-2 g-start-10">I.g-col-2 g-start-10</div>
+    </main>
+    <h4 class="header">
+      <p>
+        When there are no classes on the grid items (the immediate children of a .grid),
+        each grid item will automatically be　sized to one column.
+      </p>
+      <p>
+        如果使用.container做grid容器, 注意可以将 .container 的padding归零: .g-0, 也可以手工设置grid的负margin: .m-n4
+      </p>
+      <p>
+        默认每个元素占一个轨道, 如果内容多, 则以满足min-content的基础上, 尽量减小宽度
+      </p>
+    </h4>
+    <main class="container g-0">
+      <div class="grid text-center">
+        <span>A</span>
+        <span>B</span>
+        <span>C</span>
+        <span>D</span>
+        <span>E</span>
+        <span>F</span>
+        <span class="g-col-8">G</span>
+        <span>H</span>
+        <span>I</span>
+        <span>Z</span>
+        <span>K</span>
+        <span>L,this this merry-christmas many long long long content</span>
+        <span>M</span>
+        <span>N</span>
+        <span>O</span>
+        <span>P</span>
+        <span>Q</span>
+        <span>R</span>
+        <span>S</span>
+        <span>T</span>
+        <span>U</span>
+        <span>V</span>
+        <span>W</span>
+        <span>X</span>
+        <span>Y</span>
+        <span>Z</span>
+      </div>
+    </main>
+
+    <h4 class="header">
+      <p>
+        嵌套(mdn说属于实验性), 以及通过 css 修改columns; 观察rows/columns/gap的继承现象
+      </p>
+      <p>
+        虽然也是自然排列, 但两个嵌套grid的min-content比较大, 所以和上例有所不同
+      </p>
+      <p>
+        还可以设置 --bs-rows --bs-gap
+      </p>
+    </h4>
+    <main class="container g-0">
+      <div class="grid text-center" style="--bs-columns: 3; --bs-rows:4; --bs-gap:4px;">
+        <div>
+          First auto-column
+          <div class="grid">
+            <div>Auto-column</div>
+            <div>Auto-column</div>
+          </div>
+        </div>
+        <div>
+          Second auto-column
+          <div class="grid" style="--bs-columns: 12;">
+            <div class="g-col-6">6 of 12</div>
+            <div class="g-col-4">4 of 12</div>
+            <div class="g-col-2">2 of 12</div>
+          </div>
+        </div>
+        <div>Third auto-column</div>
+        <div class="g-col-2">ocupy two units</div>
+      </div>
+    </main>
+    <h4 class="header">
+      <p>
+        接着可以测试对齐
+      </p>
+    </h4>
+    <main class="container">
+      <div class="grid test-align">
+        <span class="g-start-2">A-column</span>
+        <span>B-column</span>
+        <span>C</span>
+        <span style="grid-column: 3">D-column</span>
+        <span>E-column</span>
+        <span class="g-start-3" style="grid-row: 3">F-column</span>
+        <span>G-column</span>
+        <span style="grid-row:2">H-column</span>
+        <span>I-column</span>
+      </div>
+    </main>
+    <h4 class="header">
+      <p>
+        对比 flex 网格的对齐
+      </p>
+    </h4>
+    <main class="container text-center  ">
+      <div class="row align-content-between align-items-center justify-content-center" style="height:500px;">
+        <span class="offset-1 col-2">offset-1 col-2</span>
+        <span class="col-5 offset-2">col-5 offset-2</span>
+        <span class="col-5">col-5</span>
+        <span class="offset-1 col-3 align-self-end">offset-1 col-3</span>
+        <span class="offset-1 col-1">offset-1 col-1</span>
+        <span class="col-2">col-2</span>
+        <span class="offset-3 col-5">offset-3 col-5</span>
+      </div>
+    </main>
+    <h4 class="header">
+      <p>
+        xgrid 测试 ,默认 18 行 , 18 列
+      </p>
+    </h4>
+    <main class="container  text-center">
+      <div class="xgrid gx-3 gy-5">
+        <span class="y1-3 y2-5 x1-8 x2-12" style="line-height:7;">A</span>
+        <span class="y1-7 y2-3 x1-9 x2-5">B</span>
+        <span>C,...................................end<br />continue</span>
+        <span>D</span>
+        <span class="y1-8 y2-12 x1-3 x2-9" style="font-size:200px;">E</span>
+        <span style="width:400px;height:15em;">F</span>
+        <span class="y1-n2 y2-n10 x1-n6 x2-n9">G</span>
+        <span class="y1-n10 y2-4 x1-9 x2-n16">H</span>
+        <span class="y1-2 y2-n11 x1-3 x2-n6">I</span>
+        <span class="y1-2 y2-3 x1-6 x2-8">J</span>
+      </div>
+    </main>
+    <h4 class="header">
+      <p>
+        xgrid 测试, 自定义 5 行, 4 列grid-align-items-end
+      </p>
+    </h4>
+    <main class="container text-center ">
+      <div class="xgrid c-4 r-5 g-2">
+        <span class="x1-1 x2-2 y1-1 y2-2 " style="line-height:7;">A</span>
+        <span class="x1-2 x2-3 y1-2 y2-3 ">B</span>
+        <span>C,...................................end<br />continue</span>
+        <span>D</span>
+        <span class="x1-3 x2-4 y1-3 y2-4 " style="font-size:200px;">E</span>
+        <span style="width:400px;height:15em;">F</span>
+        <span class="x1-n5 x2-n3 y1-n2 y2-n1 ">G</span>
+        <span class="x1-4 x2-5 y1-4 y2-5 ">H</span>
+        <span class="x1-3 x2-n5 y1-3 y2-5 ">I</span>
+        <span class="x1-n1 x2-n2 y1-n3 y2-n4 ">J</span>
+      </div>
+
+    </main>
+    <h4 class="header">
+      <p>
+        4列5行: 测试对齐.grid-align-items-end
+      </p>
+    </h4>
+    <main class="container">
+      <article class="xgrid c-4 r-5 gx-3 gy-5 grid-align-items-end grid-justify-items-center">
+        <div class="x1-1 x2-2 y1-1 y2-2">
+          <ul>
+            <li>
+              A
+            </li>
+            <li>
+              x1-1 x2-2 y1-1 y2-2
+            </li>
+            <li>
+              Masonry layout is a layout method where one axis uses a typical strict grid layout, most often columns,
+              and the other a
+              masonry layout.
+            </li>
+          </ul>
+        </div>
+        <div class="x1-2 x2-3 y1-2 y2-3">
+          <p>B 注意，我们可以留空一些单元格。网格布局的一个优势是：无需给元素周围加上 margin 来阻止文档流自动填补空白</p>
+        </div>
+        <div class="x1-3 x2-4 y1-3 y2-4 ">
+          <p>
+            C 我们可以使用基于线的定位控制元素在网格上的位置。比如我想要第一个元素从网格的最左开始，占 1 个列导轨。它还应该从第 1 行线开始，延伸至第 4 行线
+          </p>
+        </div>
+        <div class="x1-4 x2-5 y1-4 y2-5 ">
+          <p>D 默认跨度
+            在上例中，为了展示这些属性，我们指定了每个结束行线和列线，但实际上如果一个元素只延伸一个轨道的话，你可以省略 grid-column-end 或 grid-row-end 值。元素默认延伸一个轨道。</p>
+          <p>
+            当我们用 grid-area
+            属性来定义网格区域时，我们先定义块起始（block-start）和行起始（inline-start），然后再定义块结束（block-end）和行结束（inline-end）。起初，我们可能会因为习惯了顶、右、底、左的属性定义顺序，觉得这个顺序奇怪，但当从网站的书写模式有多个方向的角度思考，这就显得合理了。
+          </p>
+        </div>
+        <div class="x1-3 x2-4 y1-5 y2-6 ">
+          <p>E 将第 n 条网格线贡献到网格项目的位置。如果给定一个负整数，则从显式网格的末端开始，反向计数。
+
+            如果将名称指定为<custom-ident>，则仅计算具有该名称的行。如果没有足够多的具有该名称的线，则假定所有隐式网格线都具有该名称，以查找该位置。
+
+              integer的值为0无效。
+
+              span && [ <integer> || <custom-ident> ] 将网格范围扩展到该网格项目的位置，以使该网格项目的网格区域的相应边缘距离相对边缘 n 行。 如果将名称指定为
+                  <custom-ident>
+                    ，则仅计算具有该名称的行。如果没有足够多的具有该名称的线，则为计算此跨度，假定与搜索方向相对应的显式网格侧的所有隐式网格线均具有该名称。</p>
+        </div>
+        <div class="x1-2 x2-3 y1-4 y2-5 grid-align-self-start">F</div>
+        <div class="x1-n1 x2-n2 y1-2 y2-1">
+          <p>
+            了解编号线是最好的探索网格布局方式的起点，当你使用网格布局时，编号线总是存在。这些线从 1 开始按行和列编号。要注意的是网格是根据书写方向来编号的。
+          </p>
+        </div>
+        <div class="x1-1 x2-2 y1-2 y2-3 grid-align-self-center">H</div>
+        <div class="x1-3 x2-4 y1-1 y2-2 grid-justify-self-end">I</div>
+        <div class="x1-n2 x2-n1 y1-2 y2-4">J</div>
+        <div class="x1-1 x2-2 y1-n4 y2-n1">K</div>
+        <div class="x1-2 x2-3 y1-n1 y2-n2">L</div>
+
+      </article>
+    </main>
+
+
+
+
+  </section>
+</body>
+
+</html>

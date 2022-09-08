@@ -1,0 +1,44 @@
+a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+body.firefox a {
+  font-weight: normal;
+}
+
+#main {
+  color: black;
+}
+
+#main a {
+  font-weight: bold;
+}
+
+#main a:hover {
+  color: red;
+}
+
+#one {
+  color: black;
+}
+
+#one-sidebar {
+  border: 1px solid red;
+}
+
+#one p {
+  color: yelloe;
+}
+
+#one p.two {
+  color: blue;
+}
+
+#one p.two.three {
+  text-align: right;
+} /*# sourceMappingURL=2-ref-parent.css.map */

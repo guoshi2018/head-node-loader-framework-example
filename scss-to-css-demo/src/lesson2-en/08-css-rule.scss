@@ -1,0 +1,82 @@
+//https://sass-lang.com/documentation/at-rules/css
+
+@namespace svg url(http://www.w3.org/2000/svg);
+@font-face {
+	font-family: "Open Sans";
+	src: url("/lib/fonts/susy/greenmudsusy-bold-webfont.woff") format("woff2");
+}
+@counter-style thumbs {
+	system: cyclic;
+	symbols: "\1F44D";
+}
+/*
+	If a CSS at-rule is nested within a style rule, 
+	the two automatically swap positions 
+*/
+.print-only {
+	display: none;
+	@media print {
+		display: block;
+	}
+}
+
+/*
+	The @media rule does all of the above and more. 
+	In addition to allowing interpolation, it allows SassScript 
+	expressions to be used directly in the feature queries.
+*/
+$layout-breakpoint-small: 960px;
+@media (min-width: $layout-breakpoint-small) {
+	.hide-extra-small {
+		display: none;
+	}
+}
+/*
+  When possible, Sass will also merge media queries that 
+  are nested within one another to make it easier to 
+  support browsers that don’t yet natively support nested @media rules.
+*/
+@media (hover: hover) {
+	.button:hover {
+		border: 2px solid black;
+		@media (color) {
+			border-color: #036;
+		}
+	}
+}
+/*
+	@supports permalink@supports
+	The @supports rule also allows SassScript expressions 
+	to be used in the declaration queries.
+*/
+///this is sticky-postion mixin's comment
+@mixin sticky-position {
+	position: fixed;
+	@supports (position: sticky) {
+		position: sticky;
+	}
+}
+.banner {
+	@include sticky-position(); // 括号可省略
+	//@include;
+}
+/*
+	@keyframes
+	The @keyframes rule works just like a general at-rule, 
+	except that its child rules must be valid keyframe rules 
+	(<number>%, from, or to) rather than normal selectors.
+*/
+@keyframes slide-in {
+	from {
+		margin-left: 100%;
+		width: 300%;
+	}
+	70% {
+		margin-left: 90%;
+		width: 150%;
+	}
+	to {
+		margin-left: 0%;
+		width: 100%;
+	}
+}

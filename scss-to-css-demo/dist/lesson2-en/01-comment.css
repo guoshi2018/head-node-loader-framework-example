@@ -1,0 +1,26 @@
+/* But this comment will, except in compressed mode. */
+/* It can also contain interpolation:
+ * 1 + 1 = 2 */
+/*! This comment will be included even in compressed mode. */
+p .sans {
+  font: Helvetica, sans-serif;
+}
+
+.c1.sheekly {
+  color: rgb(75, 180, 27);
+}
+
+.c1.sheekly span {
+  display: block;
+  width: 81px;
+  border: 1px solid #551e1e;
+}
+
+p {
+  color: gray;
+  background-color: #551e1e;
+}
+
+p a:hover {
+  color: #492ad4;
+} /*# sourceMappingURL=01-comment.css.map */

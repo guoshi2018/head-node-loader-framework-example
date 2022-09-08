@@ -1,0 +1,56 @@
+@charset "UTF-8";
+/*
+string.quote($string)
+quote($string) //=> string 
+Returns $string as a quoted string.
+
+string.unquote($string)
+unquote($string) //=> string 
+Returns $string as an unquoted string. This can produce strings 
+that aren’t valid CSS, so use with caution.
+*/
+.temp {
+  content1: "Helvetica";
+  content2: ".widget:hover";
+  content3: Helvetica;
+  content4: .widget:hover;
+}
+
+/*
+string.index($string, $substring)
+str-index($string, $substring) //=> number 
+Returns the first index of $substring in $string, 
+or null if $string doesn’t contain $substring.
+*/
+/*
+string.insert($string, $insert, $index)
+str-insert($string, $insert, $index) //=> string 
+Returns a copy of $string with $insert inserted at $index.
+$index超范围, 则插入的字符串靠头或尾部添加,取决于$index的正负.
+*/
+/*
+string.length($string)
+str-length($string) //=> number 
+Returns the number of characters in $string.
+*/
+/*
+string.slice($string, $start-at, $end-at: -1)
+str-slice($string, $start-at, $end-at: -1) //=> string 
+Returns the slice of $string starting at index $start-at and 
+ending at index $end-at (both inclusive).
+*/
+/*
+string.to-upper-case($string)
+to-upper-case($string) //=> string 
+Returns a copy of $string with the ASCII letters converted to upper case.
+
+string.to-lower-case($string)
+to-lower-case($string) //=> string 
+Returns a copy of $string with the ASCII letters converted to lower case.
+*/
+/*
+string.unique-id()
+unique-id() //=> string 
+Returns a randomly-generated unquoted string that’s guaranteed to be 
+a valid CSS identifier and to be unique within the current Sass compilation.
+*/

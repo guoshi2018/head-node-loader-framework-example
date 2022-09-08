@@ -1,0 +1,23 @@
+//占位符选择器的目的: 开发时, 不知道该规则会不会被使用, 为了避免编译用不到的样式规则,
+//将其定义为占位符形式, 真正用到时, 可以使用@extend引入
+
+%plh {
+	background-color: darksalmon;
+	border-radius: 50%;
+}
+
+#context a%foo {
+	color: blue;
+	font-weight: bold;
+	font-size: 2em;
+}
+
+#qingting .mimi {
+	color: red;
+	&%bar {
+		border: 3px solid yello;
+		& %tity {
+			margin-right: 11em;
+		}
+	}
+}

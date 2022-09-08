@@ -1,0 +1,32 @@
+#content {
+  width: 15em;
+}
+
+.lesson .wife {
+  color: antiquewhite;
+  width: 20em;
+}
+
+.lesson .wife .qiuqian {
+  font-size: 20em;
+}
+
+.lesson .husband {
+  height: 13em;
+}
+
+.neneko .one {
+  color: 1;
+}
+
+.neneko .one .two {
+  color: black;
+}
+
+.neneko .three {
+  width: 30em;
+}
+
+.slip .box {
+  width: 30em;
+} /*# sourceMappingURL=5-sassscript.css.map */

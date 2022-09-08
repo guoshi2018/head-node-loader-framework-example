@@ -1,0 +1,116 @@
+@use "sass:math";
+/*
+	@if
+	当 @if 的表达式返回值不是 false 或者 null 时，条件成立，输出 {} 内的代码：
+*/
+p {
+	@if 1 + 1 == 2 {
+		border: 1px solid;
+	}
+	@if 5 < 3 {
+		border: 2px dotted;
+	} @else {
+		@warn "5 必须大于 3";
+		text-align: center;
+	}
+	@if null {
+		border: 3px double;
+	}
+	$type: monster;
+	&:hover {
+		@if $type == ocean {
+			color: blue;
+		} @else if $type == matador {
+			color: red;
+		} @else if $type == monster {
+			color: green;
+		} @else {
+			color: black;
+		}
+	}
+}
+
+/*
+	@for
+	@for 指令可以在限制的范围内重复输出格式，每次按要求（变量的值）对输出结果做出变动。
+	这个指令包含两种格式：
+			@for $var from <start> through <end>，或者 
+			@for $var from <start> to <end>，
+	区别在于 through 与 to 的含义：
+		当使用 through 时，条件范围包含 <start> 与 <end> 的值，
+		而使用 to 时条件范围, 只包含 <start> 的值不包含 <end> 的值。
+	另外，$var 可以是任何变量，比如 $i；<start> 和 <end> 必须是整数值。
+*/
+@mixin loopstyle($style, $start, $end, $prefix: pre) {
+	//through / to 关键字, 无法使用 #{$style}形式动态形成
+	/*
+		#{$style}形式下, 使用前缀: #{$prefix}
+	*/
+	@if ($style == to) {
+		@for $i from $start to $end {
+			//#{$start} 就成了字符串,比如 "3"
+			#{$prefix}-#{$i} {
+				width: 2em * ($i + 2);
+				//Using / for division outside of calc() is deprecated
+				//height: 13em * ($i / 5);
+				//height: 13em * math.div($i, 5); //ok
+				height: 13em * calc($i/5);
+			}
+		}
+	} @else if $style == through {
+		@for $i from $start through $end {
+			#{$prefix}-#{$i} {
+				width: 2em * ($i + 2);
+				//height: 13em * ($i / 5);
+				height: 13em * math.div($i, 5);
+			}
+		}
+	} @else {
+		@error "loop style must be neither to nor through";
+	}
+}
+//@include loopstyle(other, 3, 8); //error
+@include loopstyle(to, 3, 8, mini);
+@include loopstyle(through, 4, 9);
+
+/*
+	@each
+	@each 指令的格式是 $var in <list>, $var 可以是任何变量名，
+	比如 $length 或者 $name，而 <list> 是一连串的值，也就是值列表
+*/
+@each $animal in puma, sea-slug, egret, salamander {
+	.#{$animal}-icon {
+		background-color: url("/images/#{$animal}.png");
+	}
+}
+/*
+@each用于二维数组, 索引号目前只有手工引入
+*/
+$arr1: (0, puma, black, default), (1, sea-slug, blue, pointer), (2, egret, white, move);
+@each $idx, $animal, $color, $cursor in $arr1 {
+	.#{$animal}-another-icon {
+		background-image: url("/images/#{$animal}.png");
+		border: ($idx + 1) * 2px solid $color;
+		cursor: $cursor;
+	}
+}
+/*
+	@each用于maps, 基于maps被视作键值对为元素的列表
+*/
+@each $header, $size in (h1: 2em, h2: 1.5em, h3: 1.2em) {
+	#{$header} {
+		font-size: $size;
+	}
+}
+
+/*
+	 @while
+		@while 指令重复输出格式直到表达式返回结果为 false。这样可以实现比 @for 更复杂的循环
+*/
+$i: 6;
+@while $i > 0 {
+	.item-#{$i} {
+		width: 2em * $i;
+	}
+	$i: $i - 2;
+}

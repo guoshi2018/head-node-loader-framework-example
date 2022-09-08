@@ -1,0 +1,163 @@
+@charset "UTF-8";
+.demo-to-rgb {
+  prop-1: 18, 52, 86;
+  prop-2: 25, 25, 112;
+  prop-3: 204, 102, 153;
+  prop-4: 255, 255, 128;
+  prop-5: 204, 102, 153;
+  prop-6: 217, 218, 222;
+  prop-7: 224, 214, 209;
+}
+
+.demo-rgba-css-var {
+  header-bg: rgba(var(--bs-header-rgb), var(--bs-bg-opacity));
+  header-text: rgba(var(--bs-header-rgb), var(--bs-text-opacity));
+  header-other: rgba(var(--bs-header-rgb), var(--bs-other-opacity));
+  body-bg: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity));
+  body-text: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity));
+  body-other: rgba(var(--bs-body-rgb), var(--bs-other-opacity));
+  footer-bg: rgba(var(--bs-footer-rgb), var(--bs-bg-opacity));
+  footer-text: rgba(var(--bs-footer-rgb), var(--bs-text-opacity));
+  footer-other: rgba(var(--bs-footer-rgb), var(--bs-other-opacity));
+}
+
+/*
+	map-loop 函数测试
+	map-loop($map,$func,$args...) 函数的实质功能:由原有map, 生成新的map, 新map的key与原有map相同, value通过以下逻辑得到:
+	1. 选举参数列表$_args, 规则: 对于原有map的每项, 轮询$args字符串数组(列表), 
+		1) 发现"$key" , 则将该项的key纳入参数列表.
+		2) 发现"$value", 则将该项的value纳入参数列表.
+		3) 发现"$key"和"$value"以外的字符串 str , 则将该字符串 str 纳入参数列表
+	2. 调用给定函数, 参数列表为上述 $_args , 结果作为该项的新value.
+*/
+.demo-map-loop .result {
+  one: "first,fourth,1,one";
+  two: "first,fourth,2,two";
+  three: "first,fourth,3,three";
+  four: "first,fourth,4,four";
+}
+
+/*
+	varify($list) 函数测试:
+	将给定的列表各项(以item表示), 转换为 var(--bs-item), 仍然以列表返回, 并采用空格分隔. 注意第一项是null
+	tidy-varify($list) 以上相同, 区别是返回的列表, 各项均与原列表对应, 无第一项null. 
+	注意: show-list-as-props中, 写入css属性时, 规则是忽略null项, 所以, 仅仅从css文件内容看, varify与tidy-varify并无区别
+*/
+.demo-varify .country .result {
+  prop-1: china;
+  prop-2: america;
+  prop-3: australia;
+  prop-4: egypt;
+}
+.demo-varify .varify-country .result {
+  prop-2: var(--bs-china);
+  prop-3: var(--bs-america);
+  prop-4: var(--bs-australia);
+  prop-5: var(--bs-egypt);
+}
+.demo-varify .tidy-varify-country .result {
+  prop-1: var(--bs-china);
+  prop-2: var(--bs-america);
+  prop-3: var(--bs-australia);
+  prop-4: var(--bs-egypt);
+}
+
+/*
+		negativify-map 函数测试:
+		将map各项值取负(字符串等其他非数字类型, 则简单添加前缀 - .), 键名称添加前缀 n
+*/
+.demo-negativify-map .result {
+  one: 1;
+  two: -2;
+  three: hello;
+  four: true;
+}
+.demo-negativify-map .result {
+  none: -1;
+  ntwo: 2;
+  nthree: -hello;
+  nfour: -true;
+}
+
+/*
+		map-get-multiple 函数测试:
+		返回子map, 这些map的键名称由给定的多个键名称构成的数组(列表)指定
+		函数定义中, 参数名称$values如果换成$keys, 语义更准确
+*/
+.demo-map-get-multiple .result {
+  one: 1;
+  three: true;
+}
+
+.demo-str-replace {
+  prop1: "Because any UMLknown fUMLction will be compiled to CSS,it’s easy to xBey miss when you typo a fUMLction name.";
+  prop2: "HELLOcause any unknown function will be compiled to CSS,it’s easy to xHELLOy miss when you typo a function name.";
+}
+
+/* opaque 函数: 根据背景色和前景色, 获取不透明色
+	对于alpha为1的前景色, 返回为前景色,而背景色被忽略(无占比)
+*/
+.demo-opaque {
+  opac-1: #720023;
+  opac-2: yellow;
+  opac-3: #ff8000;
+  opac-4: #5c5c00;
+  opac-5: #26b556;
+  opac-6: #0de429;
+}
+
+/*
+	tint-color shade-color shift-color 函数, 分别是求取指定色与白色或是黑色混合的效果色. 
+*/
+.demo-tint-shade-shift-color {
+  tint-1: #597189;
+  shade-1: #0d243c;
+  shift-1: #0d243c;
+  shift-1-n: #597189;
+  tint-2: #597189;
+  shade-2: #0d243c;
+  shift-2: #0d243c;
+  shift-2-n: #597189;
+  tint-3: #ffffb3;
+  shade-3: #4d4d00;
+  shift-3: #4d4d00;
+  shift-3-n: #ffffb3;
+  tint-4: rgba(221, 188, 207, 0.64);
+  shade-4: rgba(35, 3, 21, 0.64);
+  shift-4: rgba(35, 3, 21, 0.64);
+  shift-4-n: rgba(221, 188, 207, 0.64);
+}
+
+.demo-luminance {
+  lum-1: 0.03252878;
+  lum-2: 0.2126;
+  lum-3: 0.9278;
+  lum-4: 0.2159;
+  lum-5: 0.059705985;
+}
+
+.demo-contrast-ratio {
+  contrast-ratio-to-whilte-1: 12.7228343858;
+  contrast-ratio-to-whilte-2: 3.9984767708;
+  contrast-ratio-to-whilte-3: 1.0738392309;
+  contrast-ratio-to-whilte-4: 3.9488529522;
+  contrast-ratio-to-whilte-5: 9.5710366194;
+  contrast-ratio-to-brown-1: 1.7965739952;
+  contrast-ratio-to-brown-2: 1.7711045042;
+  contrast-ratio-to-brown-3: 6.5947676474;
+  contrast-ratio-to-brown-4: 1.7933613392;
+  contrast-ratio-to-brown-5: 1.351512955;
+}
+
+.demo-color-contrast {
+  color-contrast-1: #fff;
+  color-contrast-2: #000;
+  color-contrast-3: #000;
+  color-contrast-4: #000;
+  color-contrast-5: #fff;
+}
+
+.demo-divide {
+  margin-top: -8.4285714286;
+  margin-bottom: -6.857143;
+}

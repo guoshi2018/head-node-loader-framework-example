@@ -1,0 +1,21 @@
+/* Error: Only 4 arguments allowed, but 6 were passed.
+ *     ,
+ * 42  | @mixin opos($t, $r, $b, $l) {
+ *     |        ==================== declaration
+ * ... |
+ * 48  | @include opos($vs...); //… 声明（写在参数的最后方）告诉 Sass 将这些参数视为值列表处理
+ *     | ^^^^^^^^^^^^^^^^^^^^^ invocation
+ *     '
+ *   scss-to-css-demo\src\lesson1\14-mixin.scss 48:1  opos()
+ *   scss-to-css-demo\src\lesson1\14-mixin.scss 48:1  root stylesheet */
+
+body::before {
+  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
+      "Droid Sans Mono", monospace, monospace;
+  white-space: pre;
+  display: block;
+  padding: 1em;
+  margin-bottom: 1em;
+  border-bottom: 2px solid black;
+  content: "Error: Only 4 arguments allowed, but 6 were passed.\a     \2577 \a 42  \2502  @mixin opos($t, $r, $b, $l) {\d\a     \2502         \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501 \2501  declaration\a... \2502 \a 48  \2502  @include opos($vs...); //\2026  \58f0 \660e \ff08 \5199 \5728 \53c2 \6570 \7684 \6700 \540e \65b9 \ff09 \544a \8bc9  Sass \5c06 \8fd9 \4e9b \53c2 \6570 \89c6 \4e3a \503c \5217 \8868 \5904 \7406 \d\a     \2502  ^^^^^^^^^^^^^^^^^^^^^ invocation\a     \2575 \a   scss-to-css-demo\\src\\lesson1\\14-mixin.scss 48:1  opos()\a   scss-to-css-demo\\src\\lesson1\\14-mixin.scss 48:1  root stylesheet";
+}

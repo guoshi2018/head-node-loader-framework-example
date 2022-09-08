@@ -1,0 +1,78 @@
+@charset "UTF-8";
+/*
+nested map query
+*/
+/*
+map.deep-merge($map1, $map2) //=> map 
+Identical to map.merge(), except that nested map values are also recursively merged.
+*/
+/*
+map.deep-remove($map, $key, $keys...) //=> map 
+If $keys is empty, returns a copy of $map without a value associated with $key.
+If $keys is not empty, follows the set of keys including $key and excluding 
+the last key in $keys, from left to right, to find the nested map targeted for updating.
+一句话, 第二个及以后参数表示要移除的key的嵌套路径
+*/
+/*
+map.get($map, $key, $keys...)
+map-get($map, $key, $keys...) 
+第二个及以后参数,仍然代表查询路径. 找不到,则返回null
+*/
+/*
+map.has-key($map, $key, $keys...)
+map-has-key($map, $key, $keys...) //=> boolean 
+参数意思同前
+*/
+/*
+map.keys($map)
+map-keys($map) //=> list 
+Returns a comma-separated list of all the keys in $map.
+*/
+/*
+map.merge($map1, $map2)
+map-merge($map1, $map2)
+map.merge($map1, $keys..., $map2)
+map-merge($map1, $keys..., $map2) //=> map 
+
+In practice, the actual arguments to map.merge($map1, $keys..., $map2) 
+are passed as map.merge($map1, $args...). They are described here as 
+$map1, $keys..., $map2 for explanation purposes only.
+
+If no $keys are passed, returns a new map with all the keys and 
+values from both $map1 and $map2.
+If both $map1 and $map2 have the same key, $map2‘s value takes precedence.
+All keys in the returned map that also appear in $map1 have the same order 
+as in $map1. New keys from $map2 appear at the end of the map.
+
+If $keys is not empty, follows the $keys to find the nested map targeted 
+for merging. If any key in $keys is missing from a map or references a 
+value that is not a map, sets the value at that key to an empty map.
+Returns a copy of $map1 where the targeted map is replaced by a new map 
+that contains all the keys and values from both the targeted map and $map2.
+
+总结:$keys代表$map2合并到的位于$map1上的目标路径
+	1) 路径为null,则合并到根;
+	2) 路径不为null,且有效,则合并至该路径
+	3) 路径不为null,但无效,则创建该路径,然后合并到该路径
+*/
+/*
+map.remove($map, $keys...)
+map-remove($map, $keys...) //=> map 
+Returns a copy of $map without any values associated with $keys.
+If a key in $keys doesn’t have an associated value in $map, it’s ignored.
+注意:$keys这里不是路径了,是可以移除多个key的意思
+*/
+/*
+map.set($map, $key, $value)
+map.set($map, $keys..., $key, $value) //=> map 
+
+In practice, the actual arguments to map.set($map, $keys..., $key, $value) 
+are passed as map.set($map, $args...). They are described here as 
+$map, $keys..., $key, $value for explanation purposes only.
+$keys这里又是路径, $key则是目标键名
+*/
+/*
+map.values($map)
+map-values($map) //=> list 
+Returns a comma-separated list of all the values in $map.
+*/ /*# sourceMappingURL=13-sass-map.css.map */

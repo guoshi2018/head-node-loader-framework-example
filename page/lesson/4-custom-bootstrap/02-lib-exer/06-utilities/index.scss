@@ -1,0 +1,37 @@
+@use "sass:meta";
+@use "../../common/tool";
+@use "utilities" as *
+	with(
+		$utilities: (
+			one: (
+				property: number-one,
+				class: first-class,
+				value: 1 11 111 1111,
+				responsive: false,
+			),
+			two: (
+				responsive: true,
+				class: second-class,
+				property: number-two,
+				value: (
+					1: #123456,
+					2: hey,
+					3: 135,
+					4: true,
+					5: (
+						abc,
+						deg,
+						gok,
+					),
+				),
+			),
+		)
+	);
+
+/*
+	查看utilities的map内容: 用于生成css基础class,基本上一两条属性即占据一个class定义
+	且可按需求自行扩充, 如上.
+*/
+.demo-utils {
+	@include tool.show-value("utilities", $utilities);
+}

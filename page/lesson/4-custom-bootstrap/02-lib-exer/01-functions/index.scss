@@ -1,0 +1,377 @@
+//测试_functions.scss
+@use "sass:color";
+@use "sass:string";
+@use "sass:list";
+@use "functions" as *;
+
+@mixin show-list-as-props($list) {
+	$idx: 0;
+
+	.result {
+		@each $item in $list {
+			$idx: $idx + 1;
+			prop-#{$idx}: $item;
+		}
+	}
+}
+
+//如果只想输入一个map, 则还应追加一个空map: ().
+// 不用了. 内部已经做了处理
+@mixin show-maps-as-props($maps...) {
+	@if list.length($maps) >= 1 {
+		@each $map in $maps {
+			.result {
+				@each $key, $value in $map {
+					#{$key}: $value;
+				}
+			}
+		}
+	}
+}
+
+// assert-ascending mixin测试
+.demo-assert-ascending {
+	//测试非map结构
+	@mixin demo1() {
+		$no-map: 1, 2, 3, 8;
+		@include assert-ascending($no-map, "$no-map");
+	}
+
+	//测试空map
+	@mixin demo2() {
+		$empty-map: ();
+		@include assert-ascending($empty-map, "$empty-map");
+	}
+
+	// 测试包含相同value的map, warn
+	@mixin demo3() {
+		$eq-map: (
+			"one": 18em,
+			"two": 20em,
+			"three": 30em,
+			"four": 20em,
+		);
+		@include assert-ascending($eq-map, "$eq-map");
+	}
+
+	// 单位不同,不兼容出现在相邻才以此报警
+	@mixin demo4() {
+		$unit-map: (
+			"one": 19,
+			"two": 30,
+			"three": 50%,
+			"four": 60pt,
+			"five": 65,
+			"six": 70em,
+			"seven": 73pt,
+		);
+		@include assert-ascending($unit-map, "$unit-map");
+	}
+
+	//单位相同，但非全部升序, 报警
+	@mixin demo5() {
+		$map1: (
+			one: 0,
+			two: 19px,
+			three: 28px,
+			four: 33px,
+			five: 33px,
+			//等于也报警
+		);
+		@include assert-ascending($map1, "$map1");
+	}
+
+	// 单位相同, 严格升序
+	@mixin demo6() {
+		$map2: (
+			one: 0,
+			two: 523px,
+			three: 650px,
+			4: 892px,
+			// 键类型随意
+			five: 1023px,
+		);
+		@include assert-ascending($map2, "$map2");
+	}
+
+	@include demo1;
+	@include demo2;
+	//@include demo3;
+	//@include demo4;
+	//@include demo5();
+	@include demo6();
+}
+
+//  assert-starts-at-zero mixin测试
+.demo-assert-starts-at-zero {
+	$maps: (
+			"one": 1,
+			//warn
+			"two": 2,
+		),
+		(),
+		(
+			"first": 3,
+			//warn
+		),
+		(
+			"primary": 0,
+			"secondary": 120,
+		),
+		(
+			"the": 0em,
+			//warn 判断使用的是 == 0, 所以0em也报警
+			"far": -12pt,
+		);
+	$idx: 1;
+
+	@each $m in $maps {
+		//@include assert-starts-at-zero($m, "$maps-#{$idx}");
+		$idx: $idx + 1;
+	}
+}
+
+// to-rgb 函数测试, 某个分量超过255, 认定为255
+// 注意#123456形式, 分量是16进制
+.demo-to-rgb {
+	$colors: (
+		#123456,
+		midnightblue,
+		rgb(204, 102, 153),
+		rgb(312, 459, 128),
+		rgba(204, 102, 153, 0.3),
+		hsl(228, 7%, 86%),
+		hsla(20, 20%, 85%, 0.7)
+	);
+	$idx: 1;
+
+	@each $clr in $colors {
+		prop-#{$idx}: to-rgb($clr);
+		$idx: $idx + 1;
+	}
+}
+
+// rgba-css-var 函数测试
+.demo-rgba-css-var {
+	$ident: header, body, footer;
+	$tgts: bg, "text", other;
+
+	@each $id in $ident {
+		@each $t in $tgts {
+			#{$id}-#{$t}: rgba-css-var($id, $t);
+		}
+	}
+}
+
+/*
+	map-loop 函数测试
+	map-loop($map,$func,$args...) 函数的实质功能:由原有map, 生成新的map, 新map的key与原有map相同, value通过以下逻辑得到:
+	1. 选举参数列表$_args, 规则: 对于原有map的每项, 轮询$args字符串数组(列表), 
+		1) 发现"$key" , 则将该项的key纳入参数列表.
+		2) 发现"$value", 则将该项的value纳入参数列表.
+		3) 发现"$key"和"$value"以外的字符串 str , 则将该字符串 str 纳入参数列表
+	2. 调用给定函数, 参数列表为上述 $_args , 结果作为该项的新value.
+*/
+.demo-map-loop {
+	//在 map-loop函数中添加调试语句, 利于观察
+	@function map-loop-test($map, $func, $args...) {
+		$_map: ();
+
+		@each $key, $value in $map {
+			// allow to pass the $key and $value of the map as an function argument
+			$_args: ();
+
+			//@debug "$key:#{$key},$value:#{$value}";
+
+			@each $arg in $args {
+				$temp: if($arg == "$key", $key, if($arg == "$value", $value, $arg));
+				//@debug "$arg is #{$arg}, appending arg:#{$temp}";
+				$_args: append($_args, $temp);
+			}
+
+			//@debug "$_args:#{$_args}----------------------------";
+			$result: call(get-function($func), $_args...);
+			//@debug "merge result:#{$result} ***************************";
+			$_map: map-merge(
+				$_map,
+				(
+					$key: $result,
+				)
+			);
+		}
+
+		@return $_map;
+	}
+
+	@function collect-args($names...) {
+		$str: "";
+
+		@each $n in $names {
+			$str: $str + $n + ",";
+			//		@debug $str;
+		}
+		//长度, 或者是0, 或者大于等于2, 所以可以使用-2索引而永不报错
+		$str: if(string.length($str) > 0, string.slice($str, 1, -2), $str);
+		@return $str;
+	}
+
+	$the-map: (
+		one: 1,
+		two: 2,
+		three: 3,
+		four: 4,
+	);
+
+	//@debug map-loop-test($the-map, collect-args); //length=0
+	//@debug map-loop-test($the-map, collect-args, "."); //length=2
+	//@debug map-loop-test($the-map, collect-args, "first", "fourth", "$value", "$key");
+	//@debug map-loop-test($the-map, collect-args, "text", "$key", "$value");
+	@include show-maps-as-props(map-loop-test($the-map, collect-args, "first", "fourth", "$value", "$key"));
+}
+
+/*
+	varify($list) 函数测试:
+	将给定的列表各项(以item表示), 转换为 var(--bs-item), 仍然以列表返回, 并采用空格分隔. 注意第一项是null
+	tidy-varify($list) 以上相同, 区别是返回的列表, 各项均与原列表对应, 无第一项null. 
+	注意: show-list-as-props中, 写入css属性时, 规则是忽略null项, 所以, 仅仅从css文件内容看, varify与tidy-varify并无区别
+*/
+.demo-varify {
+	$countries: china, america, australia, egypt;
+
+	//这样能看出区别
+	//@debug varify($countries);
+	//@debug tidy-varify($countries);
+
+	.country {
+		@include show-list-as-props($countries);
+	}
+
+	.varify-country {
+		@include show-list-as-props(varify($countries));
+	}
+
+	.tidy-varify-country {
+		@include show-list-as-props(tidy-varify($countries));
+	}
+}
+
+/*
+		negativify-map 函数测试:
+		将map各项值取负(字符串等其他非数字类型, 则简单添加前缀 - .), 键名称添加前缀 n
+*/
+.demo-negativify-map {
+	$tipy: (
+		one: 1,
+		"two": -2,
+		three: hello,
+		four: true,
+	);
+	//@debug negativify-map($tipy);
+	@include show-maps-as-props($tipy, negativify-map($tipy));
+}
+
+/*
+		map-get-multiple 函数测试:
+		返回子map, 这些map的键名称由给定的多个键名称构成的数组(列表)指定
+		函数定义中, 参数名称$values如果换成$keys, 语义更准确
+*/
+.demo-map-get-multiple {
+	$father: (
+		one: 1,
+		two: 2,
+		three: true,
+		four: 44,
+		five: 555,
+	);
+	@include show-maps-as-props(map-get-multiple($father, (one three 2 44)));
+}
+
+// str-replace 函数测试: 字符串的部分替换
+.demo-str-replace {
+	$full-str: "Because any unknown function will be compiled to CSS,it’s easy to xBey miss when you typo a function name.";
+	prop1: str-replace($full-str, "un", "UML");
+	prop2: str-replace($full-str, "Be", "HELLO");
+}
+
+// escape-svg 函数, 参见 01-functions-escape-svg.scss
+
+/* opaque 函数: 根据背景色和前景色, 获取不透明色
+	对于alpha为1的前景色, 返回为前景色,而背景色被忽略(无占比)
+*/
+.demo-opaque {
+	$bg-fg-colors: (#123456, #720023), (red, yellow), (red, color.change(yellow, $alpha: 0.5)),
+		(red, color.change(yellow, $lightness: 18%)), (rgba(0, 252, 18), rgba(128, 16, 245, 0.3)),
+		(rgba(0, 252, 18), rgba(128, 16, 245, 0.1));
+	$idx: 0;
+
+	@each $bg, $fg in $bg-fg-colors {
+		$idx: $idx + 1;
+		opac-#{$idx}: opaque($bg, $fg);
+	}
+}
+
+/*
+	tint-color shade-color shift-color 函数, 分别是求取指定色与白色或是黑色混合的效果色. 
+*/
+.demo-tint-shade-shift-color {
+	$color-weights: (#123456, 30%), (#123456, 30),
+		// 即 30%
+		(yellow, 70%),
+		(rgba(129, 11, 78, 0.4), 40%);
+	$idx: 0;
+
+	@each $c, $w in $color-weights {
+		$idx: $idx + 1;
+		tint-#{$idx}: tint-color($c, $w);
+		shade-#{$idx}: shade-color($c, $w);
+		shift-#{$idx}: shift-color($c, $w);
+		shift-#{$idx}-n: shift-color($c, -$w);
+	}
+}
+
+// add subtract divide 函数, 比 + - math.div方法没好到哪儿去. 测试略
+
+// luminance 函数, 获取指定颜色的亮度, 逻辑比较专业
+.demo-luminance {
+	$colors: #123456, red, yellow, gray, #810274;
+	$idx: 0;
+
+	@each $c in $colors {
+		$idx: $idx + 1;
+		lum-#{$idx}: luminance($c);
+	}
+}
+
+// contrast-ratio 函数, 获取指定背景色相对于前景色的对比度, 前景色默认为white
+.demo-contrast-ratio {
+	$colors: #123456, red, yellow, gray, #810274;
+	$idx: 0;
+
+	@each $c in $colors {
+		$idx: $idx + 1;
+		contrast-ratio-to-whilte-#{$idx}: contrast-ratio($c);
+	}
+
+	$idx: 0;
+
+	@each $c in $colors {
+		$idx: $idx + 1;
+		contrast-ratio-to-brown-#{$idx}: contrast-ratio($c, brown);
+	}
+}
+
+// color-contrast 函数: 获取对比色(视觉上形成鲜明对比的颜色)
+.demo-color-contrast {
+	$colors: #123456, red, yellow, gray, #810274;
+	$idx: 0;
+
+	@each $c in $colors {
+		$idx: $idx + 1;
+		color-contrast-#{$idx}: color-contrast($c);
+	}
+}
+
+.demo-divide {
+	margin-top: divide(-59, 7, 10);
+	margin-bottom: divide(48, -7, 6);
+}

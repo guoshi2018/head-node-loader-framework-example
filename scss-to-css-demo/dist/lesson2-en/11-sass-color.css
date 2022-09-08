@@ -1,0 +1,94 @@
+@charset "UTF-8";
+/*
+	if($condition, $if-true, $if-false) 这是一个函数.
+	Returns $if-true if $condition is truthy, and $if-false otherwise.
+
+	This function is special in that it doesn’t even evaluate the 
+	argument that isn’t returned, so it’s safe to call even if the 
+	unused argument would throw an error.
+*/
+/*
+ sass:color
+*/
+/*
+		color.adjust($color,
+			$red: null, $green: null, $blue: null,
+			$hue: null, $saturation: null, $lightness: null,
+			$whiteness: null, $blackness: null,
+			$alpha: null)
+		adjust-color(...) //=> color 
+Increases or decreases one or more properties of $color by fixed amounts.
+returns the changed color
+*/
+/*
+	获取通道值
+*/
+/*
+		color.change($color,
+			$red: null, $green: null, $blue: null,
+			$hue: null, $saturation: null, $lightness: null,
+			$whiteness: null, $blackness: null,
+			$alpha: null)
+		change-color(...) //=> color 
+Sets one or more properties of a color to new values.returns the changed color
+*/
+/*
+	color.complement($color)
+	complement($color) //=> color 
+Returns the RGB complement of $color.  "互补颜色" "补色", 但不是 255-各通道值
+This is identical to color.adjust($color, $hue: 180deg).	
+*/
+/*
+	color.grayscale($color)
+	grayscale($color) //=> color 
+Returns a gray color with the same lightness as $color.
+This is identical to color.change($color, $saturation: 0%).	
+简言之, 将指定颜色的饱和度降为0, 
+*/
+/*
+color.hwb($hue $whiteness $blackness)
+color.hwb($hue $whiteness $blackness / $alpha) 不推荐使用含 / 的版本,应使用下面
+color.hwb($hue, $whiteness, $blackness, $alpha: 1) //=> color 
+Returns a color with the given hue, whiteness, and blackness and the given alpha channel.
+通过色相 白度 黑度 不透明度, 指定颜色
+*/
+/*
+	color.ie-hex-str($color)
+	ie-hex-str($color) //=> unquoted string 
+
+	Returns an unquoted string that represents $color in the #AARRGGBB 
+	format expected by Internet Explorer’s -ms-filter property.
+*/
+/*
+color.invert($color, $weight: 100%)
+invert($color, $weight: 100%) //=> color 
+Returns the inverse or negative of $color.
+
+求反色, $weight忽略时, 为 255 - 各通道. 
+
+The $weight must be a number between 0% and 100% (inclusive). 
+A higher weight means the result will be closer to the negative, 
+and a lower weight means it will be closer to $color. 
+Weight 50% will always produce #808080.
+*/
+/*
+color.mix($color1, $color2, $weight: 50%)
+mix($color1, $color2, $weight: 50%) //=> color 
+混合颜色, 取决于权重和两个颜色的相对不透明度 
+
+Returns a color that’s a mixture of $color1 and $color2.
+Both the $weight and the relative opacity of each color determines 
+how much of each color is in the result. The $weight must be a 
+number between 0% and 100% (inclusive). A larger weight indicates 
+that more of $color1 should be used, and a smaller weight indicates 
+that more of $color2 should be used.
+*/
+/*
+color.scale($color,
+  $red: null, $green: null, $blue: null,
+  $saturation: null, $lightness: null,
+  $whiteness: null, $blackness: null,
+  $alpha: null)
+scale-color(...) //=> color 
+调整颜色的分量, 到指定值
+*/ /*# sourceMappingURL=11-sass-color.css.map */

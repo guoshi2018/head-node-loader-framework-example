@@ -1,0 +1,316 @@
+//Sass 支持所有的 CSS3 @-Rules，以及 Sass 特有的 “指令”（directives）
+/*
+Sass 拓展了 @import 的功能，允许其导入 SCSS 或 Sass 文件。被导入的文件将合并编译到同一个
+ CSS 文件中，另外，被导入的文件中所包含的变量或者混合指令 (mixin) 都可以在导入的文件中使用。
+
+Sass 在当前地址，或 Rack, Rails, Merb 的 Sass 文件地址寻找 Sass 文件，
+如果需要设定其他地址，可以用 :load_paths 选项，或者在命令行中输入 --load-path 命令。
+
+通常，@import 寻找 Sass 文件并将其导入，但在以下情况下，@import 仅作为普通的 CSS 语句，
+不会导入任何 Sass 文件。
+
+	文件拓展名是 .css；
+	文件名以 http:// 开头；
+	文件名是 url()；
+	@import 包含 media queries。
+
+如果不在上述情况内，文件的拓展名是 .scss 或 .sass，则导入成功。没有指定拓展名，Sass 
+将会试着寻找文件名相同，拓展名为 .scss 或 .sass 的文件并将其导入。
+*/
+@import "lib/foo.scss"; //被包含的foo.scss文件在目标文件12-rule.css中编译后展开
+@import "lib/foo"; //同上
+
+@import "lib/foo.css"; //导入css文件,则不展开, 并提升到顶部: @import url(lib/foo.css);
+@import url(lib/foo.css); //同上
+@import "lib/foo" screen; //普通语句,原封不动
+@import "http://foo.com/bar"; //同上
+@import url(lib/foo); //同上
+
+/*
+	占位css, 并不影响后续的@import语句
+*/
+p.carlaok {
+	text-align: right;
+}
+
+//同时导入多个文件
+@import "lib/1.scss", "./lib/2.scss";
+
+//使用插值,但不是通过变量动态导入 Sass 文件，只能作用于 CSS 的 url() 导入方式：
+//注意, url()形式, 编译时不检查文件的存在
+$family: unquote("Droid+Sans");
+@import url("http://fonts.googleapis.com/css?family=\#{$familys}");
+
+//如果需要导入 SCSS 或者 Sass 文件，但又不希望将其编译为 CSS，
+//只需要在文件名前添加下划线，这样会告诉 Sass 不要编译这些文件，
+//但导入语句中却不需要添加下划线.
+@import "lib/color"; //现在查看,dist/lesson/lib下,并无_color.css文件
+
+//嵌套@import:这样导入的样式只能出现在嵌套的层中
+//注意: 不可以在混合指令 (mixin) 或控制指令 (control directives) 中嵌套 @import
+#main {
+	@import "lib/nested";
+}
+
+/*
+@media指令, 允许嵌套在css规则中,编译后,指令被编译到最外层,包含嵌套的父选择器
+*/
+.sidebar {
+	width: 300px;
+	@media screen and (orientation: landscape) {
+		width: 500px;
+	}
+}
+//如果@media的query互相嵌套, 编译时,自动添加and
+@media screen {
+	.bleek {
+		@media (orientation: landscape) {
+			width: 380px;
+		}
+	}
+}
+//@media 甚至可以使用 SassScript（比如变量，函数，以及运算符）代替条件的名称或者值
+$media: screen;
+$feature: -webkit-min-device-pixel-ratio;
+$value: 1.5;
+@media #{$media} and ($feature:$value) {
+	.niudun {
+		width: 428px;
+	}
+}
+
+/*
+	@extend
+*/
+.error {
+	border: 1px #f00;
+	background-color: #fdd;
+}
+.serious-error {
+	@extend .error;
+	border-width: 3px;
+	color: #123456;
+}
+//后面添加的规则,也被同时serious-error注入
+.error {
+	text-align: center;
+	border-width: 1px; //但是这条规则, 导致.serials-error的border-width声明无效
+}
+//其他使用到 .error 的样式也会同样继承给 .seriousError
+//如下, 这会导致 .serious-error.hack也有同样的规则
+.error.hack {
+	background-image: url("/image/hacked.png");
+}
+/*
+	允许延伸任何定义给单个元素的选择器
+*/
+.hoverlink {
+	//node-sass写法, 已废弃. 在dark-sass中错误
+	//@extend a:hover;
+	//dart-sass: compound selectors may no longer be extended
+	@extend a, :hover;
+}
+a:hover {
+	text-decoration: underline;
+}
+.comment a.user:hover {
+	//延伸的到: .comment a.user:hover,.comment .user.hoverlink{...}
+	font-weight: bold;
+}
+//多重延伸
+.c1 {
+	color: #891d2e;
+}
+.c2 {
+	background-color: darkred;
+	color: aquamarine;
+}
+.c3 {
+	@extend .c1;
+	@extend .c2;
+	font-size: 20px;
+}
+.c4 {
+	@extend .c1, .c2; //合并写法, 规则冲突仍然是后定义的覆盖先定义的
+	margin-right: 10px;
+}
+.c5 {
+	@extend .c4, .error; //继续延伸
+	border-radius: 50%;
+}
+//暂时不可以将选择器系列(层级选择)，比如 .foo .bar 或 .foo + .bar，延伸给其他元素
+//但是反过来却可以
+// #fake-links .link {
+// 	//compound selectors may no longer be extended.
+// 	//@extend p.blaze;
+// 	//@extend p, .balze; //but .balze selector was not found
+// }
+p.blaze {
+	color: blue;
+	&:hover {
+		text-decoration: dotted;
+	}
+}
+/*
+复杂的extend
+技术上讲可能有10钟结果,但是,Sass 只会编译输出有用的选择器
+原则1: 
+		当两个列 (sequence) 合并时，如果没有包含相同的选择器，
+		将生成两个新选择器：第一列出现在第二列之前，或者第二列出现在第一列之前
+*/
+.s1 .s2 .s3 {
+	font-weight: bold;
+}
+.k1 .k2 .k3 {
+	@extend .s3;
+}
+/*
+原则 2: 
+		如果两个列 (sequence) 包含了相同的选择器，相同部分将会合并在一起，
+		其他部分交替输出。在
+*/
+.m1 .m2 .m3 {
+	padding-left: 10px;
+}
+.m1 .n2 .n3 {
+	@extend .m3;
+}
+/*
+@extend-only选择器, 原因是定义该样式时, 还不知道给哪个元素使用, 又希望sass编译时,
+忽略用不到的样式. 占位符选择器应运而生
+*/
+//单独出现时,不会被编译到css中
+.content div a%holiday {
+	color: blue;
+	font-weight: bold;
+	margin-bottom: 18px;
+	position: sticky;
+}
+.notice {
+	@extend %holiday;
+}
+
+/*
+	!optional 声明:
+	当@extend一个还未声明的选择器时,会报错. !optional 可消除该报错
+*/
+.t1.important {
+	//@extend .q;		//后续声明也可以延伸
+	//@extend .qq;		//报错,并中止本scss文件的编译
+	//@extend .pitty;		//报错, .holder.pitty不能用于此
+	@extend .no-such-seletor !optional; //忽略,不报错
+}
+.q {
+	color: red;
+}
+.holder.pitty {
+	color: yellow;
+}
+/*
+ 在指令中使用 @extend 时（比如在 @media 中）有一些限制：
+ Sass 不可以将 @media 层外的 CSS 规则延伸给指令层内的 CSS，
+ 这样会生成大量的无用代码。也就是说，如果在 
+ @media （或者其他 CSS 指令）中使用 @extend，
+ 必须延伸给相同指令层中的选择器。
+*/
+.error2 {
+	content: "hello,world";
+}
+@media print {
+	.error1 {
+		border: 1px #f00;
+		background-color: #fdd;
+	}
+	.seriousError1 {
+		@extend .error1; //ok
+		//@extend .error2; //fail
+		border-width: 3px;
+	}
+}
+
+/*
+@at-root指令, 作用在于将嵌套定义的规则, 提升到文档根级使用
+@at-root(without...) @at-root(with...) 一般了解
+*/
+//单个选择器
+.p1 {
+	color: blue;
+	@at-root .p2 {
+		background-color: #891d2e;
+	}
+}
+//多个选择器
+.p11 {
+	color: wheat;
+	@at-root {
+		.p21 {
+			content: "p21 by @at-root";
+		}
+		.p22 {
+			content: "p22 by @at-root";
+		}
+	}
+}
+
+/*
+	@debug: prints the value of a SassScript expression to the 
+	standard error output stream. It’s useful for debugging Sass 
+	files that have complicated SassScript going on. For example:
+*/
+.spa1 {
+	text-align: right;
+	@debug 20.3em + 105em; //控制台输出: <filepath> 255 DEBUG: 35.3em
+}
+
+/*
+	@warn
+		The @warn directive prints the value of a SassScript expression to the 
+		standard error output stream. It’s useful for libraries that need to 
+		warn users of deprecations or recovering from minor mixin usage mistakes. 
+		There are two major distinctions between @warn and @debug:
+
+		You can turn warnings off with the --quiet command-line option or the 
+		:quiet Sass option.
+		A stylesheet trace will be printed out along with the message so that
+		the user being warned can see where their styles caused the warning.
+*/
+
+@mixin adjust($v, $cord) {
+	@if (unitless($v)) {
+		// @if unitless($v)  不用括号也可以
+		@warn "Assuming #{$v} to be in pixels";
+		$v: 1px * $v;
+	}
+	#{$cord}: $v;
+}
+@mixin amend-location($x, $y) {
+	@include adjust($x, left);
+	@include adjust($y, top);
+	position: relative;
+}
+.place {
+	@include amend-location(19, 45);
+}
+
+/*
+  @warn
+	The @error directive throws the value of a SassScript expression 
+	as a fatal error, including a nice stack trace. It’s useful for 
+	validating arguments to mixins and functions. BUT ------------
+
+				there is currently no way to catch errors.
+*/
+@mixin report($v, $cord) {
+	@if unitless($v) {
+		@error "$v must have unit, was #{$v}."; //错误并中止编译
+	}
+	#{$cord}: $v;
+}
+@mixin ajust-loc($x, $y) {
+	@include report($x, left);
+	@include report($y, "top");
+	position: relative;
+}
+.place1 {
+	@include ajust-loc(15px, 28px);
+}

@@ -1,0 +1,9 @@
+/*
+math.compatible($number1, $number2)
+comparable($number1, $number2) //=> boolean 
+
+Returns whether $number1 and $number2 have compatible units.
+
+If this returns true, $number1 and $number2 can safely be 
+added, subtracted, and compared. Otherwise, doing so will produce errors.
+*/ /*# sourceMappingURL=14-sass-math.css.map */

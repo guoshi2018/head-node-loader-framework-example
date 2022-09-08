@@ -1,0 +1,19 @@
+@charset "UTF-8";
+/*
+	note:
+		and, or, and not have the usual boolean behavior. Sass considers 
+		every value “true” except for false and null.
+
+		+, -, and / can be used to concatenate strings.
+		注意: - and / 实在看不出对于字符串有什么作用, 以后再说
+*/
+/*
+	Functions are equal to the same function. Functions are compared 
+	by reference, so even if two functions have the same name and 
+	definition they’re considered different if they aren’t defined 
+	in the same place.
+*/
+/*
+	Relational operators determine whether numbers are larger or smaller 
+	than one another. They automatically convert between compatible units.
+*/ /*# sourceMappingURL=10-operator.css.map */

@@ -1,0 +1,215 @@
+@use "../common/global" as *;
+
+.temp1 {
+  color1: $gray-800;
+  color2: $danger;
+  color: #134;
+}
+
+/*
+	循环生成 .swatch-<theme-color-name> start
+*/
+.temp2 {
+  @each $c-name, $v in $theme-colors {
+    .swatch-#{$c-name} {
+      color: color-contrast($v);
+      temp: hello;
+    }
+  }
+}
+
+.pisicly {
+  @each $n, $v in $gutters {
+    remain-gutter-#{$n}: $v;
+  }
+}
+
+/*
+	循环生成 .swatch-<theme-color-name> end
+*/
+.stach {
+  /*
+	$spacer map testing
+	*/
+  @each $n, $v in $spacers {
+    prop-#{$n}: $v;
+  }
+}
+
+.show-utilites-name {
+  $idx: 1;
+
+  @each $n, $v in $utilities {
+    show-u-#{$idx}: $n;
+    $idx: $idx + 1;
+  }
+}
+
+.custom-ele {
+  color1: color-contrast(#123456);
+  color2: color-contrast($dark);
+}
+
+$border-radius: 0.25rem;
+$border-width1: 1px;
+$border-width2: 0;
+
+.element1 {
+  // Output calc(.25rem - 1px) is valid
+  border-radius1: calc($border-radius - $border-width1); //ok
+  // Output the same calc(.25rem - 1px) as above
+  border-radius11: subtract($border-radius, $border-width1); //ok
+}
+
+.element2 {
+  // Output calc(.25rem - 1px) is valid
+  //border-radius2: calc($border-radius - $border-width2); //error: 0.25rem and 0 are incompatible.
+  // Output the same calc(.25rem - 1px) as above
+  border-radius22: subtract($border-radius, $border-width2); //ok
+
+  //但是这个是Ok的, 足见substract并不是如此重要
+  border-radius2222: $border-radius - $border-width2;
+}
+
+.custom-element {
+  //dark 是 无引号的字符串
+  @include cs-media-query-color-scheme(dark) {
+    width: 900px;
+  }
+
+  //带引号的字符串, 编译结果与上一致
+  @include cs-media-query-color-scheme("my-scheme") {
+    height: 101px;
+  }
+}
+
+.enum-colors {
+  @each $n, $v in $colors {
+    color-#{$n}: "#{$v}", $v;
+  }
+}
+
+/*
+  Bootstrap doesn’t include color and background-color utilities 
+  for every color variable,but you can generate these yourself with 
+  our utility API and our extended Sass maps added in v5.1.0.
+*/
+$all-colors: map-merge-multiple($blues, $indigos, $purples, $pinks, $reds, $oranges, $yellows, $greens, $teals, $cyans);
+
+$utilities: map-merge(
+  $utilities,
+  (
+    "color123":
+      map-merge(
+        map-get($utilities, "color"),
+        (
+          values: map-merge(map-get(map-get($utilities, "color"), "values"), ($all-colors)),
+        )
+      ),
+  )
+);
+
+.paper {
+  $idx: 1;
+
+  @each $n, $v in $utilities {
+    prop-#{$idx}: $n;
+    $idx: $idx + 1;
+  }
+}
+
+// Generate contextual modifier classes for colorizing the alert.
+
+@each $state, $value in $theme-colors {
+  $alert-background: shift-color($value, $alert-bg-scale);
+  $alert-border: shift-color($value, $alert-border-scale);
+  $alert-color: shift-color($value, $alert-color-scale);
+
+  @if (contrast-ratio($alert-background, $alert-color) < $min-contrast-ratio) {
+    $alert-color: mix($value, color-contrast($alert-background), abs($alert-color-scale));
+  }
+
+  .alert-#{$state} {
+    @include alert-variant($alert-background, $alert-border, $alert-color);
+  }
+}
+
+// List group contextual variants
+//
+// Add modifier classes to change text and background color on individual items.
+// Organizationally, this must come after the `:hover` states.
+
+@each $state, $value in $theme-colors {
+  $list-group-variant-bg: shift-color($value, $list-group-item-bg-scale);
+  $list-group-variant-color: shift-color($value, $list-group-item-color-scale);
+
+  @if (contrast-ratio($list-group-variant-bg, $list-group-variant-color) < $min-contrast-ratio) {
+    $list-group-variant-color: mix($value, color-contrast($list-group-variant-bg), abs($list-group-item-color-scale));
+  }
+
+  @include list-group-item-variant($state, $list-group-variant-bg, $list-group-variant-color);
+}
+
+///
+/// @param {string} $name name of person
+/// @return {string} welcome sentence
+
+@function hello($name) {
+  @return "hello,#{$name}";
+}
+
+//@debug hello(guoshi);
+
+/*
+  Responsive These Sass loops aren’t limited to color maps,
+  either. You can also generate responsive variations of your 
+  components. Take for example our responsive alignment of the 
+  dropdowns where we mix an @each loop for the $grid-breakpoints 
+  Sass map with a media query include.
+*/
+// We deliberately hardcode the `bs-` prefix because we check
+// this custom property in JS to determine Popper's positioning
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .dropdown-menu#{$infix}-start {
+      --bs-position: start;
+
+      &[data-bs-popper] {
+        right: auto;
+        left: 0;
+      }
+    }
+
+    .dropdown-menu#{$infix}-end {
+      --bs-position: end;
+
+      &[data-bs-popper] {
+        right: 0;
+        left: auto;
+      }
+    }
+  }
+}
+
+:root {
+  --text-color: 16px; //无效的color值
+}
+
+p {
+  color: blue;
+
+  &.one {
+    // 当浏览器遇到无效的 var() 时，会使用继承值或初始值代替。
+    // 所以实际显示成默认值black
+    color: var(--text-color);
+  }
+
+  &.two {
+    //当 CSS 属性 - 值对中存在语法错误，该行则会被忽略
+    //所以实际显示成前面设定的 color:blue
+    color: 18px;
+  }
+}

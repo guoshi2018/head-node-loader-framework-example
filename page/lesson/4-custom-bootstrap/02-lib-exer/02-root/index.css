@@ -1,0 +1,44 @@
+@charset "UTF-8";
+/*
+	测试在:root中定义的变量, 被局部修改的后果
+	结论, 不影响其他类, 对自己则立即生效
+	注意, 全局的css变量必须定义在:root里, 名称不能改
+*/
+:root {
+  --temp-color: #123456;
+}
+
+.demo-var div {
+  width: 8.2rem;
+  height: 5.8rem;
+  display: inline-block;
+  margin-top: 1rem;
+  margin-left: 0.8rem;
+  background-color: var(--temp-color);
+}
+.demo-var div.a {
+  --temp-color: blue;
+}
+.demo-var div.c {
+  --temp-color: #cc620c;
+}
+
+.key-nums {
+  content: 1, 2, 3, 4, 5;
+}
+
+.key-return {
+  content: 1, 2, 3, 4, 5, 100;
+}
+
+.hello {
+  content: "guoshi";
+}
+
+.qiuling {
+  content: var(--temp-color);
+}
+
+.zhonghe {
+  content: var(--no-such-var);
+}

@@ -20,15 +20,12 @@ JscssLoader.getInstance().startEntry({
 	//null 或 空字符串 '' 或 输入路劲不存在, 则放弃公共先决资源文件的加载
 
 	//是否启用调试
-	debug: true, //默认false
+	debug: false, //默认false
 
 	//1. 在此添加本入口文件需要包含的js css文件全路径,默认[]
 	//必要时,查看global.json(或在此指定的其替代文件), 以免重复加载(虽然自动忽略)
 	privateRes: [
-		[
-			'/lib/style/css/2-jquery4/default.css',
-			'/lib/style/css/2-jquery4/1-intro.css',
-		]
+
 	],
 	//业务主逻辑函数,默认hello,world,并打印当前的入口文件路径
 	main: () => {

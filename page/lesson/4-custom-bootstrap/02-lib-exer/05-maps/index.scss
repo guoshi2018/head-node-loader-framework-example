@@ -1,0 +1,77 @@
+@use "sass:meta";
+@use "maps" as *;
+@use "variables" as *;
+@use "sundry" as *;
+@use "../../common/tool";
+
+/*查看map: $theme-colors-rgb, key采用theme-colors的, value映射为 to-rgb($value): 以列表存储的rgb分量值*/
+.demo-theme-colors-rgb {
+	@include tool.show-value("theme-colors-rgb", $theme-colors-rgb);
+}
+
+/*查看map: $utilities-colors, 默认等于$theme-colors-rgb*/
+.demo-utilities-colors {
+	@include tool.show-value("utilities-colors", $utilities-colors);
+}
+
+/*查看map: $utilities-text, 默认为在上述$utilities-colors基础上, 并入代表black/white/body的文本颜色的rgb分量*/
+.demo-utilities-text {
+	@include tool.show-value("utilities-text", $utilities-text);
+}
+
+/*
+	查看map: $utilities-text-colors, 默认与$utilities-text同key, 调用rgba-css-var函数, 参数是key值和"text"字符串. 
+	得到的value, 均为css变量形式 var(--xxx-xxx),var(--xxx-xxx) 形式, 代表rgb值及其不透明度(alpha值)
+*/
+.demo-utilities-text-colors {
+	@include tool.show-value("utilities-text-colors", $utilities-text-colors);
+}
+
+/*
+	查看map: $utilities-bg ,默认为在上述$utilities-colors基础上, 并入代表black/white/body的背景颜色的rgb分量
+*/
+.demo-utilities-bg {
+	@include tool.show-value("utilities-bg", $utilities-bg);
+}
+
+/*
+	查看map: $utilities-bg-colors, 默认与$utilities-bg同key, 调用rgba-css-var函数, 参数是key值和"bg"字符串,
+	得到的value, 均为css变量形式 var(--xxx-xxx),var(--xxx-xxx) 形式, 代表rgb值及其不透明度(alpha值)
+*/
+.demo-utilities-bg-colors {
+	@include tool.show-value("utilities-bg-colors", $utilities-bg-colors);
+}
+
+/*
+	查看map: $utilities-border, 默认为在上述$utilities-colors基础上, 并入代表white的线条颜色的rgb分量
+*/
+.demo-utilities-border {
+	@include tool.show-value("utilities-border", $utilities-border);
+}
+
+/*
+	查看map: $utilities-border-colors, 默认与$utilities-border同key, 调用rgba-css-var函数, 参数是key值和"border"字符串,
+	得到的value, 均为css变量形式 var(--xxx-xxx),var(--xxx-xxx) 形式, 代表rgb值及其不透明度(alpha值)
+*/
+.demo-utilities-border-colors {
+	@include tool.show-value("utilities-border-colors", $utilities-border-colors);
+}
+
+/* 查看map: $negative-spacers, 代表各种尺寸的负向空白. 在正向空白的基础上, key前面添加前缀n, value变符号.
+	但需要$enable-negative-margins为true. 而此变量默认为false, 故$negative-spacers为空map */
+.demo-negative-spacers {
+	//$enable-negative-margins: true; //在这里设置太晚了.
+	@include tool.show-value("negative-spacers", $negative-spacers);
+}
+
+.temp {
+	@include tool.show-value("white", $white);
+	$v1: (1, 2, 3, 4);
+	$v2: (
+		one: 1,
+		two: 2,
+		three: 3,
+	);
+	//@debug "$v1 is list:#{meta.type-of($v1) == list}"; //true
+	//@debug "$v2 is list:#{meta.type-of($v2) == list}"; //false, 说明map并不是一种list
+}

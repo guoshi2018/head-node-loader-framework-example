@@ -1,0 +1,99 @@
+@use "variables" as *;
+* {
+	box-sizing: border-box;
+}
+
+// span {
+// 	margin: 0;
+// 	padding: 0;
+// }
+
+// 无背景
+[class^="ndemo-"] {
+	margin: 1em auto 0.8em;
+	.header {
+		width: 80%;
+		> * {
+			text-decoration-line: underline;
+			text-indent: 2em;
+			color: brown;
+		}
+		margin: 0.5em auto 0;
+	}
+	> * {
+		margin: 0.8em auto;
+	}
+}
+
+// fx: section
+[class^="demo"] {
+	@extend [class^="ndemo-"];
+	border-width: 1px;
+	border-style: dashed double;
+	border-color: red;
+	background-color: rgba(145, 88, 238, 0.185);
+	.header {
+		background-color: rgba(68, 208, 226, 0.425) !important;
+	}
+	> *:not(.header):not(.no-bg) {
+		background-color: rgba(232, 247, 174, 0.466);
+		> *:not(kbd):not(table) {
+			background-color: rgba(105, 75, 35, 0.308);
+			> *:not(kbd) {
+				background-color: rgba(194, 71, 133, 0.26);
+				> *:not(kbd) {
+					background-color: rgba(3, 94, 8, 0.219);
+					> *:not(kbd) {
+						background-color: rgba(146, 172, 219, 0.705);
+					}
+				}
+			}
+		}
+	}
+}
+
+.row:not(.no-bg),
+.rowr:not(.no-bg),
+.vrow:not(.no-bg),
+.vrowr:not(.no-bg),
+.grid,
+.xgrid,
+.child-need-bg {
+	> * {
+		&:nth-child(5n + 1) {
+			background-color: rgba($blue, 0.5) !important;
+		}
+		&:nth-child(5n + 2) {
+			background-color: rgba($orange, 0.3) !important;
+		}
+		&:nth-child(5n + 3) {
+			background-color: rgba($gray-700, 0.3) !important;
+		}
+		&:nth-child(5n + 4) {
+			background-color: rgba($teal, 0.6) !important;
+		}
+		&:nth-child(5n + 5) {
+			background-color: rgba($purple, 0.3) !important;
+		}
+	}
+}
+
+.center-child {
+	> * {
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+details {
+	width: 80%;
+	margin: 0.5rem auto;
+	summary {
+		cursor: pointer;
+	}
+}
+
+fieldset {
+	padding: 1rem;
+}

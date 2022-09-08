@@ -15,7 +15,6 @@
 //注意,2022.04.06股东会决议: 抛弃jQuery.ajax, 启用dom fetch方法
 
 
-
 JscssLoader.getInstance().startEntry({
 
 	//globalRes: 默认包含必要脚本的文件 '/lib/script/json/global.json',一般不用修改
@@ -27,10 +26,9 @@ JscssLoader.getInstance().startEntry({
 	//1. 在此添加本入口文件需要包含的js css文件全路径,默认[]
 	//必要时,查看global.json(或在此指定的其替代文件), 以免重复加载(虽然自动忽略)
 	privateRes: [
-		[
-			'/lib/style/css/2-jquery4/default.css',
-			'/lib/style/css/2-jquery4/1-intro.css',
-		]
+		// [
+		// 	"/abc/cde/aaa.css",
+		// ]
 	],
 	//业务主逻辑函数,默认hello,world,并打印当前的入口文件路径
 	main: () => {

@@ -1,0 +1,27 @@
+/*
+file:1.scss start
+*/
+//缺少引号,错误
+//@import /lib/style/css/ui-themes/humanity/theme.css;
+
+//对于css文件的@import, 两种形式均被编译成不带引号的 @import url();
+@import url(../../../lib/style/css/2-jquery4/3-event.css);
+@import "/lib/style/css/ui-themes/le-frog/jquery-ui-1.10.0.custom.css";
+
+//如果error.scss中的错误依然存在, 则得到的1.css将顺理成章得到该错误
+
+//对于scss文件的@import,由于css中不能正确理解scss,所以里面的配置可能不会生效
+//@import url(../example-for-cli/one/normal.scss); //保持原样
+//@import url(/scss-to-css-demo/src/example-for-cli/one/normal.scss); //保持原样
+
+//下面两种形式导入normal.css, 就生效, 虽然在书写时, 智能感知的是对应的scss文件
+//@import url(../example-for-cli/one/normal.css); //保持原样 ok
+@import "../example-for-cli/one/normal.scss"; //展开其编译得到的目标css ok
+
+@import "../example-for-cli/error.scss"; //展开对应的css文件
+
+//所以,对于scss文件, 使用@import的最佳体验是:
+//导入css文件, 采用url()形式; 导入scss文件, 采用 "<path>"形式
+/*
+file 1.scss end.
+*/

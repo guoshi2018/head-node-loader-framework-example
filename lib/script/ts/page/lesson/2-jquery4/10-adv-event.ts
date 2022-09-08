@@ -27,9 +27,9 @@ JscssLoader.getInstance().startEntry({
 	//必要时,查看global.json(或在此指定的其替代文件), 以免重复加载(虽然自动忽略)
 	privateRes: [
 		[
-			'/lib/style/css/2-jquery4/default.css',
-			'/lib/style/css/2-jquery4/10-adv-event.css',
-			'/lib/style/scss/10-adv-event/main.css',
+			'/lib/css/default.css',
+			'/page/lesson/2-jquery4/10-adv-event/index.css',
+			'/page/lesson/2-jquery4/10-adv-event/main.css',
 			'/lib/script/js/indoor-lib/function/guoshi/guoshi.js'
 		], [
 			'/lib/script/js/indoor-lib/function/guoshi/guoshi.js',
@@ -321,7 +321,7 @@ JscssLoader.getInstance().startEntry({
 						timer = setTimeout(function () {
 							checkScrollPosition();
 							timer = 0;
-						}, 510);
+						}, 510) as unknown as number;
 					}
 				}).trigger('scroll');
 			}

@@ -1,0 +1,17 @@
+// 变量定义 !default (Variable Defaults: !default)
+// 可以在变量的结尾添加 !default 给一个未通过 !default 声明赋值的变量赋值，
+// 此时，如果变量已经被赋值，不会再被重新赋值，但是如果变量还没有被赋值，则会被赋予新的值。
+
+//简单说, !default就是为变量提供一个备胎
+$first: "original first content";
+$third: null;
+
+$first: "First content by default." !default; //已经定义有效值, default不生效
+$second: "Second content by default." !default; //未声明, default 生效
+$third: "Third content by default." !default; //已声明,但赋值为null, default 也生效
+
+p.c1 {
+	first: $first; // original
+	second: $second; // default
+	third: $third; // default
+}

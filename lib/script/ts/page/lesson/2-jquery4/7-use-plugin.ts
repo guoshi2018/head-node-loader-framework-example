@@ -27,7 +27,7 @@ JscssLoader.getInstance().startEntry({
 	privateRes: [
 		[
 			'/lib/external-core/jquery-ui-1.13.1.custom/jquery-ui.css',
-			'/lib/style/scss/7-use-plugin/main.css',
+			'/page/lesson/2-jquery4/7-use-plugin/main.css',
 		], [
 			'/lib/external-core/jquery-plugin/jquery.cycle.all.js',
 			'/lib/external-core/jquery-plugin/jquery.cookie.js',

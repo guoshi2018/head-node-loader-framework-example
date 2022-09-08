@@ -1,0 +1,183 @@
+@charset "UTF-8";
+/*
+meta.load-css($url, $with: null) 
+使用场景类似于mixin, $with参数可配置被加载文件(模块)的变量(without $), 以输出期望css属性值
+第二次加载被忽略, 连同其提供的$with配置.
+不同于@use "<filepath>":
+	1. 不引入任何成员
+	2. 可在任何层级调用
+	3. url可使用变量,甚至夹杂插值
+	这是一种临时引入样式设置, 而不惊动全局的做法.
+
+	总结:
+		1. 如果scss库的样式块, 用到模块内部的变量作为条件, 应考虑使用meta.load-css, 
+		配合$with设置, 可惜只能设置第一次;
+		2. 如果scss库的样式块, 带参数, 该参数可能作为条件, 也可能作为内部值, 应考虑
+		使用@use + @include <mixin-name> ,但应注意@use后,mixin-name应前缀命名空间
+		3. 如果scss库, 已经@use, 局部地区又需要 meta.load-css, 则此时无法对其配置.
+		所以, 最佳体验, 应该是 准备作为meta.load-css使用的模块, 不应有mixin; 反之亦然.
+		4. 虽然名字是 load-css, 但是指定路径必须采用scss风格, 而不是 css 的 @import风格. 
+		虽然两者有重叠.(The $url parameter should be a string containing a URL 
+		like you’d pass to the @use rule. It shouldn’t be a CSS url()!)
+*/
+.minok.dark {
+  text-align: center;
+  margin: 15px;
+}
+
+.minok.dark .hollow:after {
+  content: "no no no";
+}
+
+.minok.dark .hollow:after code {
+  padding: 0.25em;
+  line-height: 0;
+  background-color: #6b717f;
+  color: #d2e1dd;
+  border-color: #dadbdf;
+}
+
+/*
+采用mixin形式,仅作为与meta.laod-css对比而开放.
+*/
+/*
+meta.calc-args($calc) //=> list 
+
+Returns the arguments for the given calculation.
+If an argument is a number or a nested calculation, it’s returned 
+as that type. Otherwise, it’s returned as an unquoted string.
+注意: math.xxx()方法, 不被认为是calculation 
+*/
+/*
+meta.call($funciton,$args...)应和meta.get-function($name,$css:false,$module:null)配合使用.
+注意@use进来的function, 应正确设置$module参数
+$css标志该函数的来源,是否是普通的css函数. 如果是, scss将对找不到的函数保持沉默, 而不是引发错误
+使用示例: 09-values.scss 搜索 remove-where方法
+*/
+/*
+meta.content-exists()
+content-exists() //=> boolean 
+
+Returns whether the current mixin was passed a @content block.
+Throws an error if called outside of a mixin.
+*/
+.gleese {
+  text-align: center;
+}
+
+.gleese:hover {
+  color: red;
+}
+
+/*
+meta.feature-exists($feature)
+feature-exists($feature) //=> boolean 
+Returns whether the current Sass implementation supports $feature.
+$feature可以是;global-variable-shadowing extend-selector-pseudoclass units-level3
+at-error custom-property
+下面是结合meta.get-function,meta.call方法的示例.
+*/
+.temp {
+  supported: global-variable-shadowing extend-selector-pseudoclass at-error custom-property;
+  unsupported: units-level3 no-such-feature;
+}
+
+/*
+meta.function-exists($name, $module: null)
+function-exists($name) //=> boolean 
+
+Returns whether a function named $name is defined, either as a 
+built-in function or a user-defined function.
+
+If $module is passed, this also checks the module named $module 
+for the function definition. $module must be a string matching 
+the namespace of a [@use rule][] in the current file.
+*/
+/*
+meta.variable-exists($name)
+variable-exists($name) //=> boolean 
+Returns whether a variable named $name (without the $) exists in the current scope.
+
+meta.global-variable-exists($name, $module: null)
+global-variable-exists($name, $module: null) //=> boolean 
+Returns whether a global variable named $name (without the $) exists.
+
+If $module is null, this returns whether a variable named $name 
+without a namespace exists. Otherwise, $module must be a string 
+matching the namespace of a @use rule in the current file, 
+in which case this returns whether that module has a variable named $name.
+*/
+/*
+meta.inspect($value)
+inspect($value) //=> unquoted string 
+Returns a string representation of $value.
+
+Returns a representation of any Sass value, not just those that 
+can be represented in CSS. As such, its return value is not 
+guaranteed to be valid CSS.
+*/
+/*
+meta.keywords($args)
+keywords($args) //=> map 
+Returns the keywords passed to a mixin or function that takes arbitrary 
+arguments. The $args argument must be an argument list.
+
+The keywords are returned as a map from argument names as unquoted strings 
+(not including $) to the values of those arguments.
+其实就是把有名参数列表转换为参数名到值得map.
+无名参数被忽略
+*/
+pre span.stx-string {
+  color: #080;
+}
+
+pre span.stx-comment {
+  color: #800;
+}
+
+pre span.stx-variable {
+  color: #60b;
+}
+
+pre span.stx-mimi {
+  color: #60b;
+}
+
+/*
+meta.mixin-exists($name, $module: null)
+mixin-exists($name, $module: null) //=> boolean 
+Returns whether a mixin named $name exists.
+
+If $module is null, this returns whether a mixin named $name 
+without a namespace exists. Otherwise, $module must be a string 
+matching the namespace of a @use rule in the current file, in 
+which case this returns whether that module has a mixin named $name.
+*/
+/*
+meta.module-functions($module) //=> map 
+Returns all the functions defined in a module, as a map from 
+function names to function values.
+
+The $module parameter must be a string matching the namespace 
+of a @use rule in the current file.
+*/
+/*
+meta.module-variables($module) //=> map 
+Returns all the variables defined in a module, as a map from 
+variable names (without $) to the values of those variables.
+
+The $module parameter must be a string matching the namespace 
+of a @use rule in the current file.
+*/
+/*
+meta.type-of($value)
+type-of($value) //=> unquoted string 
+Returns the type of $value.
+
+This can return the following values:
+number string color list map calculation bool null function arglist
+
+New possible values may be added in the future. It may return 
+either list or map for (), depending on whether or not it was 
+returned by a map function.
+*/ /*# sourceMappingURL=15-sass-meta.css.map */

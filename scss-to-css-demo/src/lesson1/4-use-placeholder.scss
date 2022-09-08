@@ -1,0 +1,26 @@
+//使用占位符选择器
+
+@use "./4-placeholder" as *;
+
+.maoni {
+	@extend %plh;
+	color: red;
+}
+
+.guoshi {
+	prop1: hello;
+	@extend %foo;
+	prop2: world;
+}
+
+custom-label {
+	@extend %tity;
+}
+
+.wall {
+	@extend %bar;
+}
+
+#abc {
+	@extend %bar;
+}

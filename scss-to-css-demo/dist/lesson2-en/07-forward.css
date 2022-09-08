@@ -1,0 +1,32 @@
+@charset "UTF-8";
+/*
+	This is written @forward "<url>" as <prefix>-*, and it adds the given 
+	prefix to the beginning of every mixin, function, and variable name 
+	forwarded by the module. For example, if the module defines a member 
+	named reset and it’s forwarded as list-*, downstream stylesheets 
+	will refer to it as list-reset.
+*/
+/*
+	Controlling Visibility permalinkControlling Visibility(控制可见性)
+	Sometimes, you don’t want to forward every member from a module. 
+	You may want to keep some members private so that only your package 
+	can use them, or you may want to require your users to load some 
+	members a different way. You can control exactly which members get 
+	forwarded by writing @forward "<url>" hide <members...> or @forward "<url>" 
+	show <members...>.
+
+	The hide form means that the listed members shouldn’t be forwarded, 
+	but everything else should. The show form means that only the named 
+	members should be forwarded. In both forms, you list the names of mixins, 
+	functions, or variables (including the $).
+*/
+/*
+	Configuring Modules(配置模块)
+	The @forward rule can also load a module with configuration. This mostly 
+	works the same as it does for @use, with one addition: 
+
+		a @forward rule’s configuration can use the !default flag in its configuration. 
+
+	This allows a module to change the defaults of an upstream stylesheet while still 
+	allowing downstream stylesheets to override them.
+*/ /*# sourceMappingURL=07-forward.css.map */

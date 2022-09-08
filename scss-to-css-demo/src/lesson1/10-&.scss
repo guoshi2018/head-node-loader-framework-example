@@ -1,0 +1,48 @@
+//& in SassScript
+//Just like when it’s used in selectors, & in SassScript refers to the
+//current parent selector. It’s a comma-separated list of space-separated lists.
+//就像用在选择器中一样, $在sass script中,引用父选择器. 这是一个逗号分隔的数组, 而数组元素
+//又是空格分隔的数组
+//For example:
+.foo.bar .baz.bang,
+.bip.qux {
+	//实际结果不包含括号和引号,只有空格与逗号
+	$parent: &;
+	content: "#{$parent}"; //.foo.bar .baz.bang, .bip.qux
+}
+
+//&总是两级嵌套(原文:
+// Even if the parent selector doesn’t contain a comma or a space,
+// & will always have two levels of nesting, so it can be accessed consistently.)
+// 但是
+p.clee-#{&} {
+	// 这里 & 为空
+	$par: &;
+	color: red;
+	content: "#{$par}"; // "p.clee-"
+}
+
+//If there is no parent selector, the value of & will be null.
+//This means you can use it in a mixin to detect whether a parent selector exists
+@mixin does-parent-exist($sel) {
+	@if & {
+		&:hover {
+			color: red;
+			&:after {
+				content: "#{$sel}的父级是:#{&}";
+			}
+		}
+	} @else {
+		a {
+			color: yellow;
+		}
+	}
+}
+.spring {
+	.autumn {
+		margin-left: 3px;
+	}
+}
+//编译结果当然与相关的html页面情况无关. 但是下面的结果? 没弄清楚
+@include does-parent-exist(".spring");
+@include does-parent-exist("spring .autumn");

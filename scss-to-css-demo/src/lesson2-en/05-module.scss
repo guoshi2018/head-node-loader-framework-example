@@ -1,0 +1,103 @@
+//Only @charset and simple variable definitions can appear before the import commands.
+$hello: 123;
+
+//@import "03-rule.scss";
+//@import "03-rule.scss";	//重复
+//@import "03-rule.scss";	//重复
+
+//@use://最新版的dark-sass,报错:There's already a module with namespace "color".
+// @use "../lesson1/lib/color";
+// @use "../lesson1/lib/color";
+//除非指定到不同命名空间:
+@use "../lesson1/lib/color";
+@use "../lesson1/lib/color" as *; //作为全局使用, 即不添加任何命名空间
+@use "../lesson1/lib/color" as A;
+@use "../lesson1/lib/color" as B;
+@use "../lesson1/lib/color" as C;
+@use "sass:map";
+@use "sass:string";
+@use "sass:meta";
+@use "./lib/monika";
+@use "sass:color" as Bcolor; // built-in color
+
+.please {
+	@include color.hey; //默认以文件名为namespace
+	@include hey;
+	@include C.hey;
+	//@include B.-plam; //error
+}
+
+/*
+ 内置的function, 如果已经自带前缀, 可以两种选择
+*/
+$obj: (
+	"holly": "first",
+	"niudun": "second",
+	"galinour": "third",
+	lisly: "four",
+);
+$other: (
+	text: #f36,
+	link: #f63,
+	font-size: 13px,
+	galinour: guoshi,
+);
+.solo {
+	prop1-1: map.get($obj, "niudun");
+	prop1-11: map-get($obj, "galinour");
+
+	prop1-2: map.has-key($obj, "lisly"); //第二个横线必须保留,hasKey也不行
+	prop1-22: map-has-key($obj, "lisly");
+
+	prop1-3: map.keys($obj); // same as map-keys
+	prop1-33: #{map.keys($obj)}; //去掉引号
+
+	prop1-4: map.values($obj);
+
+	prop1-5: #{map.values(map.merge($obj, $other))};
+
+	prop1-6: map.keys(map-remove($obj, "niudun"));
+
+	prop2-1: string.index("this is a story", " is ");
+	prop2-11: str-index("how old are you", "d");
+}
+
+/*
+		The most exciting example in this release is a sass:meta mixin called 
+		load-css(). This works similar to @use but it only returns generated 
+		CSS output, and it can be used dynamically anywhere in our code:
+*/
+$test-style: "color";
+$file: "../lesson1/lib/#{$test-style}";
+[data-test="#{$test-style}"] {
+	prop1: "hey";
+	@include meta.load-css($file);
+}
+/*
+	above meta.load-css funciton:
+	 		the first argument is a module URL 
+		(like @use) but it can be dynamically changed by variables, 
+		and even include interpolation, like 
+			the second (optional) argument accepts a map of configuration values:
+		$with:('xxx':v1,'yyy':v2,'zzz':v3), 这是一个map结构,各key代表被load的scss文件中定义的style,
+		被成功load的条件是:
+			1) 全局变量(不以-或_开头)
+			2) 标记成!default的值, 
+		条件清楚了, $with的作用不知道,以后再说, 见15-sass-meta.scss
+*/
+@include meta.load-css("./lib/dark", $with: ("base-color": rebeccapurple));
+//@debug $base-color; //undefined
+
+$vs: module-variables("monika");
+@debug $vs;
+$fs: module-functions("monika");
+@debug $fs;
+
+/*
+	meta:color 方法测试	
+*/
+
+@debug Bcolor.adjust(red, $lightness: 20%); //对比于当前颜色(红色)的亮度, 提高20%
+@debug Bcolor.adjust(red, $hue: 180deg); //对比于当前颜色(红色)的色调, 提高180度
+
+@debug Bcolor.scale(red, $lightness: 20%); //对比于white, 而不是red, 亮度提高20%;

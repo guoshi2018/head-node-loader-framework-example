@@ -1,0 +1,21 @@
+@charset "UTF-8";
+/*
+	css变量是声明式的, 值得更新, 同时影响更行前和更新后的用户
+	scss变量则只影响更新后的用户
+	但是, css变量的修改,得靠javascript:
+	document.documentElement.style.getPropertyValue('--css-v'); //get
+	document.documentElement.style.setProperty('--css-v',<new value>); //set
+*/
+:root {
+  --css-v: 100;
+}
+
+.rule-1 {
+  scss-value: value 1;
+  css-value: var(--css-v);
+}
+
+.rule-2 {
+  scss-value: value 2;
+  css-value: var(--css-v);
+} /*# sourceMappingURL=04-variable.css.map */

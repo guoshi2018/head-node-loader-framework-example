@@ -1,0 +1,67 @@
+//https://www.nhooo.com/css-reference/css-functions.html
+//css有以下几个函数:
+
+/*
+	CSS attr() 函数
+	CSS表达式 attr() 用来获取选择到的元素的某一HTML属性值，并用于其样式。它也可以用于伪元素，
+	属性值采用伪元素所依附的元素。attr() 表达式可以用于任何CSS属性。
+*/
+.c1.sheekly {
+	a {
+		color: chocolate;
+		&:after {
+			content: attr(href); //ok,但是单/双引号,[]均不能用
+		}
+	}
+}
+
+/*
+	calc() 函数
+	calc() 此CSS函数让你在声明CSS属性值时执行一些计算。它可以用在如下场合： 
+	<length>、 <frequency>, <angle>、 <time>、 <number>、或 <integer>。
+	
+	需要注意的是，
+		运算符前后都需要保留一个空格，例如：width: calc(100% - 10px)；
+		任何长度值都可以使用calc()函数进行计算；
+		calc()函数支持 "+", "-", "*", "/" 运算；
+		calc()函数使用标准的数学运算优先级规则；
+*/
+.pstoak {
+	//position: absolute;
+	//left: 50px;
+	width: calc(72% - 100px); //减号两边, 必须有空格
+	height: 180px;
+	margin: 13px auto;
+	background-color: rgba(62, 175, 86, 0.74);
+	border: calc(1em - 13px) solid red;
+	padding: (3pt - 5px);
+}
+
+/*
+	贝塞尔曲线函数
+	cubic-bezier() 函数
+*/
+
+/*
+element函数的使用:
+	将网站上的某部分元素当做图片使用，适用于图片的属性同时也适用于应用element的对象
+*/
+$my-ele: ele;
+.ele-wrapper {
+	#ele {
+		width: 59px;
+		height: 59px;
+		background-color: rgba(189, 187, 115, 0.164);
+	}
+	margin: 3em;
+}
+.ele-user {
+	width: 280px;
+	height: 500px;
+	background: -moz-element(##{$my-ele}); //必须是id选择器, 只有firefox可用.注意两个#
+	background-size: contain;
+	background-repeat: repeat-y;
+	border: solid 1px red;
+}
+
+//其他,参见 https://www.nhooo.com/css-reference/css-functions.html

@@ -27,8 +27,8 @@ JscssLoader.getInstance().startEntry({
 	//必要时,查看global.json(或在此指定的其替代文件), 以免重复加载(虽然自动忽略)
 	privateRes: [
 		[
-			'/lib/style/css/2-jquery4/default.css',
-			'/lib/style/css/2-jquery4/9-adv-selector.css',
+			'/lib/css/default.css',
+			'/page/lesson/2-jquery4/9-adv-selector/index.css',
 		], [
 			'/lib/script/js/indoor-lib/function/jq-selector/group-selector.js',
 			'/lib/script/js/indoor-lib/function/jq-instance/cellsByColumn.js'

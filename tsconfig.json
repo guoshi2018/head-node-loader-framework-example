@@ -2,17 +2,17 @@
   "compilerOptions": {
     "outDir": "lib/script/js",
     //"allowJs": true,
-    "target": "esnext",
-    "module": "esnext",
+    "target": "es2015",
+    //"module": "ESNext",
     "strict": true,
     "importHelpers": true,
-    "moduleResolution": "node",
+    "moduleResolution": "Node",
     //"inlineSourceMap": true,
     "sourceMap": true,
+    "skipLibCheck": false,
   },
   "include": [
+    //其他自定义的.d.ts文件,务必位于lib/script/ts目录下,否则很麻烦
     "lib/script/ts/**/*.ts",
-    "lib/script/ts/page/lesson/2-ajax-bak.js",
-    "lib/script/ts/page/lesson/3-effect.bakts",
   ],
 }

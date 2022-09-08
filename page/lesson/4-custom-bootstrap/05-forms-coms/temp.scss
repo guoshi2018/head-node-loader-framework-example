@@ -1,0 +1,55 @@
+@forward "reboot";
+@forward "utilities/api";
+@forward "grid";
+@forward "containers";
+
+.outer {
+	margin: 2rem auto;
+	width: 80%;
+	border: 1px solid red;
+}
+
+// 正负边距测试
+.container.test-margin-padding {
+	//background-color: #0380f3;
+	margin: 5px auto;
+	border: 2px solid green;
+	//max-width: 100% !important; // 覆盖 .container 的max-width 限制
+	.row {
+		border: 4px solid rgb(2, 10, 128);
+		//overflow: auto;
+		flex-wrap: wrap;
+		> * {
+			@extend .col;
+		}
+	}
+}
+
+// background-clip测试
+.test-bg-clip {
+	p {
+		border: 0.8em darkviolet;
+		border-style: dotted double;
+		margin: 1em 0;
+		padding: 1.4em;
+		background: linear-gradient(60deg, red, yellow, red, yellow, red);
+		font: 900 1.2em sans-serif;
+		text-decoration: underline;
+		color: rgba(0, 0, 0, 0.2);
+		&.border-box {
+			background-clip: border-box;
+		}
+		&.padding-box {
+			background-clip: padding-box;
+		}
+		&.content-box {
+			background-clip: content-box;
+		}
+
+		&.text {
+			background-clip: text;
+			-webkit-background-clip: text;
+			//color: rgba(0, 0, 0, 0.2);
+		}
+	}
+}

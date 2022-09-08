@@ -1,0 +1,104 @@
+@use "sass:meta";
+@use "sass:map";
+
+@use "mixins/utilities" as *;
+@use "mixins/breakpoints" as *;
+@use "vendor/rfs" as *;
+@use "variables" as *;
+
+$utils: (
+	"align": (
+		property: vertical-align,
+		class: align,
+		values: baseline top middle bottom text-bottom text-top,
+	),
+	// scss-docs-end utils-vertical-align
+	// scss-docs-start utils-float
+	"float":
+		(
+			responsive: true,
+			property: float,
+			values: (
+				start: left,
+				end: right,
+				none: none,
+			),
+		),
+	"opacity": (
+		property: opacity,
+		values: (
+			0: 0,
+			25: 0.25,
+			50: 0.5,
+			75: 0.75,
+			100: 1,
+		),
+	),
+	"font-size": (
+		rfs: true,
+		property: font-size,
+		class: fs,
+		values: $font-sizes,
+	),
+	"display": (
+		responsive: true,
+		print: true,
+		property: display,
+		class: d,
+		values: inline inline-block block grid table table-row table-cell flex inline-flex none,
+	),
+);
+
+//模拟 _api.scss中的用法:
+
+//基本用法
+//.moko-api-base {
+
+// Loop over each breakpoint
+@each $breakpoint in map-keys($grid-breakpoints) {
+	// Generate media query if needed
+	@include media-breakpoint-up($breakpoint) {
+		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+		// Loop over each utility property
+		@each $key, $u in $utils {
+			// The utility can be disabled with `false`, thus check if the utility is a map first
+			// Only proceed if responsive media queries are enabled or if it's the base media query
+			@if type-of($u) == "map" and (map-get($u, responsive) or $infix == "") {
+				@include generate-utility($u, $infix);
+			}
+		}
+	}
+}
+
+//rfs
+//.moko-api-scale {
+@media (min-width: $rfs-mq-value) {
+	@each $breakpoint in map-keys($grid-breakpoints) {
+		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+		@if (map-get($grid-breakpoints, $breakpoint) < $rfs-breakpoint) {
+			// Loop over each utility property
+			@each $key, $u in $utils {
+				// The utility can be disabled with `false`, thus check if the utility is a map first
+				// Only proceed if responsive media queries are enabled or if it's the base media query
+				@if type-of($u) == "map" and map-get($u, rfs) and (map-get($u, responsive) or $infix == "") {
+					@include generate-utility($u, $infix, true);
+				}
+			}
+		}
+	}
+}
+
+//}
+
+// Print
+@media print {
+	@each $key, $u in $utils {
+		// The utility can be disabled with `false`, thus check if the utility is a map first
+		// Then check if the utility needs print styles
+		@if type-of($u) == "map" and map-get($u, print) ==true {
+			@include generate-utility($u, "-print");
+		}
+	}
+}

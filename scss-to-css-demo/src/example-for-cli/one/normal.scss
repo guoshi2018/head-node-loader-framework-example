@@ -1,0 +1,37 @@
+/*
+file normal.scss start
+*/
+//和2.scss一样, 仅仅是命令行测试, 没啥意思
+.a {
+	width: 100px;
+	height: 80px;
+	background-color: black;
+	.b {
+		color: red;
+		li {
+			display: none;
+		}
+	}
+}
+
+.aa {
+	background: fixed;
+	p {
+		/*
+		这里有意出现一个错误,看是否会编译停止
+		注意,属性或值拼写错误,不被当做编译错误而停止
+		*/
+		text-alignj: center2;
+
+		span {
+			text-shadow: none;
+			color: green;
+		}
+		&.ppt {
+			color: blue;
+		}
+	}
+}
+/*
+file normal.scss end
+*/

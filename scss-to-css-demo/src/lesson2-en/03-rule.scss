@@ -1,0 +1,288 @@
+@use "sass:selector";
+@use "sass:meta";
+/*
+Selector Combinators
+	You can nest selectors that use combinators as well. You can put the 
+	combinator at the end of the outer selector, at the beginning of the 
+	inner selector, or even all on its own in between the two.
+*/
+
+ul> {
+	li {
+		list-style-type: none;
+	}
+}
+
+h2 {
+	+p {
+		border-top: 1px solid gray;
+	}
+}
+
+p {
+	~ {
+		span {
+			opacity: 0.85;
+			background-color: yellow;
+		}
+
+		label {
+			color: green;
+		}
+	}
+
+	~ul {
+		margin-left: 1em;
+	}
+}
+
+/*
+	Many CSS properties start with the same prefix that acts as 
+	a kind of namespace. For example, font-family, font-size, and 
+	font-weight all start with font-. Sass makes this easier and 
+	less redundant by allowing property declarations to be nested. 
+	The outer property names are added to the inner, separated 
+	by a hyphen.
+*/
+.enlarge {
+	font-size: 14px;
+
+	transition: {
+		//属性空间. 如果是定义的子class, 注意没有冒号
+		property: font-size;
+		duration: 4s;
+		delay: 2s;
+	}
+
+	margin: 22px {
+		// left/right:为默认22px
+		bottom: 10px;
+		top: 2px;
+	}
+
+	&:hover {
+		font-size: 36px;
+	}
+}
+
+/*
+	Hidden Declarations
+	If a declaration’s value is null or an empty unquoted string, 
+	Sass won’t compile that declaration to CSS at all.
+*/
+$rounded-corners: true; //false则不编译border-radius
+
+.button {
+	outline: 1px solid black;
+
+	border : {
+		radius: if($rounded-corners, 5px, null);
+	}
+}
+
+/*
+Custom Properties permalinkCustom Properties
+*/
+$primary: #81899b;
+$accent: #302e24;
+$warn: #dfa612;
+
+:root {
+	--primary: #{$primary};
+	--accent: #{$accent};
+	--warn: #{$warn};
+
+	// Even though this looks like a Sass variable, it's valid CSS so it's not
+	// evaluated.
+	//--consumed-by-js: $primary;	//ok ,不同deprecation
+	--consumed-by-js: #{$primary};
+}
+
+/*
+	Unfortunately, interpolation removes quotes from strings, which makes 
+	it difficult to use quoted strings as values for custom properties 
+	when they come from Sass variables. As a workaround, you can use 
+	the meta.inspect() function to preserve the quotes.
+	解释:插值语法,会去掉引号,哪怕该引号是必须的.为了保留这个引号, 可以使用函数:
+	meta.inspect()
+*/
+
+///包含有带空格的字体名称
+$font-family-some-with-space: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+$font-family-without-space: SFMono-Regular, Menlo, Monaco, Consolas;
+
+:root {
+	//以下, 均能顺利编译, 而且任何警告
+	--fam11: $font-family-some-with-space; //变量名被用作值(字符串)
+	--fam12: #{$font-family-some-with-space}; //引用了列表,但引号消失,原来的数组变成空格分隔的二维数组
+	--fam13: #{meta.inspect($font-family-some-with-space)}; //ok, 原样保留值
+	--fam21: $font-family-without-space; //变量名被用作值(字符串)
+	--fam22: #{$font-family-without-space}; //由于没有引号,因而效果与使用meta.inspect相同
+	--fam23: #{meta.inspect($font-family-without-space)}; //ok, 原样保留值
+}
+
+//结论: 确保万无一失, 使用meta.inspect方法圈住变量名.
+
+/*
+ 	父选择器
+ 	When a parent selector is used in an inner selector, it’s replaced 
+	with the corresponding outer selector. This happens instead of the 
+	normal nesting behavior.
+*/
+.alert {
+
+	// The parent selector can be used to add pseudo-classes to the outer
+	// selector.
+	&:hover {
+		font-weight: bold;
+	}
+
+	// It can also be used to style the outer selector in a certain context, such
+	// as a body set to use a right-to-left language.
+	[dir="rtl"] & {
+		//简单说, 就是为父选择器再向上设定一级父选择器
+		margin-left: 0;
+		margin-right: 10px;
+	}
+
+	section.opt div.win+& {
+		//更加露骨了....
+		color: #81899b;
+	}
+
+	.one & .two {
+		content: 反人类那, 但是合乎语法;
+	}
+
+	//&前面不能有字符:编译错误
+	// .the& {
+	// 	color: black;
+	// }
+	.the#{&} {
+		//ok 得到: .alert .the.alert 选择器
+		color: yellow;
+	}
+
+	&_hey {
+		//ok 得到: .alert_hey 这是顶级选择器
+		color: red;
+	}
+
+	#{&}_happy {
+		//ok  得到 .alert .alert_happy 注意与上面的区别
+		color: #302e24;
+	}
+
+	.the#{&}_polloy {
+		//ok 得到 .alert .the.alert_polly
+		color: antiquewhite;
+	}
+
+	// You can even use it as an argument to pseudo-class selectors.
+	// 注意结果是 :not(.alert), 而不是 .alert :not(.alert)
+	:not(&) {
+		opacity: 0.8;
+	}
+
+	/*&存在与否一个样, 多此一举*/
+	& .hello {
+		background-color: #c6538c;
+	}
+
+	& .world {
+		color: red;
+	}
+}
+
+/*
+	In SassScript permalinkIn SassScript
+		The parent selector can also be used within SassScript. 
+		It’s a special expression that returns the current parent 
+		selector in the same format used by selector functions: 
+		a comma-separated list (the selector list) that contains 
+		space-separated lists (the complex selectors) that contain 
+		unquoted strings (the compound selectors).
+*/
+.main aside:hover,
+.sidebar p {
+	parent-selector: &;
+}
+
+/*
+	If the & expression is used outside any style rules, it returns null. 
+	Since null is falsey, this means you can easily use it to determine 
+	whether a mixin is being called in a style rule or not.
+*/
+@mixin app-background($color) {
+
+	//if语句含义,类似于三元表达式: a > b ? x : y;
+	#{if(&, '&.app-background', '.app-background')} {
+		background-color: $color;
+		color: rgba(#fff, 0.75);
+	}
+}
+
+@include app-background(#036);
+
+.sidebar {
+	@include app-background(#c6538c);
+}
+
+/*
+	Advanced Nesting
+		You can use & as a normal SassScript expression, which means you can 
+		pass it to functions or include it in interpolation—even in other 
+		selectors! Using it in combination with selector functions and the 
+		@at-root rule allows you to nest selectors in very powerful ways.
+
+		For example, suppose you want to write a selector that matches the 
+		outer selector and an element selector. You could write a mixin like 
+		this one that uses the selector.unify() function to combine & with 
+		a user’s selector.
+*/
+
+@mixin unify-parent($child) {
+	@at-root #{selector.unify(&,$child)} {
+		prop_before: 111;
+		@content;
+		prop_after: 222;
+	}
+}
+
+.wrapper .field {
+	@include unify-parent("input") {
+		color: red;
+		border: 1px solid yellow;
+	}
+
+	@include unify-parent("select") {
+		margin-top: 2em;
+		text-align: center;
+	}
+}
+
+/*如果不用@at-root*/
+@mixin unify-parent2($child) {
+	#{selector.unify(&,$child)} {
+		background: blue;
+	}
+}
+
+.wrapper .field {
+	@include unify-parent2("input");
+	@include unify-parent2("select");
+}
+
+.kkk {
+	prop1: selector.unify(&, "blazor");
+}
+
+.demo-truth-falsey {
+	$vars: true false -1 -2 0 -0.3 0.8 4.9 null ''' ';
+	$idx: 0;
+
+	@each $v in $vars {
+		$idx: $idx+1;
+		prop-#{$idx}:'#{$v} is #{if($v,truthiness,falsiness)}';
+	}
+}

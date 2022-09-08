@@ -1,0 +1,1847 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>测试bootstrap的mixin,function,map等</title>
+  <script type="text/javascript" src="/lib/script/js/indoor-core/jscss-loader.js"
+    entry="/lib/script/js/page/lesson/4-custom-bootstrap/02-lib-exer.js"></script>
+</head>
+
+<body>
+  <h1>测试bootstrap的各个 class</h1>
+  <section class="demo-svg">
+    <h3>
+      demo-svg from /01-functions, 测试functions.scss中的svg相关函数
+    </h3>
+    <main>
+      <p>In the following square you should see a background image that is a URL-encoded SVG, and looks like a heart:
+      </p>
+
+      <div class="my-svg-container"></div>
+
+      <p class="before-encoding"><b>Input SVG code:</b></p>
+      <p class="after-encoding"><b>SCSS compiled output after URL-encoding:</b></p>
+
+      <p>
+        <b>Why is this useful?</b>
+        <br>
+        You see that the SASS output is longer than the original SVG, and maybe even longer than the Base64-encoded
+        version of
+        it. So why should you use the URL encoded version instead? Check out an article on <a
+          href="https://css-tricks.com/probably-dont-base64-svg/" target="_blank">css-tricks.com</a>. I've two main
+        reasons
+        why I'm using this compilation step:<br>
+        1. Better cross-browser compatibility. There's no need to convert the SVG to a Base64 URL.<br>
+        2. DRY principle: Don't repeat yourself. Using my function, I can modify the SVG's style (especially its fill
+        color)
+        by wrapping the code into a function and passing in a parameter (e.g. the fill color). Here's a second SVG with
+        just a
+        different color:
+      </p>
+      <div class="my-svg-container-2"></div>
+    </main>
+
+  </section>
+
+  <section class="demo-var">
+    <h3>
+      demo-var from /02-root, 测试 css 变量的独立配置能力
+    </h3>
+    <div>o</div>
+    <div class="a">a</div>
+    <div class="b">b</div>
+    <div class="c">c</div>
+  </section>
+
+
+  <h3>11-helpers from helpers/position: 真正的全局式的sticky</h3>
+  <div class="sticky-sm-top sticky-lg-bottom w-25 ms-auto me-2 mb-5 border border-info ">
+    sticky-sm-top stick-lg-bottom at body tag.
+  </div>
+
+  <div class="sticky-sm-bottom sticky-lg-top w-25 ms-auto me-2 mb-5 border border-success">
+    sticky-sm-bottom sticky-lg-top at body tag.
+  </div>
+
+  <section class="demo-text-truncate">
+    <h3>
+      demo-text-truncate in /11-helpers from helpers/text-truncation.scss, 采用 text-truncate ,实现截断长文本, 并在末尾添加省略号,
+      但只适用于单行文本
+    </h3>
+    <ul>
+      <li>
+        <h4>如果block内存在多行, 它也永远只会显示第一行</h4>
+        <div class="row">
+          <div class="col-2 text-truncate border border-primary">
+            first,second,third.one two three four,1,2,3,4,5,6,7,8,9,10
+            fourth,fifth,1,2,3,4,..........................1,2,3,4,5,6,7,8
+          </div>
+        </div>
+        <hr />
+        <main class="w-50 text-bg-info text-truncate">
+          main作为一个块元素, 也是永远只会显示第一行
+          this is the first paragraph
+          this is the second paragraph
+        </main>
+      </li>
+      <li>
+        <h4>用于inline元素, 无效, 因为他的width/height统统无效,无法限制长度</h4>
+        <span class="w-50 border border-info text-truncate">
+          For longer content, you can add a .text-truncate class to truncate the text with an ellipsis.
+        </span>
+      </li>
+      <li>
+        <h4>用于inline-block元素,有效果,因为它外观上是inline单行, 同时又可以施加width/height控制</h4>
+        <span class="d-inline-block w-50 border border-info text-truncate text-bg-warning">
+          For longer content, you can add a .text-truncate class to truncate the text
+          with an ellipsis. Requires display: inline-block or display: block.
+          之所以必须是这两种元素, 就为了可以限制其width
+        </span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="demo-mult-line-text-truncate">
+    <h3>
+      demo-text-truncate in /11-helpers from helpers/text-truncation.scss, 采用 mult-line-text-truncate ,实现截断长文本(可能已经折行),
+      并在末尾添加省略号
+    </h3>
+    <ul>
+      <li>
+        <h4>用于block元素: 如果block内存在多行,默认最多3行</h4>
+        <div class="row">
+          <div class="col-2 mult-line-truncate border border-primary text-bg-success">
+            1.默认 max=3行, 原文共四行
+            2.Vertical rules are inspired by theelement, allowing you to
+            3.Vertical rules are inspired by theelement, allowing you to
+            4.Vertical rules are inspired by theelement, allowing you to
+          </div>
+        </div>
+        <hr />
+        <main class="w-50 text-bg-info mult-line-truncate-5">
+          1. max=5行, 原文共6行<br />
+          2.this is the first paragraph<br />
+          3.this is the second paragraph<br />
+          4. this is the third paragraph<br />
+          5. this is the fourth paragraph.试试中文,中国共产党章程万岁毛主席万岁<br />
+          6. this is the fifth paragraph
+        </main>
+        <hr />
+        <main class="w-50 text-bg-info mult-line-truncate-1">
+          1. max=1行, 原文共两行<br />
+          2.this is the first paragraph<br />
+        </main>
+      </li>
+      <li>
+        <h4>用于inline元素: 由于class内部已经将其display修改为-webkit-box,所以也适用 </h4>
+        <span class="w-50 border border-info mult-line-truncate-10 text-bg-secondary">
+          1. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+          2. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+          3. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+          4. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+          5. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+          6. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+          7. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+          8. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+          9. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+          10. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+          11. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+          12. For longer content, you can add a .text-truncate class to
+          truncate the text with an ellipsis.<br />
+        </span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="demo-vr">
+    <h3>
+      demo-vr in /11-helpers from helpers/vr.scss, vr 创建竖直分割线, 类似于&lt;hr/&gt;
+    </h3>
+    <ul>
+      <li>
+        <h4>使用div创建</h4>
+        <div class="vr">middle text is here</div>
+      </li>
+      <li>
+        <h4>
+          由于内部已经切换display: inline-block, 所以甚至可以使用span创建.注意, 中间的文本(如果有)已被隐藏,
+          但文本由于是竖向排列, 所以将影响竖线的高度
+        </h4>
+        <span class="vr">中间的文本</span>
+      </li>
+      <li>
+        <h4>极简形式,比如采用自定义标签</h4>
+        <guoshi class="vr" />
+      </li>
+      <li>
+        <h4>与hstack结合使用</h4>
+        <div class="hstack gap-3">
+          <div class="bg-light border">First item</div>
+          <div class="bg-light border ms-auto">Second item</div>
+          <div class="vr"></div>
+          <div class="bg-light border">Third item</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="demo-visually-hidden">
+    <h4>demo-visually-hidden in /11-helpers from helpers/visually-hidden.scss. 关于聚焦显示隐藏</h4>
+    <main style="height:200px;border:1px solid #123456;">
+      <h4>点我, 再试试按下tab键 </h4>
+      <h5 class="visually-hidden">Title for screen readers </h5>
+      <a class="visually-hidden-focusable" href="http://www.chinaguitar.com">Skip to china guitar</a>
+      <div class="visually-hidden-focusable">
+        A container with a
+        <a href="http://www.sina.com.cn">
+          focusable element
+        </a>.
+      </div>
+    </main>
+
+  </section>
+
+  <section class="demo-background">
+    <h4>
+      demo-background at /09-utilities-api from /utilities.scss and /utilities/api.scsss,使用背景颜色
+    </h4>
+    <ul>
+      <li>
+        <h3>
+          1. 使用.bg-primary .bg-secondary等, 只能设定背景颜色, 前景色仍然为默认(大多数情况下为black).所以,
+          必要时, 需要使用.text-white .text-dark等明示字体颜色
+        </h3>
+        <main>
+          <div class="p-3 mb-2 bg-primary text-white">1 .bg-primary</div>
+          <div class="p-3 mb-2 bg-secondary text-white">2 .bg-secondary</div>
+          <div class="p-3 mb-2 bg-success text-white">3 .bg-success</div>
+          <div class="p-3 mb-2 bg-danger text-white">4 .bg-danger</div>
+          <div class="p-3 mb-2 bg-warning text-dark">5 .bg-warning</div>
+          <div class="p-3 mb-2 bg-info text-dark">6 .bg-info</div>
+          <div class="p-3 mb-2 bg-light text-dark">7 .bg-light</div>
+          <div class="p-3 mb-2 bg-dark text-white">8 .bg-dark</div>
+
+          <div class="p-3 mb-2 bg-body text-dark">9 .bg-body</div>
+          <div class="p-3 mb-2 bg-white text-dark">10 .bg-white</div>
+          <div class="p-3 mb-2 bg-black text-white">11 .bg-black</div>
+          <div class="p-3 mb-2 bg-transparent text-dark">12 .bg-transparent</div>
+        </main>
+      </li>
+      <li>
+        <h3>
+          2. 使用helpers/color-bg中定义的.text-bg-*, 根据背景色计算得到的对比度最强的前景色,可一次设置完.
+          只不过, 原版的无对应的 white black body transparent 四种.
+          经过修正上述文件, 可以有这4种.text-bg-*类, 但效果不是很好.
+        </h3>
+        <main>
+          <div class="p-3 mb-2 text-bg-primary">1 .text-bg-primary</div>
+          <div class="p-3 mb-2 text-bg-secondary">2 .text-bg-secondary</div>
+          <div class="p-3 mb-2 text-bg-success">3 .text-bg-success</div>
+          <div class="p-3 mb-2 text-bg-danger">4 .text-bg-danger</div>
+          <div class="p-3 mb-2 text-bg-warning">5 .text-bg-warning</div>
+          <div class="p-3 mb-2 text-bg-info">6 .text-bg-info</div>
+          <div class="p-3 mb-2 text-bg-light">7 .text-bg-light</div>
+          <div class="p-3 mb-2 text-bg-dark">8 .text-bg-dark</div>
+          <div class="p-3 mb-2 text-bg-body">9 .text-bg-body</div>
+          <div class="p-3 mb-2 text-bg-white">10 .text-bg-white</div>
+          <div class="p-3 mb-2 text-bg-black">11 .text-bg-black</div>
+          <div class="p-3 mb-2 text-bg-transparent">12 .text-bg-transparent</div>
+        </main>
+      </li>
+      <li>
+        <h3>
+          3. 为 1 添加背景渐变效果
+        </h3>
+        <main>
+          <div class="p-3 mb-2 bg-primary text-white bg-gradient">1 .bg-primary bg-gradient</div>
+          <div class="p-3 mb-2 bg-secondary text-white bg-gradient">2 .bg-secondary bg-gradient</div>
+          <div class="p-3 mb-2 bg-success text-white bg-gradient">3 .bg-success bg-gradient</div>
+          <div class="p-3 mb-2 bg-danger text-white bg-gradient">4 .bg-danger bg-gradient</div>
+          <div class="p-3 mb-2 bg-warning text-dark bg-gradient">5 .bg-warning bg-gradient</div>
+          <div class="p-3 mb-2 bg-info text-dark bg-gradient">6 .bg-info bg-gradient</div>
+          <div class="p-3 mb-2 bg-light text-dark bg-gradient">7 .bg-light bg-gradient</div>
+          <div class="p-3 mb-2 bg-dark text-white bg-gradient">8 .bg-dark bg-gradient</div>
+
+          <div class="p-3 mb-2 bg-body text-dark bg-gradient">9 .bg-body bg-gradient</div>
+          <div class="p-3 mb-2 bg-white text-dark bg-gradient">10 .bg-white bg-gradient</div>
+          <div class="p-3 mb-2 bg-black text-white bg-gradient">11 .bg-black bg-gradient</div>
+          <div class="p-3 mb-2 bg-transparent text-dark bg-gradient">12 .bg-transparent bg-gradient</div>
+        </main>
+      </li>
+      <li>
+        <h3>
+          4. 为 2 添加渐变背景
+        </h3>
+        <main>
+          <div class="p-3 mb-2 text-bg-primary bg-gradient">1 .text-bg-primary bg-gradient</div>
+          <div class="p-3 mb-2 text-bg-secondary bg-gradient">2 .text-bg-secondary bg-gradient</div>
+          <div class="p-3 mb-2 text-bg-success bg-gradient">3 .text-bg-success bg-gradient</div>
+          <div class="p-3 mb-2 text-bg-danger bg-gradient">4 .text-bg-danger bg-gradient</div>
+          <div class="p-3 mb-2 text-bg-warning bg-gradient">5 .text-bg-warning bg-gradient</div>
+          <div class="p-3 mb-2 text-bg-info bg-gradient">6 .text-bg-info bg-gradient</div>
+          <div class="p-3 mb-2 text-bg-light bg-gradient">7 .text-bg-light bg-gradient</div>
+          <div class="p-3 mb-2 text-bg-dark bg-gradient">8 .text-bg-dark bg-gradient</div>
+          <div class="p-3 mb-2 text-bg-body bg-gradient">9 .text-bg-body bg-gradient</div>
+          <div class="p-3 mb-2 text-bg-white bg-gradient">10 .text-bg-white bg-gradient</div>
+          <div class="p-3 mb-2 text-bg-black bg-gradient">11 .text-bg-black bg-gradient</div>
+          <div class="p-3 mb-2 text-bg-transparent bg-gradient">12 .text-bg-transparent bg-gradient</div>
+        </main>
+      </li>
+      <li>
+        <h3>
+          5. 使用css变量的临时赋值, 定制不透明度
+        </h3>
+        <main>
+          <div class="bg-success p-2 text-white">This is default success background</div>
+          <div class="bg-success p-2 text-white" style="--bs-bg-opacity: .5;">This is 50% opacity success background
+          </div>
+        </main>
+      </li>
+      <li>
+        <h3>
+          6. 或者,使用.bg-opacity-xxx也可以
+        </h3>
+        <main>
+          <div class="bg-success p-2 text-white">This is default success background</div>
+          <div class="bg-success p-2 text-white bg-opacity-75">This is 75% opacity success background</div>
+          <div class="bg-success p-2 text-dark bg-opacity-50">This is 50% opacity success background</div>
+          <div class="bg-success p-2 text-dark bg-opacity-25">This is 25% opacity success background</div>
+          <div class="bg-success p-2 text-dark bg-opacity-10">This is 10% opacity success background</div>
+        </main>
+      </li>
+
+    </ul>
+  </section>
+
+  <section class="demo-border">
+    <h3>
+      demo-border at 09-utilities-api/ from /utilities.scss and /utilities/api.scss . Use border utilities to quickly
+      style the border and border-radius of
+      an element. Great for images, buttons, or any
+      other element.
+    </h3>
+    <ul>
+      <li>
+        <h4>
+          1. add border
+        </h4>
+        <main>
+          <style>
+            span[class^="border-"] {
+              --bs-border-color: var(--bs-orange);
+            }
+          </style>
+          <span class="border" style="--bs-border-color:var(--bs-primary);">border</span>
+          <span class="border-top">border-top</span>
+          <span class="border-end">border-end</span>
+          <span class="border-bottom">border-bottom</span>
+          <span class="border-start">border-start</span>
+        </main>
+      </li>
+      <li>
+        <h4>
+          2. remove border
+        </h4>
+        <main>
+          <span class="border-end-0 border ">border border-end-0</span>
+        </main>
+      </li>
+      <li>
+        <h4>
+          3. boder颜色, 还可以使用 .border-(primary,secondary,warning...)
+        </h4>
+        <main>
+          <span class="border border-primary">boder border-primary</span>
+        </main>
+      </li>
+      <li>
+        <h4>
+          4. 综合示例
+        </h4>
+        <main>
+          <div class="mb-4">
+            <label for="exam-email" class="form-label">Email address</label>
+            <input type="email" class="form-control border-success" id="exam-email" placeholder="name@example.com" />
+          </div>
+          <div class="mb-4 h4 pb-2 text-danger border-bottom border-danger">
+            Dangerous heading
+          </div>
+          <div class="p-3 bg-info bg-opacity-10 border-info border-start-0 rounded-end">
+            Changing border color and width
+          </div>
+        </main>
+      </li>
+      <li>
+        <h4>
+          5. border opacity: 每个.border-(primary,warning...)类, 均局部定义--bs-border-opacity:1.这允许html端,采用非编译方式,
+          style="..."针对任何一个,又不影响其他,定义专属的边框不透明度
+        </h4>
+        <main>
+          <div class="border border-success p-2 mb-2">default success border,border-opacity:1</div>
+          <div class="border border-success p-2 mb-2" style="--bs-border-opacity:.3;">adjust border-opacity to 0.3</div>
+        </main>
+      </li>
+      <li>
+        <h4>
+          6. 或者, 使用预定义的 .border-opacity-(10,25,50,75,100)指定不透明度
+        </h4>
+        <main>
+          <div class="border border-success p-2 mb-2 border-opacity-10">border-opacity-10</div>
+          <div class="border border-success p-2 mb-2 border-opacity-25">border-opacity-25</div>
+          <div class="border border-success p-2 mb-2 border-opacity-50">border-opacity-50</div>
+          <div class="border border-success p-2 mb-2 border-opacity-75">border-opacity-75</div>
+          <div class="border border-success p-2 mb-2 border-opacity-100">border-opacity-100</div>
+          <div class="border border-success p-2 mb-2">default success border,also 100%</div>
+        </main>
+      </li>
+      <li>
+        <h4>
+          7. border width: border-(0,1,2,3,4,5)
+        </h4>
+        <main>
+          <span class="border border-warning border-0">border border-0</span>
+          <span class="border border-warning border-1">border border-1</span>
+          <span class="border border-warning border-2">border border-2</span>
+          <span class="border border-warning border-3">border border-3</span>
+          <span class="border border-warning border-4">border border-4</span>
+          <span class="border border-warning border-5">border border-5</span>
+        </main>
+      </li>
+      <li>
+        <h4>
+          8. border radius: position and size
+        </h4>
+        <style>
+          img[class^=rounded] {
+            width: 100px;
+            height: 180px;
+            vertical-align: top;
+          }
+
+          span.tm {
+            width: 100px;
+            height: 100px;
+          }
+        </style>
+        <main>
+          <span class="d-inline-block bg-info rounded tm"></span>
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded" />
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-top" />
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-bottom" />
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-start" />
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-end" />
+          <span class="vr" style="height:100px;"></span>
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-0" />
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-1" />
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-2" />
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-3" />
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-4" />
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-5" />
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-circle" />
+          <img src="/lib/image/jpg/7-use-plugin/(07).jpg" class="rounded-pill" />
+        </main>
+
+
+
+
+      </li>
+    </ul>
+  </section>
+
+  <section class="demo-text-color">
+    <h3>
+      [demo-text-color]. Colorize text with color utilities. If you want to colorize links, you can use
+      the .link-* helper classes which have :hover and :focus states.
+    </h3>
+    <ul>
+      <li>
+        <h4>
+          1. text-*指定文本颜色(前景色), 结合 bg-* 指定背景.
+        </h4>
+      <li>
+        <main>
+          <p class="text-primary">.text-primary</p>
+          <p class="text-secondary">.text-secondary</p>
+          <p class="text-success">.text-success</p>
+          <p class="text-danger">.text-danger</p>
+          <p class="text-warning bg-dark">.text-warning .bg-dark</p>
+          <p class="text-info bg-dark">.text-info .bg-dark</p>
+          <p class="text-light bg-dark">.text-light .bg-dark</p>
+          <p class="text-dark">.text-dark</p>
+          <p class="text-body">.text-body</p>
+          <p class="text-muted">.text-muted</p>
+          <p class="text-white bg-dark">.text-white .bg-dark</p>
+          <p class="text-black-50">.text-black-50 [deprecation]</p>
+          <p class="text-black text-opacity-50">use .text-black .text-opacity-50, instead above</p>
+          <p class="text-white-50 bg-dark">.text-white-50 [deprecation] .bg-dark</p>
+          <p class="text-white text-opacity-50 bg-dark">中国english use .text-white .text-opacity-50, instead above</p>
+          <p class="text-bg-dark text-opacity-50 ">中国english this is also ok</p>
+          <p class="text-bg-dark text-opacity-50 bg-opacity-50">背景色和前景色均变成半透明</p>
+        </main>
+      </li>
+      </li>
+    </ul>
+  </section>
+
+  <section class="demo-text-bg-color-summary">
+    <h3>
+      背景/前景色/透明度总结.
+    </h3>
+    <ul>
+      <li>
+        <header>
+          <h4>
+            1. 前景色和背景色,单独设置: text-(primary...), bg-(primary...).
+          </h4>
+          <h4>
+            2. 前景色根据背景色产生(对比度鲜明): text-bg-(primary...).
+          </h4>
+          <h4>
+            3. 不透明度: text-opacity-(25,50,75,100), bg-opacity-(10,25,50,75,100).
+            如果感觉细度不够, 又不想编译生成, 可以以在html标签内嵌 style="--bs-text-opacity:0.38;--bs-bg-opacity:0.67"
+            的形式设置
+          </h4>
+          <h4>
+            经修正, 目前不透明度可以与两种前景色/背景色自由组合
+          </h4>
+        </header>
+      </li>
+      <li>
+        <h4>
+          前景,背景分开设置
+        </h4>
+        <main>
+          <p class="text-warning bg-secondary">
+            .text-warning .bg-secondary, opacity 均默认1
+          </p>
+          <p class="text-warning bg-secondary text-opacity-75">
+            .text-warning .bg-secondary, text-opacity:.75 bg-opacity默认1
+          </p>
+          <p class="text-warning bg-secondary bg-opacity-50">
+            .text-warning .bg-secondary, text-opacity:默认1 bg-opacity:.50
+          </p>
+          <p class="text-warning bg-secondary text-opacity-75 bg-opacity-50">
+            .text-warning .bg-secondary, text-opacity:.75 bg-opacity:.50
+          </p>
+          <p class="text-warning bg-secondary" style="--bs-text-opacity:0.83;--bs-bg-opacity:0.46;">
+            .text-warning .bg-secondary, style="--bs-text-opacity:0.83;--bs-bg-opacity:0.46;"
+          </p>
+        </main>
+        <footer>
+          <h5>
+            v5.1.0以后, 还可以通过style修改warning/secondary等的值:
+          </h5>
+          <p class="text-warning bg-secondary" style="--bs-warning-rgb:128,0,255;--bs-secondary-rgb:255,0,0;">
+            rgb值,不能采用预定义的字符串值(例如red)或十六进制值(例如#123456), 必须是rgb值.
+          </p>
+        </footer>
+      </li>
+      <li>
+        <h4>
+          前景色根据背景色产生(对比度鲜明色)
+        </h4>
+        <main>
+          <p class="text-bg-success">
+            .text-bg-success , opacity均默认1
+          </p>
+          <p class="text-bg-success text-opacity-75">
+            .text-bg-success , text-opacity:.75, bg-opacity默认1
+          </p>
+          <p class="text-bg-success bg-opacity-25">
+            .text-bg-success , text-opacity:默认1, bg-opacity:.25
+          </p>
+          <p class="text-bg-success text-opacity-75 bg-opacity-25">
+            .text-bg-success , text-opacity:.75, bg-opacity:.25
+          </p>
+          <p class="text-bg-success" style="--bs-text-opacity:0.75;--bs-bg-opacity:0.25">
+            .text-bg-success , style="--bs-text-opacity:0.75;--bs-bg-opacity:0.25",效果同上
+          </p>
+          <p class="text-bg-success" style="--bs-text-opacity:0.49;--bs-bg-opacity:0.21">
+            .text-bg-success , style="--bs-text-opacity:0.49;--bs-bg-opacity:0.21"
+          </p>
+        </main>
+      </li>
+    </ul>
+  </section>
+
+  <section class="demo-display">
+    <h3>
+      在_utilities中的"display"项定义.
+    </h3>
+    <main>
+      <div class="p-2 me-2 d-inline w-25 d-lg-inline-block d-xl-block text-bg-primary">
+        p-2 d-inline d-lg-inline-block d-xl-block text-bg-primary
+      </div>
+      <div class="p-2  d-inline w-50 d-lg-inline-block d-xl-block text-bg-info">
+        p-2 d-inline d-lg-inline-block d-xl-block text-bg-info
+      </div>
+      <div class="d-print-none">Screen Only (Hide on print only)</div>
+      <div class="d-none d-print-block">Print Only (Hide on screen only)</div>
+      <div class="d-none d-lg-block d-print-block">Hide up to large on screen, but always show on print</div>
+    </main>
+  </section>
+
+  <section class="demo-flex-grid">
+    <h4>
+      demo-flex-grid at /12-grid from /grid.scss and /mixins/grid.scss, 使用flex布局制造的网格系统
+    </h4>
+    <ul>
+      <li>
+        <h5>
+          .row .col 系统配置的内外边距观察.注意所有均可尝试添加 flex-row-reverse flex-wrap-reverse
+        </h5>
+        <div class="w-75 border border-primary mx-auto">
+
+          <div class="outer">
+            <span>
+              顶部的一些文字, 视觉上与下面的row密贴,但从row的边框位置可以看到, 纵向的负margin的存在.
+              结合共同的父容器div的边框可以看出row的横向负边距的存在.同时又被item的正内边距平衡
+              默认横向gutter为1.5rem,纵向gutter原版为0,经修正为与x相同,为1.5rem.
+              注意这里已经被本地scss修改为0.4rem和0.3rem
+            </span>
+            <main class="row border border-info gx-2 gy-3 text-bg-info">
+              <span class="col-4 border border-warning text-bg-secondary">A</span>
+              <span class="col-4 border border-warning text-bg-primary">B</span>
+              <span class="col-4 border border-warning text-bg-success">C</span>
+              <span class="col-12 border border-warning text-bg-warning">D</span>
+            </main>
+            <span>
+              底部的一些文字, 如果遵照原版, 则不存在底部负margin. 为保持对称性,已经增加.
+            </span>
+          </div>
+
+
+          <div class="outer">
+            <span>反向row: flex-direction: row-reverse</span>
+            <main class="rowr border border-info">
+              <span class="col-4 border border-warning text-bg-secondary">A</span>
+              <span class="col-4 border border-warning text-bg-primary">B</span>
+              <span class="col-4 border border-warning text-bg-success">C</span>
+              <span class="col-12 border border-warning text-bg-warning">D</span>
+            </main>
+          </div>
+          <div class="outer">
+            <span>竖向排列的row: flex-direction: column,容器需要设置高度,来约束其"换行"</span>
+            <main class="vrow border border-primary" style="height:320px;">
+              <span class="col-4  border border-warning text-bg-secondary">col-4 A</span>
+              <span class="col-4 border border-warning text-bg-primary">col-4 B</span>
+              <span class="col-4 border border-warning text-bg-success">col-4 C</span>
+              <span class="col-9  border border-warning text-bg-warning">col-9 D12345</span>
+              <span class="col-2 offset-1">offset temp</span>
+              <span class="col-4 border border-warning text-bg-secondary">col-4 A1</span>
+              <span class="col-4  border border-warning text-bg-primary">col-4 B1</span>
+              <span class="col-5 border border-warning text-bg-success">col-5 C1</span>
+              <span class="col-5 border border-warning text-bg-warning">col-5 D1</span>
+              <span class="col-4  border border-warning text-bg-secondary">col-4 A2</span>
+              <span class="col-3  border border-warning text-bg-primary">col-3 B2</span>
+              <span class="col-4  border border-warning text-bg-success">col-4 C212345.......................end</span>
+              <span class="col-7  border border-warning text-bg-warning">col-7 D2</span>
+              <span class="col-4  border border-warning text-bg-secondary">col-4 A3</span>
+              <span class="col-4  border border-warning text-bg-primary">col-4 B3</span>
+              <span class="col-4  border border-warning text-bg-success">col-4 C3</span>
+              <span class="col-11  border border-warning text-bg-warning">col-11 D3123456--------------------end</span>
+              <span class="col-4  border border-warning text-bg-secondary">col-5 A3</span>
+              <span class="col-4  border border-warning text-bg-primary">col-5 B3</span>
+              <span class="col-4  border border-warning text-bg-success">col-5 C3</span>
+              <span style="width:100px;" class="col-11  border border-warning text-bg-warning">col-11
+                D3123456--------------------end</span>
+            </main>
+          </div>
+          <div class="outer">
+            <span>竖向且方向排列的row: flex-direction: column-reverse,容器需要设置高度,来约束其"换行"</span>
+            <main class="vrowr border border-primary" style="height:320px;">
+              <span class="col-4  border border-warning text-bg-secondary">col-4 A</span>
+              <span class="col-4 border border-warning text-bg-primary">col-4 B</span>
+              <span class="col-4 border border-warning text-bg-success">col-4 C</span>
+              <span class="col-9  border border-warning text-bg-warning">col-9 D</span>
+              <span class="col-4 border border-warning text-bg-secondary">col-4 A1</span>
+              <span class="col-4  border border-warning text-bg-primary">col-4 B1</span>
+              <span class="col-5 border border-warning text-bg-success">col-5 C1</span>
+              <span class="col-5 border border-warning text-bg-warning">col-5 D1</span>
+              <span class="col-4  border border-warning text-bg-secondary">col-4 A2</span>
+              <span class="col-3  border border-warning text-bg-primary">col-3 B2</span>
+              <span class="col-4  border border-warning text-bg-success">col-4 C2`</span>
+              <span class="col-7  border border-warning text-bg-warning">col-7 D2</span>
+              <span class="col-4  border border-warning text-bg-secondary">col-4 A3</span>
+              <span class="col-4  border border-warning text-bg-primary">col-4 B3</span>
+              <span class="col-4  border border-warning text-bg-success">col-4 C3</span>
+              <span class="col-11  border border-warning text-bg-warning">col-11 D3123456</span>
+            </main>
+          </div>
+
+        </div>
+      </li>
+      <li>
+        <h5>
+          普通 .row 容器结合:
+          <pre>
+            1. .col-mq: 多个item共同平分row(剩余)宽度
+            2. .col-mq-auto: 各个item宽度由其内容决定
+            3. .col-mq-(1,...,12): 宽度固定为容器的1/12,2/12,...,12/12
+          </pre>
+        </h5>
+        <div class="outer">
+          <h4>
+            flex-direction: row.
+          </h4>
+          <main class="row">
+            <span class="col text-bg-secondary">A</span>
+            <span class="col-auto text-bg-primary">this is the first sentence, a little long</span>
+            <span class="col text-bg-danger">B</span>
+            <span class="col text-bg-info">C</span>
+            <span class="col-auto text-bg-primary">this is the sencond sentence</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h4>
+            flex-direction: row-reverse.
+          </h4>
+          <main class="rowr">
+            <span class="col text-bg-secondary">A</span>
+            <span class="col-auto text-bg-primary">this is the first sentence, a little long</span>
+            <span class="col text-bg-danger">B</span>
+            <span class="col text-bg-info">C</span>
+            <span class="col-auto text-bg-primary">this is the sencond sentence</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h4>
+            flex-direction:row
+          </h4>
+          <main class="row">
+            <span class="col-2">col-2</span>
+            <span class="col-6">col-6</span>
+            <span class="col-5">装不下col-5,换行</span>
+            <span class="col-1">col-1,文字太长是否在内部折行,按理应该取决于该span的over-flow设置, 但目前发现无效. 只是宽度一定不会超出容器给他的这1/12</span>
+            <span class="col-4">col-4右边剩余2格</span>
+            <span class="col-1 offset-1">跳过一格, 然后占据最后一格col-1. 其实原理就是简单的添加了一格的左外边距</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h4>
+            flex-direction:column, 凡是纵向排列的flex布局, 均需要:
+            <pre>
+              1. 配置容器高度, 以约束其换行
+              2. 配置item的width, 否则采用默认值 min-content
+            </pre>
+          </h4>
+          <main class="vrow border border-2 border-primary" style="height:800px;">
+            <span class="col-1 w-15">col-1</span>
+            <span class="col-7 w-25">col-7</span>
+            <span class="col-5 w-25">col-5 装不下col-5,换行</span>
+            <span class="col-1 w-10">col-1,文字太长是否在内部折行,按理应该取决于该span的over-flow设置, 但目前发现无效. 只是宽度一定不会超出容器给他的这1/12</span>
+            <span class="col-4 w-40">col-4接着, 剩余2格</span>
+            <span class="col-1 offset-1">col-1 跳过一格, 浏览器采用的基数有误, 已校正. </span>
+          </main>
+        </div>
+        <div class="outer">
+          <h4>
+            同上, 只不过 flex-direction:column-reserve
+          </h4>
+          <main class="vrowr border border-2 border-primary" style="height:800px;">
+            <span class="col-1 w-15">col-1</span>
+            <span class="col-7 w-25">col-7</span>
+            <span class="col-5 w-25">col-5 装不下col-5,换行</span>
+            <span class="col-1 w-10">col-1,文字太长是否在内部折行,按理应该取决于该span的over-flow设置, 但目前发现无效. 只是宽度一定不会超出容器给他的这1/12</span>
+            <span class="col-4 w-40">col-4接着, 剩余2格</span>
+            <span class="col-1 offset-1">col-1 跳过一格, 浏览器采用的基数有误, 已校正. </span>
+          </main>
+        </div>
+      </li>
+      <li>
+        <h5>
+          通过row容器, 指定item的默认表现(宽度)
+          <pre>
+            1 .row-cols-mq-auto > * : item默认为.col-mq-auto
+            2 .row-cols-mq-(1,...,6) > * : item默认为不伸不缩, 宽度固定为1/1,1/2,...1/6
+            注意: 下面添加的 .default-col 类, 仅仅是为了后台index.scss文件识别, 
+            添加与上面一致的样式. 本身并不是bootstrap所要求的
+            
+          </pre>
+        </h5>
+        <div class="outer">
+          <h4>
+            先是 一般的 row 方向, 结合 row-cols-auto , 指定item尺寸由其内容决定
+          </h4>
+          <main class="row row-cols-auto">
+            <span class="default-col">default-col,内容决定宽度</span>
+            <span class="col">col</span>
+            <span class="col-3">col-3.占3格,随着容器宽度变化,3格的实际宽度也在变化.</span>
+            <span class="default-col">default-col,稍微长一点的文本,a little long</span>
+            <span class="col">col,平分剩余宽度</span>
+            <span class="default-col">default-col</span>
+            <span class="col">col</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h4>
+            基本同上, 差别在于 使用 vrowr. 等待均分剩余尺寸的.col, 可能会由于其他default-col自身
+            内容多, 导致剩余尺寸小, 而几乎占不到多少尺寸, 继而几乎看不到.
+          </h4>
+          <main class="vrowr row-cols-auto border border-2 border-success" style="width:80%; height:160px;">
+            <span class="default-col w-30">default-col,内容决定宽度</span>
+            <span class="col w-20">col</span>
+            <span class="col-3 w-10">col-3.占3格,随着容器宽度变化,3格的实际宽度也在变化.</span>
+            <span class="default-col w-25">default-col,稍微长一点的文本,a little long</span>
+            <span class="col w-15">col,平分剩余宽度</span>
+            <span class="default-col w-40">default-col,多给点文字,以便多占写尺寸(高度), 然后能看到后继的item,占领的尺寸(高度)在缩小.
+              因为他是靠分配剩余尺寸而生.</span>
+            <span class="col w-30">col</span>
+            <span class="default-col w-30">default-col,内容决定宽度 repeat</span>
+            <span class="col w-20">col repeat</span>
+            <span class="col-3 w-10">col-3.占3格,随着容器宽度变化,3格的实际宽度也在变化. repeat</span>
+            <span class="default-col w-25">default-col,稍微长一点的文本,a little long repeat</span>
+            <span class="col w-15">col,平分剩余宽度 repeat</span>
+            <span class="default-col w-40">default-col,多给点文字,以便多占写尺寸(高度), 然后能看到后继的item,占领的尺寸(高度)在缩小.
+              因为他是靠分配剩余尺寸而生. repeat</span>
+            <span class="col w-30">col repeat</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h4>
+            根据上面例子, 修改 wrap为wrap-reserve, 配合ml-auto, 达到与上例对称的下过
+          </h4>
+          <main class="vrowr flex-wrap-reverse row-cols-auto border border-2 border-success ml-auto"
+            style="width:80%; height:160px;">
+            <span class="default-col w-30">default-col,内容决定宽度</span>
+            <span class="col w-20">col</span>
+            <span class="col-3 w-10">col-3.占3格,随着容器宽度变化,3格的实际宽度也在变化.</span>
+            <span class="default-col w-25">default-col,稍微长一点的文本,a little long</span>
+            <span class="col w-15">col,平分剩余宽度</span>
+            <span class="default-col w-40">default-col,多给点文字,以便多占写尺寸(高度), 然后能看到后继的item,占领的尺寸(高度)在缩小.
+              因为他是靠分配剩余尺寸而生.</span>
+            <span class="col w-30">col</span>
+            <span class="default-col w-30">default-col,内容决定宽度 repeat</span>
+            <span class="col w-20">col repeat</span>
+            <span class="col-3 w-10">col-3.占3格,随着容器宽度变化,3格的实际宽度也在变化. repeat</span>
+            <span class="default-col w-25">default-col,稍微长一点的文本,a little long repeat</span>
+            <span class="col w-15">col,平分剩余宽度 repeat</span>
+            <span class="default-col w-40">default-col,多给点文字,以便多占写尺寸(高度), 然后能看到后继的item,占领的尺寸(高度)在缩小.
+              因为他是靠分配剩余尺寸而生. repeat</span>
+            <span class="col w-30">col repeat</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h4>
+            column-reverse 方向, 结合 row-cols-auto , 指定item尺寸(这里是高度)由其内容决定
+          </h4>
+          <main class="vrowr row-cols-auto" style="height:100px;">
+            <span class="default-col  w-15">default-col,内容决定宽度</span>
+            <span class="col  w-15">col</span>
+            <span class="col-3 w-15">col-3.占3格,随着容器宽度变化,3格的实际宽度也在变化.</span>
+            <span class="default-col w-15">default-col,稍微长一点的文本,a little long</span>
+            <span class="col w-15">col,平分剩余宽度</span>
+            <span class="default-col w-15">default-col</span>
+            <span class="col w-15">col</span>
+          </main>
+        </div>
+        <div class="outer">
+          <main class="row row-cols-3">
+            <span class="default-col">默认占1/3</span>
+            <span class="default-col">这个也是,默认占1/3</span>
+            <span class="default-col">还是</span>
+            <span class="default-col">...</span>
+          </main>
+        </div>
+        <div class="outer">
+          <main class="row row-cols-8">
+            <span class="default-col">默认1/8.通过修改variables.scss的$grid-row-columns可达目的</span>
+            <span class="default-col">同前一个,占据行的1/8宽</span>
+            <span class="col">col:第一个平分剩余的span</span>
+            <span class="default-col">1/8</span>
+            <span class="col">col</span>
+            <span class="col-auto">col-auto:内容决定宽度</span>
+            <span class="default-col">也是1/8</span>
+          </main>
+        </div>
+      </li>
+      <li>
+        <h4>
+          自己就Direction的测试: 注意C-80px item 的top/left偏移, 下面一个flex已经证明
+          以width为基数, 而很显然C-80px item 在两个flex的偏移相等.
+          <pre>
+            这个例子说明, 不论flex-drection为何值, item的margin,
+            如果是百分数表示, 基数永远是容器的可用宽度(clientWidth)            
+          </pre>
+        </h4>
+        <main class="d-flex flex-wrap flex-row bg-success" style="width:300px;height:200px;">
+          <span class="text-bg-primary w-10" style="height:20%;">A-40px</span>
+          <span class="text-bg-secondary w-25" style="height:30%;">B-60px</span>
+          <span class="text-bg-info w-40" style="height:40%;margin-top:5%;margin-left:5%;">C-80px</span>
+          <span class="text-bg-warning w-30" style="height:50%;">D-100px</span>
+        </main>
+        <hr />
+        <main class="d-flex flex-wrap flex-column bg-success" style="width:300px;height:200px;">
+          <span class="text-bg-primary w-10" style="height:20%;">A-40px</span>
+          <span class="text-bg-secondary w-25" style="height:30%;">B-60px</span>
+          <span class="text-bg-info w-40" style="height:40%;margin-top:5%;margin-left:5%;">C-80px</span>
+          <span class="text-bg-warning w-30" style="height:50%;">D-100px</span>
+        </main>
+      </li>
+    </ul>
+  </section>
+
+  <section class="demo-flex-official-doc">
+    <h3>
+      这部分来自官方文档, Utilities/Flex. 讲的是手工实现flex, 而不是上一节的flex网格
+      <pre>
+        对应文件: utilities.scss 配合 utilities/api.scss 得到
+      </pre>
+    </h3>
+    <ul>
+      <li>
+        <h4>
+          使用d-flex可以立即创建flex布局,并转换所有直接子元素成为
+          flex item.必要时进一步修改, 使用flex的相关属性
+        </h4>
+        <main>
+          <div class="d-flex mt-1 p-2 text-bg-secondary">
+            this is a flexbox container.
+          </div>
+          <div class="d-inline-flex mt-1 p-2 text-bg-success">
+            inline flexbox, width is up to its content
+          </div>
+          <div class="d-inline-flex d-md-flex mt-1 p-2 text-bg-primary text-md-bg-info">
+            d-inline-flex and d-md-flex
+          </div>
+        </main>
+      </li>
+
+      <li>
+        <div class="outer">
+          <h4>
+            Direction: flex-row
+          </h4>
+          <main class="d-flex flex-row my-2">
+            <span class="p-2">Flex item A</span>
+            <span class="p-2">Flex item B</span>
+            <span class="p-2">Flex item C</span>
+            <span class="p-2">Flex item D</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h4>
+            Direction: flex-row-reverse
+          </h4>
+          <main class="d-flex flex-row-reverse my-2">
+            <span class="p-2">Flex item A</span>
+            <span class="p-2">Flex item B</span>
+            <span class="p-2">Flex item C</span>
+            <span class="p-2">Flex item D</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h4>
+            Direction: flex-column
+          </h4>
+          <main class="d-flex flex-column my-2">
+            <span class="p-2">Flex item A</span>
+            <span class="p-2">Flex item B</span>
+            <span class="p-2">Flex item C</span>
+            <span class="p-2">Flex item D</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h4>
+            Direction: flex-column-reverse
+          </h4>
+          <main class="d-flex flex-column-reverse my-2">
+            <span class="p-2">Flex item A</span>
+            <span class="p-2">Flex item B</span>
+            <span class="p-2">Flex item C</span>
+            <span class="p-2">Flex item D</span>
+          </main>
+        </div>
+      </li>
+      <li>
+        <h3>
+          对齐问题之 justify content: 主轴各个item, 如何放置,
+          即各个item之间以及与边界的间隙, 如何调整
+        </h3>
+        <div class="outer">
+          <h5>
+            justify-content-start, 默认
+          </h5>
+          <main class="d-flex">
+            <span class="w-15">start A</span>
+            <span class="w-30">start B</span>
+            <span class="w-40">start C</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            justify-content-end
+          </h5>
+          <main class="d-flex justify-content-end">
+            <span class="w-15">end A</span>
+            <span class="w-30">end B</span>
+            <span class="w-40">end C</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            justify-content-center
+          </h5>
+          <main class="d-flex justify-content-center">
+            <span class="w-15">center A</span>
+            <span class="w-30">center B</span>
+            <span class="w-40">center C</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            justify-content-between
+          </h5>
+          <main class="d-flex justify-content-between">
+            <span class="w-15">between A</span>
+            <span class="w-30">between B</span>
+            <span class="w-40">between C</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            justify-content-around
+          </h5>
+          <main class="d-flex justify-content-around">
+            <span class="w-15">around A</span>
+            <span class="w-30">around B</span>
+            <span class="w-40">around C</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            justify-content-evenly
+          </h5>
+          <main class="d-flex justify-content-evenly">
+            <span class="w-15">evenly A</span>
+            <span class="w-30">evenly B</span>
+            <span class="w-40">evenly C</span>
+          </main>
+        </div>
+      </li>
+      <li>
+        <h3>
+          对齐问题之 align items: 容器上配置, 所有的item如何在交叉轴上放置. item可以通过
+          align-self属性修改此配置, 无align-self配置或者配置align-self-auto的item,
+          则沿用容器的align-items配置.
+          <pre>
+            注意: 
+              1. 如果容器不设置(保持默认):
+                1) item 有明确的width和height设置, 则default/auto代表 align-items-start;
+                2) item 无明确的width和height设置, 则default/auto代表 align-items-stretch.
+              2. 如果容器显式设置有效的align-items, item 不论有无明确的width和height设置, 
+                default/auto 均继承容器配置
+              3. 如果item显式设置width和height, 则stretch失败.
+          </pre>
+        </h3>
+        <div class="outer">
+          <h5>
+            容器默认是为各个item配置 align-items-stretch
+          </h5>
+          <main class="d-flex" style="height:500px">
+            <div class="w-10" style="height:140px;">default,w/h</div>
+            <span class="w-10  align-self-auto" style=" height:200px">auto,w/h</span>
+            <span class="w-10 align-self-start">start</span>
+            <span class="w-10 align-self-end">end</span>
+            <span class="w-10 align-self-center">center</span>
+            <span class="w-10 align-self-baseline">baseline</span>
+            <span class="w-10 align-self-stretch">stretch</span>
+            <span class="w-10" style="height:200px">default</span>
+            <span class="w-10">default</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            容器显式为各个item配置 align-items-center.
+          </h5>
+          <main class="d-flex align-items-center" style="height:500px">
+            <div class="w-10" style="height:140px;">default,w/h,start</div>
+            <span class="w-10  align-self-auto" style=" height:200px">auto,w/h,start</span>
+            <span class="w-10 align-self-start">start</span>
+            <span class="w-10 align-self-end">end</span>
+            <span class="w-10 align-self-center">center</span>
+            <span class="w-10 align-self-baseline">baseline</span>
+            <span class="w-10 align-self-stretch">stretch</span>
+            <span class="w-10 align-self-stretch" style="height:200px">exp stretch</span>
+            <span class="w-10 align-self-end" style="height:230px">exp end</span>
+          </main>
+        </div>
+      </li>
+      <li>
+        <h3>
+          对齐问题之 Fill, 内部实现为 flex: 1 1 auto. 即主轴填满, 同时兼顾各item的内容.
+          可以试试拉伸压缩屏幕宽度.
+        </h3>
+        <div class="outer">
+          <main class="d-flex" style="height:300px">
+            <div class="p-2 flex-fill">the middle content</div>
+            <div class="p-2 flex-fill">short</div>
+            <div class="p-2 flex-fill">the most long long long content </div>
+          </main>
+        </div>
+      </li>
+      <li>
+        <h3>
+          手工测试flex-grow, flex-shrink, flex-basis 默认 0 1 auto;
+        </h3>
+        <div class="outer">
+          <h5>
+            flex-basis = auto, 代表伸缩均基于原尺寸.
+            <pre>
+              1. initial=0 1 auto。只缩小
+              2. none:0 0 auto.无伸缩
+              3. auto = 1 1 auto. 伸缩
+              4. 1 0 auto. 只伸展
+            </pre>
+
+          </h5>
+          <main class="d-flex show-child-w overflow-visible text-end">
+            <span style="width:200px;flex:initial;">缩</span>
+            <span style="width:200px;flex:none;">无</span>
+            <span style="width:200px;flex:auto;">伸缩</span>
+            <span style="width:200px;flex:1 0 auto;">伸</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            <pre>
+              备注： 当一个元素同时被设置了 flex-basis (除值为 auto 外) 和 width 
+              (或者在 flex-direction: column 情况下设置了height) , 
+              flex-basis 具有更高的优先级。
+                    ------------------- mdn 
+              所以, 尝试将上例的auto全部换成一个具体的尺寸, 会有不一样的效果
+            </pre>
+          </h5>
+          <main class="d-flex show-child-w overflow-visible text-end">
+            <span style="width:200px;flex:0 1 120px;">缩</span>
+            <span style="width:200px;flex:0 0 130px;">无</span>
+            <span style="width:200px;flex:1 1 140px;">伸缩</span>
+            <span style="width:200px;flex:1 0 150px;">伸</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            <pre>
+              flex-basis的取值包括:
+              1. auto: 代表显示指定的尺寸, 或者内容决定的尺寸.
+              2. 具体尺寸: 例如 0 10px 120px 20% 100%.
+              3. content : 基于内容调整
+              下面测试 content, 注意width被忽略. 
+            </pre>
+          </h5>
+          <main class="d-flex show-child-w overflow-visible text-end">
+            <span style="width:200px;flex:0 1 content;">12345678缩</span>
+            <span style="width:200px;flex:0 0 content;">12345无</span>
+            <span style="width:200px;flex:1 1 content;">12伸缩</span>
+            <span style="width:200px;flex:1 0 content;">12345678伸</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            下面测试 使用具体尺寸 0 , 表示不计较原始尺寸, 这个不太好控制
+          </h5>
+          <main class="d-flex show-child-w overflow-visible text-end">
+            <span style="width:200px;flex:0 1 0;">123456780000000000001缩</span>
+            <span style="width:200px;flex:0 0 0;">1234500000000001无</span>
+            <span style="width:200px;flex:1 1 0;">12000000002伸缩</span>
+            <span style="width:200px;flex:1 0 0;">1234567800000伸</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            下面测试 使用具体尺寸 100% , 表示占满整行.
+            如果不是 flex-wrap 不伸缩的item因为已经保证随时保证总宽为容器宽,导致
+            其他item无变化, 而只伸不缩的最后一个item, 总宽仍然保证为容器宽, 已经
+            谈不上伸缩了
+          </h5>
+          <main class="d-flex show-child-w overflow-visible text-end">
+            <span style="width:200px;flex:0 1 100%;">123456780000000000001缩</span>
+            <span style="width:200px;flex:0 0 100%;">1234500000000001无</span>
+            <span style="width:200px;flex:1 1 100%;">12000000002伸缩</span>
+            <span style="width:200px;flex:1 0 100%;">1234567800000伸</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            上面的例子, 添加flex-wrap类到容器, 表示支援换行. 所以, flex-basis:100%一定
+            要用到容器支援换行的item上才有效果
+          </h5>
+          <main class="d-flex flex-wrap show-child-w overflow-visible text-end">
+            <span class="mb-5" style="width:200px;flex:0 1 100%;">123456780000000000001缩</span>
+            <span class="mb-5" style="width:200px;flex:0 0 100%;">1234500000000001无</span>
+            <span class="mb-5" style="width:200px;flex:1 1 100%;">12000000002伸缩</span>
+            <span class="mb-5" style="width:200px;flex:1 0 100%;">1234567800000伸</span>
+          </main>
+        </div>
+      </li>
+      <li>
+        <h3>
+          flex-grow-(0,1) flex-shrink-(0,1) 的测试.
+          默认情况下, 已经具备 flex-grow-0 flex-shrink-1
+        </h3>
+        <div class="outer">
+          <h5>
+            flex-grow-1
+          </h5>
+          <main class="d-flex show-child-w text-end">
+            <span class="p-2 flex-grow-1">A</span>
+            <span class="p-2">second flex item....................B</span>
+            <span class="p-2">third flex item...............C</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            flex-shrink-0 默认已经包含, 所以没有 flex-wrap, A item只是尽量多占
+          </h5>
+          <main class="d-flex flex-wrap show-child-w text-end">
+            <span class="mb-5 w-100">A</span>
+            <span class="mb-5">second flex item....................B</span>
+            <span class="mb-5">third flex item...............C</span>
+          </main>
+        </div>
+      </li>
+      <li>
+        <h3>
+          使用 Auto margin 实现items的不规则排列
+          注意没有采用官方的ms me 代表 左start 右end, 而是 ml me ,
+          在于 09-utilities-api/index.scss为了示范修改utilities, 有意而为之
+        </h3>
+        <div class="outer">
+          <h5>
+            1. 左1右2
+          </h5>
+          <main class="d-flex">
+            <span class="w-15">item</span>
+            <span class="w-15 ml-auto">item</span>
+            <span class="w-15">item</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            2. 左2右1
+          </h5>
+          <main class="d-flex">
+            <span class="w-15">item</span>
+            <span class="w-15 me-auto">item</span>
+            <span class="w-15">item</span>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            3. 测试flex 内部, 相邻margin的效果:
+            在flex布局内部, 不论横向或是纵向margin, 效果均采用叠加.
+            注意: flex的item, 即使原生是block, 进入布局, 也大致
+            被视为inline-block.
+          </h5>
+          <main class="d-flex flex-wrap">
+            <span class="w-40 ml-1 me-1 mb-1">item</span>
+            <span class="w-40 ml-1 mb-2">item</span>
+            <span class="w-40 ml-1 me-1 mt-1 mb-2">item</span>
+            <span class="w-40 ml-2 mb-1">item</span>
+            <div class="w-50 mt-1">div item</div>
+          </main>
+        </div>
+        <div class="outer">
+          <h5>
+            3. 测试普通情况下, 相邻margin的效果:
+            <pre>
+              block元素之间的纵向margin取最大值,
+              inline元素之间的横向margin需要设置负边均才能彻底消除;而相邻的边距采用叠加
+            </pre>
+          </h5>>
+    </ul>
+    <main class="test-margin mb-2 border border-1 border-success">
+      <p class="mb-1 w-30">line one </p>
+      <p class="mt-1 mb-1 w-40">line two</p>
+      <p class="mt-0 w-50">line three</p>
+    </main>
+    <main class="test-margin mt-5 border border-1 border-warning">
+      <span class="me-3 p-0">text one</span>
+      <span class="ml-3 p-0">消除span之间的固有margin需要设置负边距</span>
+      <span class="ml-3 p-0">text three</span>
+    </main>
+    <h2>
+      一句话,block之间margin-y相溶取最大;inline/inline-block之间margin-x简单相加.
+    </h2>
+    </div>
+    </li>
+    <li>
+      <h3>
+
+      </h3>
+      <div class="outer">
+        <h5>
+
+        </h5>
+        <main class="d-flex">
+          <span></span>
+        </main>
+      </div>
+    </li>
+    <li>
+      <h3>
+        with align-items
+      </h3>
+      <div class="outer">
+        <h5>
+          Vertically move one flex item to the top or bottom of a container
+          by mixing align-items, flex-direction: column, and margin-top: auto
+          or margin-bottom: auto.
+        </h5>
+        <main class="d-flex my-1 flex-column  border border-1 border-success" style="height:400px;">
+          <span class="w-20 h-15 d-inline-flex align-items-center justify-content-center">itemA</span>
+          <span class="w-20 h-15 d-inline-flex align-items-center justify-content-center mt-auto">itemB</span>
+          <span class="w-20 h-15 d-inline-flex align-items-center justify-content-center">itemC</span>
+        </main>
+        <main class="d-flex my-1 flex-column-reverse  border border-1 border-success" style="height:400px;">
+          <span class="w-20 h-15 d-inline-flex align-items-center justify-content-center order-3">效果同上A</span>
+          <span class="w-20 h-15 d-inline-flex align-items-center justify-content-center mt-auto order-2">效果同上B</span>
+          <span class="w-20 h-15 d-inline-flex align-items-center justify-content-center">效果同上C</span>
+        </main>
+        <main class="d-flex my-1 flex-column align-items-end  border border-1 border-success" style="height:400px;">
+          <span class="w-20 h-15 d-inline-flex align-items-center justify-content-center">itemA</span>
+          <span class="w-20 h-15 d-inline-flex align-items-center justify-content-center">itemB</span>
+          <span class="w-20 h-15 d-inline-flex align-items-center justify-content-center mt-auto">itemC</span>
+        </main>
+        <main class="d-flex my-1 flex-column border border-1 border-success" style="height:400px;">
+          <span class="w-20 h-15 ml-auto d-inline-flex align-items-center justify-content-center">效果同上A</span>
+          <span class="w-20 h-15 ml-auto d-inline-flex align-items-center justify-content-center">效果同上B</span>
+          <span class="w-20 h-15 ml-auto d-inline-flex align-items-center justify-content-center mt-auto">效果同上C</span>
+        </main>
+      </div>
+    </li>
+    <li>
+      <h3>
+        wrap 操练 flex-nowrap flex-wrap flex-wrap-reverse, 默认 flex-nowrap
+      </h3>
+      <div class="outer">
+        <main class="d-flex my-1 border border-1 border-success" style="height:200px;">
+          <span
+            class="w-40 flex-shrink-0 h-25 d-inline-flex align-items-center justify-content-center">flex-nowrap-A</span>
+          <span
+            class="w-50 flex-shrink-0 h-25 d-inline-flex align-items-center justify-content-center">flex-nowrap-B</span>
+          <span
+            class="w-80 flex-shrink-0 h-25 d-inline-flex align-items-center justify-content-center">flex-nowrap-C</span>
+          <span
+            class="w-40 flex-shrink-0 h-15 d-inline-flex align-items-center justify-content-center">flex-nowrap-A1</span>
+          <span
+            class="w-50 flex-shrink-0 h-15 d-inline-flex align-items-center justify-content-center">flex-nowrap-B1</span>
+          <span
+            class="w-80 flex-shrink-0 h-25 d-inline-flex align-items-center justify-content-center">flex-nowrap-C1</span>
+        </main>
+        <main class="d-flex flex-wrap my-1 border border-1 border-success" style="height:200px;">
+          <span
+            class="w-40 flex-shrink-0 h-25 d-inline-flex align-items-center justify-content-center">flex-nowrap-A</span>
+          <span
+            class="w-50 flex-shrink-0 h-15 d-inline-flex align-items-center justify-content-center">flex-nowrap-B</span>
+          <span
+            class="w-80 flex-shrink-0 h-25 d-inline-flex align-items-center justify-content-center">flex-nowrap-C</span>
+          <span
+            class="w-40 flex-shrink-0 h-15 d-inline-flex align-items-center justify-content-center">flex-nowrap-A1</span>
+          <span
+            class="w-50 flex-shrink-0 h-40 d-inline-flex align-items-center justify-content-center">flex-nowrap-B1</span>
+          <span
+            class="w-80 flex-shrink-0 h-25 d-inline-flex align-items-center justify-content-center">flex-nowrap-C1</span>
+        </main>
+        <main class="d-flex flex-wrap-reverse my-1 border border-1 border-success" style="height:200px;">
+          <span
+            class="w-40 flex-shrink-0 h-25 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A</span>
+          <span
+            class="w-50 flex-shrink-0 h-15 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B</span>
+          <span
+            class="w-80 flex-shrink-0 h-25 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C</span>
+          <span
+            class="w-40 flex-shrink-0 h-15 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A1</span>
+          <span
+            class="w-50 flex-shrink-0 h-40 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B1</span>
+          <span
+            class="w-80 flex-shrink-0 h-25 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C1</span>
+        </main>
+      </div>
+    </li>
+    <li>
+      <h3>
+        align-content, 专门用于处理 折行产生的多条主轴
+      </h3>
+      <div class="outer">
+        <main class="d-flex flex-wrap-reverse  my-1 border border-1 border-success" style="height:300px;">
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A/align-content-(default)</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B/align-content-(default)</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C/align-content-(default)</span>
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A1/align-content-(default)</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B1/align-content-(default)</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C1/align-content-(default)</span>
+        </main>
+        <main class="d-flex flex-wrap-reverse align-content-start my-1 border border-1 border-success"
+          style="height:300px;">
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A/align-content-start</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B/align-content-start</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C/align-content-start</span>
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A1/align-content-start</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B1/align-content-start</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C1/align-content-start</span>
+        </main>
+        <main class="d-flex flex-wrap-reverse align-content-center my-1 border border-1 border-success"
+          style="height:300px;">
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A/align-content-center</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B/align-content-center</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C/align-content-center</span>
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A1/align-content-center</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B1/align-content-center</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C1/align-content-center</span>
+        </main>
+        <main class="d-flex flex-wrap-reverse align-content-end my-1 border border-1 border-success"
+          style="height:300px;">
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A/align-content-end</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B/align-content-end</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C/align-content-end</span>
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A1/align-content-end</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B1/align-content-end</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C1/align-content-end</span>
+        </main>
+        <main class="d-flex flex-wrap-reverse align-content-between my-1 border border-1 border-success"
+          style="height:300px;">
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A/align-content-between</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B/align-content-between</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C/align-content-between</span>
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A1/align-content-between</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B1/align-content-between</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C1/align-content-between</span>
+        </main>
+        <main class="d-flex flex-wrap-reverse align-content-around my-1 border border-1 border-success"
+          style="height:300px;">
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A/align-content-around</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B/align-content-around</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C/align-content-around</span>
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A1/align-content-around</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B1/align-content-around</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C1/align-content-around</span>
+        </main>
+        <main class="d-flex flex-wrap-reverse align-content-stretch my-1 border border-1 border-success"
+          style="height:300px;">
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A/align-content-stretch</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">锁定高度,则拉伸无效flex-nowrap-reverse-B/align-content-stretch</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C/align-content-stretch</span>
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A1/align-content-stretch</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B1/align-content-stretch</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C1/align-content-stretch</span>
+        </main>
+        <main class="d-flex flex-wrap-reverse align-content-evenly my-1 border border-1 border-success"
+          style="height:300px;">
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A/align-content-evenly</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B/align-content-evenly</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C/align-content-evenly</span>
+          <span style="height:30px;"
+            class="w-40 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-A1/align-content-evenly</span>
+          <span style="height:30px;"
+            class="w-50 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-B1/align-content-evenly</span>
+          <span style="height:30px;"
+            class="w-80 flex-shrink-0 d-inline-flex align-items-center justify-content-center">flex-nowrap-reverse-C1/align-content-evenly</span>
+        </main>
+
+      </div>
+    </li>
+    <li>
+      <h3>
+        Media object
+      </h3>
+      <div class="outer">
+        <h5>
+          就像是flex的一个简单应用
+        </h5>
+        <main class="d-flex">
+          <!-- 和下面的剥壳式效果差不多, 只不过div包裹式, 屏幕太窄时, 保证图片不会随之变形.除非有意而为之-->
+          <div class="flex-shrink-0" style="width:200px;">
+            <img class="w-100" src="/lib/image/jpg/10-adv-event/013.JPG">
+          </div>
+          <!--
+          <img class="flex-shrink-0" style="width:200px;" src="/lib/image/jpg/10-adv-event/013.JPG">-->
+          <div class="flex-grow-1 ml-3">
+            Looking to replicate the media object component from Bootstrap 4? Recreate it in no time with a few flex
+            utilities that
+            allow even more flexibility and customization than before.
+          </div>
+        </main>
+        <h5>
+          居中
+        </h5>
+        <main class="d-flex align-items-center">
+          <div class="flex-shrink-0" style="width:200px;">
+            <img class="w-100" src="/lib/image/jpg/10-adv-event/013.JPG">
+          </div>
+          <div class="flex-grow-1 ml-3">
+            Looking to replicate the media object component from Bootstrap 4? Recreate it in no time with a few flex
+            utilities that
+            allow even more flexibility and customization than before.
+          </div>
+        </main>
+      </div>
+    </li>
+    </ul>
+  </section>
+
+  <section class="demo-float">
+    <h3>
+      overview: float an element to the left or right, or disable floating,
+    </h3>
+    <ul>
+      <li>
+        <main class="border border-1 border-success">
+          <article class="border border-1 border-warning">
+            <div class="float-start">article's height is 0. Float start on all viewport sizes!</div>
+            <div class="float-start">Float start continue!</div>
+            <div class="float-end">To end</div>
+          </article>
+          <footer class="float-none fw-bold">float none</footer>
+        </main>
+      </li>
+    </ul>
+  </section>
+  <section class="demo-text-selection">
+    <p class="user-select-all">This paragraph will be entirely selected when clicked by the user.单击选择所有</p>
+    <p class="user-select-auto">This paragraph has default select behavior.来,是不是双击选择单词啊</p>
+    <p class="user-select-none">This paragraph will not be selectable when clicked by the user.点击无法选择</p>
+  </section>
+  <section class="demo-point-events">
+    <p>
+      <a href="#" class="pe-none" tabindex="-1" aria-disabled="true">This link</a>
+      can not be clicked.
+    </p>
+    <p>
+      <a href="#" class="pe-auto">This link</a>
+      can be clicked (this is default behavior).
+    </p>
+    <p class="pe-none">
+      <a href="#" tabindex="-1" aria-disabled="true">This link</a>
+      can not be clicked because the
+      <code>pointer-events</code>
+      property is inherited from its parent. However,
+      <a href="#" class="pe-auto">this　link</a>
+      has a <code>pe-auto</code> class and can be clicked.
+    </p>
+  </section>
+  <section class="demo-opacity ml-5" style="height:200px;">
+    <div class="d-inline-flex w-10 h-80 justify-content-center align-items-center text-bg-primary">100%</div>
+    <div class="d-inline-flex w-10 h-80 justify-content-center align-items-center text-bg-primary opacity-75">total-75%
+    </div>
+    <div class="d-inline-flex w-10 h-80 justify-content-center align-items-center text-bg-primary text-opacity-75">only
+      text75%</div>
+    <div class="d-inline-flex w-10 h-80 justify-content-center align-items-center text-bg-primary bg-opacity-75">only
+      bg 75%</div>
+  </section>
+  <section class="demo-overflow ml-5" style="height:200px">
+    <div class="overflow-visible d-inline-block w-20 h-80 text-bg-success" contenteditable></div>
+    <div class="overflow-auto d-inline-block w-20 h-80 text-bg-primary" contenteditable></div>
+    <div class="overflow-hidden d-inline-block w-20 h-80 text-bg-secondary" contenteditable></div>
+    <div class="overflow-scroll d-inline-block w-20 h-80 text-bg-danger" contenteditable></div>
+  </section>
+  <section　class="demo-position">
+    <h5>
+      top-(...),start-(...),bottom-(...),end-(...)的使用
+    </h5>
+    <main class="position-relative my-5 mx-auto border border-2 border-success"
+      style="width:900px;height:450px;font-size:0.5em;">
+      <div class="position-absolute top-0 start-0 w-5 h-10 text-bg-secondary">t0s0</div>
+      <div class="position-absolute top-0 end-0 w-5 h-10 text-bg-secondary">t0e0</div>
+      <div class="position-absolute top-50 start-50 w-5 h-10 text-bg-secondary">t50s50</div>
+      <div class="position-absolute bottom-50 end-50 w-5 h-10 text-bg-secondary">b50e50</div>
+      <div class="position-absolute bottom-0 start-0 w-5 h-10 text-bg-secondary">b0s0</div>
+      <div class="position-absolute bottom-0 end-0 w-5 h-10 text-bg-secondary">b0e0</div>
+      <div class="position-absolute w-10 h-20 text-bg-primary opacity-50 tran-to-center"></div>
+    </main>
+    <h5>
+      translate-(middle,middle-x,middel-y) 的使用
+    </h5>
+    <main class="position-relative my-5 mx-auto border  border-success"
+      style="width:900px;height:450px;font-size:0.5em;">
+      <div class="position-absolute top-0 start-0 translate-middle w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-0 start-50 translate-middle w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-0 start-100 translate-middle w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-50 start-0 translate-middle w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-50 start-50 translate-middle w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-50 start-100 translate-middle w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-100 start-0 translate-middle w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-100 start-50 translate-middle w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-100 start-100 translate-middle w-5 h-10 text-bg-secondary"></div>
+    </main>
+    <main class="position-relative my-5 mx-auto border border-2 border-success"
+      style="width:900px;height:450px;font-size:0.5em;">
+      <div class="position-absolute top-0 start-0  w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-0 start-50 translate-middle-x w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-0 end-0  w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-50 start-0 translate-middle-y w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-50 start-50 translate-middle w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute top-50 end-0 translate-middle-y w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute bottom-0 start-0  w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute bottom-0 start-50 translate-middle-x w-5 h-10 text-bg-secondary"></div>
+      <div class="position-absolute bottom-0 end-0  w-5 h-10 text-bg-secondary"></div>
+    </main>
+    <main class="my-5 w-40 mx-auto border border-success">
+      <button type="button" class="btn btn-primary position-relative mx-5">
+        Mails <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary">+99 <span
+            class="visually-hidden">unread messages</span></span>
+      </button>
+
+      <button type="button" class="btn btn-dark position-relative mx-5">
+        Marker <svg width="1em" height="1em" viewBox="0 0 16 16"
+          class="position-absolute border border-1 border-primary top-100 start-50 translate-middle mt-1" fill="#212529"
+          xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M7.247 11.14L2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z" />
+        </svg>
+      </button>
+
+      <button type="button" class="btn btn-primary position-relative mx-5">
+        Alerts <span
+          class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"><span
+            class="visually-hidden">unread messages</span></span>
+      </button>
+    </main>
+    <main class="position-relative my-5 w-40 mx-auto  border border-1 border-success "
+      style="width:900px;height:100px;font-size:0.5em;">
+      <div class="progress" style="height: 1px;">
+        <div class="progress-bar" role="progressbar" aria-label="Progress" style="width: 50%;" aria-valuenow="50"
+          aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+      <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height:2rem;">1</button>
+      <button type="button"
+        class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-primary rounded-pill"
+        style="width: 2rem; height:2rem;">2</button>
+      <button type="button"
+        class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill"
+        style="width: 2rem; height:2rem;">3</button>
+    </main>
+  </section>
+  <section class="demo-shadow">
+    <h5>
+      shadows
+    </h5>
+    <main class=" w-50 mx-auto">
+      <div class="shadow-none p-3 mb-5 bg-light rounded">No shadow</div>
+      <div class="shadow-sm p-3 mb-5 bg-body rounded">Small shadow</div>
+      <div class="shadow p-3 mb-5 bg-body rounded">Regular shadow</div>
+      <div class="shadow-lg p-3 mb-5 bg-body rounded">Larger shadow</div>
+    </main>
+  </section>
+  <section class="demo-spacing" style="height:500px;">
+    <h5>着重看看grid的gap</h5>
+    <style>
+      .demo-spacing .d-grid {
+        grid-template-columns: repeat(7, 1fr);
+        grid-auto-rows: 2em 3em 4em;
+        align-items: stretch;
+        justify-items: stretch;
+        align-content: start;
+      }
+    </style>
+    <main class="d-grid gap-4  w-50 mx-auto my-1 h-100 border border-success bg-info">
+      <span class="p-1 bg-light border border-primary ">A</span>
+      <span class="p-1 bg-light border border-primary ">B</span>
+      <span class="p-1 bg-light border border-primary ">C</span>
+      <span class="p-1 bg-light border border-primary ">D</span>
+      <span class="p-1 bg-light border border-primary ">E</span>
+      <span class="p-1 bg-light border border-primary ">F</span>
+      <span class="p-1 bg-light border border-primary ">G</span>
+      <span class="p-1 bg-light border border-primary ">a</span>
+      <span class="p-1 bg-light border border-primary ">b</span>
+      <span class="p-1 bg-light border border-primary ">c</span>
+      <span class="p-1 bg-light border border-primary ">d</span>
+      <span class="p-1 bg-light border border-primary ">e</span>
+      <span class="p-1 bg-light border border-primary ">f</span>
+      <span class="p-1 bg-light border border-primary ">g</span>
+      <span class="p-1 bg-light border border-primary ">a1</span>
+      <span class="p-1 bg-light border border-primary ">b1</span>
+      <span class="p-1 bg-light border border-primary ">c1</span>
+      <span class="p-1 bg-light border border-primary ">d1</span>
+      <span class="p-1 bg-light border border-primary ">e1</span>
+      <span class="p-1 bg-light border border-primary ">f1</span>
+      <span class="p-1 bg-light border border-primary ">g1</span>
+      <span class="p-1 bg-light border border-primary ">a2</span>
+      <span class="p-1 bg-light border border-primary ">b2</span>
+      <span class="p-1 bg-light border border-primary ">c2</span>
+      <span class="p-1 bg-light border border-primary ">d2</span>
+      <span class="p-1 bg-light border border-primary ">e2</span>
+      <span class="p-1 bg-light border border-primary ">f2</span>
+      <span class="p-1 bg-light border border-primary ">g2</span>
+      <span class="p-1 bg-light border border-primary ">a3</span>
+      <span class="p-1 bg-light border border-primary ">b3</span>
+      <span class="p-1 bg-light border border-primary ">c3</span>
+      <span class="p-1 bg-light border border-primary ">d3</span>
+      <span class="p-1 bg-light border border-primary ">e3</span>
+      <span class="p-1 bg-light border border-primary ">f3</span>
+      <span class="p-1 bg-light border border-primary ">g3</span>
+    </main>
+  </section>
+  <section class="demo-text-tool mx-auto my-1 w-50">
+    <p class="text-start text-lg-center">text-start text-lg-center</p>
+    <p class="text-center text-lg-end">text-center text-lg-end</p>
+    <p class="text-end text-lg-start">text-end text-lg-start</p>
+    <p class="badge bg-primary text-wrap" style="width:6rem;">
+      This text1 text2 text3 should wrap.
+    </p>
+    <p class="badge bg-primary text-nowrap" style="width:6rem;">
+      This text1 text2 text3 should not wrap.
+    </p>
+    <p class="text-break">
+      text-break,包含word-break和word-wrap属性
+      startmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmend</p>
+    <p class="text-lowercase">text-lowercase: LOwerCased TExt</p>
+    <p class="text-uppercase">text-uppercase: hello,world </p>
+    <p class="text-capitalize">text-capitalize:i say ,this a good day</p>
+    <p class="text-none">text-none:OoW is fei A斯蒂芬 dfei</p>
+    <p class="fs-1">.fs-1,mean font-size:calc(1.375rem + 1.5vw)</p>
+    <p class="fs-5">.fs-5</p>
+    <p class="fs-6">.fs-6</p>
+    <p class="fw-bold">.fw-bold means font-weight:700 </p>
+    <p class="fst-italic">.fst-italic meas font-style:italic</p>
+
+    <p class="lh-1">This is a long paragraph written to show how the line-height of an element is affected by our
+      utilities.
+      Classes are applied to the element itself or sometimes the parent element. These classes can be customized as
+      needed
+      with our utility API.</p>
+    <p class="lh-sm">This is a long paragraph written to show how the line-height of an element is affected by our
+      utilities. Classes are applied to the element itself or sometimes the parent element. These classes can be
+      customized
+      as needed with our utility API.</p>
+    <p class="lh-base">This is a long paragraph written to show how the line-height of an element is affected by our
+      utilities. Classes are applied to the element itself or sometimes the parent element. These classes can be
+      customized
+      as needed with our utility API.</p>
+    <p class="lh-lg">This is a long paragraph written to show how the line-height of an element is affected by our
+      utilities. Classes are applied to the element itself or sometimes the parent element. These classes can be
+      customized
+      as needed with our utility API.</p>
+    <p class="text-muted">
+      begin: text-muted, 原理是 color:#6c757d<br />
+      <span class="text-reset">
+        middle:text-reset,原理是 color:inherit. 所以这样得不到正常颜色
+      </span><br />
+      end :text-muted
+    </p>
+    <div>
+      <p class="text-muted">应独立使用, 而不是上下级关系. 这一部分段落是 text-muted</p>
+      <p class="text-reset">应独立使用, 而不是上下级关系. 这一部分段落是 text-reset</p>
+    </div>
+  </section>
+  <section class="demo-text-decoration w-80 mx-auto">
+    <h2>
+      文本装饰类已重写, 详见: page\lesson\4-custom-bootstrap\02-lib-exer\09-utilities-api\index.scss,
+      quick-query.md中有解释
+    </h2>
+    <p class="text-d-line-under text-d-red text-d-opacity-25 text-d-thick-5px ">text-d-line-underline text-d-red </p>
+    <p class="text-d-line-under text-warning text-d-current text-d-style-wavy">text-d-line-under text-primary
+      text-d-current
+    </p>
+    <p class="text-d-line-under text-d-primary text-d-thick-auto text-d-opacity-75">text-d-line-underline
+      text-d-opacity-75</p>
+    <p class="text-d-line-under text-d-primary  text-d-thick-font  text-d-style-wavy" style="--bs-text-d-opacity:0.77">
+      text-d-line-under text-d-primary text-d-style-wavy --bs-text-d-opacity:0.77
+    </p>
+    <p class="text-d-line-through text-d-warning" style=" --bs-text-d-thick:0.9em;">
+      text-d-line-through
+      <a href="#" class="text-d-line-unset text-d-line-over text-d-style-wavy">
+        this link has its text-decoration removed, 无法修改父级指定
+      </a>
+    </p>
+  </section>
+  <section class="demo-vertical-alignment w-80 mx-auto">
+    <h2>
+      Please note that vertical-align only affects inline,
+      inline-block, inline-table, and table cell elements.
+    </h2>
+    <style>
+      .demo-vertical-alignment span {
+        width: 100px;
+        height: 80px;
+        display: inline-block;
+        border: 1px solid cyan;
+        margin: 0;
+      }
+    </style>
+    <main class="bg-secondary p-0">
+      <span class="align-baseline">baseline</span>
+      <span class="align-top">top</span>
+      <span class="align-middle">middle</span>
+      <span class="align-bottom">bottom</span>
+      <span class="align-text-top">text-top</span>
+      <span class="align-text-bottom">text-bottom</span>
+    </main>
+  </section>
+
+  <!-- 
+  <h3>
+    overview: float an element to the left or right, or disable floating,
+  </h3>
+  <ul>
+    <li>
+    </li>
+  </ul>
+   -->
+  <!--
+  <section class="page-tail" 　id="page-tail">
+    this is the tail.
+  </section>-->
+</body>
+
+</html>

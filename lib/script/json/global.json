@@ -6,7 +6,7 @@
 		],
 		[
 			"/lib/external-core/bootstrap-4.3.1-dist/css/bootstrap.css",
-			"/lib/style/css/main.css"
+			"/lib/css/common.css"
 		],
 		[
 			"/lib/external-core/modernizr/modernizr.js",

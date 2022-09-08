@@ -1,0 +1,56 @@
+@use "sundry" as * with($enable-cssgrid: false);
+@use "variables" as * with($grid-row-columns: 12);
+@use "grid";
+* {
+	box-sizing: content-box;
+}
+span {
+	margin: 0;
+	padding: 0;
+}
+.demo-flex-grid,
+.demo-flex-official-doc {
+	.outer {
+		width: 80%;
+		margin: 0.5rem auto;
+		border: 1px solid red;
+		.row,
+		.rowr,
+		.vrow,
+		.vrowr,
+		.d-flex,
+		.test-margin {
+			--bs-gutter-x: 3.2rem;
+			--bs-gutter-y: 18px;
+			> * {
+				&:nth-child(3n + 1) {
+					background-color: $blue;
+					color: lightgray;
+				}
+				&:nth-child(3n + 2) {
+					background-color: $orange;
+				}
+				&:nth-child(3n + 3) {
+					background-color: $cyan;
+				}
+			}
+		}
+		&::after {
+			//display: block;
+			content: "-----------end row-----------";
+		}
+	}
+}
+
+.tran-to-center {
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.page-tail {
+	margin: auto;
+	width: 40%;
+	height: 10vh;
+	background-color: $success;
+}

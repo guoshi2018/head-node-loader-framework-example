@@ -194,7 +194,7 @@
 						$(this).triggerHandler('throttledScroll'); //this需要穿透
 						//$(this).trigger('throttledScroll');
 						timer = 0;
-					}, 280);
+					}, 280) as unknown as number;
 				}
 			});
 			//return false;
@@ -320,7 +320,7 @@
 						}
 						timer = 0;
 						console.log('coming please...');
-					}, 500);
+					}, 500) as unknown as number;
 				}
 			})
 		},
@@ -378,7 +378,7 @@
 				timer = setTimeout(() => {
 					$(this).triggerHandler('mousemovehalt'); //this需要穿透
 					timer = 0;
-				}, opt.delay);
+				}, opt.delay) as unknown as number;
 			});
 		},
 		teardown: function (this: EventTarget) {

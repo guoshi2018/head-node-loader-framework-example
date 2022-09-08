@@ -1,0 +1,41 @@
+@use "sass:meta";
+@use "sass:string";
+
+@function null-if-null($v) {
+	@return if(meta.type-of($v) != "null", $v, string.unquote("[null]"));
+}
+
+//展示值, 使用选择器+属性模式
+@mixin show-value($key, $value) {
+	@if (meta.type-of($value) == "map") {
+		.key-#{$key} {
+			@each $k, $v in $value {
+				// @if(meta.type-of($k)=="null") {
+				// 	//@debug "change null to NULL";
+				// 	$k: empty;
+				// }
+				$k: null-if-null($k);
+
+				@include show-value($k, $v);
+			}
+		}
+	} @else {
+		.key-#{$key} {
+			content: $value;
+		}
+	}
+}
+
+@mixin content-btween-placeholder($w: 40%, $h: 500px) {
+	&:before,
+	&:after {
+		display: block;
+		height: $h;
+		width: $w;
+		background-color: rgb(240, 139, 8);
+		margin: 1em auto;
+		content: "placeholder";
+		text-align: center;
+		line-height: $h;
+	}
+}

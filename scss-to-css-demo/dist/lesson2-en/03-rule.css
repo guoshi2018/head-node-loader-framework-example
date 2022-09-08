@@ -1,0 +1,208 @@
+@charset "UTF-8";
+/*
+Selector Combinators
+	You can nest selectors that use combinators as well. You can put the 
+	combinator at the end of the outer selector, at the beginning of the 
+	inner selector, or even all on its own in between the two.
+*/
+ul > li {
+  list-style-type: none;
+}
+
+h2 + p {
+  border-top: 1px solid gray;
+}
+
+p ~ span {
+  opacity: 0.85;
+  background-color: yellow;
+}
+p ~ label {
+  color: green;
+}
+p ~ ul {
+  margin-left: 1em;
+}
+
+/*
+	Many CSS properties start with the same prefix that acts as 
+	a kind of namespace. For example, font-family, font-size, and 
+	font-weight all start with font-. Sass makes this easier and 
+	less redundant by allowing property declarations to be nested. 
+	The outer property names are added to the inner, separated 
+	by a hyphen.
+*/
+.enlarge {
+  font-size: 14px;
+  transition-property: font-size;
+  transition-duration: 4s;
+  transition-delay: 2s;
+  margin: 22px;
+  margin-bottom: 10px;
+  margin-top: 2px;
+}
+.enlarge:hover {
+  font-size: 36px;
+}
+
+/*
+	Hidden Declarations
+	If a declaration’s value is null or an empty unquoted string, 
+	Sass won’t compile that declaration to CSS at all.
+*/
+.button {
+  outline: 1px solid black;
+  border-radius: 5px;
+}
+
+/*
+Custom Properties permalinkCustom Properties
+*/
+:root {
+  --primary: #81899b;
+  --accent: #302e24;
+  --warn: #dfa612;
+  --consumed-by-js: #81899b;
+}
+
+/*
+	Unfortunately, interpolation removes quotes from strings, which makes 
+	it difficult to use quoted strings as values for custom properties 
+	when they come from Sass variables. As a workaround, you can use 
+	the meta.inspect() function to preserve the quotes.
+	解释:插值语法,会去掉引号,哪怕该引号是必须的.为了保留这个引号, 可以使用函数:
+	meta.inspect()
+*/
+:root {
+  --fam11: $font-family-some-with-space;
+  --fam12: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto;
+  --fam13: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto;
+  --fam21: $font-family-without-space;
+  --fam22: SFMono-Regular, Menlo, Monaco, Consolas;
+  --fam23: SFMono-Regular, Menlo, Monaco, Consolas;
+}
+
+/*
+ 	父选择器
+ 	When a parent selector is used in an inner selector, it’s replaced 
+	with the corresponding outer selector. This happens instead of the 
+	normal nesting behavior.
+*/
+.alert {
+  /*&存在与否一个样, 多此一举*/
+}
+.alert:hover {
+  font-weight: bold;
+}
+[dir=rtl] .alert {
+  margin-left: 0;
+  margin-right: 10px;
+}
+section.opt div.win + .alert {
+  color: #81899b;
+}
+.one .alert .two {
+  content: 反人类那, 但是合乎语法;
+}
+.alert .the.alert {
+  color: yellow;
+}
+.alert_hey {
+  color: red;
+}
+.alert .alert_happy {
+  color: #302e24;
+}
+.alert .the.alert_polloy {
+  color: antiquewhite;
+}
+:not(.alert) {
+  opacity: 0.8;
+}
+.alert .hello {
+  background-color: #c6538c;
+}
+.alert .world {
+  color: red;
+}
+
+/*
+	In SassScript permalinkIn SassScript
+		The parent selector can also be used within SassScript. 
+		It’s a special expression that returns the current parent 
+		selector in the same format used by selector functions: 
+		a comma-separated list (the selector list) that contains 
+		space-separated lists (the complex selectors) that contain 
+		unquoted strings (the compound selectors).
+*/
+.main aside:hover,
+.sidebar p {
+  parent-selector: .main aside:hover, .sidebar p;
+}
+
+/*
+	If the & expression is used outside any style rules, it returns null. 
+	Since null is falsey, this means you can easily use it to determine 
+	whether a mixin is being called in a style rule or not.
+*/
+.app-background {
+  background-color: #036;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.sidebar.app-background {
+  background-color: #c6538c;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/*
+	Advanced Nesting
+		You can use & as a normal SassScript expression, which means you can 
+		pass it to functions or include it in interpolation—even in other 
+		selectors! Using it in combination with selector functions and the 
+		@at-root rule allows you to nest selectors in very powerful ways.
+
+		For example, suppose you want to write a selector that matches the 
+		outer selector and an element selector. You could write a mixin like 
+		this one that uses the selector.unify() function to combine & with 
+		a user’s selector.
+*/
+.wrapper input.field {
+  prop_before: 111;
+  color: red;
+  border: 1px solid yellow;
+  prop_after: 222;
+}
+
+.wrapper select.field {
+  prop_before: 111;
+  margin-top: 2em;
+  text-align: center;
+  prop_after: 222;
+}
+
+/*如果不用@at-root*/
+.wrapper .field .wrapper input.field {
+  background: blue;
+}
+.wrapper .field .wrapper select.field {
+  background: blue;
+}
+
+.kkk {
+  prop1: blazor.kkk;
+}
+
+.demo-truth-falsey {
+  prop-1: "true is truthiness";
+  prop-2: "false is falsiness";
+  prop-3: "-1 is truthiness";
+  prop-4: "-2 is truthiness";
+  prop-5: "0 is truthiness";
+  prop-6: "-0.3 is truthiness";
+  prop-7: "0.8 is truthiness";
+  prop-8: "4.9 is truthiness";
+  prop-9: " is falsiness";
+  prop-10: " is truthiness";
+  prop-11: "  is truthiness";
+}

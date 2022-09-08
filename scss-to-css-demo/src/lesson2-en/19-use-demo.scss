@@ -1,0 +1,9 @@
+@use "demo/d2";
+
+span {
+	.slim {
+		@include d2.abc(1, 2, 3);
+		content: d2.$hey; //当 _d2.scss中,@forward '...';
+		//content: d2-tran-hey; //当 _d2.scss中,@forward '...' as d2-tran-*
+	}
+}

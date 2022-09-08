@@ -26,17 +26,23 @@ JscssLoader.getInstance().startEntry({
 	//页面用到的js文件列表的数组,排列顺序必须保证:组内无依赖关系,后面的组可依赖于前面的组,反之则不然
 	//必要时,查看global.json(或在此指定的其替代文件), 以免重复加载(虽然自动忽略)
 	privateRes: [
-		// [
-		// 	'/lib/style/css/2-jquery4/default.css',
-		// 	'/lib/style/css/2-jquery4/1-intro.css',
-		// ]
+		[
+			// '/lib/script/js/indoor-lib/class/size-watcher.js',
+			'/lib/script/js/indoor-lib/function/guoshi/tool.js',
+			'/page/lesson/4-custom-bootstrap/.../index.css',
+		]
 	],
 
 	//业务主逻辑函数,默认hello,world,并打印当前的入口文件路径
-	// main: () => {
-	// 	//to do
-	// 	//example:
-	// 	// $('span:contains(language)').addClass('emphasized');
-	// 	// $('div.poem-stanza').addClass('highlight');
-	// }
+	main: () => {
+		//to do
+		//window.scrollTo(0, document.body.clientHeight);
+
+		//new SizeWatcher(".show-child-w", 'w');
+
+
+		openLastDetails();
+		window.scrollTo(0, document.body.clientHeight);
+
+	}
 });

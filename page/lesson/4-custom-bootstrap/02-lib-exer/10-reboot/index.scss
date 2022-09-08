@@ -1,0 +1,28 @@
+//@forward "sundry" with($assign-via-css-var: false);
+//@forward "variables" with($font-size-root: 54px);
+//从css的视角看, reboot引用到的一些css变量, 由:root事先定义
+@use "root" as *;
+@use "reboot" as *;
+//@use "../../common/debug";
+
+main {
+	width: 80%;
+}
+
+.bd-example {
+	--bd-example-padding: 1.5rem;
+	margin-right: 0;
+	margin-left: 0;
+	border-width: 3px;
+	border-top-left-radius: var(--bs-border-radius);
+	border-top-right-radius: var(--bs-border-radius);
+}
+
+.fake-list {
+	display: list-item;
+	//list-style-position: inside;
+	list-style-position: outside;
+}
+.temp {
+	prop1: no yes;
+}

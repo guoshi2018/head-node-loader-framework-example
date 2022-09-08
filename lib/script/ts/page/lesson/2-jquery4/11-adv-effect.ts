@@ -27,8 +27,8 @@ JscssLoader.getInstance().startEntry({
 	//必要时,查看global.json(或在此指定的其替代文件), 以免重复加载(虽然自动忽略)
 	privateRes: [
 		[
-			'/lib/style/css/2-jquery4/default.css',
-			'/lib/style/css/2-jquery4/11-adv-effect.css',
+			'/lib/css/default.css',
+			'/page/lesson/2-jquery4/11-adv-effect/index.css',
 			'/lib/external-core/jquery-ui-1.13.1.custom/jquery-ui.css',
 		],
 		[

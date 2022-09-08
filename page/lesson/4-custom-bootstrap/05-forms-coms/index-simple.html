@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>bootstrap 之 forms 演练</title>
+  <script type="text/javascript" src="/lib/script/js/indoor-core/jscss-loader.js"
+    entry="/lib/script/js/page/lesson/4-custom-bootstrap/05-forms.js"></script>
+</head>
+
+<body>
+
+
+  <section>
+    <details class="demo-flex-grid">
+      <summary class="header">
+        试试改进后的 flex 风格的 grid
+      </summary>
+      <form>
+        <div class="border border-primary" ways="c(container),c(g-1),c(g-2),c(g-3),c(g-5)">
+          <article class="border border-warning"
+            ways="c(row),c(rowr),c(vrow),c(vrowr),c(row-cols-auto),c(row-cols-3),c(row-cols-4),h(style)height:200px,h(style)height:300px,h(style)height:500px;,c(w-80),c(g-1),c(g-2),c(g-3),c(g-5),c(border-success)">
+            <div class="abc"
+              ways="c(border),h(style)height:80px;,c(w-10),c(col),c(col-1),c(col-3),c(col-5),c(col-auto),c(offset-1),c(offset-3),c(offset-4),c(offset-2),c(offset-5)">
+              A...1
+            </div>
+            <div
+              ways="h(style)height:70px;,c(w-15),c(col),c(col-1),c(col-3),c(col-5),c(col-auto),c(offset-1),c(offset-3),c(offset-4),c(offset-2),c(offset-5)">
+              B...123</div>
+            <div
+              ways="h(style)height:64px;,c(w-20),c(col),c(col-1),c(col-3),c(col-5),c(col-auto),c(offset-1),c(offset-3),c(offset-4),c(offset-2),c(offset-5)">
+              C...12345</div>
+            <div
+              ways="h(style)height:58px;,c(w-25),c(col),c(col-1),c(col-3),c(col-5),c(col-auto),c(offset-1),c(offset-3),c(offset-4),c(offset-2),c(offset-5)">
+              D...1234567</div>
+            <div
+              ways="h(style)height:51px;,c(w-30),c(col),c(col-1),c(col-3),c(col-5),c(col-auto),c(offset-1),c(offset-3),c(offset-4),c(offset-2),c(offset-5)">
+              E...123456789
+            </div>
+            <div
+              ways="h(style)height:43px;,c(w-35),c(col),c(col-1),c(col-3),c(col-5),c(col-auto),c(offset-1),c(offset-3),c(offset-4),c(offset-2),c(offset-5)">
+              F...123456789ab
+            </div>
+            <div
+              ways="h(style)height:38px;,c(w-40),c(col),c(col-1),c(col-3),c(col-5),c(col-auto),c(offset-1),c(offset-3),c(offset-4),c(offset-2),c(offset-5)">
+              G...123456789abcd
+            </div>
+            <div
+              ways="h(style)height:30px;,c(w-45),c(col),c(col-1),c(col-3),c(col-5),c(col-auto),c(offset-1),c(offset-3),c(offset-4),c(offset-2),c(offset-5)">
+              H...123456789abcdef
+            </div>
+          </article>
+        </div>
+      </form>
+    </details>
+  </section>
+
+  <section>
+    <details class="ndemo-validation">
+      <summary class="header">
+        Validation
+      </summary>
+      <form class="g-3 row needs-validation" ways="h(novalidate),c(no-bg)">
+
+        <legend>
+          Custom styles, novalidate 是重点, 取消它, 则使用浏览器默认的验证消息;
+          .is-valid .is-invalid 用来为服务端验证使用
+        </legend>
+        <div class="col-md-4" id="reg-first-name">
+          <label ways="c(form-label)">First name</label>
+          <input type="text" ways="c(form-control),c(is-valid),h(required),h(placeholder)Mark tuwen">
+          <div ways="c(valid-feedback),c(d-none)">Looks good!</div>
+        </div>
+        <ele-clone ref-id="reg-first-name"></ele-clone>
+        <div class="col-md-4">
+          <label ways="c(form-label)">user name</label>
+          <div ways="c(input-group),c(has-validation)">
+            <span ways="c(input-group-text)">@</span>
+            <input type="text" ways="c(form-control),c(is-valid)">
+            <div ways="c(invalid-feedback)">
+              Please choose a username
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label ways="c(form-label)" id="city-id">City</label>
+          <input type="text" ways="c(form-control),h(required),c(is-valid)">
+          <div ways="c(invalid-feedback)">
+            Please provide a valid city.
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label ways="c(form-label)">State</label>
+          <select ways="c(form-select),h(required),c(is-valid)">
+            <option selected disabled value="">Choose...</option>
+            <option>...</option>
+          </select>
+          <div ways="c(invalid-feedback)">
+            Please select a valid state.
+          </div>
+        </div>
+        <div class="col-md-3">
+          <label ways="c(form-label)">Zip</label>
+          <input type="text" ways="c(form-control),h(required),c(is-valid)">
+          <div ways="c(invalid-feedback)">
+            Please provide a valid zip.
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="form-check">
+            <input ways="c(form-check-input),h(required),c(is-valid)" type="checkbox">
+            <label ways="c(form-check-label)">
+              Agree to terms and conditions
+            </label>
+            <div ways="c(invalid-feedback)">
+              You must agree before submitting.
+            </div>
+          </div>
+        </div>
+        <div class="col-12 mt-5">
+          <button class="btn btn-primary w-100" type="submit">Submit form</button>
+        </div>
+
+      </form>
+    </details>
+  </section>
+  <!--   
+  <section>
+    <details class="ndemo-example2">
+      <summary class="header">
+        第二个测试
+        <p>
+          其他一些说明文字
+        </p>
+      </summary>
+      <form>
+        <fieldset>
+          <legend>
+
+          </legend>
+          <div>
+
+          </div>
+        </fieldset>
+      </form>
+    </details>
+  </section>
+   -->
+</body>
+
+</html>

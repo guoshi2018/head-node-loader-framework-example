@@ -1,0 +1,150 @@
+@use "sass:map";
+
+@use "sundry" as * with($enable-negative-margins: true);
+
+@use "variables" as *;
+
+@use "maps" as *;
+//@forward "utilities";
+@forward "utilities"
+  with(
+    $utilities: (
+      //新建
+      "cursor": (property: cursor, class: guoshi-cursor, responsive: true, values: auto pointer grab),
+      //添加 , 已经固化到 \\_utilities.scss
+      // "width":
+      //   (
+      //     responsive: true,
+      //     values: (
+      //       5: 5%,
+      //       10: 10%,
+      //       15: 15%,
+      //       20: 20%,
+      //       30: 30%,
+      //       40: 40%,
+      //       80: 80%,
+      //     )
+      //   ),
+      // "height": (
+      //   responsive: true,
+      //   values: (
+      //     5: 5%,
+      //     10: 10%,
+      //     15: 15%,
+      //     20: 20%,
+      //     30: 30%,
+      //     40: 40%,
+      //     80: 80%,
+      //   )
+      // ),
+      "align-content":
+        (
+          values: (
+            "evenly": space-evenly,
+          )
+        ),
+      "opacity": (state: hover focus),
+      //修改
+      "margin-start": (class: ml, responsive: false),
+      "negative-margin-start": (class: ml, responsive: false),
+      "word-wrap": (rtl: true),
+      //删
+      //"margin-y": null,
+      //"negative-margin-y": null,,,,,,,,,,,,,
+      //以下是真实应用, 以后可以在项目中使用使用 已经固化到 \\_utilities.scss
+      //"text-decoration": null,
+      //   // 改为各个子属性单独设置, 以便更细微的配置文本装饰.
+      //   "text-d-line":
+      //     (
+      //       //     comment:"text-decoration"
+      //       property: "text-decoration-line",
+      //       class: text-d-line,
+      //       extra-props: (text-decoration-thickness: var(--#{$prefix}text-d-thick, auto)),
+      //       values: (
+      //         none: none,
+      //         under: underline,
+      //         over: overline,
+      //         through: line-through,
+      //         blink: blink,
+      //         inherit: inherit,
+      //         initial: initial,
+      //         unset: unset
+      //       )
+      //     ),
+      //   "text-d-color": (
+      //     property: text-decoration-color,
+      //     class: text-d,
+      //     local-vars: (
+      //       "text-d-opacity": 1,
+      //     ),
+      //     values:
+      //       map-merge(
+      //         $utilities-text-d-colors,
+      //         (
+      //           "muted": rgba($text-muted, var(--#{$prefix}text-d-opacity)),
+      //           "black-50": rgba($black, 0.5),
+      //           // deprecated
+      //           "white-50": rgba($white, 0.5),
+      //           "red": rgba(red, var(--#{$prefix}text-d-opacity)),
+      //           "blue": rgba(blue, var(--#{$prefix}text-d-opacity)),
+      //           "green": rgba(green, var(--#{$prefix}text-d-opacity)),
+      //           "cyan": rgba(cyan, var(--#{$prefix}text-d-opacity)),
+      //           "yellow": rgba(yellow, var(--#{$prefix}text-d-opacity)),
+      //           // deprecated
+      //           "reset": inherit,
+      //           // 浏览器默认即为此
+      //           "current": currentColor,
+      //           "default": currentColor,
+      //         )
+      //       )
+      //   ),
+      //   "text-d-opacity": (
+      //     css-var: true,
+      //     class: text-d-opacity,
+      //     values: (
+      //       25: 0.25,
+      //       50: 0.5,
+      //       75: 0.75,
+      //       100: 1,
+      //     )
+      //   ),
+      //   "text-d-style": (
+      //     property: text-decoration-style,
+      //     class: text-d-style,
+      //     values: solid double dotted dashed wavy inherit initial unset
+      //   ),
+      //   "text-d-thickness": (
+      //     property: text-decoration-thickness,
+      //     class: text-d-thick,
+      //     values: (
+      //       auto: auto,
+      //       font: from-font,
+      //       1px: 1px,
+      //       2px: 2px,
+      //       3px: 3px,
+      //       4px: 4px,
+      //       5px: 5px,
+      //     )
+      //   ),
+      //   "text-d-skip": (
+      //     property: text-decoration-skip,
+      //     class: text-d-skip,
+      //     values: (
+      //       none,
+      //       objects,
+      //       spaces,
+      //       leading-spaces,
+      //       trailing-spaces,
+      //       edges,
+      //       box-decoration,
+      //     )
+      //   ),
+      //   "text-d-skip-ink": (property: text-decoration-skip-ink, class: text-d-skip-ink, values: none auto all),,,,
+    )
+  );
+
+//@forward "vendor/rfs" with($rfs-base-value: 1.75rem);
+
+@forward "utilities/api";
+
+//_api.scss中的语句为立即执行, 效果可以查看css内容

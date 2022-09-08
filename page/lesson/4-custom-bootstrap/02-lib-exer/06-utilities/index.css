@@ -1,0 +1,2000 @@
+@charset "UTF-8";
+/*
+	查看utilities的map内容: 用于生成css基础class,基本上一两条属性即占据一个class定义
+	且可按需求自行扩充, 如上.
+*/
+.demo-utils .key-utilities .key-align .key-property {
+  content: vertical-align;
+}
+.demo-utils .key-utilities .key-align .key-class {
+  content: align;
+}
+.demo-utils .key-utilities .key-align .key-values {
+  content: baseline top middle bottom text-bottom text-top;
+}
+.demo-utils .key-utilities .key-float .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-float .key-property {
+  content: float;
+}
+.demo-utils .key-utilities .key-float .key-values .key-start {
+  content: left;
+}
+.demo-utils .key-utilities .key-float .key-values .key-end {
+  content: right;
+}
+.demo-utils .key-utilities .key-float .key-values .key-none {
+  content: none;
+}
+.demo-utils .key-utilities .key-opacity .key-property {
+  content: opacity;
+}
+.demo-utils .key-utilities .key-opacity .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-opacity .key-values .key-25 {
+  content: 0.25;
+}
+.demo-utils .key-utilities .key-opacity .key-values .key-50 {
+  content: 0.5;
+}
+.demo-utils .key-utilities .key-opacity .key-values .key-75 {
+  content: 0.75;
+}
+.demo-utils .key-utilities .key-opacity .key-values .key-100 {
+  content: 1;
+}
+.demo-utils .key-utilities .key-overflow .key-property {
+  content: overflow;
+}
+.demo-utils .key-utilities .key-overflow .key-values {
+  content: auto hidden visible scroll;
+}
+.demo-utils .key-utilities .key-display .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-display .key-print {
+  content: true;
+}
+.demo-utils .key-utilities .key-display .key-property {
+  content: display;
+}
+.demo-utils .key-utilities .key-display .key-class {
+  content: d;
+}
+.demo-utils .key-utilities .key-display .key-values {
+  content: inline inline-block block grid inline-grid table table-row table-cell flex inline-flex none;
+}
+.demo-utils .key-utilities .key-shadow .key-property {
+  content: box-shadow;
+}
+.demo-utils .key-utilities .key-shadow .key-class {
+  content: shadow;
+}
+.demo-utils .key-utilities .key-shadow .key-values .key-[null] {
+  content: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+.demo-utils .key-utilities .key-shadow .key-values .key-sm {
+  content: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+.demo-utils .key-utilities .key-shadow .key-values .key-lg {
+  content: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+}
+.demo-utils .key-utilities .key-shadow .key-values .key-none {
+  content: none;
+}
+.demo-utils .key-utilities .key-position .key-property {
+  content: position;
+}
+.demo-utils .key-utilities .key-position .key-values {
+  content: static relative absolute fixed sticky;
+}
+.demo-utils .key-utilities .key-top .key-property {
+  content: top;
+}
+.demo-utils .key-utilities .key-top .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-top .key-values .key-50 {
+  content: 50%;
+}
+.demo-utils .key-utilities .key-top .key-values .key-100 {
+  content: 100%;
+}
+.demo-utils .key-utilities .key-bottom .key-property {
+  content: bottom;
+}
+.demo-utils .key-utilities .key-bottom .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-bottom .key-values .key-50 {
+  content: 50%;
+}
+.demo-utils .key-utilities .key-bottom .key-values .key-100 {
+  content: 100%;
+}
+.demo-utils .key-utilities .key-start .key-property {
+  content: left;
+}
+.demo-utils .key-utilities .key-start .key-class {
+  content: start;
+}
+.demo-utils .key-utilities .key-start .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-start .key-values .key-50 {
+  content: 50%;
+}
+.demo-utils .key-utilities .key-start .key-values .key-100 {
+  content: 100%;
+}
+.demo-utils .key-utilities .key-end .key-property {
+  content: right;
+}
+.demo-utils .key-utilities .key-end .key-class {
+  content: end;
+}
+.demo-utils .key-utilities .key-end .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-end .key-values .key-50 {
+  content: 50%;
+}
+.demo-utils .key-utilities .key-end .key-values .key-100 {
+  content: 100%;
+}
+.demo-utils .key-utilities .key-translate-middle .key-property {
+  content: transform;
+}
+.demo-utils .key-utilities .key-translate-middle .key-class {
+  content: translate-middle;
+}
+.demo-utils .key-utilities .key-translate-middle .key-values .key-[null] {
+  content: translate(-50%, -50%);
+}
+.demo-utils .key-utilities .key-translate-middle .key-values .key-x {
+  content: translateX(-50%);
+}
+.demo-utils .key-utilities .key-translate-middle .key-values .key-y {
+  content: translateY(-50%);
+}
+.demo-utils .key-utilities .key-border .key-property {
+  content: border;
+}
+.demo-utils .key-utilities .key-border .key-values .key-[null] {
+  content: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+}
+.demo-utils .key-utilities .key-border .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-border-top .key-property {
+  content: border-top;
+}
+.demo-utils .key-utilities .key-border-top .key-values .key-[null] {
+  content: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+}
+.demo-utils .key-utilities .key-border-top .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-border-end .key-property {
+  content: border-right;
+}
+.demo-utils .key-utilities .key-border-end .key-class {
+  content: border-end;
+}
+.demo-utils .key-utilities .key-border-end .key-values .key-[null] {
+  content: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+}
+.demo-utils .key-utilities .key-border-end .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-border-bottom .key-property {
+  content: border-bottom;
+}
+.demo-utils .key-utilities .key-border-bottom .key-values .key-[null] {
+  content: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+}
+.demo-utils .key-utilities .key-border-bottom .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-border-start .key-property {
+  content: border-left;
+}
+.demo-utils .key-utilities .key-border-start .key-class {
+  content: border-start;
+}
+.demo-utils .key-utilities .key-border-start .key-values .key-[null] {
+  content: var(--bs-border-width) var(--bs-border-style) var(--bs-border-color);
+}
+.demo-utils .key-utilities .key-border-start .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-border-color .key-property {
+  content: border-color;
+}
+.demo-utils .key-utilities .key-border-color .key-class {
+  content: border;
+}
+.demo-utils .key-utilities .key-border-color .key-local-vars .key-border-opacity {
+  content: 1;
+}
+.demo-utils .key-utilities .key-border-color .key-values .key-primary {
+  content: rgba(var(--bs-primary-rgb), var(--bs-border-opacity));
+}
+.demo-utils .key-utilities .key-border-color .key-values .key-secondary {
+  content: rgba(var(--bs-secondary-rgb), var(--bs-border-opacity));
+}
+.demo-utils .key-utilities .key-border-color .key-values .key-success {
+  content: rgba(var(--bs-success-rgb), var(--bs-border-opacity));
+}
+.demo-utils .key-utilities .key-border-color .key-values .key-info {
+  content: rgba(var(--bs-info-rgb), var(--bs-border-opacity));
+}
+.demo-utils .key-utilities .key-border-color .key-values .key-warning {
+  content: rgba(var(--bs-warning-rgb), var(--bs-border-opacity));
+}
+.demo-utils .key-utilities .key-border-color .key-values .key-danger {
+  content: rgba(var(--bs-danger-rgb), var(--bs-border-opacity));
+}
+.demo-utils .key-utilities .key-border-color .key-values .key-light {
+  content: rgba(var(--bs-light-rgb), var(--bs-border-opacity));
+}
+.demo-utils .key-utilities .key-border-color .key-values .key-dark {
+  content: rgba(var(--bs-dark-rgb), var(--bs-border-opacity));
+}
+.demo-utils .key-utilities .key-border-color .key-values .key-white {
+  content: rgba(var(--bs-white-rgb), var(--bs-border-opacity));
+}
+.demo-utils .key-utilities .key-border-width .key-css-var {
+  content: true;
+}
+.demo-utils .key-utilities .key-border-width .key-css-variable-name {
+  content: border-width;
+}
+.demo-utils .key-utilities .key-border-width .key-class {
+  content: border;
+}
+.demo-utils .key-utilities .key-border-width .key-values .key-1 {
+  content: 1px;
+}
+.demo-utils .key-utilities .key-border-width .key-values .key-2 {
+  content: 2px;
+}
+.demo-utils .key-utilities .key-border-width .key-values .key-3 {
+  content: 3px;
+}
+.demo-utils .key-utilities .key-border-width .key-values .key-4 {
+  content: 4px;
+}
+.demo-utils .key-utilities .key-border-width .key-values .key-5 {
+  content: 5px;
+}
+.demo-utils .key-utilities .key-border-opacity .key-css-var {
+  content: true;
+}
+.demo-utils .key-utilities .key-border-opacity .key-class {
+  content: border-opacity;
+}
+.demo-utils .key-utilities .key-border-opacity .key-values .key-10 {
+  content: 0.1;
+}
+.demo-utils .key-utilities .key-border-opacity .key-values .key-25 {
+  content: 0.25;
+}
+.demo-utils .key-utilities .key-border-opacity .key-values .key-50 {
+  content: 0.5;
+}
+.demo-utils .key-utilities .key-border-opacity .key-values .key-75 {
+  content: 0.75;
+}
+.demo-utils .key-utilities .key-border-opacity .key-values .key-100 {
+  content: 1;
+}
+.demo-utils .key-utilities .key-width .key-property {
+  content: width;
+}
+.demo-utils .key-utilities .key-width .key-class {
+  content: w;
+}
+.demo-utils .key-utilities .key-width .key-values .key-5 {
+  content: 5%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-10 {
+  content: 10%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-15 {
+  content: 15%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-20 {
+  content: 20%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-25 {
+  content: 25%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-30 {
+  content: 30%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-35 {
+  content: 35%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-40 {
+  content: 40%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-45 {
+  content: 45%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-50 {
+  content: 50%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-55 {
+  content: 55%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-60 {
+  content: 60%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-65 {
+  content: 65%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-70 {
+  content: 70%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-75 {
+  content: 75%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-80 {
+  content: 80%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-85 {
+  content: 85%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-90 {
+  content: 90%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-95 {
+  content: 95%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-100 {
+  content: 100%;
+}
+.demo-utils .key-utilities .key-width .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-max-width .key-property {
+  content: max-width;
+}
+.demo-utils .key-utilities .key-max-width .key-class {
+  content: mw;
+}
+.demo-utils .key-utilities .key-max-width .key-values .key-100 {
+  content: 100%;
+}
+.demo-utils .key-utilities .key-viewport-width .key-property {
+  content: width;
+}
+.demo-utils .key-utilities .key-viewport-width .key-class {
+  content: vw;
+}
+.demo-utils .key-utilities .key-viewport-width .key-values .key-100 {
+  content: 100vw;
+}
+.demo-utils .key-utilities .key-min-viewport-width .key-property {
+  content: min-width;
+}
+.demo-utils .key-utilities .key-min-viewport-width .key-class {
+  content: min-vw;
+}
+.demo-utils .key-utilities .key-min-viewport-width .key-values .key-100 {
+  content: 100vw;
+}
+.demo-utils .key-utilities .key-height .key-property {
+  content: height;
+}
+.demo-utils .key-utilities .key-height .key-class {
+  content: h;
+}
+.demo-utils .key-utilities .key-height .key-values .key-5 {
+  content: 5%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-10 {
+  content: 10%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-15 {
+  content: 15%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-20 {
+  content: 20%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-25 {
+  content: 25%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-30 {
+  content: 30%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-35 {
+  content: 35%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-40 {
+  content: 40%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-45 {
+  content: 45%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-50 {
+  content: 50%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-55 {
+  content: 55%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-60 {
+  content: 60%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-65 {
+  content: 65%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-70 {
+  content: 70%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-75 {
+  content: 75%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-80 {
+  content: 80%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-85 {
+  content: 85%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-90 {
+  content: 90%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-95 {
+  content: 95%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-100 {
+  content: 100%;
+}
+.demo-utils .key-utilities .key-height .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-max-height .key-property {
+  content: max-height;
+}
+.demo-utils .key-utilities .key-max-height .key-class {
+  content: mh;
+}
+.demo-utils .key-utilities .key-max-height .key-values .key-100 {
+  content: 100%;
+}
+.demo-utils .key-utilities .key-viewport-height .key-property {
+  content: height;
+}
+.demo-utils .key-utilities .key-viewport-height .key-class {
+  content: vh;
+}
+.demo-utils .key-utilities .key-viewport-height .key-values .key-100 {
+  content: 100vh;
+}
+.demo-utils .key-utilities .key-min-viewport-height .key-property {
+  content: min-height;
+}
+.demo-utils .key-utilities .key-min-viewport-height .key-class {
+  content: min-vh;
+}
+.demo-utils .key-utilities .key-min-viewport-height .key-values .key-100 {
+  content: 100vh;
+}
+.demo-utils .key-utilities .key-flex .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-flex .key-property {
+  content: flex;
+}
+.demo-utils .key-utilities .key-flex .key-values .key-fill {
+  content: 1 1 auto;
+}
+.demo-utils .key-utilities .key-flex-direction .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-flex-direction .key-property {
+  content: flex-direction;
+}
+.demo-utils .key-utilities .key-flex-direction .key-class {
+  content: flex;
+}
+.demo-utils .key-utilities .key-flex-direction .key-values {
+  content: row column row-reverse column-reverse;
+}
+.demo-utils .key-utilities .key-flex-grow .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-flex-grow .key-property {
+  content: flex-grow;
+}
+.demo-utils .key-utilities .key-flex-grow .key-class {
+  content: flex;
+}
+.demo-utils .key-utilities .key-flex-grow .key-values .key-grow-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-flex-grow .key-values .key-grow-1 {
+  content: 1;
+}
+.demo-utils .key-utilities .key-flex-shrink .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-flex-shrink .key-property {
+  content: flex-shrink;
+}
+.demo-utils .key-utilities .key-flex-shrink .key-class {
+  content: flex;
+}
+.demo-utils .key-utilities .key-flex-shrink .key-values .key-shrink-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-flex-shrink .key-values .key-shrink-1 {
+  content: 1;
+}
+.demo-utils .key-utilities .key-flex-wrap .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-flex-wrap .key-property {
+  content: flex-wrap;
+}
+.demo-utils .key-utilities .key-flex-wrap .key-class {
+  content: flex;
+}
+.demo-utils .key-utilities .key-flex-wrap .key-values {
+  content: wrap nowrap wrap-reverse;
+}
+.demo-utils .key-utilities .key-justify-content .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-justify-content .key-property {
+  content: justify-content;
+}
+.demo-utils .key-utilities .key-justify-content .key-values .key-start {
+  content: flex-start;
+}
+.demo-utils .key-utilities .key-justify-content .key-values .key-end {
+  content: flex-end;
+}
+.demo-utils .key-utilities .key-justify-content .key-values .key-center {
+  content: center;
+}
+.demo-utils .key-utilities .key-justify-content .key-values .key-between {
+  content: space-between;
+}
+.demo-utils .key-utilities .key-justify-content .key-values .key-around {
+  content: space-around;
+}
+.demo-utils .key-utilities .key-justify-content .key-values .key-evenly {
+  content: space-evenly;
+}
+.demo-utils .key-utilities .key-align-items .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-align-items .key-property {
+  content: align-items;
+}
+.demo-utils .key-utilities .key-align-items .key-values .key-start {
+  content: flex-start;
+}
+.demo-utils .key-utilities .key-align-items .key-values .key-end {
+  content: flex-end;
+}
+.demo-utils .key-utilities .key-align-items .key-values .key-center {
+  content: center;
+}
+.demo-utils .key-utilities .key-align-items .key-values .key-baseline {
+  content: baseline;
+}
+.demo-utils .key-utilities .key-align-items .key-values .key-stretch {
+  content: stretch;
+}
+.demo-utils .key-utilities .key-align-content .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-align-content .key-property {
+  content: align-content;
+}
+.demo-utils .key-utilities .key-align-content .key-values .key-start {
+  content: flex-start;
+}
+.demo-utils .key-utilities .key-align-content .key-values .key-end {
+  content: flex-end;
+}
+.demo-utils .key-utilities .key-align-content .key-values .key-center {
+  content: center;
+}
+.demo-utils .key-utilities .key-align-content .key-values .key-between {
+  content: space-between;
+}
+.demo-utils .key-utilities .key-align-content .key-values .key-around {
+  content: space-around;
+}
+.demo-utils .key-utilities .key-align-content .key-values .key-stretch {
+  content: stretch;
+}
+.demo-utils .key-utilities .key-align-self .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-align-self .key-property {
+  content: align-self;
+}
+.demo-utils .key-utilities .key-align-self .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-align-self .key-values .key-start {
+  content: flex-start;
+}
+.demo-utils .key-utilities .key-align-self .key-values .key-end {
+  content: flex-end;
+}
+.demo-utils .key-utilities .key-align-self .key-values .key-center {
+  content: center;
+}
+.demo-utils .key-utilities .key-align-self .key-values .key-baseline {
+  content: baseline;
+}
+.demo-utils .key-utilities .key-align-self .key-values .key-stretch {
+  content: stretch;
+}
+.demo-utils .key-utilities .key-order .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-order .key-property {
+  content: order;
+}
+.demo-utils .key-utilities .key-order .key-values .key-first {
+  content: -1;
+}
+.demo-utils .key-utilities .key-order .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-order .key-values .key-1 {
+  content: 1;
+}
+.demo-utils .key-utilities .key-order .key-values .key-2 {
+  content: 2;
+}
+.demo-utils .key-utilities .key-order .key-values .key-3 {
+  content: 3;
+}
+.demo-utils .key-utilities .key-order .key-values .key-4 {
+  content: 4;
+}
+.demo-utils .key-utilities .key-order .key-values .key-5 {
+  content: 5;
+}
+.demo-utils .key-utilities .key-order .key-values .key-last {
+  content: 6;
+}
+.demo-utils .key-utilities .key-margin .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-margin .key-property {
+  content: margin;
+}
+.demo-utils .key-utilities .key-margin .key-class {
+  content: m;
+}
+.demo-utils .key-utilities .key-margin .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-margin .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-margin .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-margin .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-margin .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-margin .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-margin .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-margin-x .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-margin-x .key-property {
+  content: margin-right margin-left;
+}
+.demo-utils .key-utilities .key-margin-x .key-class {
+  content: mx;
+}
+.demo-utils .key-utilities .key-margin-x .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-margin-x .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-margin-x .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-margin-x .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-margin-x .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-margin-x .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-margin-x .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-margin-y .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-margin-y .key-property {
+  content: margin-top margin-bottom;
+}
+.demo-utils .key-utilities .key-margin-y .key-class {
+  content: my;
+}
+.demo-utils .key-utilities .key-margin-y .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-margin-y .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-margin-y .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-margin-y .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-margin-y .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-margin-y .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-margin-y .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-margin-top .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-margin-top .key-property {
+  content: margin-top;
+}
+.demo-utils .key-utilities .key-margin-top .key-class {
+  content: mt;
+}
+.demo-utils .key-utilities .key-margin-top .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-margin-top .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-margin-top .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-margin-top .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-margin-top .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-margin-top .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-margin-top .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-margin-end .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-margin-end .key-property {
+  content: margin-right;
+}
+.demo-utils .key-utilities .key-margin-end .key-class {
+  content: me;
+}
+.demo-utils .key-utilities .key-margin-end .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-margin-end .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-margin-end .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-margin-end .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-margin-end .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-margin-end .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-margin-end .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-margin-bottom .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-margin-bottom .key-property {
+  content: margin-bottom;
+}
+.demo-utils .key-utilities .key-margin-bottom .key-class {
+  content: mb;
+}
+.demo-utils .key-utilities .key-margin-bottom .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-margin-bottom .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-margin-bottom .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-margin-bottom .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-margin-bottom .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-margin-bottom .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-margin-bottom .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-margin-start .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-margin-start .key-property {
+  content: margin-left;
+}
+.demo-utils .key-utilities .key-margin-start .key-class {
+  content: ms;
+}
+.demo-utils .key-utilities .key-margin-start .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-margin-start .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-margin-start .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-margin-start .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-margin-start .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-margin-start .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-margin-start .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-negative-margin .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-negative-margin .key-property {
+  content: margin;
+}
+.demo-utils .key-utilities .key-negative-margin .key-class {
+  content: m;
+}
+.demo-utils .key-utilities .key-negative-margin-x .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-negative-margin-x .key-property {
+  content: margin-right margin-left;
+}
+.demo-utils .key-utilities .key-negative-margin-x .key-class {
+  content: mx;
+}
+.demo-utils .key-utilities .key-negative-margin-y .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-negative-margin-y .key-property {
+  content: margin-top margin-bottom;
+}
+.demo-utils .key-utilities .key-negative-margin-y .key-class {
+  content: my;
+}
+.demo-utils .key-utilities .key-negative-margin-top .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-negative-margin-top .key-property {
+  content: margin-top;
+}
+.demo-utils .key-utilities .key-negative-margin-top .key-class {
+  content: mt;
+}
+.demo-utils .key-utilities .key-negative-margin-end .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-negative-margin-end .key-property {
+  content: margin-right;
+}
+.demo-utils .key-utilities .key-negative-margin-end .key-class {
+  content: me;
+}
+.demo-utils .key-utilities .key-negative-margin-bottom .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-negative-margin-bottom .key-property {
+  content: margin-bottom;
+}
+.demo-utils .key-utilities .key-negative-margin-bottom .key-class {
+  content: mb;
+}
+.demo-utils .key-utilities .key-negative-margin-start .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-negative-margin-start .key-property {
+  content: margin-left;
+}
+.demo-utils .key-utilities .key-negative-margin-start .key-class {
+  content: ms;
+}
+.demo-utils .key-utilities .key-padding .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-padding .key-property {
+  content: padding;
+}
+.demo-utils .key-utilities .key-padding .key-class {
+  content: p;
+}
+.demo-utils .key-utilities .key-padding .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-padding .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-padding .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-padding .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-padding .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-padding .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-padding-x .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-padding-x .key-property {
+  content: padding-right padding-left;
+}
+.demo-utils .key-utilities .key-padding-x .key-class {
+  content: px;
+}
+.demo-utils .key-utilities .key-padding-x .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-padding-x .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-padding-x .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-padding-x .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-padding-x .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-padding-x .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-padding-y .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-padding-y .key-property {
+  content: padding-top padding-bottom;
+}
+.demo-utils .key-utilities .key-padding-y .key-class {
+  content: py;
+}
+.demo-utils .key-utilities .key-padding-y .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-padding-y .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-padding-y .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-padding-y .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-padding-y .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-padding-y .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-padding-top .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-padding-top .key-property {
+  content: padding-top;
+}
+.demo-utils .key-utilities .key-padding-top .key-class {
+  content: pt;
+}
+.demo-utils .key-utilities .key-padding-top .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-padding-top .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-padding-top .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-padding-top .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-padding-top .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-padding-top .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-padding-end .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-padding-end .key-property {
+  content: padding-right;
+}
+.demo-utils .key-utilities .key-padding-end .key-class {
+  content: pe;
+}
+.demo-utils .key-utilities .key-padding-end .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-padding-end .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-padding-end .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-padding-end .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-padding-end .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-padding-end .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-padding-bottom .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-padding-bottom .key-property {
+  content: padding-bottom;
+}
+.demo-utils .key-utilities .key-padding-bottom .key-class {
+  content: pb;
+}
+.demo-utils .key-utilities .key-padding-bottom .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-padding-bottom .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-padding-bottom .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-padding-bottom .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-padding-bottom .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-padding-bottom .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-padding-start .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-padding-start .key-property {
+  content: padding-left;
+}
+.demo-utils .key-utilities .key-padding-start .key-class {
+  content: ps;
+}
+.demo-utils .key-utilities .key-padding-start .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-padding-start .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-padding-start .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-padding-start .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-padding-start .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-padding-start .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-gap .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-gap .key-property {
+  content: gap;
+}
+.demo-utils .key-utilities .key-gap .key-class {
+  content: gap;
+}
+.demo-utils .key-utilities .key-gap .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-gap .key-values .key-1 {
+  content: 0.25rem;
+}
+.demo-utils .key-utilities .key-gap .key-values .key-2 {
+  content: 0.5rem;
+}
+.demo-utils .key-utilities .key-gap .key-values .key-3 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-gap .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-gap .key-values .key-5 {
+  content: 3rem;
+}
+.demo-utils .key-utilities .key-font-family .key-property {
+  content: font-family;
+}
+.demo-utils .key-utilities .key-font-family .key-class {
+  content: font;
+}
+.demo-utils .key-utilities .key-font-family .key-values .key-monospace {
+  content: var(--bs-font-monospace);
+}
+.demo-utils .key-utilities .key-font-size .key-rfs {
+  content: true;
+}
+.demo-utils .key-utilities .key-font-size .key-property {
+  content: font-size;
+}
+.demo-utils .key-utilities .key-font-size .key-class {
+  content: fs;
+}
+.demo-utils .key-utilities .key-font-size .key-values .key-1 {
+  content: 2.5rem;
+}
+.demo-utils .key-utilities .key-font-size .key-values .key-2 {
+  content: 2rem;
+}
+.demo-utils .key-utilities .key-font-size .key-values .key-3 {
+  content: 1.75rem;
+}
+.demo-utils .key-utilities .key-font-size .key-values .key-4 {
+  content: 1.5rem;
+}
+.demo-utils .key-utilities .key-font-size .key-values .key-5 {
+  content: 1.25rem;
+}
+.demo-utils .key-utilities .key-font-size .key-values .key-6 {
+  content: 1rem;
+}
+.demo-utils .key-utilities .key-font-style .key-property {
+  content: font-style;
+}
+.demo-utils .key-utilities .key-font-style .key-class {
+  content: fst;
+}
+.demo-utils .key-utilities .key-font-style .key-values {
+  content: italic normal;
+}
+.demo-utils .key-utilities .key-font-weight .key-property {
+  content: font-weight;
+}
+.demo-utils .key-utilities .key-font-weight .key-class {
+  content: fw;
+}
+.demo-utils .key-utilities .key-font-weight .key-values .key-light {
+  content: 300;
+}
+.demo-utils .key-utilities .key-font-weight .key-values .key-lighter {
+  content: lighter;
+}
+.demo-utils .key-utilities .key-font-weight .key-values .key-normal {
+  content: 400;
+}
+.demo-utils .key-utilities .key-font-weight .key-values .key-bold {
+  content: 700;
+}
+.demo-utils .key-utilities .key-font-weight .key-values .key-semibold {
+  content: 600;
+}
+.demo-utils .key-utilities .key-font-weight .key-values .key-bolder {
+  content: bolder;
+}
+.demo-utils .key-utilities .key-line-height .key-property {
+  content: line-height;
+}
+.demo-utils .key-utilities .key-line-height .key-class {
+  content: lh;
+}
+.demo-utils .key-utilities .key-line-height .key-values .key-1 {
+  content: 1;
+}
+.demo-utils .key-utilities .key-line-height .key-values .key-sm {
+  content: 1.25;
+}
+.demo-utils .key-utilities .key-line-height .key-values .key-base {
+  content: 1.5;
+}
+.demo-utils .key-utilities .key-line-height .key-values .key-lg {
+  content: 2;
+}
+.demo-utils .key-utilities .key-text-align .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-text-align .key-property {
+  content: text-align;
+}
+.demo-utils .key-utilities .key-text-align .key-class {
+  content: text;
+}
+.demo-utils .key-utilities .key-text-align .key-values .key-start {
+  content: left;
+}
+.demo-utils .key-utilities .key-text-align .key-values .key-end {
+  content: right;
+}
+.demo-utils .key-utilities .key-text-align .key-values .key-center {
+  content: center;
+}
+.demo-utils .key-utilities .key-text-transform .key-property {
+  content: text-transform;
+}
+.demo-utils .key-utilities .key-text-transform .key-class {
+  content: text;
+}
+.demo-utils .key-utilities .key-text-transform .key-values {
+  content: lowercase uppercase capitalize;
+}
+.demo-utils .key-utilities .key-white-space .key-property {
+  content: white-space;
+}
+.demo-utils .key-utilities .key-white-space .key-class {
+  content: text;
+}
+.demo-utils .key-utilities .key-white-space .key-values .key-wrap {
+  content: normal;
+}
+.demo-utils .key-utilities .key-white-space .key-values .key-nowrap {
+  content: nowrap;
+}
+.demo-utils .key-utilities .key-word-wrap .key-property {
+  content: word-wrap word-break;
+}
+.demo-utils .key-utilities .key-word-wrap .key-class {
+  content: text;
+}
+.demo-utils .key-utilities .key-word-wrap .key-values .key-break {
+  content: break-word;
+}
+.demo-utils .key-utilities .key-word-wrap .key-rtl {
+  content: false;
+}
+.demo-utils .key-utilities .key-color .key-property {
+  content: color;
+}
+.demo-utils .key-utilities .key-color .key-class {
+  content: text;
+}
+.demo-utils .key-utilities .key-color .key-local-vars .key-text-opacity {
+  content: 1;
+}
+.demo-utils .key-utilities .key-color .key-values .key-primary {
+  content: rgba(var(--bs-primary-rgb), var(--bs-text-opacity));
+}
+.demo-utils .key-utilities .key-color .key-values .key-secondary {
+  content: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity));
+}
+.demo-utils .key-utilities .key-color .key-values .key-success {
+  content: rgba(var(--bs-success-rgb), var(--bs-text-opacity));
+}
+.demo-utils .key-utilities .key-color .key-values .key-info {
+  content: rgba(var(--bs-info-rgb), var(--bs-text-opacity));
+}
+.demo-utils .key-utilities .key-color .key-values .key-warning {
+  content: rgba(var(--bs-warning-rgb), var(--bs-text-opacity));
+}
+.demo-utils .key-utilities .key-color .key-values .key-danger {
+  content: rgba(var(--bs-danger-rgb), var(--bs-text-opacity));
+}
+.demo-utils .key-utilities .key-color .key-values .key-light {
+  content: rgba(var(--bs-light-rgb), var(--bs-text-opacity));
+}
+.demo-utils .key-utilities .key-color .key-values .key-dark {
+  content: rgba(var(--bs-dark-rgb), var(--bs-text-opacity));
+}
+.demo-utils .key-utilities .key-color .key-values .key-black {
+  content: rgba(var(--bs-black-rgb), var(--bs-text-opacity));
+}
+.demo-utils .key-utilities .key-color .key-values .key-white {
+  content: rgba(var(--bs-white-rgb), var(--bs-text-opacity));
+}
+.demo-utils .key-utilities .key-color .key-values .key-body {
+  content: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity));
+}
+.demo-utils .key-utilities .key-color .key-values .key-muted {
+  content: #6c757d;
+}
+.demo-utils .key-utilities .key-color .key-values .key-black-50 {
+  content: rgba(0, 0, 0, 0.5);
+}
+.demo-utils .key-utilities .key-color .key-values .key-white-50 {
+  content: rgba(255, 255, 255, 0.5);
+}
+.demo-utils .key-utilities .key-color .key-values .key-reset {
+  content: inherit;
+}
+.demo-utils .key-utilities .key-text-opacity .key-css-var {
+  content: true;
+}
+.demo-utils .key-utilities .key-text-opacity .key-class {
+  content: text-opacity;
+}
+.demo-utils .key-utilities .key-text-opacity .key-values .key-25 {
+  content: 0.25;
+}
+.demo-utils .key-utilities .key-text-opacity .key-values .key-50 {
+  content: 0.5;
+}
+.demo-utils .key-utilities .key-text-opacity .key-values .key-75 {
+  content: 0.75;
+}
+.demo-utils .key-utilities .key-text-opacity .key-values .key-100 {
+  content: 1;
+}
+.demo-utils .key-utilities .key-background-color .key-property {
+  content: background-color;
+}
+.demo-utils .key-utilities .key-background-color .key-class {
+  content: bg;
+}
+.demo-utils .key-utilities .key-background-color .key-local-vars .key-bg-opacity {
+  content: 1;
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-primary {
+  content: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-secondary {
+  content: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity));
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-success {
+  content: rgba(var(--bs-success-rgb), var(--bs-bg-opacity));
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-info {
+  content: rgba(var(--bs-info-rgb), var(--bs-bg-opacity));
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-warning {
+  content: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity));
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-danger {
+  content: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity));
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-light {
+  content: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-dark {
+  content: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity));
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-black {
+  content: rgba(var(--bs-black-rgb), var(--bs-bg-opacity));
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-white {
+  content: rgba(var(--bs-white-rgb), var(--bs-bg-opacity));
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-body {
+  content: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity));
+}
+.demo-utils .key-utilities .key-background-color .key-values .key-transparent {
+  content: transparent;
+}
+.demo-utils .key-utilities .key-bg-opacity .key-css-var {
+  content: true;
+}
+.demo-utils .key-utilities .key-bg-opacity .key-class {
+  content: bg-opacity;
+}
+.demo-utils .key-utilities .key-bg-opacity .key-values .key-10 {
+  content: 0.1;
+}
+.demo-utils .key-utilities .key-bg-opacity .key-values .key-25 {
+  content: 0.25;
+}
+.demo-utils .key-utilities .key-bg-opacity .key-values .key-50 {
+  content: 0.5;
+}
+.demo-utils .key-utilities .key-bg-opacity .key-values .key-75 {
+  content: 0.75;
+}
+.demo-utils .key-utilities .key-bg-opacity .key-values .key-100 {
+  content: 1;
+}
+.demo-utils .key-utilities .key-gradient .key-property {
+  content: background-image;
+}
+.demo-utils .key-utilities .key-gradient .key-class {
+  content: bg;
+}
+.demo-utils .key-utilities .key-gradient .key-values .key-gradient {
+  content: var(--bs-gradient);
+}
+.demo-utils .key-utilities .key-user-select .key-property {
+  content: user-select;
+}
+.demo-utils .key-utilities .key-user-select .key-values {
+  content: all auto none;
+}
+.demo-utils .key-utilities .key-pointer-events .key-property {
+  content: pointer-events;
+}
+.demo-utils .key-utilities .key-pointer-events .key-class {
+  content: pe;
+}
+.demo-utils .key-utilities .key-pointer-events .key-values {
+  content: none auto;
+}
+.demo-utils .key-utilities .key-rounded .key-property {
+  content: border-radius;
+}
+.demo-utils .key-utilities .key-rounded .key-class {
+  content: rounded;
+}
+.demo-utils .key-utilities .key-rounded .key-values .key-[null] {
+  content: var(--bs-border-radius);
+}
+.demo-utils .key-utilities .key-rounded .key-values .key-0 {
+  content: 0;
+}
+.demo-utils .key-utilities .key-rounded .key-values .key-1 {
+  content: var(--bs-border-radius-sm);
+}
+.demo-utils .key-utilities .key-rounded .key-values .key-2 {
+  content: var(--bs-border-radius);
+}
+.demo-utils .key-utilities .key-rounded .key-values .key-3 {
+  content: var(--bs-border-radius-lg);
+}
+.demo-utils .key-utilities .key-rounded .key-values .key-4 {
+  content: var(--bs-border-radius-xl);
+}
+.demo-utils .key-utilities .key-rounded .key-values .key-5 {
+  content: var(--bs-border-radius-2xl);
+}
+.demo-utils .key-utilities .key-rounded .key-values .key-circle {
+  content: 50%;
+}
+.demo-utils .key-utilities .key-rounded .key-values .key-pill {
+  content: var(--bs-border-radius-pill);
+}
+.demo-utils .key-utilities .key-rounded-top .key-property {
+  content: border-top-left-radius border-top-right-radius;
+}
+.demo-utils .key-utilities .key-rounded-top .key-class {
+  content: rounded-top;
+}
+.demo-utils .key-utilities .key-rounded-top .key-values .key-[null] {
+  content: var(--bs-border-radius);
+}
+.demo-utils .key-utilities .key-rounded-end .key-property {
+  content: border-top-right-radius border-bottom-right-radius;
+}
+.demo-utils .key-utilities .key-rounded-end .key-class {
+  content: rounded-end;
+}
+.demo-utils .key-utilities .key-rounded-end .key-values .key-[null] {
+  content: var(--bs-border-radius);
+}
+.demo-utils .key-utilities .key-rounded-bottom .key-property {
+  content: border-bottom-right-radius border-bottom-left-radius;
+}
+.demo-utils .key-utilities .key-rounded-bottom .key-class {
+  content: rounded-bottom;
+}
+.demo-utils .key-utilities .key-rounded-bottom .key-values .key-[null] {
+  content: var(--bs-border-radius);
+}
+.demo-utils .key-utilities .key-rounded-start .key-property {
+  content: border-bottom-left-radius border-top-left-radius;
+}
+.demo-utils .key-utilities .key-rounded-start .key-class {
+  content: rounded-start;
+}
+.demo-utils .key-utilities .key-rounded-start .key-values .key-[null] {
+  content: var(--bs-border-radius);
+}
+.demo-utils .key-utilities .key-visibility .key-property {
+  content: visibility;
+}
+.demo-utils .key-utilities .key-visibility .key-values .key-visible {
+  content: visible;
+}
+.demo-utils .key-utilities .key-visibility .key-values .key-invisible {
+  content: hidden;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-property {
+  content: align-items;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-class {
+  content: grid-align-items;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-values .key-normal {
+  content: normal;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-values .key-start {
+  content: start;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-values .key-end {
+  content: end;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-values .key-center {
+  content: center;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-values .key-stretch {
+  content: stretch;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-values .key-baseline {
+  content: baseline;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-values .key-first-baseline {
+  content: first baseline;
+}
+.demo-utils .key-utilities .key-grid-align-items .key-values .key-last-baseline {
+  content: last baseline;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-property {
+  content: align-self;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-class {
+  content: grid-align-self;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-values .key-normal {
+  content: normal;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-values .key-start {
+  content: start;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-values .key-end {
+  content: end;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-values .key-center {
+  content: center;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-values .key-stretch {
+  content: stretch;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-values .key-baseline {
+  content: baseline;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-values .key-first-baseline {
+  content: first baseline;
+}
+.demo-utils .key-utilities .key-grid-align-self .key-values .key-last-baseline {
+  content: last baseline;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-property {
+  content: justify-items;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-class {
+  content: grid-justify-items;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-values .key-normal {
+  content: normal;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-values .key-start {
+  content: start;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-values .key-end {
+  content: end;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-values .key-center {
+  content: center;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-values .key-stretch {
+  content: stretch;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-values .key-baseline {
+  content: baseline;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-values .key-first-baseline {
+  content: first baseline;
+}
+.demo-utils .key-utilities .key-grid-justify-items .key-values .key-last-baseline {
+  content: last baseline;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-property {
+  content: justify-self;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-class {
+  content: grid-justify-self;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-values .key-normal {
+  content: normal;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-values .key-start {
+  content: start;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-values .key-end {
+  content: end;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-values .key-center {
+  content: center;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-values .key-stretch {
+  content: stretch;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-values .key-baseline {
+  content: baseline;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-values .key-first-baseline {
+  content: first baseline;
+}
+.demo-utils .key-utilities .key-grid-justify-self .key-values .key-last-baseline {
+  content: last baseline;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-property {
+  content: align-content;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-class {
+  content: grid-align-content;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-values .key-normal {
+  content: normal;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-values .key-start {
+  content: start;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-values .key-end {
+  content: end;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-values .key-center {
+  content: center;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-values .key-stretch {
+  content: stretch;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-values .key-space-around {
+  content: space-around;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-values .key-space-between {
+  content: space-between;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-values .key-space-evenly {
+  content: space-evenly;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-values .key-baseline {
+  content: baseline;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-values .key-first-baseline {
+  content: first baseline;
+}
+.demo-utils .key-utilities .key-grid-align-content .key-values .key-last-baseline {
+  content: last baseline;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-property {
+  content: justify-content;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-class {
+  content: grid-justify-content;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-values .key-normal {
+  content: normal;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-values .key-start {
+  content: start;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-values .key-end {
+  content: end;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-values .key-center {
+  content: center;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-values .key-stretch {
+  content: stretch;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-values .key-space-around {
+  content: space-around;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-values .key-space-between {
+  content: space-between;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-values .key-space-evenly {
+  content: space-evenly;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-values .key-baseline {
+  content: baseline;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-values .key-first-baseline {
+  content: first baseline;
+}
+.demo-utils .key-utilities .key-grid-justify-content .key-values .key-last-baseline {
+  content: last baseline;
+}
+.demo-utils .key-utilities .key-text-d-line .key-property {
+  content: "text-decoration-line";
+}
+.demo-utils .key-utilities .key-text-d-line .key-class {
+  content: text-d-line;
+}
+.demo-utils .key-utilities .key-text-d-line .key-extra-props .key-text-decoration-thickness {
+  content: var(--bs-text-d-thick, auto);
+}
+.demo-utils .key-utilities .key-text-d-line .key-values .key-none {
+  content: none;
+}
+.demo-utils .key-utilities .key-text-d-line .key-values .key-under {
+  content: underline;
+}
+.demo-utils .key-utilities .key-text-d-line .key-values .key-over {
+  content: overline;
+}
+.demo-utils .key-utilities .key-text-d-line .key-values .key-through {
+  content: line-through;
+}
+.demo-utils .key-utilities .key-text-d-line .key-values .key-blink {
+  content: blink;
+}
+.demo-utils .key-utilities .key-text-d-line .key-values .key-inherit {
+  content: inherit;
+}
+.demo-utils .key-utilities .key-text-d-line .key-values .key-initial {
+  content: initial;
+}
+.demo-utils .key-utilities .key-text-d-line .key-values .key-unset {
+  content: unset;
+}
+.demo-utils .key-utilities .key-text-d-color .key-property {
+  content: text-decoration-color;
+}
+.demo-utils .key-utilities .key-text-d-color .key-class {
+  content: text-d;
+}
+.demo-utils .key-utilities .key-text-d-color .key-local-vars .key-text-d-opacity {
+  content: 1;
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-primary {
+  content: rgba(var(--bs-primary-rgb), var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-secondary {
+  content: rgba(var(--bs-secondary-rgb), var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-success {
+  content: rgba(var(--bs-success-rgb), var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-info {
+  content: rgba(var(--bs-info-rgb), var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-warning {
+  content: rgba(var(--bs-warning-rgb), var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-danger {
+  content: rgba(var(--bs-danger-rgb), var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-light {
+  content: rgba(var(--bs-light-rgb), var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-dark {
+  content: rgba(var(--bs-dark-rgb), var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-black {
+  content: rgba(var(--bs-black-rgb), var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-white {
+  content: rgba(var(--bs-white-rgb), var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-body {
+  content: rgba(var(--bs-body-rgb), var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-muted {
+  content: rgba(108, 117, 125, var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-black-50 {
+  content: rgba(0, 0, 0, 0.5);
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-white-50 {
+  content: rgba(255, 255, 255, 0.5);
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-red {
+  content: rgba(255, 0, 0, var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-blue {
+  content: rgba(0, 0, 255, var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-green {
+  content: rgba(0, 128, 0, var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-cyan {
+  content: rgba(0, 255, 255, var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-yellow {
+  content: rgba(255, 255, 0, var(--bs-text-d-opacity));
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-reset {
+  content: inherit;
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-current {
+  content: currentColor;
+}
+.demo-utils .key-utilities .key-text-d-color .key-values .key-default {
+  content: currentColor;
+}
+.demo-utils .key-utilities .key-text-d-opacity .key-css-var {
+  content: true;
+}
+.demo-utils .key-utilities .key-text-d-opacity .key-class {
+  content: text-d-opacity;
+}
+.demo-utils .key-utilities .key-text-d-opacity .key-values .key-25 {
+  content: 0.25;
+}
+.demo-utils .key-utilities .key-text-d-opacity .key-values .key-50 {
+  content: 0.5;
+}
+.demo-utils .key-utilities .key-text-d-opacity .key-values .key-75 {
+  content: 0.75;
+}
+.demo-utils .key-utilities .key-text-d-opacity .key-values .key-100 {
+  content: 1;
+}
+.demo-utils .key-utilities .key-text-d-style .key-property {
+  content: text-decoration-style;
+}
+.demo-utils .key-utilities .key-text-d-style .key-class {
+  content: text-d-style;
+}
+.demo-utils .key-utilities .key-text-d-style .key-values {
+  content: solid double dotted dashed wavy inherit initial unset;
+}
+.demo-utils .key-utilities .key-text-d-thickness .key-property {
+  content: text-decoration-thickness;
+}
+.demo-utils .key-utilities .key-text-d-thickness .key-class {
+  content: text-d-thick;
+}
+.demo-utils .key-utilities .key-text-d-thickness .key-values .key-auto {
+  content: auto;
+}
+.demo-utils .key-utilities .key-text-d-thickness .key-values .key-font {
+  content: from-font;
+}
+.demo-utils .key-utilities .key-text-d-thickness .key-values .key-1px {
+  content: 1px;
+}
+.demo-utils .key-utilities .key-text-d-thickness .key-values .key-2px {
+  content: 2px;
+}
+.demo-utils .key-utilities .key-text-d-thickness .key-values .key-3px {
+  content: 3px;
+}
+.demo-utils .key-utilities .key-text-d-thickness .key-values .key-4px {
+  content: 4px;
+}
+.demo-utils .key-utilities .key-text-d-thickness .key-values .key-5px {
+  content: 5px;
+}
+.demo-utils .key-utilities .key-text-d-skip .key-property {
+  content: text-decoration-skip;
+}
+.demo-utils .key-utilities .key-text-d-skip .key-class {
+  content: text-d-skip;
+}
+.demo-utils .key-utilities .key-text-d-skip .key-values {
+  content: none, objects, spaces, leading-spaces, trailing-spaces, edges, box-decoration;
+}
+.demo-utils .key-utilities .key-text-d-skip-ink .key-property {
+  content: text-decoration-skip-ink;
+}
+.demo-utils .key-utilities .key-text-d-skip-ink .key-class {
+  content: text-d-skip-ink;
+}
+.demo-utils .key-utilities .key-text-d-skip-ink .key-values {
+  content: none auto all;
+}
+.demo-utils .key-utilities .key-background-clip .key-property {
+  content: background-clip -webkit-background-clip;
+}
+.demo-utils .key-utilities .key-background-clip .key-class {
+  content: bg-clip;
+}
+.demo-utils .key-utilities .key-background-clip .key-values .key-border {
+  content: border-box;
+}
+.demo-utils .key-utilities .key-background-clip .key-values .key-padding {
+  content: padding-box;
+}
+.demo-utils .key-utilities .key-background-clip .key-values .key-content {
+  content: content-box;
+}
+.demo-utils .key-utilities .key-background-clip .key-values .key-text {
+  content: text;
+}
+.demo-utils .key-utilities .key-one .key-property {
+  content: number-one;
+}
+.demo-utils .key-utilities .key-one .key-class {
+  content: first-class;
+}
+.demo-utils .key-utilities .key-one .key-value {
+  content: 1 11 111 1111;
+}
+.demo-utils .key-utilities .key-one .key-responsive {
+  content: false;
+}
+.demo-utils .key-utilities .key-two .key-responsive {
+  content: true;
+}
+.demo-utils .key-utilities .key-two .key-class {
+  content: second-class;
+}
+.demo-utils .key-utilities .key-two .key-property {
+  content: number-two;
+}
+.demo-utils .key-utilities .key-two .key-value .key-1 {
+  content: #123456;
+}
+.demo-utils .key-utilities .key-two .key-value .key-2 {
+  content: hey;
+}
+.demo-utils .key-utilities .key-two .key-value .key-3 {
+  content: 135;
+}
+.demo-utils .key-utilities .key-two .key-value .key-4 {
+  content: true;
+}
+.demo-utils .key-utilities .key-two .key-value .key-5 {
+  content: abc, deg, gok;
+}

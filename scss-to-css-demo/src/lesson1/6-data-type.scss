@@ -1,0 +1,102 @@
+// SassScript 支持 6 种主要的数据类型：
+// 	数字，1, 2, 13, 10px
+// 	字符串，有引号字符串与无引号字符串，"foo", 'bar', baz
+// 	颜色，blue, #04a3f9, rgba(255,0,0,0.5)
+// 	布尔型，true, false
+// 	空值，null
+// 	数组 (list)，用空格或逗号作分隔符，1.5em 1em 0 2em, Helvetica, Arial, sans-serif
+// 	maps, 相当于 JavaScript 的 object，(key1: value1, key2: value2)
+
+// 	SassScript 也支持其他 CSS 属性值，比如 Unicode 字符集，或 !important 声明。
+// 	然而Sass 不会特殊对待这些属性值，一律视为无引号字符串。
+
+// @mixin hi-msg($selector) {
+// 	div.test #{$selector}:before {
+// 		content: "hi,this is a sentence from @mixin---";
+// 	}
+// }
+
+// 		SassScript 支持 CSS 的两种字符串类型：有引号字符串 (quoted strings)，
+// 如 "Lucida Grande" 'http://sass-lang.com'；与无引号字符串 (unquoted strings)，
+// 如 sans-serif bold，在编译 CSS 文件时不会改变其类型。只有一种情况例外，
+// 使用 #{} (interpolation) 时，
+// 有引号字符串将被编译为无引号字符串，这样便于在 mixin 中引用选择器名：
+
+@mixin hi-msg($selector) {
+	$content-1: "hi,this is a sentence from @mixin, using #{$selector}---";
+	$content-2: ----congratulation, you win;
+	$content-3: "重新用引号包装:#{$content-2}";
+	div.test #{$selector} {
+		&:before {
+			//插值到字符串
+			content: $content-1;
+		}
+		&:after {
+			//这样引用无引号字符串, 虽然无语法错误, 编译后却不是想要的结果
+			//content: $content-2;
+			content: $content-3; //这样就ok了
+			color: red;
+			text-decoration: line-through;
+		}
+	}
+}
+$first: ".one"; //引号字符串, 如果无引号, 则无法引用该选择器名
+@include hi-msg($first); //类似于函数调用
+$second: span; //无引号字符串
+@include hi-msg($second);
+
+/*
+数组 (lists) 指 Sass 如何处理 CSS 中 margin: 10px 15px 0 0 或者 
+font-face: Helvetica, Arial, sans-serif 这样通过空格或者逗号分隔的一系列的值。
+事实上，独立的值也被视为数组 —— 只包含一个值的数组。
+
+数组本身没有太多功能，但 Sass list functions 赋予了数组更多新功能：
+	nth 函数:		可以直接访问数组中的某一项；
+	join 函数: 	可以将多个数组连接在一起；
+	append 函数: 可以在数组中添加新值；
+	@each 指令:  能够遍历数组中的每一项。
+
+嵌套数组:
+	方式一: 不同的分隔方式, 例如 1px 2px, 5px 6px 以及 1px,2px 5px,6px
+	方式二: 相同的分隔方式, 例如 (1px 2px) (5px 6px) 以及 (1px,2px),(5px,6px)
+*/
+$v1: 10px 20px 50px 60px;
+.sugar1 {
+	margin: $v1;
+}
+$length-of-side: 90px;
+$v2: 10px 20px, 50px 60px;
+$v3: 10px, 20px 50px, 60px;
+$v4: (10px 20px) (50px 60px);
+$v5: (10px, 20px), (50px, 60px);
+.sugar2 {
+	display: block;
+	width: $length-of-side;
+	height: $length-of-side;
+
+	//margin: $v2; //可以编译, 但用在margin上却无效果,因为margin值是单层数组
+	//margin: $v3;	//同上,无效果
+	//margin: $v4; //ok, 因为sass编译为css, 只是去掉圆括号,其余保留
+	//margin: $v5; //也无效果
+}
+
+// Maps可视为键值对的集合，键被用于定位值 在css种没有对应的概念。
+//和Lists不同Maps必须被圆括号包围，键值对被都好分割 。 Maps中的keys和values可以是
+//sassscript的任何对象。（包括任意的sassscript表达式 arbitrary SassScript expressions）
+//和Lists一样Maps主要为sassscript函数服务，如 map-get函数用于查找键值，
+//map-merge函数用于map和新加的键值融合，@each命令可添加样式到一个map中的每个键值对。
+//Maps可用于任何Lists可用的地方，在List函数中 Map会被自动转换为List ，
+//如 (key1: value1, key2: value2)会被List函数转换为 key1 value1, key2 value2 ，
+//反之则不能。(网友Soledad提供)
+
+//颜色 (Colors)
+//Any CSS color expression returns a SassScript Color value.
+//This includes a large number of named colors which are indistinguishable
+//from unquoted strings. In compressed output mode, Sass will output the
+//smallest CSS representation of a color. For example, #FF0000 will output
+//as red in compressed mode, but blanchedalmond will output as #FFEBCD.
+//A common issue users encounter with named colors is that since Sass
+//prefers the same output format as was typed in other output modes,
+//a color interpolated into a selector becomes invalid syntax when compressed.
+//To avoid this, always quote named colors if they are meant to be used in
+//the construction of a selector.

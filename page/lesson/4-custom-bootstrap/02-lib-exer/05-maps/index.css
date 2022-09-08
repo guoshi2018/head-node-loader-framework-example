@@ -1,0 +1,269 @@
+@charset "UTF-8";
+/*查看map: $theme-colors-rgb, key采用theme-colors的, value映射为 to-rgb($value): 以列表存储的rgb分量值*/
+.demo-theme-colors-rgb .key-theme-colors-rgb .key-primary {
+  content: 13, 110, 253;
+}
+.demo-theme-colors-rgb .key-theme-colors-rgb .key-secondary {
+  content: 108, 117, 125;
+}
+.demo-theme-colors-rgb .key-theme-colors-rgb .key-success {
+  content: 25, 135, 84;
+}
+.demo-theme-colors-rgb .key-theme-colors-rgb .key-info {
+  content: 13, 202, 240;
+}
+.demo-theme-colors-rgb .key-theme-colors-rgb .key-warning {
+  content: 255, 193, 7;
+}
+.demo-theme-colors-rgb .key-theme-colors-rgb .key-danger {
+  content: 220, 53, 69;
+}
+.demo-theme-colors-rgb .key-theme-colors-rgb .key-light {
+  content: 248, 249, 250;
+}
+.demo-theme-colors-rgb .key-theme-colors-rgb .key-dark {
+  content: 33, 37, 41;
+}
+
+/*查看map: $utilities-colors, 默认等于$theme-colors-rgb*/
+.demo-utilities-colors .key-utilities-colors .key-primary {
+  content: 13, 110, 253;
+}
+.demo-utilities-colors .key-utilities-colors .key-secondary {
+  content: 108, 117, 125;
+}
+.demo-utilities-colors .key-utilities-colors .key-success {
+  content: 25, 135, 84;
+}
+.demo-utilities-colors .key-utilities-colors .key-info {
+  content: 13, 202, 240;
+}
+.demo-utilities-colors .key-utilities-colors .key-warning {
+  content: 255, 193, 7;
+}
+.demo-utilities-colors .key-utilities-colors .key-danger {
+  content: 220, 53, 69;
+}
+.demo-utilities-colors .key-utilities-colors .key-light {
+  content: 248, 249, 250;
+}
+.demo-utilities-colors .key-utilities-colors .key-dark {
+  content: 33, 37, 41;
+}
+
+/*查看map: $utilities-text, 默认为在上述$utilities-colors基础上, 并入代表black/white/body的文本颜色的rgb分量*/
+.demo-utilities-text .key-utilities-text .key-primary {
+  content: 13, 110, 253;
+}
+.demo-utilities-text .key-utilities-text .key-secondary {
+  content: 108, 117, 125;
+}
+.demo-utilities-text .key-utilities-text .key-success {
+  content: 25, 135, 84;
+}
+.demo-utilities-text .key-utilities-text .key-info {
+  content: 13, 202, 240;
+}
+.demo-utilities-text .key-utilities-text .key-warning {
+  content: 255, 193, 7;
+}
+.demo-utilities-text .key-utilities-text .key-danger {
+  content: 220, 53, 69;
+}
+.demo-utilities-text .key-utilities-text .key-light {
+  content: 248, 249, 250;
+}
+.demo-utilities-text .key-utilities-text .key-dark {
+  content: 33, 37, 41;
+}
+.demo-utilities-text .key-utilities-text .key-black {
+  content: 0, 0, 0;
+}
+.demo-utilities-text .key-utilities-text .key-white {
+  content: 255, 255, 255;
+}
+.demo-utilities-text .key-utilities-text .key-body {
+  content: 33, 37, 41;
+}
+
+/*
+	查看map: $utilities-text-colors, 默认与$utilities-text同key, 调用rgba-css-var函数, 参数是key值和"text"字符串. 
+	得到的value, 均为css变量形式 var(--xxx-xxx),var(--xxx-xxx) 形式, 代表rgb值及其不透明度(alpha值)
+*/
+.demo-utilities-text-colors .key-utilities-text-colors .key-primary {
+  content: rgba(var(--bs-primary-rgb), var(--bs-text-opacity));
+}
+.demo-utilities-text-colors .key-utilities-text-colors .key-secondary {
+  content: rgba(var(--bs-secondary-rgb), var(--bs-text-opacity));
+}
+.demo-utilities-text-colors .key-utilities-text-colors .key-success {
+  content: rgba(var(--bs-success-rgb), var(--bs-text-opacity));
+}
+.demo-utilities-text-colors .key-utilities-text-colors .key-info {
+  content: rgba(var(--bs-info-rgb), var(--bs-text-opacity));
+}
+.demo-utilities-text-colors .key-utilities-text-colors .key-warning {
+  content: rgba(var(--bs-warning-rgb), var(--bs-text-opacity));
+}
+.demo-utilities-text-colors .key-utilities-text-colors .key-danger {
+  content: rgba(var(--bs-danger-rgb), var(--bs-text-opacity));
+}
+.demo-utilities-text-colors .key-utilities-text-colors .key-light {
+  content: rgba(var(--bs-light-rgb), var(--bs-text-opacity));
+}
+.demo-utilities-text-colors .key-utilities-text-colors .key-dark {
+  content: rgba(var(--bs-dark-rgb), var(--bs-text-opacity));
+}
+.demo-utilities-text-colors .key-utilities-text-colors .key-black {
+  content: rgba(var(--bs-black-rgb), var(--bs-text-opacity));
+}
+.demo-utilities-text-colors .key-utilities-text-colors .key-white {
+  content: rgba(var(--bs-white-rgb), var(--bs-text-opacity));
+}
+.demo-utilities-text-colors .key-utilities-text-colors .key-body {
+  content: rgba(var(--bs-body-color-rgb), var(--bs-text-opacity));
+}
+
+/*
+	查看map: $utilities-bg ,默认为在上述$utilities-colors基础上, 并入代表black/white/body的背景颜色的rgb分量
+*/
+.demo-utilities-bg .key-utilities-bg .key-primary {
+  content: 13, 110, 253;
+}
+.demo-utilities-bg .key-utilities-bg .key-secondary {
+  content: 108, 117, 125;
+}
+.demo-utilities-bg .key-utilities-bg .key-success {
+  content: 25, 135, 84;
+}
+.demo-utilities-bg .key-utilities-bg .key-info {
+  content: 13, 202, 240;
+}
+.demo-utilities-bg .key-utilities-bg .key-warning {
+  content: 255, 193, 7;
+}
+.demo-utilities-bg .key-utilities-bg .key-danger {
+  content: 220, 53, 69;
+}
+.demo-utilities-bg .key-utilities-bg .key-light {
+  content: 248, 249, 250;
+}
+.demo-utilities-bg .key-utilities-bg .key-dark {
+  content: 33, 37, 41;
+}
+.demo-utilities-bg .key-utilities-bg .key-black {
+  content: 0, 0, 0;
+}
+.demo-utilities-bg .key-utilities-bg .key-white {
+  content: 255, 255, 255;
+}
+.demo-utilities-bg .key-utilities-bg .key-body {
+  content: 255, 255, 255;
+}
+
+/*
+	查看map: $utilities-bg-colors, 默认与$utilities-bg同key, 调用rgba-css-var函数, 参数是key值和"bg"字符串,
+	得到的value, 均为css变量形式 var(--xxx-xxx),var(--xxx-xxx) 形式, 代表rgb值及其不透明度(alpha值)
+*/
+.demo-utilities-bg-colors .key-utilities-bg-colors .key-primary {
+  content: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity));
+}
+.demo-utilities-bg-colors .key-utilities-bg-colors .key-secondary {
+  content: rgba(var(--bs-secondary-rgb), var(--bs-bg-opacity));
+}
+.demo-utilities-bg-colors .key-utilities-bg-colors .key-success {
+  content: rgba(var(--bs-success-rgb), var(--bs-bg-opacity));
+}
+.demo-utilities-bg-colors .key-utilities-bg-colors .key-info {
+  content: rgba(var(--bs-info-rgb), var(--bs-bg-opacity));
+}
+.demo-utilities-bg-colors .key-utilities-bg-colors .key-warning {
+  content: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity));
+}
+.demo-utilities-bg-colors .key-utilities-bg-colors .key-danger {
+  content: rgba(var(--bs-danger-rgb), var(--bs-bg-opacity));
+}
+.demo-utilities-bg-colors .key-utilities-bg-colors .key-light {
+  content: rgba(var(--bs-light-rgb), var(--bs-bg-opacity));
+}
+.demo-utilities-bg-colors .key-utilities-bg-colors .key-dark {
+  content: rgba(var(--bs-dark-rgb), var(--bs-bg-opacity));
+}
+.demo-utilities-bg-colors .key-utilities-bg-colors .key-black {
+  content: rgba(var(--bs-black-rgb), var(--bs-bg-opacity));
+}
+.demo-utilities-bg-colors .key-utilities-bg-colors .key-white {
+  content: rgba(var(--bs-white-rgb), var(--bs-bg-opacity));
+}
+.demo-utilities-bg-colors .key-utilities-bg-colors .key-body {
+  content: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity));
+}
+
+/*
+	查看map: $utilities-border, 默认为在上述$utilities-colors基础上, 并入代表white的线条颜色的rgb分量
+*/
+.demo-utilities-border .key-utilities-border .key-primary {
+  content: 13, 110, 253;
+}
+.demo-utilities-border .key-utilities-border .key-secondary {
+  content: 108, 117, 125;
+}
+.demo-utilities-border .key-utilities-border .key-success {
+  content: 25, 135, 84;
+}
+.demo-utilities-border .key-utilities-border .key-info {
+  content: 13, 202, 240;
+}
+.demo-utilities-border .key-utilities-border .key-warning {
+  content: 255, 193, 7;
+}
+.demo-utilities-border .key-utilities-border .key-danger {
+  content: 220, 53, 69;
+}
+.demo-utilities-border .key-utilities-border .key-light {
+  content: 248, 249, 250;
+}
+.demo-utilities-border .key-utilities-border .key-dark {
+  content: 33, 37, 41;
+}
+.demo-utilities-border .key-utilities-border .key-white {
+  content: 255, 255, 255;
+}
+
+/*
+	查看map: $utilities-border-colors, 默认与$utilities-border同key, 调用rgba-css-var函数, 参数是key值和"border"字符串,
+	得到的value, 均为css变量形式 var(--xxx-xxx),var(--xxx-xxx) 形式, 代表rgb值及其不透明度(alpha值)
+*/
+.demo-utilities-border-colors .key-utilities-border-colors .key-primary {
+  content: rgba(var(--bs-primary-rgb), var(--bs-border-opacity));
+}
+.demo-utilities-border-colors .key-utilities-border-colors .key-secondary {
+  content: rgba(var(--bs-secondary-rgb), var(--bs-border-opacity));
+}
+.demo-utilities-border-colors .key-utilities-border-colors .key-success {
+  content: rgba(var(--bs-success-rgb), var(--bs-border-opacity));
+}
+.demo-utilities-border-colors .key-utilities-border-colors .key-info {
+  content: rgba(var(--bs-info-rgb), var(--bs-border-opacity));
+}
+.demo-utilities-border-colors .key-utilities-border-colors .key-warning {
+  content: rgba(var(--bs-warning-rgb), var(--bs-border-opacity));
+}
+.demo-utilities-border-colors .key-utilities-border-colors .key-danger {
+  content: rgba(var(--bs-danger-rgb), var(--bs-border-opacity));
+}
+.demo-utilities-border-colors .key-utilities-border-colors .key-light {
+  content: rgba(var(--bs-light-rgb), var(--bs-border-opacity));
+}
+.demo-utilities-border-colors .key-utilities-border-colors .key-dark {
+  content: rgba(var(--bs-dark-rgb), var(--bs-border-opacity));
+}
+.demo-utilities-border-colors .key-utilities-border-colors .key-white {
+  content: rgba(var(--bs-white-rgb), var(--bs-border-opacity));
+}
+
+/* 查看map: $negative-spacers, 代表各种尺寸的负向空白. 在正向空白的基础上, key前面添加前缀n, value变符号.
+	但需要$enable-negative-margins为true. 而此变量默认为false, 故$negative-spacers为空map */
+.temp .key-white {
+  content: #fff;
+}

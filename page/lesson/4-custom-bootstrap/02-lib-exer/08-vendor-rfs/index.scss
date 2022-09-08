@@ -1,0 +1,48 @@
+@use "sass:string";
+
+@forward "sundry" with (
+	$enable-rfs: true
+);
+@use "functions" as fun;
+@use "vendor/rfs" as *
+	with(
+		$rfs-unit: rem,
+		// default to rem
+		$rfs-base-value: 1.3rem,
+		//1.25rem, 给定尺寸小于等于此值, 将自动取消rfs,
+		$rfs-breakpoint: 899px,
+		//1200px
+		$rfs-breakpoint-unit: px,
+		// px
+		$rfs-two-dimensional: false,
+		//false
+		$rfs-factor: 14,
+		//10
+		$rfs-mode: min-media-query,
+		//min-media-query. Possibilities: "min-media-query","max-media-query"
+		$rfs-class: false,
+		// false. Possibilities: false, "enable" or "disable"
+		$rfs-rem-value: 7,
+		//16 how many px is 1 rem
+	);
+
+//测试divide函数
+.demo-divide {
+	$nums: 1.2, 3.4, 5, 2.9, 17, 18, 16, 32;
+	$divisor: 17;
+
+	@each $n in $nums {
+		$t: if(string.index(#{$n}, "."), fun.str-replace(#{$n}, ".", "dot"), #{$n});
+		result-#{$t}-div-#{$divisor}: divide($n, $divisor);
+	}
+}
+
+.demo-rfs {
+	@include rfs(3rem, margin-bottom);
+	@include padding-left(2.2rem);
+	@include font-size(3rem);
+	@include margin-right(1.29rem);
+	@include margin-left(1.1rem);
+	@include margin-top(1.09rem);
+	@include margin-bottom(23px);
+}

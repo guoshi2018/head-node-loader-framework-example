@@ -1,0 +1,189 @@
+@use "sass:math";
+@use "sass:list";
+@use "sass:meta";
+
+/*
+/ 作为分隔符
+*/
+item3 {
+	//$row: span math.div(6, 2) / 7; // a two-element slash-separated list
+	//grid-row: $row; //bei 误编译为 span 0.4285714286.而不是 span 3 / 7;
+
+	//应该这样用
+	$row: list.slash(span math.div(6, 2), 7);
+	grid-row: $row;
+}
+
+// WRONG, will not work in future Sass versions.
+//@debug (12px/4px); // 3
+
+// RIGHT, will work in future Sass versions.
+@debug math.div(12px, 4px); // 3
+
+/*
+Breaking Change: Extending Compound Selectors
+*/
+// These should both be extended, but they won't be.
+.message {
+	border: 1px solid black;
+}
+.info {
+	font-size: 1.5rem;
+}
+
+.heads-up {
+	//@extend .message.info; //现在不支持了哦
+	@extend .message, .info; //标准写法
+}
+
+/*
+we recommend replacing the compound selector with a placeholder selector.
+*/
+%message-info,
+.message.info {
+	border: 1px solid black;
+	font-size: 1.5rem;
+}
+.heads-up {
+	//Instead of '.message.info'
+	@extend %message-info;
+	text-align: center;
+}
+
+/*
+Breaking Change: CSS Variable Syntax
+1. 应该使用插值, 而不是直接值
+2. Because interpolation removes quotation marks from quoted strings, 
+	it may be necessary to wrap them in the meta.inspect() function 
+	to preserve their quotes.
+*/
+
+/*
+ 常见css variable syntax如下,
+ css定义的变量, 使用时, 只需要使用var()方法引用
+*/
+:root {
+	--theme-dark-blue: #123456;
+	--theme-font-family: Menlo, Consolas, "Courier New", monospace;
+	--theme-wide-padding: 1px 2px 3px 4px;
+	--theme-light-blue: #234;
+	--flex-theme: {
+		border: 1px solid var(--theme-dark-blue);
+		font-family: var(--theme-font-family);
+		padding: var(--theme-wide-padding);
+		background-color: var(--theme-light-blue);
+	}
+}
+
+$accent-color: #fbbc04;
+$font-family-monospace: Menlo, Consolas, "Courier New", monospace;
+:root {
+	/* 
+		这样虽然可以正常编译, 但编译得到的css是
+	 		--accent-color-wrong1: $accent-color;
+	  无法工作
+	*/
+	--accent-color-wrong1: $accent-color; // 1
+
+	/*
+	这样, 更是乱了套
+	*/
+	--accent-color-wrong2: var($accent-color);
+
+	/*
+		使用插值,编译得到: --accent-color-right: #fbbc04; ok
+	*/
+	--accent-color-right: #{$accent-color};
+
+	/*
+		丢失引号, 得到值: Menlo, Consolas, Courier New, monospace
+	*/
+	--font-family-monospace-wrong1: #{$font-family-monospace};
+
+	/*
+	保留引号,
+	*/
+	--font-family-monospace-right: #{meta.inspect($font-family-monospace)};
+
+	/*
+		注意, 如果省略插值, 得到无法工作的值: meta.inspect($font-family-monospace);
+	*/
+	--font-family-monospace-wrong2: meta.inspect($font-family-monospace);
+}
+/*
+ 注意, 这样使用是正常的, 因为这里是 sass varialble syntx, 而上面是 css variable syntx
+*/
+.temp {
+	prop1: $accent-color;
+	prop2: meta.inspect($font-family-monospace);
+}
+
+//查缺补漏:
+/*
+1. 属性嵌套
+	有些css属性遵循相同的命名空间 (相同的开头)，比如font-family，font-size，font-weight
+	都以font作为属性的命名空间。为了便于管理这样的属性，也为了避免重复输入。
+	（这个编辑器提示有点不太理想……，不是很好用）。
+*/
+.container {
+	font: {
+		family: fantasy;
+		size: 30em;
+		weight: bold;
+	}
+}
+
+/*
+2. 命名空间也可以包含自己的属性值
+有点不对.可能已经废弃
+*/
+.container {
+	color:red {
+		adjust: fantasy;
+	}
+}
+
+/*
+默认@at-root只会跳出选择器嵌套，而不能跳出@media或@support，如果要跳出这两种，
+则需使用@at-root (without: media)或@at-root (without: support)，@at-root的关键词有四个：
+
+all表示所有；
+rule表示常规css选择器；
+media 表示media；
+support表示support（@support主要是用于检测浏览器是否支持css的某个属性）。
+
+我们默认的@at-root是@at-root (without:rule)
+*/
+/*跳出父级*/
+@media print {
+	.parent1 {
+		color: #f00;
+		@at-root .child1 {
+			width: 200px;
+		}
+	}
+}
+
+/*跳出media,父级有效*/
+@media print {
+	.parent2 {
+		color: #f00;
+		@at-root (without: media) {
+			.child2 {
+				width: 200px;
+			}
+		}
+	}
+}
+
+/*跳出media及父级*/
+@media print {
+	.parent3 {
+		color: #f00;
+		@at-root (without: media rule) {
+			.child3 {
+				width: 200px;
+			}
+		}
+	}
+}

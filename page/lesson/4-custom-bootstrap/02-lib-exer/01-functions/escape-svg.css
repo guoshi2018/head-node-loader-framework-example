@@ -1,0 +1,49 @@
+/**
+ * Author: Kevin Weber
+ *
+ * Follow me: @kevinweber (https://twitter.com/kevinweber)
+ * Website: http://kevinw.de
+ *
+ * License: CC BY-SA 4.0 (https://creativecommons.org/licenses/by-sa/4.0/)
+ */
+.demo-svg {
+  background-color: #b6f4f8;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 700px;
+  padding: 10px;
+}
+.demo-svg .my-svg-container {
+  background-image: url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3e%3cpath fill="%234e97cc" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/%3e%3c/svg%3e');
+}
+.demo-svg .my-svg-container-2 {
+  background-image: url('data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3e%3cpath fill="%232c2c29" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/%3e%3c/svg%3e');
+}
+.demo-svg .my-svg-container,
+.demo-svg .my-svg-container-2 {
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 80%;
+  border: skyblue 1px solid;
+  height: 200px;
+  transition: opacity 0.2s ease-in;
+  width: 200px;
+}
+.demo-svg .my-svg-container:hover,
+.demo-svg .my-svg-container-2:hover {
+  background-size: 85%;
+  opacity: 0.9;
+}
+.demo-svg .before-encoding,
+.demo-svg .after-encoding,
+.demo-svg .before-encoding:after,
+.demo-svg .after-encoding:after {
+  display: block;
+  word-break: break-all;
+}
+.demo-svg .before-encoding:after {
+  content: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="#4e97cc" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/></svg>';
+}
+.demo-svg .after-encoding:after {
+  content: 'data:image/svg+xml,%3csvg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"%3e%3cpath fill="%234e97cc" d="M12 4.248c-3.148-5.402-12-3.825-12 2.944 0 4.661 5.571 9.427 12 15.808 6.43-6.381 12-11.147 12-15.808 0-6.792-8.875-8.306-12-2.944z"/%3e%3c/svg%3e';
+}

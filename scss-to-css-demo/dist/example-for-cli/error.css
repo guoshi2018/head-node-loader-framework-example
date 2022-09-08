@@ -1,0 +1,37 @@
+@charset "UTF-8";
+.hello {
+  text-align: right;
+}
+
+.hello h1 {
+  color: beige;
+  /*
+  这里的语法错误,确实会导致编译停止,不生成新文件. 
+  虽然命令行并不退出, 但后续的scss(例如normal.scss)即使正确也丧失编译的机会
+  当然这些都是建立在带命令行参数 --stop-on-error的基础上.
+  */
+}
+
+.hello h1 .funky {
+  /*
+  这是font的星号型注释, 看看目标css中是否保留
+  */
+  font: 20px/24px;
+  font-family: fantasy;
+  font-weight: bold;
+}
+
+.hello h1 .active {
+  -webkit-text-decoration: dotted;
+  text-decoration: dotted;
+  text-indent: 2em;
+}
+
+/*
+结论:单行的双斜线注释被忽略, 而多行星号型注释被保留. 且暂时未发现相关的命令行开关
+将 ! 作为多行注释的第一个字符表示在压缩输出模式下保留这条注释并输出到 CSS 文件中，
+通常用于添加版权信息。插值语句 (interpolation) 也可写进多行注释中输出变量值：
+*/
+/*
+!copy right by guoshi 0.1.8 .
+*/ /*# sourceMappingURL=error.css.map */

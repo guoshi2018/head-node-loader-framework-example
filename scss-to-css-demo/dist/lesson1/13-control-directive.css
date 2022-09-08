@@ -1,0 +1,158 @@
+@charset "UTF-8";
+/*
+	@if
+	当 @if 的表达式返回值不是 false 或者 null 时，条件成立，输出 {} 内的代码：
+*/
+p {
+  border: 1px solid;
+  text-align: center;
+}
+
+p:hover {
+  color: green;
+}
+
+/*
+	@for
+	@for 指令可以在限制的范围内重复输出格式，每次按要求（变量的值）对输出结果做出变动。
+	这个指令包含两种格式：
+			@for $var from <start> through <end>，或者 
+			@for $var from <start> to <end>，
+	区别在于 through 与 to 的含义：
+		当使用 through 时，条件范围包含 <start> 与 <end> 的值，
+		而使用 to 时条件范围, 只包含 <start> 的值不包含 <end> 的值。
+	另外，$var 可以是任何变量，比如 $i；<start> 和 <end> 必须是整数值。
+*/
+/*
+	to形式下, 使用前缀: mini
+*/
+mini-3 {
+  width: 10em;
+  height: 7.8em;
+}
+
+mini-4 {
+  width: 12em;
+  height: 10.4em;
+}
+
+mini-5 {
+  width: 14em;
+  height: 13em;
+}
+
+mini-6 {
+  width: 16em;
+  height: 15.6em;
+}
+
+mini-7 {
+  width: 18em;
+  height: 18.2em;
+}
+
+/*
+	through形式下, 使用前缀: pre
+*/
+pre-4 {
+  width: 12em;
+  height: 10.4em;
+}
+
+pre-5 {
+  width: 14em;
+  height: 13em;
+}
+
+pre-6 {
+  width: 16em;
+  height: 15.6em;
+}
+
+pre-7 {
+  width: 18em;
+  height: 18.2em;
+}
+
+pre-8 {
+  width: 20em;
+  height: 20.8em;
+}
+
+pre-9 {
+  width: 22em;
+  height: 23.4em;
+}
+
+/*
+	@each
+	@each 指令的格式是 $var in <list>, $var 可以是任何变量名，
+	比如 $length 或者 $name，而 <list> 是一连串的值，也就是值列表
+*/
+.puma-icon {
+  background-color: url("/images/puma.png");
+}
+
+.sea-slug-icon {
+  background-color: url("/images/sea-slug.png");
+}
+
+.egret-icon {
+  background-color: url("/images/egret.png");
+}
+
+.salamander-icon {
+  background-color: url("/images/salamander.png");
+}
+
+/*
+@each用于二维数组, 索引号目前只有手工引入
+*/
+.puma-another-icon {
+  background-image: url("/images/puma.png");
+  border: 2px solid black;
+  cursor: default;
+}
+
+.sea-slug-another-icon {
+  background-image: url("/images/sea-slug.png");
+  border: 4px solid blue;
+  cursor: pointer;
+}
+
+.egret-another-icon {
+  background-image: url("/images/egret.png");
+  border: 6px solid white;
+  cursor: move;
+}
+
+/*
+	@each用于maps, 基于maps被视作键值对为元素的列表
+*/
+h1 {
+  font-size: 2em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.2em;
+}
+
+/*
+	 @while
+		@while 指令重复输出格式直到表达式返回结果为 false。这样可以实现比 @for 更复杂的循环
+*/
+.item-6 {
+  width: 12em;
+}
+
+.item-4 {
+  width: 8em;
+}
+
+.item-2 {
+  width: 4em;
+} /*# sourceMappingURL=13-control-directive.css.map */

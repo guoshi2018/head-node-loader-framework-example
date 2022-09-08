@@ -1,0 +1,30 @@
+@use "sass:meta";
+@use "sass:list";
+
+/// 以嵌套列表的形式, 返回当前版本sass对feature的支持情况
+/// @return {list} 由两个元素数量均可能为空的子列表组成. 第一个list的元素为被支持的特征名,
+/// 	第二个list的元素为未被支持的特证名
+@function feature-supported() {
+	//可以测试不存在的特征(或者是未来才会有的特征,例如下面的no-such-feature)
+	$fts: global-variable-shadowing extend-selector-pseudoclass units-level3 at-error custom-property no-such-feature;
+	$supported: ();
+	$unsupported: ();
+	@each $f in $fts {
+		$yes: meta.feature-exists($f);
+		@debug "#{$f} is #{if($yes,' ',' not')} supported by current sass version.";
+		@if $yes {
+			$supported: list.append($supported, $f);
+		} @else {
+			$unsupported: list.append($unsupported, $f);
+		}
+	}
+	@return ($supported, $unsupported);
+}
+
+@function test-pow($base, $exponent) {
+	$result: 1;
+	@for $_ from 1 through $exponent {
+		$result: $result * $base;
+	}
+	@return $result;
+}

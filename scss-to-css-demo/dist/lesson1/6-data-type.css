@@ -1,0 +1,45 @@
+@charset "UTF-8";
+div.test .one:before {
+  content: "hi,this is a sentence from @mixin, using .one---";
+}
+
+div.test .one:after {
+  content: "重新用引号包装:----congratulation, you win";
+  color: red;
+  text-decoration: line-through;
+}
+
+div.test span:before {
+  content: "hi,this is a sentence from @mixin, using span---";
+}
+
+div.test span:after {
+  content: "重新用引号包装:----congratulation, you win";
+  color: red;
+  text-decoration: line-through;
+}
+
+/*
+数组 (lists) 指 Sass 如何处理 CSS 中 margin: 10px 15px 0 0 或者 
+font-face: Helvetica, Arial, sans-serif 这样通过空格或者逗号分隔的一系列的值。
+事实上，独立的值也被视为数组 —— 只包含一个值的数组。
+
+数组本身没有太多功能，但 Sass list functions 赋予了数组更多新功能：
+	nth 函数:		可以直接访问数组中的某一项；
+	join 函数: 	可以将多个数组连接在一起；
+	append 函数: 可以在数组中添加新值；
+	@each 指令:  能够遍历数组中的每一项。
+
+嵌套数组:
+	方式一: 不同的分隔方式, 例如 1px 2px, 5px 6px 以及 1px,2px 5px,6px
+	方式二: 相同的分隔方式, 例如 (1px 2px) (5px 6px) 以及 (1px,2px),(5px,6px)
+*/
+.sugar1 {
+  margin: 10px 20px 50px 60px;
+}
+
+.sugar2 {
+  display: block;
+  width: 90px;
+  height: 90px;
+} /*# sourceMappingURL=6-data-type.css.map */

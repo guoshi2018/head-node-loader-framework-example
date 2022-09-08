@@ -1,0 +1,35 @@
+@charset "UTF-8";
+code {
+  padding: 0.25em;
+  line-height: 0;
+  background-color: #6b717f;
+  color: #d2e1dd;
+}
+
+ul,
+ol {
+  text-align: left;
+}
+
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+  padding-bottom: 0;
+  padding-left: 0;
+}
+
+/*
+	A stylesheet’s @use rules must come before any rules other than @forward, 
+	including style rules. However, you can declare variables before @use rules 
+	to use when configuring modules.
+*/
+/*
+		If you find yourself wanting to configure many variables at once, 
+		pass maps as configuration, or update the configuration after the 
+		module is loaded, consider writing a mixin to set your variables 
+		instead and another mixin to inject your styles.
+*/
+/*
+Built-in module variables (such as math.$pi) cannot be reassigned.other can
+*/ /*# sourceMappingURL=06-use.css.map */

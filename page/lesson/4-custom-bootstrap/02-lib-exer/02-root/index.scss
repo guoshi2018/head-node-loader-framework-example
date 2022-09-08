@@ -1,0 +1,52 @@
+/*
+	测试在:root中定义的变量, 被局部修改的后果
+	结论, 不影响其他类, 对自己则立即生效
+	注意, 全局的css变量必须定义在:root里, 名称不能改
+*/
+@use "../../common/tool";
+@use "sass:list";
+
+:root {
+	--temp-color: #123456;
+}
+
+.demo-var {
+	div {
+		width: 8.2rem;
+		height: 5.8rem;
+		display: inline-block;
+		margin-top: 1rem;
+		margin-left: 0.8rem;
+		background-color: var(--temp-color);
+
+		&.a {
+			--temp-color: blue;
+		}
+
+		&.c {
+			--temp-color: #cc620c;
+		}
+	}
+}
+
+// 这个例子说明, 函数的参数均为复制
+@function add-item($list, $item) {
+	$list: list.append($list, $item);
+	@return $list;
+}
+$nums: (1, 2, 3, 4, 5);
+$return: add-item($nums, 100);
+@include tool.show-value(nums, $nums);
+@include tool.show-value(return, $return);
+
+// 验证 默认参数相当于undefined时生效, 而 null 不是 undefined.
+// css 变量 var(--**--**), 原样渲染, 运行时查询实际值
+@mixin null-demo($one, $two: "guoshi") {
+	.#{$one} {
+		content: $two;
+	}
+}
+@include null-demo(hello);
+@include null-demo(please, null); // null  不是 undefined, 这个不渲染
+@include null-demo(qiuling, var(--temp-color)); // :root中已经定义过的
+@include null-demo(zhonghe, var(--no-such-var)); // 未曾定义过的, 两者渲染无差别. 只有运行时差别

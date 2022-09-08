@@ -1,0 +1,17 @@
+$hor-gap: 2em;
+
+@mixin reset {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+@mixin horizontal {
+	@include reset;
+	li {
+		display: inline-block;
+		margin: {
+			left: -2px;
+			right: $hor-gap;
+		}
+	}
+}

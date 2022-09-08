@@ -1,0 +1,111 @@
+//所有数据类型均支持相等运算 == 或 !=，此外，每种数据类型也有其各自支持的运算方式。
+
+//Number,不同单位,必须使用calc函数
+//$n1: 10.43px + 3.4em;		// Incompatible units
+//$n1: 10.2em + 2.8rem;			// Incompatible units
+//$n1: 1in + 8pt;					//but ok
+//$n1: calc(15in + 18pt);			//also ok
+$n1: calc(10.8em + 230px);
+p {
+	width: 1in - 8pt;
+	height: $n1;
+}
+
+//除法: 为了区分 / 是用来分隔数字, 还是被赋予除法功能
+//以下三种情况 / 将被视为除法运算符号：
+// 如果值，或值的一部分，是变量或者函数的返回值
+// 如果值被圆括号包裹
+// 如果值是算数表达式的一部分
+p.c1 {
+	font: 10px/8px; // Plain CSS, no division
+	$width: 1000px;
+	width: $width/2; // Uses a variable, does division
+	width: round(1.5) / 2; // Uses a function, does division
+	height: (500px/2); // Uses parentheses, does division
+	margin-left: 5px + 8px/2px; // Uses +, does division = 9px
+	margin-right: 5 + 8px/2; // 9px
+	margin-top: 5em + 8/2; // 9em
+	//margin-bottom: 5 + 8/2em; //error:9/em isn't a valid CSS value
+	margin-bottom: 5 + 8em/2; //9em
+	$font-size: 12px;
+	$line-height: 30px;
+	font: $font-size/$line-height; //被作为除法使唤: 0.4
+	font: #{$font-size}/#{$line-height}; //分隔符: 12px/30px
+}
+
+//颜色:
+$t-red: rgba(255, 0, 0, 0.5);
+$gr: #00ff00;
+p.c2 {
+	//分段计算再编译:#051729
+	color1: #010203 + #041526;
+
+	//自动处理溢出: #fff
+	color2: #f98436 + #eee;
+
+	//#126aff (f2*2=1e4溢出,所以为最大ff)
+	color3: #0935f2 * 2;
+
+	//3被视为#333333
+	color4: #123456 + 3;
+
+	//37转为16进制: 25, 被视为#252525
+	color5: #010203 + 37;
+
+	//alpha必须相同
+	color6: rgba(255, 0, 0, 0.75) + rgba(0, 255, 0, 0.75);
+
+	//error for  alpha
+	//color66: rgba(30, 12, 25, 0, 4) + rgba(50, 22, 17, 0.41);
+
+	//函数调整: rgba(255,0,0,0.8)  for 0.5+0.3
+	color7: opacify($t-red, 0.3);
+
+	//函数调整rgba(255,0,0,0.25)
+	color8: transparentize($t-red, 0.25);
+
+	//IE 滤镜要求所有的颜色值包含 alpha 层，而且格式必须固定 #AABBCCDD，
+	//使用 ie_hex_str 函数可以很容易地将颜色转化为 IE 滤镜要求的格式。
+	//结果:startColorstr=#FF00FF00, endColorstr=#80FF0000,其余原样照抄
+	filter: progid:DXImageTransform.Microsoft.gradient(enabled='false', 
+	startColorstr='#{ie-hex-str($gr)}', endColorstr='#{ie-hex-str($t-red)}');
+}
+
+//字符串, 连接结果是否有引号, 以第一个字符串为准
+p.c3 {
+	//无引号连接
+	cursor: e + -resize;
+
+	//有引号连接无引号,结果:有引号
+	content1: "Foo" + bar;
+
+	//无引号连接有引号,结果:无引号(忠实的编译,不论目标是否生效
+	font-family: sans- + "+++serif";
+
+	//有引号连接有引号,结果:有引号.
+	font-family: "aria-" + "songti";
+
+	//运算表达式与其他值连用时，用空格做连接符：
+	margin: 3px+4px auto; //7px auto
+
+	//插值, 以添加动态值
+	content2: "I ate #{10+2} pies";
+
+	//空值视作插入空字符串 "":
+	$null-value: null;
+	content3: "I ate #{$null-value} pies";
+}
+
+//布尔运算: and or not
+$v-c4-1: 380;
+$v-c4-2: 290;
+p.c4 {
+	$v-b-1: $v-c4-1>390;
+	$v-b-2: $v-c4-2<300;
+	//content:$v-b-1 and $v-b-2 ? "yes":"no"; //不支持
+	cond1: $v-b-1 and $v-b-2; //false
+	cond2: $v-b-1 or $v-b-2; //true
+	cond3: not (not $v-b-1 and $v-b-2); //false
+}
+
+//数组不支持任何运算方式，只能使用 list functions 控制。

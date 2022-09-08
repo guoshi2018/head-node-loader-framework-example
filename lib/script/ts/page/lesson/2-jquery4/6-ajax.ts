@@ -115,13 +115,14 @@
 
 JscssLoader.getInstance().startEntry({
 
+  debug: true,
   //在此添加本入口文件需要包含的js css文件全路径,默认[]
   //页面用到的js文件列表的数组,排列顺序必须保证:组内无依赖关系,后面的组可依赖于前面的组,反之则不然
   //必要时,查看global.json(或在此指定的其替代文件), 以免重复加载(虽然自动忽略)
   privateRes: [
     [
-      '/lib/style/css/2-jquery4/default.css',
-      '/lib/style/css/2-jquery4/6-ajax.css',
+      '/lib/css/default.css',
+      '/page/lesson/2-jquery4/6-ajax/index.css',
     ]
   ],
 
@@ -268,6 +269,7 @@ JscssLoader.getInstance().startEntry({
         $.get(server_page, formValues, data => {
           jdict.html(data);
         });
+
       });
     }
   },
