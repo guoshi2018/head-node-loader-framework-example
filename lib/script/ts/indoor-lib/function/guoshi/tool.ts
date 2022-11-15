@@ -111,12 +111,16 @@ function fixMarginY(ele: HTMLElement, mg: "marginTop" | "marginBottom") {
 
 
 /**
- * 展开整个页面上, 最后一个位于 details 标签内, 由相应的 summary 控制展开/折叠的内容.
+ * 在整个页面上, 折叠所有的 details, 不论其初始设置为何;
+ * 然后展开最后一个位于 details 及其祖先 details.
  * 没有则忽略
  */
 function openLastDetails() {
 	let ds = document.querySelectorAll("details");
 	let ele: HTMLElement | null = ds[ds.length - 1];
+	ds.forEach(dt => {
+		dt.removeAttribute("open");
+	});
 	while (ele) {
 		if (ele instanceof HTMLDetailsElement) {
 			ele.setAttribute("open", "");
@@ -138,13 +142,13 @@ function guidString() {
 
 /**
  * 克隆源元素, 替换目标元素.
- * @param root 只检查此元素内部
+ * @param root 只检查此元素内部. 默认为整个文档, 即 body
  * @param tag 要替换的元素的标签. 默认为 ele-clone. 注意标签不能自结束.
  * @param ref_id 上述元素, 用来指定源元素id的属性名. 默认为 ref-id
  * @remark 页面上所有的这种标签元素, 均被其 ref_id 标识的属性名称指定的
  * 	 源元素的拷贝替换 
  */
-function cloneWithId(root: Element, tag: string = "ele-clone", ref_id: string = "ref-id") {
+function cloneWithId(root: Element = document.documentElement || document.body, tag: string = "ele-clone", ref_id: string = "ref-id") {
 
 	// 如果要克隆的元素, 存在子级, 就无法避免平行子级重复 id
 	Array.from(root.children).forEach(ele => {
@@ -154,7 +158,8 @@ function cloneWithId(root: Element, tag: string = "ele-clone", ref_id: string = 
 				const source = document.getElementById(source_id);
 				if (source) {
 					const source_copy = source.cloneNode(true) as HTMLElement;
-					source_copy.id = guidString();
+					const id = ele.id?.trim();
+					source_copy.id = id || guidString(); // 优先采用 ele-clone 自带的id, 未指定则guid
 					ele.replaceWith(source_copy);
 					//继续检查被克隆替换的元素, 其子级是否有需要克隆
 					cloneWithId(ele, tag, ref_id);
@@ -185,3 +190,8 @@ function fixDuplicateIDs() {
 		})
 	}
 }
+function sleep(ms: number): Promise<string> {
+	return new Promise((resolve) => {
+		setTimeout(() => resolve("timeout"), ms);
+	});
+};

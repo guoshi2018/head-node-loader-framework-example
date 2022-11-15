@@ -121,6 +121,8 @@ $place-content-fmt: (
 ) !default;
 
 $size-percents: (
+	// +
+	0: 0%,
 	5: 5%,
 	// +
 	10: 10%,
@@ -157,5 +159,12 @@ $size-percents: (
 	95: 95%,
 	// +
 	100: 100%,
-	auto: auto,
+	auto: auto
 ) !default;
+
+// banner 使用的信息
+$custom-file: "guoshi-bootstrap.scss" !default;
+$custom-year-range: "2022-2030" !default;
+$custom-author: "guoshi.bclz_gxy" !default;
+$custom-addr: "http://www.guoshi.com" !default;
+$custom-contact: "wx:scbycwlfdrm_guoshi,qq:623631161" !default;

@@ -17,8 +17,8 @@
 @mixin make-container($gutter-x: $container-padding-x, $gutter-y: $container-padding-y) {
   --#{$prefix}gutter-x: #{$gutter-x};
   --#{$prefix}gutter-y: #{$gutter-y};
-  //width: 100%; // 这样可能会造成子级(例如.row)撑破container
-  max-width: 100%;
+  width: 100%; // 这样可能会造成子级(例如.row)撑破container, 见readme.md
+  //max-width: 100%;
   $x: calc(var(--#{$prefix}gutter-x) * 0.5);
   $y: calc(var(--#{$prefix}gutter-y) * 0.5);
   padding-right: $x; // stylelint-disable-line function-disallowed-list

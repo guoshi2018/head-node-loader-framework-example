@@ -1,3 +1,6 @@
+@use "variables" as *;
+@use "sundry" as *;
+
 .placeholder {
   display: inline-block;
   min-height: 1em;
@@ -14,11 +17,11 @@
 
 // Sizing
 .placeholder-xs {
-  min-height: .6em;
+  min-height: 0.6em;
 }
 
 .placeholder-sm {
-  min-height: .8em;
+  min-height: 0.8em;
 }
 
 .placeholder-lg {
@@ -38,10 +41,19 @@
   }
 }
 
+// .placeholder-wave {
+//   mask-image: linear-gradient(130deg, $black 55%, rgba(0, 0, 0, (1 - $placeholder-opacity-min)) 75%, $black 95%);
+//   mask-size: 200% 100%;
+//   animation: placeholder-wave 2s linear infinite;
+// }
+
+//　虽然不作为上下级，　也可以发生作用．但考虑到和　.placeholder-glow 使用的对称性, 将其作为上下级关系更规范些
 .placeholder-wave {
-  mask-image: linear-gradient(130deg, $black 55%, rgba(0, 0, 0, (1 - $placeholder-opacity-min)) 75%, $black 95%);
-  mask-size: 200% 100%;
-  animation: placeholder-wave 2s linear infinite;
+  .placeholder {
+    mask-image: linear-gradient(130deg, $black 55%, rgba(0, 0, 0, (1 - $placeholder-opacity-min)) 75%, $black 95%);
+    mask-size: 200% 100%;
+    animation: placeholder-wave 2s linear infinite;
+  }
 }
 
 @keyframes placeholder-wave {

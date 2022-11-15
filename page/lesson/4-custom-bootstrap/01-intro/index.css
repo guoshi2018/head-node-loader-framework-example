@@ -399,6 +399,10 @@
 /*!
   width:  
  */
+.w-0 {
+  width: 0% !important;
+}
+
 .w-5 {
   width: 5% !important;
 }
@@ -507,6 +511,10 @@
 /*!
   height:  
  */
+.h-0 {
+  height: 0% !important;
+}
+
 .h-5 {
   height: 5% !important;
 }
@@ -2442,6 +2450,56 @@
 .bg-clip-text {
   background-clip: text !important;
   -webkit-background-clip: text !important;
+}
+
+/*!
+  object-fit:  
+ */
+.object-fit-contain {
+  object-fit: contain !important;
+}
+
+.object-fit-cover {
+  object-fit: cover !important;
+}
+
+.object-fit-fill {
+  object-fit: fill !important;
+}
+
+.object-fit-none {
+  object-fit: none !important;
+}
+
+.object-fit-scale-down {
+  object-fit: scale-down !important;
+}
+
+/*!
+  white-space:  
+ */
+.ws-normal {
+  white-space: normal !important;
+}
+
+.ws-nowrap {
+  white-space: nowrap !important;
+}
+
+.ws-pre {
+  white-space: pre !important;
+}
+
+.ws-pre-wrap {
+  white-space: pre-wrap !important;
+}
+
+.ws-pre-line {
+  white-space: pre-line !important;
+}
+
+.ws-break-spaces {
+  white-space: break-spaces !important;
 }
 
 /*!
@@ -7292,7 +7350,9 @@
   show-u-94: "text-d-skip";
   show-u-95: "text-d-skip-ink";
   show-u-96: "background-clip";
-  show-u-97: "cursor";
+  show-u-97: "object-fit";
+  show-u-98: "white-space-full";
+  show-u-99: "cursor";
 }
 
 .custom-ele {
@@ -7440,8 +7500,10 @@
   prop-94: "text-d-skip";
   prop-95: "text-d-skip-ink";
   prop-96: "background-clip";
-  prop-97: "cursor";
-  prop-98: "color123";
+  prop-97: "object-fit";
+  prop-98: "white-space-full";
+  prop-99: "cursor";
+  prop-100: "color123";
 }
 
 .alert-primary {

@@ -6,12 +6,12 @@
   <meta name="viewport"
     content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>官网文档 layout 部分 </title>
-  <script type="text/javascript" src="/lib/script/js/indoor-core/jscss-loader.js"
+  <script type="text/javascript" src="/lib/script/js/jscss-loader/jscss-loader2.0.js"
     entry="/lib/script/js/page/lesson/4-custom-bootstrap/03-layout.js"></script>
 </head>
 
 <body>
-  <section class="demo-containers show-child-w m-0 w-100">
+  <section class="demo-containers m-0 w-100">
     <h4 class="header">
       <p>
         测试各个container的频宽响应, 本来应将各个container作为body的直接子级, 方便测试.
@@ -21,7 +21,7 @@
         排版的原因, 使用section ,但应确保其width:100%, margin:0
       </p>
     </h4>
-    <main>
+    <main class="show-child-w">
       <div class="container-fluid my-1">container-fluid</div>
       <div class="container  my-1">container</div>
       <div class="container-sm my-1">container-sm</div>

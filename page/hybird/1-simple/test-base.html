@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>测试(多个)base标签的行为</title>
+
+	<!-- 以下, 有意采用相对路径, 以验证 -->
+
+	<!-- 当前 base: 默认 /page/hybird/1-simple/ -->
+	<script src="../../../lib/script/js/page-resource-loader/page-resource-loader1.0.js"
+		entry="../../../lib/script/js/page/hybird/1-simple/test-base.js"></script>
+
+	<!-- 修改 base  生效 -->
+	<base href="/lib/script/js/page/hybird/1-simple/">
+	<script src="1.js"></script>
+	<script src="../../../indoor-lib/function/extensions/ObjectExtensions.js"></script>
+	<script type="module" src="2.js"></script>
+
+	<!-- 在此修改 base 则被忽略 -->
+	<base href="/lib/script/js/page/hybird/">
+	<!-- <script comment="按照上面的base配置src, 反而会报错" type="module" src="1-simple/another.js"></script> -->
+	<script comment="忽略它, 则成功" type="module" src="another.js"></script>
+</head>
+
+<body>
+	<details class="ndemo- ">
+		<summary class="header">
+			测试(多个)base标签的行为
+		</summary>
+		<section class="p-5 border" ways="c(container)">
+			<article class="test">
+				<button type="button" class="one">one</button>
+				<button type="button" class="two">two</button>
+			</article>
+			<article ways="">
+				<h4> 结论: base 采用默认后, 只可以修改一次</h4>
+				<ul>
+					<li>
+						0次代表采用默认: href=document.location.href, 即当前文档目录, 注意不是根目录(根目录是'/')
+					</li>
+					<li>
+						1次, 如果 base 出现的时候已经有 script link 等出现, 则该 base 只对后续标签有效.
+					</li>
+					<li>
+						后续如果再出现 base 标签, 被忽略.
+					</li>
+				</ul>
+			</article>
+		</section>
+	</details>
+
+	<!--
+        <details class="ndemo- ">
+        <summary class="header">
+           测试
+        </summary>
+        <section class="p-5 border" ways="c(container)">
+          <article ways="">
+
+          </article>
+          <article ways="">
+
+          </article>
+        </section>
+      </details>
+       -->
+</body>
+
+</html>

@@ -57,7 +57,7 @@
 .vrow:not(.no-bg),
 .vrowr:not(.no-bg),
 .grid,
-.xgrid,
+.xgrid:not(.no-bg),
 .child-need-bg {
 	> * {
 		&:nth-child(5n + 1) {

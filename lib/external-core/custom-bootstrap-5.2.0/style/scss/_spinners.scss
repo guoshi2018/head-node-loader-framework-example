@@ -1,3 +1,6 @@
+@use "sundry" as *;
+@use "variables" as *;
+
 //
 // Rotating border
 //
@@ -15,7 +18,9 @@
 
 // scss-docs-start spinner-border-keyframes
 @keyframes spinner-border {
-  to { transform: rotate(360deg) #{"/* rtl:ignore */"}; }
+  to {
+    transform: rotate(360deg) #{"/* rtl:ignore */"};
+  }
 }
 // scss-docs-end spinner-border-keyframes
 

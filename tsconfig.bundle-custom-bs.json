@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "removeComments": true,
+    "outFile": "lib/script/js/indoor-lib/custom-bootstrap5.2/bustom-bootstrap5.2.bundler.js",
+    //"outFile": "lib/script/js/indoor-lib/guoshi-demo/guoshi.bundler.js",
+    //"allowJs": true,
+    "target": "ES2015",
+    //"module": "ESNext",
+    "strict": true,
+    "importHelpers": true,
+    "moduleResolution": "Node",
+    //"inlineSourceMap": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    //  "rootDir": "lib/script/ts/indoor-lib/custom-bootstrap5.2"
+    //"rootDir": "lib/script/ts/indoor-lib/guoshi-demo",
+  },
+  "include": [
+    //其他自定义的.d.ts文件,务必位于lib/script/ts目录下,否则很麻烦
+    //"lib/script/ts/**/*.ts",
+    "lib/script/ts/indoor-lib/custom-bootstrap5.2/**/*.ts"
+    //"lib/script/ts/indoor-lib/guoshi-demo/**/*.ts",
+    //"lib/script/ts/indoor-lib/guoshi-demo/util/hey.ts",
+    //"lib/script/ts/indoor-lib/guoshi-demo/util/hello.ts",
+  ],
+}

@@ -1,0 +1,41 @@
+{
+	"comment": "全站页面均可能用到的js文件列表的数组,排列顺序必须保证:组内无依赖关系,后面的组可依赖于前面的组,反之则不然.注意jquery3以上,删除了jQuery.event.props和jQuery.event.fixHooks.",
+	"comment1": "1. script: filepath=... tag=script 必须, 其余(例如 type=module async defer) 可选",
+	"comment2": "2. 用于 css 的 link: filepath=... tag=link rel=stylesheet 必须, 其余可选 ",
+	"comment3": "结合 html 页面的 <base href=... /> 设置, 上述 url 可以采用相对路径",
+	"descriptors": [
+		[
+			{
+				"tag": "script",
+				"filepath": "/lib/external-core/jquery/jquery-3.6.0.js",
+				"atLast": false
+			}
+		],
+		[
+			{
+				"tag": "link",
+				"rel": "stylesheet",
+				"filepath": "/lib/external-core/bootstrap-4.3.1-dist/css/bootstrap.css"
+			},
+			{
+				"tag": "link",
+				"rel": "stylesheet",
+				"filepath": "/lib/css/common.css"
+			}
+		],
+		[
+			{
+				"tag": "script",
+				"filepath": "/lib/external-core/modernizr/modernizr.js"
+			},
+			{
+				"tag": "script",
+				"filepath": "/lib/script/js/common/util.js"
+			},
+			{
+				"tag": "script",
+				"filepath": "/lib/external-core/bootstrap-4.3.1-dist/js/bootstrap.js"
+			}
+		]
+	]
+}

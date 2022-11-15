@@ -210,8 +210,6 @@
 .card-img-overlay {
   position: absolute;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
   padding: var(--bs-card-img-overlay-padding);
   border-radius: var(--bs-card-inner-border-radius);
@@ -235,6 +233,17 @@
   border-bottom-left-radius: var(--bs-card-inner-border-radius);
 }
 
+/*
+.card-img-top,
+.card-img-bottom {
+  position: absolute;
+}
+.card-img-top {
+  top: 0;
+}
+.card-img-bottom {
+  bottom: 0;
+}*/
 .card-group > .card {
   margin-bottom: var(--bs-card-group-margin);
 }

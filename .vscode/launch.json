@@ -8,7 +8,13 @@
 			"name": "Launch Edge",
 			"request": "launch",
 			"type": "msedge",
-			"url": "http://localhost:5500/page/lesson/4-custom-bootstrap/05-forms",
+			//"url": "http://localhost:5500/page/lesson/4-custom-bootstrap/05-forms-coms/forms.html",
+			//"url": "http://localhost:5500/page/lesson/4-custom-bootstrap/05-forms-coms/coms.html",
+			//"url": "http://localhost:5500/page/lesson/4-custom-bootstrap/06-bs-js-exper/index.html",
+			//"url": "http://localhost:5500/page/hybird/1-simple/index.html",
+			//"url": "http://localhost:5500/page/hybird/1-simple/onlytag.html",
+			//"url": "http://localhost:5500/page/hybird/1-simple/test-base.html",
+			"url": "http://localhost:5500/page/hybird/2-head-child-node-test/index.html",
 			"webRoot": "${workspaceFolder}"
 		},
 	]

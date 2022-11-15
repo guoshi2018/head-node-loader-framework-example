@@ -48,6 +48,8 @@ type TargetOptionProcessor = {
  * 		6. 禁用 ways 型元素的右键 context menu, 当元素被disabled时恢复, 而取消disabled时再次禁用
  *  注意:
  * 		取消选项: 按住 ctrl, 左键点击该 item . (这是原生select带有的特征)
+ *  使用方法:
+ * 			EffectSelectorPersist.getInstance();
  */
 class EffectSelectorPersist {
 
@@ -111,6 +113,7 @@ class EffectSelectorPersist {
 		this._select.setAttribute("aria-label", aria_label);
 		this._select.multiple = true;
 		this._select.size = 10;
+		this._select.tabIndex = 100000;
 		this._select.title = prompt;
 		document.body.append(this._select);
 
@@ -200,6 +203,8 @@ class EffectSelectorPersist {
 		// 未判断 evt.target == evt.currentTarget, 是为了允许无ways的子元素被点击后,
 		// 冒泡到父元素. 否则有时候, 一些容器元素, 可能无法通过鼠标选择.
 		// 而父元素处理后, 也是立即停止冒泡
+		// 所以, 如果上下级(或中间空了一级, 它没有ways)均有ways, 则右键点击, 会在上下级之间切换.
+		// 整好满足需要. 但如果上级上面还有带 ways 的顶级, 点下级则无法到达此顶级.
 		const target = evt.currentTarget as HTMLElement;
 		// 连续的重复点击则忽略
 		if (evt.button == 2 && this._target != target) {
@@ -214,6 +219,7 @@ class EffectSelectorPersist {
 			this._preventAndStop(evt);
 		}
 	}
+
 
 	/**
 	 * 目标 html 元素的 ways 属性(如果有)值, 转换为 HTMLOptionElement 数组
@@ -368,7 +374,10 @@ class EffectSelectorPersist {
 				} else {
 					if (opt.selected) {
 						target.setAttribute(key, value);
-					} else {
+					}
+					else if (target.getAttribute(key) == value) {
+						// 本质上不能直接移除, 如果是给同一个html attr 切换多个值, 移除则先前的赋值失效
+						// 只有当未选中, 同时该项属性值等于当前 value 才可移除				
 						target.removeAttribute(key);
 					}
 				}
@@ -387,11 +396,11 @@ class EffectSelectorPersist {
 			class_callback: (target, key, opt) => {
 				if (opt.selected) {
 					//	不用检查是否包含, 因为重复添加会被自动忽略
+					// 但是重复添加, 会引发相应的 mutation, 这对 obser-wrapper 的工作会有负面影响
 					if (!target.classList.contains(key)) {
 						target.classList.add(key);
 					}
 				} else {
-					//@ts-ignore
 					if (target.classList.contains(key)) {
 						target.classList.remove(key);
 					}
@@ -468,4 +477,4 @@ class EffectSelectorPersist {
 		this._select.remove();
 	}
 }
-
+// EffectSelectorPersist.getInstance();

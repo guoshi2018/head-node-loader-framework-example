@@ -1,3 +1,9 @@
+@use "sundry" as *;
+@use "variables" as *;
+@use "mixins/border-radius" as *;
+@use "mixins/breakpoints" as *;
+@use "functions" as *;
+@use "mixins/list-group" as *;
 // Base class
 //
 // Easily usable on <ul>, <ol>, or <div>.
@@ -108,7 +114,9 @@
     border-top-width: 0;
 
     &.active {
-      margin-top: calc(var(--#{$prefix}list-group-border-width) * -1); // stylelint-disable-line function-disallowed-list
+      margin-top: calc(
+        var(--#{$prefix}list-group-border-width) * -1
+      ); // stylelint-disable-line function-disallowed-list
       border-top-width: var(--#{$prefix}list-group-border-width);
     }
   }
@@ -145,7 +153,9 @@
           border-left-width: 0;
 
           &.active {
-            margin-left: calc(var(--#{$prefix}list-group-border-width) * -1); // stylelint-disable-line function-disallowed-list
+            margin-left: calc(
+              var(--#{$prefix}list-group-border-width) * -1
+            ); // stylelint-disable-line function-disallowed-list
             border-left-width: var(--#{$prefix}list-group-border-width);
           }
         }
@@ -153,7 +163,6 @@
     }
   }
 }
-
 
 // Flush list items
 //
@@ -171,7 +180,6 @@
     }
   }
 }
-
 
 // scss-docs-start list-group-modifiers
 // List group contextual variants

@@ -1,10 +1,17 @@
+@use "sundry" as *;
+@use "variables" as *;
+@use "mixins/transition" as *;
+@use "mixins/border-radius" as *;
+@use "mixins/box-shadow" as *;
+@use "mixins/backdrop" as *;
+@use "mixins/breakpoints" as *;
+
 // stylelint-disable function-disallowed-list
 
 // .modal-open      - body class for killing the scroll
 // .modal           - container to scroll within
 // .modal-dialog    - positioning shell for the actual modal
 // .modal-content   - actual modal w/ bg and corners and stuff
-
 
 // Container that the modal scrolls within
 .modal {
@@ -117,7 +124,11 @@
   --#{$prefix}backdrop-opacity: #{$modal-backdrop-opacity};
   // scss-docs-end modal-backdrop-css-vars
 
-  @include overlay-backdrop(var(--#{$prefix}backdrop-zindex), var(--#{$prefix}backdrop-bg), var(--#{$prefix}backdrop-opacity));
+  @include overlay-backdrop(
+    var(--#{$prefix}backdrop-zindex),
+    var(--#{$prefix}backdrop-bg),
+    var(--#{$prefix}backdrop-opacity)
+  );
 }
 
 // Modal header
@@ -132,8 +143,9 @@
   @include border-top-radius(var(--#{$prefix}modal-inner-border-radius));
 
   .btn-close {
-    padding: calc(var(--#{$prefix}modal-header-padding-y) * .5) calc(var(--#{$prefix}modal-header-padding-x) * .5);
-    margin: calc(var(--#{$prefix}modal-header-padding-y) * -.5) calc(var(--#{$prefix}modal-header-padding-x) * -.5) calc(var(--#{$prefix}modal-header-padding-y) * -.5) auto;
+    padding: calc(var(--#{$prefix}modal-header-padding-y) * 0.5) calc(var(--#{$prefix}modal-header-padding-x) * 0.5);
+    margin: calc(var(--#{$prefix}modal-header-padding-y) * -0.5) calc(var(--#{$prefix}modal-header-padding-x) * -0.5)
+      calc(var(--#{$prefix}modal-header-padding-y) * -0.5) auto;
   }
 }
 
@@ -160,7 +172,7 @@
   flex-wrap: wrap;
   align-items: center; // vertically center
   justify-content: flex-end; // Right align buttons with flex property because text-align doesn't work on flex items
-  padding: calc(var(--#{$prefix}modal-padding) - var(--#{$prefix}modal-footer-gap) * .5);
+  padding: calc(var(--#{$prefix}modal-padding) - var(--#{$prefix}modal-footer-gap) * 0.5);
   background-color: var(--#{$prefix}modal-footer-bg);
   border-top: var(--#{$prefix}modal-footer-border-width) solid var(--#{$prefix}modal-footer-border-color);
   @include border-bottom-radius(var(--#{$prefix}modal-inner-border-radius));
@@ -169,7 +181,7 @@
   // This solution is far from ideal because of the universal selector usage,
   // but is needed to fix https://github.com/twbs/bootstrap/issues/24800
   > * {
-    margin: calc(var(--#{$prefix}modal-footer-gap) * .5); // Todo in v6: replace with gap on parent class
+    margin: calc(var(--#{$prefix}modal-footer-gap) * 0.5); // Todo in v6: replace with gap on parent class
   }
 }
 

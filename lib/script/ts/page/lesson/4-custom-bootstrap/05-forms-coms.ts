@@ -1,6 +1,5 @@
 
 
-
 /*********************************************************************************************************
  * 页面的入口文件，是前端页面文件（例如cshtml或html）中唯一包含的<script >标签中，entry属性指定的js脚本文件
  * 
@@ -17,7 +16,7 @@
 JscssLoader.getInstance().startEntry({
 
 	//globalRes: 默认包含必要脚本的文件 '/lib/script/json/global.json',一般不用修改
-	globalRes: null, // 或 空字符串 '' 或 输入路劲不存在, 则放弃公共先决资源文件的加载
+	//globalRes: null, // 或 空字符串 '' 或 输入路劲不存在, 则放弃公共先决资源文件的加载
 
 	//是否启用调试
 	debug: true, //默认false
@@ -27,6 +26,9 @@ JscssLoader.getInstance().startEntry({
 	//必要时,查看global.json(或在此指定的其替代文件), 以免重复加载(虽然自动忽略)
 	privateRes: [
 		[
+			'/page/lesson/4-custom-bootstrap/05-forms-coms/index.css',
+		],
+		[
 			//'/lib/external-core/jquery/jquery-3.6.0.js',
 			'/lib/external-core/custom-bootstrap-5.2.0/js/bootstrap.bundle.js',
 			'/lib/script/js/indoor-lib/class/live-set.js',
@@ -34,15 +36,13 @@ JscssLoader.getInstance().startEntry({
 		[
 			// '/lib/script/js/indoor-lib/class/size-watcher.js',
 			'/lib/script/js/indoor-lib/function/guoshi/tool.js',
-			'/page/lesson/4-custom-bootstrap/05-forms-coms/index.css',
-			'/lib/script/js/indoor-lib/class/flexgrid-item-offset-mender/observer-wrapper.js',
-
+			'/lib/script/js/indoor-lib/class/observer-wrapper.js',
 		], [
 			//'/lib/script/js/indoor-lib/class/way-processor.js', // 已废弃			
 			'/lib/script/js/indoor-lib/class/effect-selector-persist.js',
-			//'/lib/script/js/indoor-lib/class/flexgrid-item-offset-mender.js',
-			'/lib/script/js/indoor-lib/class/flexgrid-item-offset-mender/flexgrid-item-offset-mender.js',
-
+			'/lib/script/js/indoor-lib/class/flexgrid-item-offset-mender.js',
+			'/lib/script/js/indoor-lib/class/dynamic-bootstrap-object-manager.js',
+			'/lib/script/js/indoor-lib/class/dynamic-bootstrap-object-toggler-manager.js'
 		]
 	],
 
@@ -53,97 +53,77 @@ JscssLoader.getInstance().startEntry({
 
 		//new SizeWatcher(".show-child-w", 'w');
 
-		const obs = new FlexgridItemOffsetMender();
-		obs.start();
+		DynamicBootstrapObjectManager.instance.start();
+		DynamicBootstrapObjectTogglerManager.instance.start();
+		FlexgridItemOffsetMender.instance.start();
 
 
-		cloneWithId(document.body);
+		//configToast();
+
+		cloneWithId();
 		fixDuplicateIDs();
 		configLabelFor();
-		EffectSelectorPersist.getInstance();
 		openLastDetails();
 		startValidating();
-
+		EffectSelectorPersist.getInstance(); // 需要元素已全部准备好
 
 
 		window.scrollTo(0, document.body.clientHeight);
 
-
 		temp();
+
+
+
+
+		function configLabelFor() {
+			const labels = document.querySelectorAll("label");
+			labels.forEach(label => {
+				if (!label.getAttribute("for")) {
+					const tgt = label.previousElementSibling || label.nextElementSibling;
+					if (tgt) {
+						const id = guidString();
+						tgt.setAttribute("id", id);
+						label.setAttribute("for", id);
+					}
+				}
+			})
+		}
+
+
+		/**
+		 * Example starter JavaScript for disabling form submissions if there are invalid fields
+		 */
+		function startValidating() {
+			// Fetch all the forms we want to apply custom Bootstrap validation styles to
+			const forms = document.querySelectorAll('.use-bs-validation')
+
+			// Loop over them and prevent submission
+			Array.from(forms).forEach(fm => {
+				const form = fm as HTMLFormElement;
+				form.addEventListener('submit', event => {
+					console.log('begin validate...')
+					if (!form.checkValidity()) {
+						console.log('fail to validate, now prevent and stop');
+					} else {
+						console.log('validation is completed.');
+					}
+
+					form.classList.add('was-validated');
+
+					event.preventDefault()
+					event.stopPropagation()
+				}, false);
+			})
+		}
+
+
+
+
+		function temp() {
+
+		}
 	}
 });
 
-/**
- * style 所有不确定状态的checkbox
- * 有了 EffectSelector , 这个可以退休了
- */
-function indeterminateChecks() {
-	////@ts-ignore
-	const indChks = document.querySelectorAll("input[type=checkbox][id*=Indeterminate");
-	indChks.forEach(chk => {
-		//chk.setAttribute("indeterminate", "true"); //失败
-		//@ts-ignore
-		chk.indeterminate = true; //ok 但是有红波浪线				
-	})
-}
-
-function configLabelFor() {
-	const labels = document.querySelectorAll("label");
-	labels.forEach(label => {
-		if (!label.getAttribute("for")) {
-			const tgt = label.previousElementSibling || label.nextElementSibling;
-			if (tgt) {
-				const id = guidString();
-				tgt.setAttribute("id", id);
-				label.setAttribute("for", id);
-			}
-		}
-	})
-}
-
-/**
- * 启动双击element, 修正 .vrow/.vrowr 的 col 子级的 offset-n(如果有)
- * 已废弃, 使用 FlexgridItemOffsetMender 类, 可及时动态修补此margin为正确设置
- */
-function dblclick2FixVrowOffset() {
-	document.body.addEventListener('dblclick', evt => {
-		const ele = evt.target as HTMLElement;
-		fixFlexGridColMargin(ele);
-		return false; // 不冒泡了
-	});
-}
-
-/**
- * Example starter JavaScript for disabling form submissions if there are invalid fields
- */
-function startValidating() {
-	// Fetch all the forms we want to apply custom Bootstrap validation styles to
-	const forms = document.querySelectorAll('.use-bs-validation')
-
-	// Loop over them and prevent submission
-	Array.from(forms).forEach(fm => {
-		const form = fm as HTMLFormElement;
-		form.addEventListener('submit', event => {
-			console.log('begin validate...')
-			if (!form.checkValidity()) {
-				console.log('fail to validate, now prevent and stop');
-			} else {
-				console.log('validation is completed.');
-			}
-
-			form.classList.add('was-validated');
-
-			event.preventDefault()
-			event.stopPropagation()
-		}, false);
-	})
-}
 
 
-
-function temp() {
-	document.body.addEventListener('click', evt => {
-		// const dhp = document.getElementById('chr-data-test') as HTMLElement;
-		// dhp.innerHTML = "添加的先导文字:" + dhp.innerHTML
-	})
-}

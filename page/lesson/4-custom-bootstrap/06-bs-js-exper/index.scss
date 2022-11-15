@@ -1,0 +1,26 @@
+/*! some comment go */
+@forward "sundry" with($enable-shadows: true, $enable-xgrid: true);
+@forward "variables" with (
+	$transition-fade: opacity 1.8s ease-in-out
+);
+@forward "../common/guoshi-bootstrap";
+@forward "../common/debug";
+
+.temp-no-any {
+}
+.temp-only-duration-ms {
+	transition-duration: 2800ms;
+}
+.temp-only-delay-ms {
+	transition-delay: 3200ms;
+}
+.temp-only-duration-s {
+	transition-duration: 5s;
+}
+.temp-only-delay-s {
+	transition-delay: 9s;
+}
+.temp-both {
+	transition-duration: 300ms, 18s;
+	transition-delay: 5s, 280s;
+}

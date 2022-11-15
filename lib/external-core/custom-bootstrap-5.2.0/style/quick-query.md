@@ -1,4 +1,4 @@
-以下, 使用 mq 代替 (null,xs,sm,lg,xl,xxl)
+## 以下, 使用 mq 代替 (null,xs,sm,lg,xl,xxl)
 
 bootstrap. 速查
 	1. 前景色和背景色,单独设置: text-(primary...), bg-(primary...).
@@ -6,8 +6,8 @@ bootstrap. 速查
 	2. 前景色根据背景色产生(对比度鲜明): text-bg-(primary...).
 
 	3. 不透明度: text-opacity-(25,50,75,100), bg-opacity-(10,25,50,75,100).
-	如果感觉细度不够, 又不想通过@use "utilities";是配置为添加选项, 然后编译生成, 
-	可以以在html标签内嵌 style="--bs-text-opacity:0.38;--bs-bg-opacity:0.67"
+	如果感觉细度不够, 又不想通过@use "utilities"; 时配置为添加选项, 然后编译生成, 
+	可以在html标签内嵌 style="--bs-text-opacity:0.38;--bs-bg-opacity:0.67"
 	的形式设置
 
 	4. 经修正, 目前各自的不透明度可以与两种前景色/背景色自由组合
@@ -65,6 +65,7 @@ flex layout:
    2. 项目 class:
    		1) .g-col-mq-(1,...,12): 从下一列开始,占宽 (1,...,12) 个单元.
    		2) .g-start-mq-(1,...,11): 从第(1,...,11)列开始.
+   感觉不是很好用, 建议使用自定义的 .xgrid
 
 手工实现的flex:
 utilities.scss 配合 utilities/api.scss 得到

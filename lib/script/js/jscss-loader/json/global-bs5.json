@@ -1,0 +1,11 @@
+{
+    "description": "全站页面均可能用到的js文件列表的数组,排列顺序必须保证:组内无依赖关系,后面的组可依赖于前面的组,反之则不然.注意jquery3以上,删除了jQuery.event.props和jQuery.event.fixHooks.If you’re using our compiled JavaScript and prefer to include Popper separately, add Popper before our JS, via a CDN preferably.",
+    "bootstrap-prompt": "popper的cdn:https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js",
+    "bootstrap-bundle": "bootstrap.bundle.* 已经包括popper, 而非bundle版本未包括",
+    "paths": [
+        [
+            "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css",
+            "https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        ]
+    ]
+}

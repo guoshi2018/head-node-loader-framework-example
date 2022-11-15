@@ -297,6 +297,9 @@
 .demo-utils .key-utilities .key-width .key-class {
   content: w;
 }
+.demo-utils .key-utilities .key-width .key-values .key-0 {
+  content: 0%;
+}
 .demo-utils .key-utilities .key-width .key-values .key-5 {
   content: 5%;
 }
@@ -392,6 +395,9 @@
 }
 .demo-utils .key-utilities .key-height .key-class {
   content: h;
+}
+.demo-utils .key-utilities .key-height .key-values .key-0 {
+  content: 0%;
 }
 .demo-utils .key-utilities .key-height .key-values .key-5 {
   content: 5%;
@@ -1961,6 +1967,21 @@
 }
 .demo-utils .key-utilities .key-background-clip .key-values .key-text {
   content: text;
+}
+.demo-utils .key-utilities .key-object-fit .key-property {
+  content: object-fit;
+}
+.demo-utils .key-utilities .key-object-fit .key-values {
+  content: contain, cover, fill, none, scale-down;
+}
+.demo-utils .key-utilities .key-white-space-full .key-property {
+  content: white-space;
+}
+.demo-utils .key-utilities .key-white-space-full .key-class {
+  content: ws;
+}
+.demo-utils .key-utilities .key-white-space-full .key-values {
+  content: normal, nowrap, pre, pre-wrap, pre-line, break-spaces;
 }
 .demo-utils .key-utilities .key-one .key-property {
   content: number-one;

@@ -1,22 +1,53 @@
 /*! some comment go */
 
-@forward "sundry" with($enable-shadows: true, $enable-grid-classes: true, $enable-cssgrid: true);
-@forward "utilities/api";
-@forward "forms/labels";
-@forward "forms/form-control";
-@forward "forms/form-text";
-@forward "forms/form-check";
-@forward "buttons";
-@forward "grid";
-@forward "forms/form-select";
-@forward "helpers/color-bg";
-@forward "forms/form-range";
-@forward "forms/input-group";
-@forward "dropdown";
-@forward "helpers/visually-hidden";
-@forward "forms/floating-labels";
-@forward "forms/validation";
-@forward "containers";
-@forward "root";
-@forward "reboot";
+@forward "../common/guoshi-bootstrap";
 @forward "../common/debug";
+
+.bi {
+	width: 1em;
+	height: 1em;
+	fill: currentColor;
+}
+
+.gx-popover {
+	--bs-popover-max-width: 200px;
+	--bs-popover-border-color: var(--bs-primary);
+	--bs-popover-header-bg: var(--bs-primary);
+	--bs-popover-header-color: var(--bs-white);
+	--bs-popover-body-padding-x: 1rem;
+	--bs-popover-body-padding-y: 0.5rem;
+}
+.gx-tooltip {
+	//  --bs-tooltip-zindex: #{$zindex-tooltip};
+	--bs-tooltip-max-width: 300px;
+	--bs-tooltip-padding-x: 1.2em;
+	--bs-tooltip-padding-y: 0.8em;
+	--bs-tooltip-margin: 0.5em;
+	//@include rfs($tooltip-font-size, --bs-tooltip-font-size);
+	--bs-tooltip-color: rgb(224, 12, 111);
+	--bs-tooltip-bg: rgb(6, 51, 97);
+	--bs-tooltip-border-radius: 40%;
+	--bs-tooltip-opacity: 0.4;
+	--bs-tooltip-arrow-width: 1.3rem;
+	--bs-tooltip-arrow-height: 1.5rem;
+}
+
+.nested-spy,
+.use-list,
+.use-simple-link {
+	$mh: 30em;
+	> .nav,
+	> nav,
+	> div {
+		max-height: $mh;
+	}
+	[data-bs-toggle="scrollspy"] {
+		overflow-y: auto;
+		max-height: $mh;
+		p {
+			width: 90%;
+			height: 380px;
+			border: 1px solid rgb(73, 4, 94);
+		}
+	}
+}

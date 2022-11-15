@@ -1,18 +1,33 @@
 {
-  "compilerOptions": {
-    "outDir": "lib/script/js",
-    //"allowJs": true,
-    "target": "es2015",
-    //"module": "ESNext",
-    "strict": true,
-    "importHelpers": true,
-    "moduleResolution": "Node",
-    //"inlineSourceMap": true,
-    "sourceMap": true,
-    "skipLibCheck": false,
-  },
-  "include": [
-    //其他自定义的.d.ts文件,务必位于lib/script/ts目录下,否则很麻烦
-    "lib/script/ts/**/*.ts",
-  ],
+	"compilerOptions": {
+		"removeComments": true,
+		"outDir": "lib/script/js",
+		"allowJs": true,
+		"target": "ES2020",
+		//"module": "ESNext",
+		//"module": "CommonJS",
+		"strict": true,
+		"importHelpers": false,
+		//"moduleResolution": "Node",
+		//"inlineSourceMap": true,
+		"sourceMap": true,
+		"skipLibCheck": true,
+		//"resolveJsonModule": true,
+		//"baseUrl": "./",
+		// "paths": {
+		// 	"@/*": [
+		// 		"src/*"
+		// 	],
+		// 	"tspath/*": [
+		// 		"src/views/exercise/24-tspath/*"
+		// 	],
+		// },
+		//},
+	},
+	"include": [
+		//其他自定义的.d.ts文件,务必位于lib/script/ts目录下,否则很麻烦
+		"lib/script/ts/**/*.ts",
+		"lib/script/ts/jscss-loader/**/*.json",
+		"lib/script/ts/page-resource-loader/**/*.json"
+	],
 }

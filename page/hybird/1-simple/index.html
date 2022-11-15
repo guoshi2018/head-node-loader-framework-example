@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>js脚本的常规与import导入混合测试,以及page-resource-loader1.0.ts</title>
+    <base href="/lib/script/js/page/hybird/1-simple/" />
+    <!-- <script src="/lib/script/js/page/hybird/1-simple/1.js" type="text/javascript"></script>
+    <script src="/lib/script/js/page/hybird/1-simple/2.js" type="module"></script>
+    <script src="/lib/script/js/page/hybird//1-simple/another.js"></script> -->
+    <!-- <script type="module">
+      import { commonFun } from "/lib/script/js/page/hybird/1-simple/fun.js";
+      commonFun('sit down');
+      console.log('hey');
+    </script> -->
+    <!-- <script type="text/javascript" src="/lib/script/js/jscss-loader/jscss-loader2.0.js"
+      entry="/lib/script/js/page/hybird/1-simple/index.js"></script> -->
+    <!-- <script src="/lib/script/js/page/hybird/1-simple/defer.js"></script> -->
+    <!-- 内联脚本, defer async 无效, 始终是同步脚本-->
+
+    <script defer src="/lib/script/js/page-resource-loader/page-resource-loader1.0.js"
+            entry="/lib/script/js/page/hybird/1-simple/index.js"></script>
+
+</head>
+
+<body>
+    <details class="ndemo- ">
+        <summary class="header">
+            测试
+        </summary>
+        <section class="p-5 border" ways="c(container)">
+            <article class="test">
+                <button type="button" class="one">删除各个script标签</button>
+                <button type="button" class="two">调用模块内的函数</button>
+            </article>
+            <article ways="">
+            </article>
+        </section>
+    </details>
+
+    <!--
+        <details class="ndemo- ">
+        <summary class="header">
+           测试
+        </summary>
+        <section class="p-5 border" ways="c(container)">
+          <article ways="">
+
+          </article>
+          <article ways="">
+
+          </article>
+        </section>
+      </details>
+       -->
+</body>
+
+</html>

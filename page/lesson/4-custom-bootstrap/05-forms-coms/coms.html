@@ -1,0 +1,1363 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>bootstrap 之 forms/components 演练</title>
+  <script type="text/javascript" src="/lib/script/js/jscss-loader/jscss-loader2.0.js"
+    entry="/lib/script/js/page/lesson/4-custom-bootstrap/05-forms-coms.js"></script>
+</head>
+
+<body>
+
+  <details class="ndemo-accordion">
+    <summary class="header">
+      accordion 测试
+    </summary>
+
+    <section class="p-5 border" ways="c(accordion),c(accordion-flush),h(id)acc-par">
+      <article ways=" c(accordion-item)">
+        <h2 ways="c(accordion-header)">
+          <button ways="c(accordion-button),h(type)button,h(data-bs-toggle)collapse,h(data-bs-target)#coll-one">
+            accordion item #1
+          </button>
+        </h2>
+        <main ways="c(accordion-collapse),c(show),h(data-bs-parent)#acc-par,h(id)coll-one">
+          <p ways="c(accordion-body)">
+            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
+            plugin adds the
+            appropriate classes that we use to style each element. These classes control the overall appearance,
+            as well as the
+            showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our
+            default variables.
+            It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though
+            the transition
+            does limit overflow.
+          </p>
+        </main>
+      </article>
+      <article ways=" c(accordion-item)">
+        <h2 ways=" c(accordion-header)">
+          <button ways="c(accordion-button),h(type)button,h(data-bs-toggle)collapse,h(data-bs-target)#coll-two">
+            accordion item #2
+          </button>
+        </h2>
+        <main ways="c(accordion-collapse),c(show),h(data-bs-parent)#acc-par,h(id)coll-two">
+          <p ways="c(accordion-body)">
+            <strong>This is the first item's accordion body.</strong> It is shown by default, until the collapse
+            plugin adds the
+            appropriate classes that we use to style each element. These classes control the overall appearance,
+            as well as the
+            showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our
+            default variables.
+            It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though
+            the transition
+            does limit overflow.
+          </p>
+        </main>
+      </article>
+    </section>
+
+  </details>
+
+  <details class="ndemo-alert">
+    <summary class="header">
+      alert 测试
+    </summary>
+    <section class="p-5 border" ways="">
+      <!-- 在其他地方引用, 所以先不 display-->
+      <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <symbol id="check-circle-fill" viewBox="0 0 16 16">
+          <path
+            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+        </symbol>
+        <symbol id="info-fill" viewBox="0 0 16 16">
+          <path
+            d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z" />
+        </symbol>
+        <symbol id="exclamation-triangle-fill" viewBox="0 0 16 16">
+          <path
+            d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+        </symbol>
+      </svg>
+      <article>
+        <div id="first-alert" ways="c(align-items-center),c(alert),
+          c(alert-primary),c(alert-secondary),c(alert-success),c(alert-danger),
+          c(alert-warning),c(alert-info),c(alert-light),c(alert-dark),c(alert-dismissible)" role="alert">
+          <h4 ways="c(alert-heading)">well done !</h4>
+          <p>
+            Aww yeah, you successfully read this important alert message.
+          </p>
+          <hr>
+          <p ways="c(mb-0)">
+            Whenever you need to, be sure to use margin util
+          </p>
+          <!-- 嵌入 svg ,注意: bi-exclamation-triangle-fill 没找到-->
+          <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-exclamation-triangle-fill flex-shrink-0 me-2"
+            viewBox="0 0 16 16" role="img" aria-label="Warning:">
+            <path
+              d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+          </svg>
+          <!-- 引用 svg -->
+          <svg class="bi flex-shrink-0 me-2">
+            <use xlink:href="#info-fill"
+              ways="h(xlink:href)#check-circle-fill,h(xlink:href)#exclamation-triangle-fill" />
+          </svg>
+          <label>
+            alert example
+            <a href="#" ways="c(alert-link)">with alert-link</a>
+          </label>
+          <button type="button" ways="c(btn-close),h(data-bs-dismiss)alert"></button>
+        </div>
+        <label>通过data-bs-target的设置, 也可以关闭alert(发现动态配置的不行)</label>
+        <button type="button" ways="c(btn-close),h(data-bs-dismiss)alert,h(data-bs-target)#first-alert">
+          <button type="button" class="btn-close" data-bs-dismiss="alert" data-bs-target="#first-alert"
+            aria-label="Close"></button>
+        </button>
+      </article>
+      <!-- <article ways="">
+
+      </article> -->
+    </section>
+  </details>
+
+  <details class="ndemo-badge">
+    <summary class="header">
+      测试 badge
+    </summary>
+    <section class="p-5 border" ways="">
+      <article ways="">
+        <h1>Example heading <span class="badge bg-primary">New</span></h1>
+        <h2>Example heading <span class="badge bg-secondary">New</span></h2>
+        <h3>Example heading <span class="badge bg-sucess">New</span></h3>
+        <h4>Example heading <span class="badge bg-warning">New</span></h4>
+        <h5>Example heading <span class="badge bg-info">New</span></h5>
+        <h6>Example heading <span class="badge bg-danger">New</span></h6>
+      </article>
+      <article ways="">
+        <button type="button" ways="c(btn),c(btn-primary)">
+          Notifications <span ways="c(badge),c(text-bg-secondary)">4</span>
+        </button>
+        <button type="button" ways="c(btn),c(btn-primary),c(position-relative)">
+          Inbox
+          <span
+            ways="c(position-absolute),c(top-0),c(start-100),c(translate-middle),c(badge),c(rounded-pill),c(bg-danger)">
+            99+
+            <span ways="c(visually-hidden)">unread message</span>
+          </span>
+        </button>
+      </article>
+    </section>
+  </details>
+
+  <details class="ndemo-breadcrumb ">
+    <summary class="header">
+      测试 面包屑导航 breadcrumb
+    </summary>
+    <section class="p-5 border" ways="">
+      <article ways="">
+        <nav ways="h(style)--bs-breadcrumb-divider:'>';, h(style)--bs-breadcrumb-divider:''" aria-label="breadcrumb">
+          <ol ways="c(breadcrumb)">
+            <li ways="c(breadcrumb-item),c(active)"><a ways="h(href)#">Home</a></li>
+            <li ways="c(breadcrumb-item),c(active)"><a ways="h(href)#">Library</a></li>
+            <li ways="c(breadcrumb-item),c(active)" aria-current="page">Data</li>
+          </ol>
+        </nav>
+
+        <!-- <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page">Home</li>
+          </ol>
+        </nav>
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Library</li>
+          </ol>
+        </nav>
+
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="#">Library</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Data</li>
+          </ol>
+        </nav> -->
+      </article>
+      <article ways="">
+
+      </article>
+    </section>
+  </details>
+
+  <details class="ndemo-button ">
+    <summary class="header">
+      测试 button
+    </summary>
+    <section class="p-5 border" ways="">
+      <article ways="">
+        <button type="button"
+          ways="c(btn),c(btn-sm),c(btn-lg),c(btn-danger),c(btn-outline-primary),c(btn-link),c(text-nowrap),h(style)width:100px;">button......long
+          long
+          text</button>
+        <button type="button" ways="c(btn),c(btn-primary),h(style)--bs-btn-padding-x:.25rem;,
+          h(style)--bs-btn-padding-y:.5rem;,h(style)--bs-btn-font-size:.75rem;">
+          通过修改css变量的值, 自定义button
+        </button>
+        <a ways="c(btn),c(btn-primary),h(href)#,h(role)button">link as button</a>
+        <input ways="c(btn),c(btn-primary),h(type)button,h(type)submit,h(type)reset" value="input as button">
+
+      </article>
+
+      <article class="container g-5 border border-warning" ways="">
+        <div class="xgrid r-3 c-2 g-3 border border-primary no-bg" ways="">
+          <button class="btn" ways="c(x1-1),c(x1-2),
+              c(x2-2),c(x2-n1),
+              c(y1-1),c(y1-2),c(y1-3),
+              c(y2-2),c(y2-3),c(y2-n1),c(btn-primary),c(btn-secondary),c(btn-info),c(active),h(disabled)"
+            data-bs-toggle="button" type="button">full-width button - A</button>
+          <button class="btn" ways="
+                    c(x1-1),c(x1-2),
+                    c(x2-2),c(x2-n1),
+                    c(y1-1),c(y1-2),c(y1-3),
+                    c(y2-2),c(y2-3),c(y2-n1),c(btn-primary),c(btn-secondary),c(btn-info),c(active),h(disabled)"
+            data-bs-toggle="button" type="button">full-width button - B</button>
+          <button class="btn"
+            ways="
+                                c(x1-1),c(x1-2),
+                                c(x2-2),c(x2-n1),
+                                c(y1-1),c(y1-2),c(y1-3),
+                                c(y2-2),c(y2-3),c(y2-n1),c(btn-primary),c(btn-secondary),c(btn-info),c(active),h(disabled)"
+            data-bs-toggle="button" type="button">full-width button - C</button>
+        </div>
+
+
+
+      </article>
+    </section>
+  </details>
+
+  <details class="ndemo-button-group">
+    <summary class="header">
+      测试 button-group
+    </summary>
+    <section class="p-5 border" ways="c(container),c(btn-toolbar),c(justify-content-between)">
+      <article ways="c(btn-group-vertical),c(btn-group),c(btn-group-sm),c(btn-group-lg)" id="btn-group-example">
+        <button id="first-btn" type="button" ways="c(d-none),c(btn),c(btn-primary),c(btn-secondary),c(btn-info)">the
+          button</button>
+        <ele-clone ref-id="first-btn"></ele-clone>
+        <ele-clone ref-id="first-btn"></ele-clone>
+        <ele-clone ref-id="first-btn"></ele-clone>
+        <ele-clone ref-id="first-btn"></ele-clone>
+        <a href="#" ways="c(d-none),c(btn),c(btn-primary),c(active)">active link</a>
+        <input type="checkbox" ways="c(d-none),c(btn-check),h(autocomplete)off,h(type)checkbox,h(type)radio">
+        <label ways="c(d-none),c(btn),c(btn-outline-primary)">复选或单选框</label>
+        <div ways="c(d-none),c(btn-group)">
+          <button type="button"
+            ways="c(btn),c(btn-primary),c(dropdown-toggle-split),c(dropdown-toggle),h(data-bs-toggle)dropdown">嵌套在btn-group中的dropdown</button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+            <li><a class="dropdown-item" href="#">Dropdown link</a></li>
+          </ul>
+        </div>
+      </article>
+      <ele-clone ref-id="btn-group-example"></ele-clone>
+      <ele-clone ref-id="btn-group-example"></ele-clone>
+      <ele-clone ref-id="btn-group-example"></ele-clone>
+      <div ways="c(input-group),c(input-group-sm),c(input-group-lg)">
+        <div ways="c(input-group-text)">@</div>
+        <input type="text" ways="c(form-control)" placeholder="input group example">
+      </div>
+    </section>
+  </details>
+
+  <details class="ndemo-card">
+    <summary class="header">
+      测试 card: 竖排和横排, 以及 card-group
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <article ways="c(card),c(text-bg-dark),c(w-25),c(mb-3)">
+        <img src="/lib/image/jpg/10-adv-event/010.JPG" ways="c(card-img),c(card-img-top),c(card-img-bottom)">
+        <div ways="c(card-header)">
+          <!--  Featured-->
+          <ul ways="c(nav),c(nav-pills),c(nav-tabs),c(card-header-tabs),c(card-header-pills)">
+            <li ways="c(nav-item)" id="card-header-nav-li">
+              <a ways="c(nav-link),c(active),c(disabled)" href="#">link-item</a>
+            </li>
+            <ele-clone ref-id="card-header-nav-li"></ele-clone>
+            <ele-clone ref-id="card-header-nav-li"></ele-clone>
+          </ul>
+
+        </div>
+        <div id="card-example-body" ways="c(card-body),c(card-img-overlay)">
+          <h5 ways="c(card-title)">Card Title</h5>
+          <h6 ways="c(card-subtitle),c(mb-2),c(text-muted)">Card subtitle</h6>
+          <p ways="c(card-text)">Some quick example text to build on the card title and make up the bulk of the card's
+            content</p>
+          <a href="#" ways="c(btn),c(btn-primary)">Go somewhere</a>
+        </div>
+        <ul ways="c(list-group),c(list-group-flush)">
+          <li id="example-card-li" ways="c(list-group-item)">An item</li>
+          <ele-clone ref-id="example-card-li"></ele-clone>
+          <ele-clone ref-id="example-card-li"></ele-clone>
+        </ul>
+        <div ways="c(card-footer)">Card footer</div>
+        <img src="/lib/image/jpg/10-adv-event/016.JPG" ways="c(card-img-top),c(card-img-bottom)">
+      </article>
+      <article class="card w-50 mb-3">
+        <div ways="c(row),c(g-0),c(g-3)">
+          <div ways="c(col-4)">
+            <img src="/lib/image/jpg/sight/(6).jpg"
+              ways="c(img-fluid),c(rounded-start),c(object-fit-cover),c(w-100),c(w-50),c(h-100)">
+          </div>
+          <div ways="c(col-8)">
+            <ele-clone ref-id="card-example-body"></ele-clone>
+          </div>
+        </div>
+      </article>
+      <div class="card-group">
+        <div class="card">
+          <img src="/lib/image/jpg/sight/(1).jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p id="para-one" class="card-text">This is a wider card with supporting text below as a natural lead-in to
+              additional
+              content.
+              This content is a little bit longer.</p>
+            <ele-clone ref-id="para-one"></ele-clone>
+            <ele-clone ref-id="para-one"></ele-clone>
+            <ele-clone ref-id="para-one"></ele-clone>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+          <ele-clone ref-id="footer-example-card"></ele-clone>
+        </div>
+        <div class="card">
+          <img src="/lib/image/jpg/sight/(2).jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p id="para-two" class="card-text">This card has supporting text below as a natural lead-in to
+              additional content.</p>
+            <ele-clone ref-id="para-two"></ele-clone>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+          <div id="footer-example-card" class="card-footer">
+            <small class="text-muted">we are aligned by .card-foot wrapper</small>
+          </div>
+        </div>
+        <div class="card">
+          <img src="/lib/image/jpg/sight/(3).jpg" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p id="para-three" class="card-text">This is a wider card with supporting text below as a natural
+              lead-in to additional
+              content.
+              This card has even longer content than the first to show that equal height action.</p>
+            <ele-clone ref-id="para-three"></ele-clone>
+            <ele-clone ref-id="para-three"></ele-clone>
+            <ele-clone ref-id="para-three"></ele-clone>
+            <ele-clone ref-id="para-three"></ele-clone>
+            <ele-clone ref-id="para-three"></ele-clone>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          </div>
+          <ele-clone ref-id="footer-example-card"></ele-clone>
+        </div>
+      </div>
+
+    </section>
+  </details>
+  <details class="ndemo-carousel">
+    <summary class="header">
+      测试.carousel, bootstrap 的 carousel　并不理想, 将来考虑使用其他
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active w-100 h-100">
+            <img src="/lib/image/jpg/sight/(1).jpg" class="d-block w-100 h-100" alt="...">
+          </div>
+          <div class="carousel-item w-100 h-100">
+            <img src="/lib/image/jpg/sight/(6).jpg" class="d-block w-100 h-100" alt="...">
+          </div>
+          <div class="carousel-item w-100 h-100">
+            <img src="/lib/image/jpg/sight/(8).jpg" class="d-block w-100 h-100" alt="...">
+          </div>
+        </div>
+        <!--<button class="carousel-control-prev" type="button" data-bs-target="#carousel-one" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carousel-one" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>-->
+      </div>
+      <article ways="">
+
+      </article>
+    </section>
+  </details>
+  <details class="ndemo-close-button">
+    <summary class="header">
+      测试 colse-button
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <button type="button" ways="c(btn-close),h(disabled),h(aria-label)Close,c(btn-close-white)"></button>
+    </section>
+  </details>
+  <details class="ndemo-collapse">
+    <summary class="header">
+      测试 collapse
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <article>
+        <a
+          ways="c(btn),c(btn-primary),h(data-bs-toggle)collapse,h(href)#collapse-first,h(href)#collapse-second,h(href).same-moving">
+          Link with href , data-bs-toggle=collapse of course
+        </a>
+        <button type="button"
+          ways="c(btn),c(btn-primary),h(data-bs-toggle)collapse,h(data-bs-target)#collapse-first,h(data-bs-target)#collapse-second,h(data-bs-target).same-moving">
+          Button with data-bs-target, data-bs-toggle=collapse of course
+        </button>
+      </article>
+      <main style="min-height: 290px;" class="xgrid c-2 r-1 border border-primary">
+        <article class="x1-1 x2-2 y1-1 y2-2" ways="c(show),c(collapse),c(collapse-horizontal),c(same-moving),c(mb-3)"
+          id="collapse-first">
+          <div ways="c(card),c(card-body),h(style)width:280px;">
+            FIRST: Generally, we recommend using a button with the data-bs-target attribute. While not recommended from
+            a
+            semantic point of
+            view, you can also use a link with the href attribute (and a role="button"). In both cases, the
+            data-bs-toggle="collapse" is required.
+          </div>
+
+        </article>
+        <article class="x1-2 x2-3 y1-1 y2-2" ways="c(show),c(collapse),c(collapse-horizontal),c(same-moving)"
+          id="collapse-second">
+          <div ways="c(card),c(card-body),h(style)width:280px;">
+            SECOND: A &lt;button&gt; or &lt;a&gt; can show and hide multiple elements by referencing them with a
+            selector
+            in its
+            href or data-bs-target
+            attribute. Multiple &lt;button&gt; or &lt;a&gt; can show and hide an element if they each reference it with
+            their href or
+            data-bs-target attribute
+          </div>
+        </article>
+      </main>
+    </section>
+  </details>
+  <details class="ndemo-dropdown">
+    <summary class="header">
+      测试 dropdown
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <article
+        ways="c(dropdown),c(dropup),c(dropstart),c(dropend),c(position-relative),c(dropdown-center),c(dropup-center)">
+        <button id="drop-btn"
+          ways="c(btn),c(btn-sm),c(btn-lg),c(btn-secondary),c(dropdown-toggle),c(dropdown-toggle-split),h(data-bs-toggle)dropdown"
+          type="button" data-bs-auto-close="false">
+          Dropdown by button
+        </button>
+        <a id="drop-link"
+          ways="c(btn),c(btn-primary),c(dropdown-toggle),c(dropdown-toggle-split),h(data-bs-toggle)dropdown,h(href)#">
+          Dropdown by link
+        </a>
+        <ele-clone ref-id="drop-btn"></ele-clone>
+        <ele-clone ref-id="drop-link"></ele-clone>
+        <ul id="complex-dropdown-menu-example" ways="c(dropdown-menu),c(dropdown-menu-dark),c(dropdown-menu-end)"
+          class="m-3">
+          <li>
+            <h6 ways="c(dropdown-header)">Dropdown header</h6>
+          </li>
+          <li id="dd-li" ways="c(dropdown-item)"><a ways="c(dropdown-item),c(active),c(disabled),h(href)#">action</a>
+          </li>
+          <ele-clone ref-id="dd-li"></ele-clone>
+          <ele-clone ref-id="dd-li"></ele-clone>
+          <li><button type="button" ways="c(dropdown-item)">button action</button></li>
+          <li>
+            <hr ways="c(dropdown-divider)">
+          </li>
+          <ele-clone ref-id="dd-li"></ele-clone>
+          <p>
+            Some example text that's free-flowing within the dropdown menu.
+          </p>
+          <p class="mb-0">
+            And this is more example text.
+          </p>
+        </ul>
+      </article>
+      <article ways="c(dropdown)">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          Dropdown form
+        </button>
+        <form class="dropdown-menu p-4">
+          <div class="mb-3">
+            <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+          </div>
+          <div class="mb-3">
+            <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+            <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+          </div>
+          <div class="mb-3">
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+              <label class="form-check-label" for="dropdownCheck2">
+                Remember me
+              </label>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </form>
+      </article>
+    </section>
+  </details>
+  <details class="ndemo-list-group">
+    <summary class="header">
+      测试 list-group
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <ul ways="c(list-group),c(list-group-numbered),c(list-group-horizontal)">
+        <li id="first-list-group-item" ways="c(list-group-item),c(active),c(disabled)">item</li>
+        <ele-clone ref-id="first-list-group-item"></ele-clone>
+        <ele-clone ref-id="first-list-group-item"></ele-clone>
+        <ele-clone ref-id="first-list-group-item"></ele-clone>
+        <ele-clone ref-id="first-list-group-item"></ele-clone>
+        <a id="list-group-link-item" ways="c(list-group-item),c(list-group-item-action),c(active),c(disabled)">link
+          item</a>
+        <a ways="c(list-group-item),c(list-group-item-action),c(active)">
+          <div ways="c(d-flex),c(w-100),c(justify-content-between)">
+            <h5 ways="c(mb-1)">List group item heading</h5>
+            <small>3 days ago</small>
+          </div>
+          <p ways="c(mb-1)">Some placeholder content in a paragraph</p>
+          <small ways="c(text-muted)">3 years ago</small>
+        </a>
+        <button type="button" id="list-group-btn-item"
+          ways="c(list-group-item),c(list-group-item-action),c(active),c(disabled)">button item</button>
+        <ele-clone ref-id="list-group-link-item"></ele-clone>
+        <ele-clone ref-id="list-group-btn-item"></ele-clone>
+        <ele-clone ref-id="list-group-link-item"></ele-clone>
+        <ele-clone ref-id="list-group-btn-item"></ele-clone>
+        <li id="second-list-group-item"
+          ways="c(list-group-item),c(d-flex),c(justify-content-between),c(align-items-start),c(list-group-item-primary),c(list-group-item-warning)">
+          <article ways="c(ms-2),c(me-auto)">
+            <div ways="c(fw-bold)">Sub heading</div>
+            Content for list item
+          </article>
+          <span ways="c(badge),c(bg-primary),c(rounded-pill)">14</span>
+        </li>
+        <ele-clone ref-id="second-list-group-item"></ele-clone>
+        <ele-clone ref-id="second-list-group-item"></ele-clone>
+        <ele-clone ref-id="second-list-group-item"></ele-clone>
+        <li id="third-list-group-item" ways="c(list-group-item)">
+          <input ways="c(form-check-input),c(me-1),h(type)checkbox,h(type)radio">
+          <label ways="c(form-check-label),c(stretched-link)">First checkbox</label>
+        </li>
+        <ele-clone ref-id="third-list-group-item"></ele-clone>
+      </ul>
+      <article ways="">
+
+      </article>
+    </section>
+    <section class="row">
+      <article class="col-4">
+        <div class="list-group" id="list-tab" role="tablist">
+          <a class="list-group-item list-group-item-action active" id="list-home-list" data-bs-toggle="list"
+            href="#list-home" role="tab" aria-controls="list-home">Home</a>
+          <a class="list-group-item list-group-item-action" id="list-profile-list" data-bs-toggle="list"
+            href="#list-profile" role="tab" aria-controls="list-profile">Profile</a>
+          <a class="list-group-item list-group-item-action" id="list-messages-list" data-bs-toggle="list"
+            href="#list-messages" role="tab" aria-controls="list-messages">Messages</a>
+          <a class="list-group-item list-group-item-action" id="list-settings-list" data-bs-toggle="list"
+            href="#list-settings" role="tab" aria-controls="list-settings">Settings</a>
+        </div>
+      </article>
+      <article class="col-8">
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">first
+            content</div>
+          <div class="tab-pane fade" id="list-profile" role="tabpanel" aria-labelledby="list-profile-list">second
+            content</div>
+          <div class="tab-pane fade" id="list-messages" role="tabpanel" aria-labelledby="list-messages-list">third
+            content</div>
+          <div class="tab-pane fade" id="list-settings" role="tabpanel" aria-labelledby="list-settings-list">fourth
+            content</div>
+        </div>
+      </article>
+    </section>
+  </details>
+  <details class="ndemo-modal">
+    <summary class="header">
+      测试 modal, 使用 ways 时, 注意应该从内到外一点一点设置
+    </summary>
+    <section class="p-5 border"
+      ways="c(modal),c(fade),h(tabindex)-1,h(id)modal-one,h(data-bs-backdrop)static,h(data-bs-keyboard)false">
+      <article class="p-3"
+        ways="c(modal-dialog),c(modal-dialog-scrollable),c(modal-dialog-centered),c(modal-sm),c(modal-xl),c(modal-lg)">
+        <div ways="c(modal-content)">
+          <header ways="c(modal-header)">
+            <h5 ways="c(modal-title)">
+              Modal Title
+            </h5>
+            <button type="button" ways="c(btn-close),h(data-bs-dismiss)modal"></button>
+          </header>
+          <main ways="c(modal-body)">
+            <p>Modal body text goes here</p>
+
+            <p id="modal-body-p-1">When modals become too long for the user’s viewport or device, they scroll
+              independent of the page itself. Try the demo
+              below to see what we mean.</p>
+            <p id="modal-body-p-2">You can also create a scrollable modal that allows scroll the modal body by adding
+              .modal-dialog-scrollable to
+              .modal-dialog.</p>
+            <ele-clone ref-id="modal-body-p-1"></ele-clone>
+            <ele-clone ref-id="modal-body-p-2"></ele-clone>
+
+          </main>
+          <footer ways="c(modal-footer)">
+            <button id="modal-footer-btn" type="button"
+              ways="c(btn),c(btn-primary),c(btn-secondary),h(data-bs-dismiss)modal">Close /
+              Save changes</button>
+            <ele-clone ref-id="modal-footer-btn"></ele-clone>
+          </footer>
+        </div>
+      </article>
+    </section>
+    <section>
+      <button type="button" ways="c(btn),c(btn-primary),h(data-bs-toggle)modal,h(data-bs-target)#modal-one">trigger
+        modal</button>
+    </section>
+
+
+  </details>
+  <details class="ndemo-navbar">
+    <summary class="header">
+      测试 navbar
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <!-- <nav ways="c(navbar),c(navbar-expand-lg),c(bg-light),c(bg-dark),c(bg-info)">
+        <article ways="c(container-fluid),c(container)">
+          <a ways="c(navbar-brand)" href="#">Navbar</a>
+          <button type="button" ways="c(navbar-toggler),h(data-bs-toggle)collapse,h(data-bs-target)#navbar-content">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div ways="c(collapse),c(navbar-collapse)" id="navbar-content">
+            <ul ways="c(navbar-nav),c(me-auto),c(mb-2),c(mb-lg-0)">
+              <li id="ul-li-nav-item-one" ways="c(nav-item)">
+                <a ways="c(nav-link),c(active),c(disabled)" aria-current="page" href="#">nav-link</a>
+              </li>
+              <ele-clone ref-id="ul-li-nav-item-one"></ele-clone>
+              <li ways="c(nav-item),c(dropdown)">
+                <a ways="c(nav-link),c(dropdown-toggle),h(data-bs-toggle)dropdown" href="#" role="button"
+                  aria-expanded="false">
+                  Dropdown
+                </a>
+                <ele-clone ref-id="complex-dropdown-menu-example"></ele-clone>
+              </li>
+              <ele-clone ref-id="ul-li-nav-item-one"></ele-clone>
+            </ul>
+            <form ways="c(d-flex)" role="search">
+              <input ways="c(form-control),c(me-2)" type="search" placeholder="Search" aria-label="Search">
+              <button ways="c(btn),c(btn-outline-success)" type="button">Search</button>
+            </form>
+          </div>
+        </article>
+      </nav> -->
+      <h4>文档完整示例, 应该最后研究</h4>
+      <nav ways="c(navbar-expand-lg)" class="navbar bg-light ">
+        <div class="container-fluid">
+          <a class="navbar-brand" ways="c(d-none)" href="#">Navbar1</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" ways="c(d-none)" href="#">Navbar2</a>
+          <div class="collapse navbar-collapse " id="navbarSupportedContent">
+            <a class="navbar-brand" ways="c(d-none)" href="#">Hidden brand</a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-nav-scroll" style="--bs-scroll-height:60px;">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+
+        </div>
+      </nav>
+    </section>
+    <section>
+      <h4>各种零配件的使用</h4>
+      <nav ways="c(navbar),c(navbar-expand-lg),c(bg-light),c(bg-danger)">
+        <div ways="c(container-fluid),c(container)">
+          <a ways="c(navbar-brand),c(d-none)" href="#">
+            Navbar as a link
+          </a>
+          <button type="button" ways="c(navbar-toggler),h(data-bs-toggle)collapse,h(data-bs-target)#navbar-first-nav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div id="navbar-first-nav" class="p-3" ways="c(collapse),c(navbar-collapse),c(p-n3)">
+            <ul class="navbar-nav">
+              <li id="navitem-first" ways="c(nav-item)">
+                <a ways="c(nav-link),c(active),c(disabled)" href="#">link item</a>
+              </li>
+              <ele-clone ref-id="navitem-first"></ele-clone>
+              <ele-clone ref-id="navitem-first"></ele-clone>
+              <ele-clone ref-id="navitem-first"></ele-clone>
+            </ul>
+          </div>
+          <button type="button" ways="c(navbar-toggler),h(data-bs-toggle)collapse,h(data-bs-target)#navbar-second-nav">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div id="navbar-second-nav" class="p-3" ways="c(collapse),c(navbar-collapse),c(p-n3)">
+            <div class="navbar-nav">
+              <a id="navitem-second" ways="c(nav-link),c(active),c(disabled)" href="#">link item</a>
+              <ele-clone ref-id="navitem-second"></ele-clone>
+              <ele-clone ref-id="navitem-second"></ele-clone>
+              <ele-clone ref-id="navitem-second"></ele-clone>
+            </div>
+          </div>
+          <a ways="c(navbar-brand),c(d-none)" href="#">
+            <img ways="c(d-linline-block),c(align-text-top)" src="/lib/image/jpg/sight/(16).jpg" width="30" height="24">
+            Bootstrap
+          </a>
+          <span ways="c(navbar-brand),c(mb-0),c(h1),c(d-none)">
+            Navbar as heading
+          </span>
+
+          <form ways="c(d-flex)">
+            <input type="search" ways="c(form-control),c(me-2)" placeholder="search">
+            <button type="button" ways="c(btn),c(btn-outline-success)">SEARCH</button>
+          </form>
+        </div>
+      </nav>
+    </section>
+    <section>
+      <h4>nav 还可以只包含简单的文本</h4>
+      <nav class="navbar bg-light" ways="c(navbar-dark),c(bg-dark),c(fixed-top)">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Navbar</a>
+          <span class="navbar-text">
+            .navbar-text adjusts vertical alignment and horizontal spacing for strings of text
+          </span>
+        </div>
+      </nav>
+    </section>
+    <section>
+      <h4>按钮切换折叠, 绝不止于导航, 也不止于同一容器内</h4>
+      <div class="collapse" id="toggled-outer-content">
+        <div class="p-4">
+          <h5 class="text-white bg-secondary h4">Collapsed content</h5>
+          <span class="text-muted">Toggleable via the navbar brand.</span>
+        </div>
+      </div>
+      <nav class="navbar navbar-dark bg-dark">
+        <div class="container-fluid">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#toggled-outer-content"
+            aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </nav>
+      <button type="button" data-bs-toggle="collapse" data-bs-target="#toggled-outer-content">
+        极简形式的按钮也可以触发.说明功能实现的核心就是 toggle:collapse target:#id
+      </button>
+    </section>
+    <section>
+      <h4>
+        将navbar的折叠按钮, 应用到 offcanvas.注意控制面板已经 fixed-top
+      </h4>
+      <nav class="navbar bg-light fixed-top" ways="c(navbar-expand-lg),c(navbar-dark),c(bg-dark)">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Offcanvas navbar</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+            data-bs-target="#toggle-offcanvas-example" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div ways="c(text-bg-dark),c(offcanvas-start),c(offcanvas-end),c(offcanvas-top),c(offcanvas-bottom)"
+            class="offcanvas" tabindex="-1" id="toggle-offcanvas-example" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+              <button type="button" ways="c(btn-close-white)" class="btn-close" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                    aria-expanded="false">
+                    Dropdown
+                  </a>
+                  <ul class="dropdown-menu" ways="c(dropdown-menu-dark)">
+                    <li><a class="dropdown-item" href="#">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li>
+                      <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  </ul>
+                </li>
+              </ul>
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </section>
+  </details>
+  <details class="ndemo-navs-and-tabs">
+    <summary class="header">
+      测试 navs and tabs
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <h4>使用 ul > li > a 模式</h4>
+      <ul ways="c(nav),c(nav-tabs),c(nav-pills),c(nav-fill),c(flex-column),c(justify-content-evenly)">
+        <li ways="c(nav-item)">
+          <a data-bs-toggle="tab" href="#home-tab" ways="c(nav-link),c(active),c(disabled)">a-bit-long-item</a>
+        </li>
+        <li ways="c(nav-item)">
+          <a data-bs-toggle="tab" href="#profile-tab" ways="c(nav-link),c(active),c(disabled)">item</a>
+        </li>
+        <li ways="c(nav-item)">
+          <a data-bs-toggle="tab" href="#contact-tab" ways="c(nav-link),c(active),c(disabled)">so-item</a>
+        </li>
+        <li ways="c(nav-item)">
+          <a data-bs-toggle="tab" href="#log-tab" ways="c(nav-link),c(active),c(disabled)">the-most-long-link-item</a>
+        </li>
+      </ul>
+    </section>
+    <section class="p-5 border" ways="c(container)">
+      <h4>使用 nav > a 模式, 可以省略中间的 .nav-item </h4>
+      <nav
+        ways="c(nav),c(nav-tabs),c(nav-pills),c(nav-fill),c(nav-justified),c(flex-column),c(justify-content-evenly),c(align-items-center)">
+        <a data-bs-toggle="tab" href="#home-tab" ways="c(nav-link),c(active),c(disabled)">home:a-bit-long-item</a>
+        <a data-bs-toggle="tab" href="#profile-tab" ways="c(nav-link),c(active),c(disabled)">profile:item</a>
+        <a data-bs-toggle="tab" href="#contact-tab" ways="c(nav-link),c(active),c(disabled)">contact:so-item</a>
+        <a data-bs-toggle="tab" href="#log-tab" ways="c(nav-link),c(active),c(disabled)">log:the-most-long-link-item</a>
+      </nav>
+      <article ways="c(tab-content)">
+        <p ways="c(tab-pane),c(fade),c(show),c(active)" id="home-tab">home tab content</p>
+        <p ways="c(tab-pane),c(fade),c(show),c(active)" id="profile-tab">profile tab content</p>
+        <p ways="c(tab-pane),c(fade),c(show),c(active)" id="contact-tab">contact tab content</p>
+        <p ways="c(tab-pane),c(fade),c(show),c(active)" id="log-tab">log tab content</p>
+      </article>
+    </section>
+  </details>
+  <details class="ndemo-offcanvas">
+    <summary class="header">
+      测试 offcanvas
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <article id="offcanvas-first" class="p-2"
+        ways="c(offcanvas),c(offcanvas-start),c(offcanvas-end),c(offcanvas-top),c(offcanvas-bottom),c(show),h(data-bs-scroll)true,h(data-bs-backdrop)false,c(text-bg-dark)">
+        <header ways="c(offcanvas-header)">
+          <h5 ways="c(offcanvas-title)">Offcanvas</h5>
+          <button type="button" ways="c(btn-close),h(data-bs-dismiss)offcanvas"></button>
+        </header>
+        <main ways="c(offcanvas-body)" style="height:450px;">
+          <p id="content-on-offcanvas">
+            Below is an offcanvas example that is shown by default (via .show on .offcanvas). Offcanvas includes support
+            for a
+            header with a close button and an optional body class for some initial padding. We suggest that you include
+            offcanvas
+            headers with dismiss actions whenever possible, or provide an explicit dismiss action.
+          </p>
+          <ele-clone ref-id="content-on-offcanvas"></ele-clone>
+          <ele-clone ref-id="content-on-offcanvas"></ele-clone>
+          <ele-clone ref-id="content-on-offcanvas"></ele-clone>
+          <ele-clone ref-id="content-on-offcanvas"></ele-clone>
+          <ele-clone ref-id="content-on-offcanvas"></ele-clone>
+          <ele-clone ref-id="content-on-offcanvas"></ele-clone>
+          <div ways="c(dropdown),c(mt-3)">
+            <button type="button" ways="c(btn),c(btn-secondary),c(dropdown-toggle),h(data-bs-toggle)dropdown">menu is
+              here</button>
+            <ul ways="c(dropdown-menu),c(dropdown-menu-dark)">
+              <li id="menu-item-on-offcanvas"><a ways="c(dropdown-item)" href="#">menu item</a></li>
+              <ele-clone ref-id="menu-item-on-offcanvas"></ele-clone>
+              <ele-clone ref-id="menu-item-on-offcanvas"></ele-clone>
+              <ele-clone ref-id="menu-item-on-offcanvas"></ele-clone>
+            </ul>
+          </div>
+        </main>
+      </article>
+      <div>
+        <a ways="c(btn),c(btn-primary),h(data-bs-toggle)offcanvas,h(href)#offcanvas-first">
+          use link toggle offcanvas
+        </a>
+        <button type="button" ways="c(btn),c(btn-primary),h(data-bs-toggle)offcanvas,h(data-bs-target)#offcanvas-first">
+          use button toggle offcanvas
+        </button>
+      </div>
+    </section>
+  </details>
+  <details class="ndemo-pagination">
+    <summary class="header">
+      测试 pagination
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <nav>
+        <ul ways="c(pagination),c(pagination-lg),c(pagination-sm),c(justify-content-evenly)">
+          <li ways="c(page-item),c(disabled),c(active)">
+            <a ways="c(page-link)" href="#">
+              <span>&laquo;</span>
+            </a>
+          </li>
+          <li ways="c(page-item),c(disabled),c(active)">
+            <a ways="c(page-link)" href="#">Previous</a>
+          </li>
+          <li ways="c(page-item),c(disabled),c(active)">
+            <a ways="c(page-link)" href="#">1</a>
+          </li>
+          <li ways="c(page-item),c(disabled),c(active)">
+            <a ways="c(page-link)" href="#">2</a>
+          </li>
+          <li ways="c(page-item),c(disabled),c(active)">
+            <a ways="c(page-link)" href="#">3</a>
+          </li>
+          <li ways="c(page-item),c(disabled),c(active)">
+            <a ways="c(page-link)" href="#">Next</a>
+          </li>
+          <li ways="c(page-item),c(disabled),c(active)">
+            <a ways="c(page-link)" href="#">
+              <span>&raquo;</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </section>
+  </details>
+  <details class="ndemo-loading-placeholder">
+    <summary class="header">
+      测试 placeholder, 注意, 原版使用 .col-6 .col-7 之类来指定宽度. 由于在自定义的bootstrap 中, 这些类已经限制在 row 的直接子级内起作用, 所以, 要达到类似
+      文档的效果, 可以使用已经加宽范围的 w-10 w-15 之类来代替
+    </summary>
+    <section class="p-5 border " ways="c(container)">
+      <article ways="c(card),c(w-30),c(mx-auto),c(mb-2)" aria-hidden="true">
+        <img src="/lib/image/jpg/sight/(18).jpg" ways="c(card-img-top)" alt="...">
+        <div ways="c(card-body)">
+          <h5 ways="c(card-title),c(placeholder-glow)">
+            <span ways="c(placeholder),c(w-50)">h5-span</span>
+          </h5>
+          <p ways="c(card-text),c(placeholder-glow),c(placeholder-wave)">
+            <span ways="c(placeholder),c(placeholder-lg),c(w-65)">p-span1</span>
+            <span ways="c(placeholder),c(w-20)">p-span2</span>
+            <span ways="c(placeholder),c(w-55)">p-span3</span>
+            <span ways="c(placeholder),c(w-25)">p-span4</span>
+            <span ways="c(placeholder),c(bg-warning),c(w-80)">p-span5</span>
+          </p>
+          <a href="#" tabindex="-1" class="btn btn-primary disabled placeholder w-35">
+          </a>
+        </div>
+      </article>
+    </section>
+  </details>
+  <details class="ndemo-popover">
+    <summary class="header">
+      测试 popover, 注意需要初始化准备起触发功能的元素. 所以, ways 的动态添加
+      data-bs-* 属性, 可能会无效. 除非启动 dynamic-bootstrap-object-manager
+    </summary>
+
+    <section class="p-5 border" ways="c(container)">
+      <article>
+        <button type="button"
+          ways="c(btn),c(btn-lg),c(btn-primary),c(btn-danger),h(data-bs-toggle)popover,h(data-bs-title)title-one,h(data-bs-title)title-two,h(data-bs-content)content-from-data-bs,h(data-bs-placement)top,h(data-bs-placement)bottom,h(data-bs-placement)left,h(data-bs-container)#dark-content,h(data-bs-custom-class)gx-popover,h(data-bs-trigger)focus,h(data-bs-trigger)hover focus">
+          first-dynamic toggle popover</button>
+        <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="focus"
+          data-bs-title="Dismissible popover"
+          data-bs-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+      </article>
+    </section>
+    <div id="dark-content" style="color:red;height:400px;" class="text-center">hello dark content</div>
+  </details>
+  <details class="ndemo-progress">
+    <summary class="header">
+      测试 progress, 注意, 它并非基于原生的 html5 的 progress 标签. 同时, 注意 .progress 和 .progress-bar 均采用 flex布局, 而后者 direction:column
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <article>
+        <div id="progress-one"
+          ways="c(progress),c(bg-info),c(bg-danger),c(mb-3),h(style)height:1px,h(style)height:28px;,h(style)height:10px;">
+          <span id="progress-item-one"
+            ways="c(progress-bar),c(w-0),c(w-10),c(w-25),c(w-75),c(w-100),c(bg-danger),c(bg-dark),c(bg-secondary),c(bg-primary),c(progress-bar-striped),c(progress-bar-animated)">
+            x%
+          </span>
+          <ele-clone ref-id="progress-item-one"></ele-clone>
+          <ele-clone ref-id="progress-item-one"></ele-clone>
+          <ele-clone ref-id="progress-item-one"></ele-clone>
+        </div>
+        <ele-clone ref-id="progress-one"></ele-clone>
+      </article>
+
+      <article ways="">
+
+      </article>
+    </section>
+  </details>
+  <details class="ndemo-scrollspy">
+    <summary class="header">
+      测试 scroll spy. 注意: 官网文档并未说明, scroll spy 的实现, 也需要像 popover 一样, 初始化后方可使用. 同时, bootstrap 原版定义的 ScrollSpy 类, 并不需要
+      data-bs-toggle 属性做标记(因为已经带有独一无二的 data-bs-spy). 为了 dynamic-bootstrap-object-manager 对所有类似对象的统一动态生成, 特设置
+      data-bs-toggle="scrollspy".
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <h4>带 dropdown menu 的 scrollspy</h4>
+      <div>
+        <nav id="navbar-ass-scroll-spy" ways="c(navbar),c(bg-info),c(sticky-top),c(bg-light),c(px-3),c(mb-3)">
+          <a ways="c(navbar-brand)" href="#">Navbar</a>
+          <ul ways="c(nav),c(nav-pills)">
+            <li ways="c(nav-item)">
+              <a ways="c(nav-link)" href="#spy-content-first">First</a>
+            </li>
+            <li ways="c(nav-item)">
+              <a ways="c(nav-link)" href="#spy-content-second">Second</a>
+            </li>
+            <li ways="c(nav-item),c(dropdown)">
+              <a ways="c(nav-link),c(dropdown-toggle),h(data-bs-toggle)dropdown" href="#" role="button"
+                aria-expanded="false">Dropdown</a>
+              <ul ways="c(dropdown-menu)">
+                <li><a ways="c(dropdown-item)" href="#spy-content-third">Third</a></li>
+                <li><a ways="c(dropdown-item)" href="#spy-content-fourth">Fourth</a></li>
+                <li>
+                  <hr ways="c(dropdown-divider)">
+                </li>
+                <li><a ways="c(dropdown-item)" href="#spy-content-fifth">Fifth</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <main
+          ways="h(style)height:20em;overflow-y:auto;,h(data-bs-root-margin)0px 0px -40%,h(data-bs-spy)scroll,h(data-bs-toggle)scrollspy,h(data-bs-target)#navbar-ass-scroll-spy,c(bg-light),c(bg-dark),c(p-3),c(rounded-2),h(tabindex)0">
+          <article ways="h(style)height:800px;" id="spy-content-first">
+            <h4>Heading</h4>
+            <p>Comments in SCSS work similarly to comments in other languages like JavaScript.
+              Single-line comments start
+              with //, and
+              go until the end of the line. Nothing in a single-line comment is emitted as CSS; as far as Sass is
+              concerned, they may
+              as well not exist. They’re also called silent comments, because they don’t produce any CSS.
+            </p>
+          </article>
+          <ele-clone ref-id="spy-content-first" id="spy-content-second"></ele-clone>
+          <ele-clone ref-id="spy-content-first" id="spy-content-third"></ele-clone>
+          <ele-clone ref-id="spy-content-first" id="spy-content-fourth"></ele-clone>
+          <ele-clone ref-id="spy-content-first" id="spy-content-fifth"></ele-clone>
+        </main>
+      </div>
+    </section>
+    <section class="container p-5 mb-2">
+      <h4>嵌套的 scrollspy</h4>
+      <div class="row nested-spy">
+        <!-- <div class="col-4"> -->
+        <!-- <nav class="col-4" id="navbar-nested-spy" class=" flex-column align-items-stretch pe-4 border-end"> -->
+        <nav id="navbar-nested-spy" class="col-4 flex-nowrap nav nav-pills border-end flex-column pe-4 ">
+          <a class="nav-link" href="#item-1">Item 1</a>
+          <nav class="nav nav-pills flex-column">
+            <a class="nav-link ms-3 my-1" href="#item-1-1">Item 1-1</a>
+            <a class="nav-link ms-3 my-1" href="#item-1-2">Item 1-2</a>
+          </nav>
+          <a class="nav-link" href="#item-2">Item 2</a>
+          <a class="nav-link" href="#item-3">Item 3</a>
+          <nav class="nav nav-pills flex-column">
+            <a class="nav-link ms-3 my-1" href="#item-3-1">Item 3-1</a>
+            <a class="nav-link ms-3 my-1" href="#item-3-2">Item 3-2</a>
+          </nav>
+          <!-- <!-- </nav> -->
+        </nav>
+        <!-- </div> -->
+
+        <!-- <div class="col-8"> -->
+        <main class="col-8" data-bs-spy="scroll" data-bs-toggle="scrollspy" data-bs-target="#navbar-nested-spy"
+          data-bs-smooth-scroll="true" tabindex="0">
+          <article id="item-1">
+            <h4>Item 1</h4>
+            <p>...</p>
+          </article>
+          <article id="item-1-1">
+            <h5>Item 1-1</h5>
+            <p>...</p>
+          </article>
+          <article id="item-1-2">
+            <h5>Item 1-2</h5>
+            <p>...</p>
+          </article>
+          <article id="item-2">
+            <h4>Item 2</h4>
+            <p>...</p>
+          </article>
+          <article id="item-3">
+            <h4>Item 3</h4>
+            <p>...</p>
+          </article>
+          <article id="item-3-1">
+            <h5>Item 3-1</h5>
+            <p>...</p>
+          </article>
+          <article id="item-3-2">
+            <h5>Item 3-2</h5>
+            <p>...</p>
+          </article>
+        </main>
+        <!-- </div> -->
+      </div>
+    </section>
+    <section class="container p-5 mb-2">
+      <h4>与 .list-group 合作</h4>
+      <div class="row use-list">
+        <!-- <div class="col-4 list-spy"> -->
+        <nav id="list-example" class="col-4 list-group">
+          <a class="list-group-item list-group-item-action" href="#list-item-1">Item 1</a>
+          <a class="list-group-item list-group-item-action" href="#list-item-2">Item 2</a>
+          <a class="list-group-item list-group-item-action" href="#list-item-3">Item 3</a>
+          <a class="list-group-item list-group-item-action" href="#list-item-4">Item 4</a>
+        </nav>
+        <!-- </div>
+      <div class="col-8"> -->
+        <article data-bs-toggle="scrollspy" data-bs-spy="scroll" data-bs-target="#list-example"
+          data-bs-smooth-scroll="true" class="col-8" tabindex="0">
+          <h4 id="list-item-1">Item 1</h4>
+          <p>...</p>
+          <h4 id="list-item-2">Item 2</h4>
+          <p>...</p>
+          <h4 id="list-item-3">Item 3</h4>
+          <p>...</p>
+          <h4 id="list-item-4">Item 4</h4>
+          <p>...</p>
+        </article>
+        <!-- </div> -->
+      </div>
+
+    </section>
+    <section class="container p-5 mb-2">
+      <h4>使用简单 anchor link, 无反应.以后再说</h4>
+      <!-- <div class="row use-simple-link">
+        <div class="col-4">
+          <div class="d-flex flex-column gap-2 text-center" id="simple-link-example">
+            <a class="p-1 rounded " href="#simple-link-item-1">Item 1</a>
+            <a class="p-1 rounded " href="#simple-link-item-2">Item 2</a>
+            <a class="p-1 rounded" href="#simple-link-item-3">Item 3</a>
+            <a class="p-1 rounded" href="#simple-link-item-4">Item 4</a>
+            <a class="p-1 rounded" href="#simple-link-item-5">Item 5</a>
+          </div>
+        </div>
+        <div class="col-8">
+          <article data-bs-toggle="scrollspy" data-bs-spy="scroll" data-bs-target="#simple-link-example"
+            data-bs-smooth-scroll="true" tabindex="0">
+            <h4 id="simple-link-item-1">Item 1</h4>
+            <p>...</p>
+            <h4 id="simple-link-item-2">Item 2</h4>
+            <p>...</p>
+            <h4 id="simple-link-item-3">Item 3</h4>
+            <p>...</p>
+            <h4 id="simple-link-item-4">Item 4</h4>
+            <p>...</p>
+            <h4 id="simple-link-item-5">Item 5</h4>
+            <p>...</p>
+          </article>
+        </div>
+      </div> -->
+      <!-- <div class="row use-simple-link">
+        <div class="col-4">
+          <div id="simple-list-example" class="d-flex flex-column gap-2 simple-list-example-scrollspy text-center">
+            <a class="p-1 rounded" href="#simple-list-item-1">Item 1</a>
+            <a class="p-1 rounded" href="#simple-list-item-2">Item 2</a>
+            <a class="p-1 rounded" href="#simple-list-item-3">Item 3</a>
+            <a class="p-1 rounded" href="#simple-list-item-4">Item 4</a>
+            <a class="p-1 rounded" href="#simple-list-item-5">Item 5</a>
+          </div>
+        </div>
+        <div class="col-8">
+          <div data-bs-spy="scroll" data-bs-toggle="scrollspy" data-bs-target="#simple-list-example" data-bs-offset="0"
+            data-bs-smooth-scroll="true" class="scrollspy-example" tabindex="0">
+            <h4 id="simple-list-item-1">Item 1</h4>
+            <p>...</p>
+            <h4 id="simple-list-item-2">Item 2</h4>
+            <p>...</p>
+            <h4 id="simple-list-item-3">Item 3</h4>
+            <p>...</p>
+            <h4 id="simple-list-item-4">Item 4</h4>
+            <p>...</p>
+            <h4 id="simple-list-item-5">Item 5</h4>
+            <p>...</p>
+          </div>
+        </div>
+      </div> -->
+    </section>
+  </details>
+  <details class="ndemo-spinner">
+    <summary class="header">
+      测试 spinner
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <article
+        ways="c(d-flex),c(justify-content-center),c(align-items-center),c(border),c(border-warning),h(style)height:280px;">
+        <div id="spinner-first"
+          ways="c(m-5),c(p-2),c(spinner-border-sm),c(spinner-grow),c(spinner-border),c(text-primary),c(text-success)">
+          <span ways="c(visually-hidden)">Loading1</span>
+        </div>
+        <ele-clone ref-id="spinner-first" id="spinner-second"></ele-clone>
+        <ele-clone ref-id="spinner-first" id="spinner-second"></ele-clone>
+        <label class="m-5 p-2 spinner-border text-primary text-success "></label>
+      </article>
+      <article class="clearfix">
+        <div class="spinner-border float-end"></div>
+        <div class="spinner-border text-warning float-end"></div>
+      </article>
+    </section>
+  </details>
+  <details class="ndemo-toast" ways="c(border),c(border-primary),c(bg-secondary),c(position-relative),c(mb-5)">
+    <summary class="header">
+      测试 toast
+    </summary>
+    <section class="p-5" ways="c(toast-container),c(p-0),c(border),c(border-warning)">
+      <div id="toast-example-first"
+        ways="c(toast),c(show),c(top-0),c(bottom-0),c(start-0),c(end-0),c(top-50),c(bottom-50),c(start-50),c(end-50),c(translate-middle),c(translate-middle-x),c(translate-middle-y)">
+        <header ways="c(toast-header)">
+          <img src="/lib/image/jpg/sight/(15).jpg" class="w-10 rounded me-2">
+          <strong ways="c(me-auto)">Bootstrap</strong>
+          <small ways="c(text-muted)">13 mins ago</small>
+          <button type="button" ways="c(btn-close),h(data-bs-dismiss)toast"></button>
+        </header>
+        <main ways="c(toast-body)">
+          hey, this is a toast message on .toast-body!
+        </main>
+      </div>
+      <ele-clone ref-id="toast-example-first" id="toast-example-second"></ele-clone>
+      <div ways="c(toast),c(show),c(align-items-center)">
+        <main ways="c(d-flex)">
+          <article ways="c(toast-body)">
+            Hello,world ! this is a toast message you customed.
+            注意, .toast 并不是 flex, 所以 align-items-center, 并无效果
+          </article>
+          <button type="button"
+            ways="c(btn),c(btn-primary),c(btn-close),c(me-2),c(m-auto),h(data-bs-dismiss)toast"></button>
+        </main>
+        <footer ways="c(mt-2),c(pt-2),c(border-top)">
+          <button id="footer-button-first" type="button"
+            ways="c(btn),c(btn-primary),c(btn-secondary),c(btn-sm),c(btn-lg),h(data-bs-dismiss)toast">test
+            button</button>
+          <ele-clone ref-id="footer-button-first" id="footer-button-second"></ele-clone>
+        </footer>
+      </div>
+    </section>
+    <button type="button" class="btn btn-primary" id="trigger-toast-by-js">trigger-toast-by-js</button>
+
+    <div id="toast-toggling" ways="c(bg-info),c(bg-primary),h(data-bs-autohide)false" class="toast show" role="alert"
+      aria-live="polite" aria-atomic="true" data-bs-delay="3000">
+      <div role="alert" aria-live="assertive" aria-atomic="true">this is test for toggle toast</div>
+      <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+    </div>
+    <ele-clone ref-id="toast-toggling" id="toast-clone"></ele-clone>
+
+    <button id="testing" type="button" class="btn btn-success"
+      ways="h(data-bs-toggle)toast,h(data-bs-toggle)dropdown,h(data-bs-target)#toast-toggling,h(data-bs-target)#toast-clone,h(data-bs-target)#no-such-id,h(data-bs-target)[id^=toast-],h(href)[id^=toast-]">trigger-one</button>
+    <ele-clone ref-id="testing" id="testing-clone"></ele-clone>
+  </details>
+  <details class="ndemo-tooltip">
+    <summary class="header">
+      测试 tooltip
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <article ways="">
+        <p class="text-muted">Placeholder text to demonstrate some
+          <a href="#" ways="h(data-bs-toggle)tooltip,h(data-bs-title)tooltip-first,h(data-bs-title)''">inline links</a>
+          with tooltips. This is now just filler, no killer. Content
+          placed
+          here just to mimic the presence of
+          <a href="#"
+            ways="h(data-bs-toggle)tooltip,h(data-bs-title)tooltip-second,h(data-bs-custom-class)gx-tooltip,h(data-bs-placement)right,h(data-bs-placement)bottom,h(data-bs-placement)left,h(data-bs-html)true,h(data-bs-title)<span class='text-muted'>hello - world.<em>Tooltip</em> <u>with</u> <b>HTML</b></span>">
+            try to switch data-bs-html</a>.
+        </p>
+      </article>
+      <article ways="">
+        <!-- HTML to write -->
+        <a href="#" data-bs-toggle="tooltip" data-bs-title="Some tooltip text by data-bs-title !">Hover over me</a>
+
+        <!-- Generated markup by the plugin -->
+        <!-- 这个不是很理解 -->
+        <div class="tooltip bs-tooltip-top show" role="tooltip">
+          <div class="tooltip-arrow"></div>
+          <div class="tooltip-inner">
+            Some tooltip text via outer div.tooltip!
+          </div>
+        </div>
+      </article>
+      <article>
+        <span class="d-inline-block" tabindex="0" data-bs-toggle="tooltip" data-bs-title="Disabled tooltip">
+          <button class="btn btn-primary" type="button" disabled>Disabled button, 需要 tooltip 只能靠容器了</button>
+        </span>
+      </article>
+    </section>
+  </details>
+
+  <!-- <details class="ndemo- ">
+    <summary class="header">
+      原来使用 use 就只可以应用 svg, 咱自创的 ele-clone 还是必要的
+    </summary>
+    <section class="p-5 border" ways="">
+      <article ways="">
+        <div id="color-block" style="width:100px;height:80px;background-color:blueviolet;"></div>
+      </article>
+      <article ways="">
+        <use xlink:href="#color-block">其他元素没有效果</use>
+        <svg class="bi flex-shrink-0 me-2">
+          <use xlink:href="#info-fill" ways="h(xlink:href)#check-circle-fill,h(xlink:href)#exclamation-triangle-fill">
+            only svg</use>
+        </svg>
+      </article>
+    </section>
+  </details> -->
+
+  <!--   
+    <details class="ndemo- ">
+    <summary class="header">
+       测试
+    </summary>
+    <section class="p-5 border" ways="c(container)">
+      <article ways="">
+
+      </article>
+      <article ways="">
+ 
+      </article>
+    </section>
+  </details>
+   -->
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<!-- <title>head 内的所有标签, 采用 head-child-node-loader.ts 动态导入测试</title> -->
+	<!-- <base href="https://www.sina.com.cn" />
+	<base target="_blank">
+	<base href="https://www.baidu.com" target="_top" /> -->
+	<!-- <script type="module" src="/lib/script/js/page/hybird/2-head-child-node-test.js"></script> -->
+	<!-- <script type="module" src="/node_modules/tslib/tslib.es6.js"></script> -->
+	<!-- <title>second title</title> -->
+	<script type="module" src="/lib/script/js/page/hybird/2-head-child-node-test.js" flag="load-head"></script>
+
+	<!-- <script src="/page/hybird/2-head-child-node-test/temp/bottom.js"></script> -->
+	<link rel="stylesheet" href="/page/hybird/2-head-child-node-test/temp/bottom.css" data-bs-toggle="#123babala" />
+
+</head>
+
+<body>
+	<details class="ndemo- ">
+		<summary class="header">
+			测试
+		</summary>
+		<section class="p-5 border" ways="c(container)">
+			<article class="test">
+				<button type="button" class="one">click first button</button>
+				<button type="button" class="two">click second button</button>
+			</article>
+			<article ways="">
+			</article>
+		</section>
+		<a href="#SI_Sidebtns_Wrap">这是一个没有链接目标的 anchor </a>
+	</details>
+
+	<!--
+        <details class="ndemo- ">
+        <summary class="header">
+           测试
+        </summary>
+        <section class="p-5 border" ways="c(container)">
+          <article ways="">
+
+          </article>
+          <article ways="">
+
+          </article>
+        </section>
+      </details>
+       -->
+</body>
+
+</html>

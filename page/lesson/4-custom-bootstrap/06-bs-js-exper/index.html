@@ -1,0 +1,326 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>测试 bootstrap 的相关 javascript object, function, class, and etc.</title>
+  <script type="text/javascript" src="/lib/script/js/jscss-loader/jscss-loader2.0.js"
+    entry="/lib/script/js/page/lesson/4-custom-bootstrap/06-bs-js-exper.js"></script>
+</head>
+
+<body>
+  <details class="ndemo-dom-manipulator.ts">
+    <summary class="header">
+      测试 //dom//manipulator.ts
+    </summary>
+    <section>
+      <div id="user" data-bs="1234567890" data-bs-user="johndoe" data-bs-pwd="abcdefg"
+        data-bs-json1='{"a":"willimas","b":99}' data-bs-json2="{'a':1,'b':'hello'}"
+        data-bs-config='{"delay":1200,"autohide":false,"align":"left"}' data-bs-ok data-bs-config-oligan="moving">
+        John Doe
+      </div>
+    </section>
+  </details>
+  <details class="ndemo-util-index" open>
+    <summary class="header">
+      测试 //util//index.ts
+    </summary>
+    <section class="p-5 border container">
+      <h4 class="text-bg-success">以下各种情况, 测试 getSelector 得到的结果</h4>
+      <article class="test-sundry-getSelector fs-2">
+        <div>target href 均未定义</div>
+        <div data-bs-target="">href未定义, target=''</div>
+        <div data-bs-target="#">href未定义, target='#'</div>
+        <div data-bs-target="abc">href未定义, target='abc'</div>
+        <div data-bs-target=".abc">href未定义, target='.abc'</div>
+        <hr>
+        <div data-bs-target="" href="#hello">target='', href='#hello'</div>
+        <div data-bs-target="#" href="#world">target='#',href='#world'</div>
+        <hr>
+        <div href="">target未定义, href=''</div>
+        <div href=".bmt">target未定义, href='.bmt'</div>
+        <div href="bmt">target未定义, href='bmt'</div>
+        <div href="#kaibao">target未定义, href='#kaibao'</div>
+        <div href="#kaibao#abc#">target未定义, href='#kaibao#abc#'</div>
+        <div href="#">target未定义, href='#'</div>
+        <div href=".">target未定义, href='.'</div>
+        <div href="abc.def">target未定义, href='abc.def'</div>
+        <div href="please#he iy ">target未定义, href='please#he iy '</div>
+        <div href="longlong##">target未定义, href='longlong##'</div>
+        <div href="pmtshort#hello">target未定义, href='pmtshort#hello'</div>
+        <div href="pptslic#">target未定义, href='pptslic#'</div>
+        <div href="space-after-hash# ">target未定义, href='space-after-hash# '</div>
+        <div href="end-after-dot.">target未定义, href='end-after-dot.'</div>
+        <div href="space-after-dot. ">target未定义, href='space-after-dot. '</div>
+      </article>
+    </section>
+    <section class="p-5 border container">
+      <h4 class="text-bg-info">测试 getTransitionDurationFromElement</h4>
+      <article class="test-sundry-getDuration fs-2">
+        <div class="temp-no-any"></div>
+        <div class="temp-only-duration-ms"></div>
+        <div class="temp-only-delay-ms"></div>
+        <div class="temp-only-duration-s"></div>
+        <div class="temp-only-delay-s"></div>
+        <div class="temp-both"></div>
+      </article>
+    </section>
+    <section class="p-5 border container">
+      <h4 class="text-bg-success">测试 isDisabled</h4>
+      <article class="test-sundry-isDisabled fs-2">
+        <button id="test-disabled-only-attr" type="button" class="btn btn-primary" disabled>只包含disabled不赋值的属性</button>
+        <button id="test-disabled-attr-empty-str" type="button" class="btn btn-warning"
+          disabled="">包含disabled=""</button>
+        <button id="test-disabled-attr-false" type="button" class="btn btn-success"
+          disabled="false">disabled="false"</button>
+        <button id="test-disabled-class" type="button" class="btn btn-secondary disabled">包含 .disabled css 类</button>
+
+        <button id="test-disabled-NaN" type="button" class="btn btn-primary">
+          点击: ele.disabled=NaN</button>
+        <button id="test-disabled-false" type="button" class="btn btn-primary">
+          点击: ele.disabled=false
+        </button>
+        <button id="test-disabled-empty-string" type="button" class="btn btn-primary">
+          点击: ele.disabled=""
+        </button>
+        <button id="test-disabled-0" type="button" class="btn btn-primary">
+          点击: ele.disabled=0
+        </button>
+        <button id="test-disabled-undefined" type="button" class="btn btn-primary">
+          点击: ele.disabled=undefined
+        </button>
+        <button id="test-disabled-other" type="button" class="btn btn-primary">
+          点击: ele.disabled=其他值
+        </button>
+      </article>
+    </section>
+    <section class="p-5 border container">
+      <h4 class="text-bg-info">测试 isVisible</h4>
+      <article class="test-sundry-isVisible fs-2">
+        <div>
+          <span>自身以及父级状态常规</span>
+        </div>
+        <div>
+          <span style="display:none">自身display:none</span>
+        </div>
+        <div style="display:none">
+          <span>父级display:none</span>
+        </div>
+        <div>
+          <span style="visibility:hidden">自身visibility:hidden</span>
+        </div>
+        <div>
+          <span style="visibility:collapse">自身visibility:collapse</span>
+        </div>
+        <div>
+          <h4>注意这里的测试, 需要为顶级 details 添加 open; 并注释掉 js 脚本的 openLastDetails 函数调用;</h4>
+          <details open>
+            <summary>
+              this is summary
+            </summary>
+            <span> 位于 details(open) 内部的 span</span>
+          </details>
+          <details open>
+            <summary>
+              this is another summary
+              <span>位于 details(open) 的 summary 内的 span</span>
+            </summary>
+            <p>不相关的段落</p>
+          </details>
+          <details close>
+            <summary>
+              this is summary
+            </summary>
+            <span> 位于 details(close) 内部的 span</span>
+          </details>
+          <details close>
+            <summary>
+              this is another summary
+              <span>位于 details(close) 的 summary 内的 span</span>
+            </summary>
+            <p>不相关的段落</p>
+          </details>
+          <details close>
+            <div>
+              <summary>
+                more summary
+                <span>span的父级, 不是 details 的直接子级, 而是嵌套的孙级</span>
+              </summary>
+            </div>
+
+            <p>不想管</p>
+          </details>
+        </div>
+        <ul class="dbg-result"></ul>
+      </article>
+    </section>
+    <section class="p-5 border container">
+      <h4>
+        Node.getRootNode({composed:boolean}):获取根节点, composed 表示是否跳过 shadow-root(如果检测到)
+      </h4>
+      <ul>
+        <li>
+          在标准的网页中调用将会返回一个 HTMLDocument 对象表示整个网页
+        </li>
+        <li>
+          在 Shadow DOM 里(测试其子级)调用: 。
+          <ol>
+            <li>
+              composed:true时, 跳过 shadow Root 检索普通 Root
+            </li>
+            <li>
+              composed:false时, 如果检索到 shadow Root, 则返回
+            </li>
+          </ol>
+        </li>
+        <li>
+          在 Shadow DOM 自身调用, 结果与测试其子级一致
+        </li>
+      </ul>
+      <article>
+        <div class="js-parent">
+          <div class="js-child"></div>
+        </div>
+        <div class="js-shadowHost"></div>
+      </article>
+    </section>
+    <section class="p-5 border container">
+      <h4>原版的 getNextActiveElement 和 修正的 nextElement 方法对比</h4>
+      <ul class="next-element-result">
+
+      </ul>
+    </section>
+  </details>
+  <details class="ndemo-dom-event-handler">
+    <summary class="header">
+      测试 //dom//event-handler.ts
+    </summary>
+    <section class="p-5 border container">
+      <article ways="">
+        <button type="button" id="hilihi">试试空事件类型</button>
+      </article>
+      <article class="test-manager-on-off-trigger">
+        <div class="outer border border-primary border-3 p-3 m-3">
+          outer
+          <p class="middle border border-warning border-2 p-3 m-3">
+            middle, try preventDefault
+            <a class="inner1 d-block border border-success border-1 p-3 m-3" href="https://www.baidu.com"
+              target="_blank">
+              inner1, to baidu.com
+            </a>
+            <a class="inner2 d-block border border-success border-1 p-3 m-3" href="https://www.yahoo.com"
+              target="_blank">
+              inner2, to yahoo.com
+            </a>
+          </p>
+        </div>
+        <form>
+          <input type="text" class="event-type form-control mb-2" value="init-text" placeholder="输入自定义事件类型">
+          <div>
+            <button type="button" class="to-on btn btn-primary mb-2 mx-2">on() custom event</button>
+            <button type="button" class="to-one btn btn-secondary mb-2 mx-2">one() custom event</button>
+            <button type="button" class="to-off btn btn-success mb-2 mx-2">off() custom event</button>
+            <button type="button" class="to-off-all btn btn-success mb-2 mx-2">off() all custom event</button>
+          </div>
+          <div>
+            <button type="button" class="bubbles-true btn btn-warning mb-2 mx-2">trigger custom event:
+              bubbles=true</button>
+            <button type="button" class="bubbles-false btn btn-warning mb-2 mx-2">trigger custom event:
+              bubbles=false</button>
+          </div>
+          <div>
+            <button type="button" class="show-registry btn btn-primary mx-auto">look up registry in console</button>
+          </div>
+
+        </form>
+
+      </article>
+    </section>
+  </details>
+  <details class="ndemo-util-backdrop">
+    <summary class="header">
+      测试 //util//backdrop.ts 及相关库, 包括 //util//config.ts, //util//index.ts 等
+    </summary>
+    <section class="p-5 border container">
+      <article id="backdrop-container" class="container border border-1 border-primary" style="height:300px">
+        <textarea class="h-100 w-100"></textarea>
+      </article>
+      <article>
+        <button class="test-util-backdrop-create btn btn-success">create</button>
+        <button class="test-util-backdrop-show btn btn-secondary">show</button>
+        <button class="test-util-backdrop-hide btn btn-warning">hide</button>
+        <button class="test-util-backdrop-dispose btn btn-primary">dispose</button>
+      </article>
+    </section>
+  </details>
+  <details class="ndemo-util-focustrap">
+    <summary class="header">
+      测试 //util//focustrap.ts
+    </summary>
+    <section class="p-5 border container">
+      <article>
+        <form class="border border-2 border-success p-2 mb-2">
+          <input type="radio">
+          <input type="text">
+          <fieldset>
+            <div>
+              <input type="checkbox">
+              <textarea></textarea>
+              <label>label 文本</label>
+            </div>
+          </fieldset>
+        </form>
+        <input type="text" value="focus 这里生效">
+      </article>
+      <article class="control">
+        <button class="do-active btn btn-primary">do active</button>
+        <button class="do-deactive btn btn-warning">do deactive</button>
+      </article>
+    </section>
+  </details>
+  <details class="ndemo-swipe ">
+    <summary class="header">
+      测试 //util//swipe.ts
+    </summary>
+    <section class="p-5 border container">
+      <article>
+        觉得 _move() 方法不是很妥当. 免试了.
+      </article>
+    </section>
+  </details>
+  <h3>
+    最后还是觉得这个反向工程不是太有意思, 尤其是原版本身写得也不是很精致, 加上基本上没有注释. 所以, 反向工程就此打住.
+  </h3>
+  <!-- <details class="ndemo- sdewf">
+    <summary class="header">
+      测试
+    </summary>
+    <section class="p-5 border container">
+      <article ways="">
+        some content
+      </article>
+      <article ways="">
+
+      </article>
+    </section>
+  </details> -->
+  <!--   
+  <details class="ndemo- ">
+      <summary class="header">
+         测试
+      </summary>
+      <section class="p-5 border container">
+        <article>
+  
+        </article>
+        <article
+   
+        </article>
+      </section>
+    </details>
+   -->
+</body>
+
+</html>
